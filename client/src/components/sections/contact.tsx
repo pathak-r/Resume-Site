@@ -38,7 +38,12 @@ export default function Contact() {
   return (
     <section id="contact" className="py-32 bg-secondary/30">
       <div className="container px-6 mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-20"
+        >
           {/* Contact Info */}
           <div>
             <h2 className="text-4xl md:text-5xl font-bold font-heading mb-8 text-foreground">Get in Touch</h2>
