@@ -7,9 +7,9 @@ const skills = [
 
 export default function About() {
   return (
-    <section id="about" className="py-32 bg-secondary/30">
+    <section id="about" className="py-24 bg-secondary/30">
       <div className="container px-6 mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           
           {/* Bio Section */}
           <motion.div
@@ -17,8 +17,8 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold font-heading mb-8 text-foreground">About Me</h2>
-            <div className="space-y-6 text-lg text-muted-foreground leading-relaxed font-medium">
+            <h2 className="text-3xl font-bold font-heading mb-6 text-foreground">About Me</h2>
+            <div className="space-y-4 text-base text-muted-foreground leading-relaxed font-medium">
               <p>
                 I am an AI-driven Senior Product Manager with over a decade of experience building enterprise SaaS and industrial-tech solutions. My passion lies in translating complex technical capabilities into intuitive products that solve real business problems.
               </p>
@@ -27,16 +27,16 @@ export default function About() {
               </p>
             </div>
 
-            <div className="mt-12 pt-12 border-t border-border/50">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-6">Education</h3>
-              <div className="space-y-6">
+            <div className="mt-8 pt-8 border-t border-border/50">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4">Education</h3>
+              <div className="space-y-4">
                 <div>
-                  <div className="text-xl font-bold text-foreground font-heading">M.S. Mechanical Engineering</div>
-                  <div className="text-muted-foreground">North Carolina State University</div>
+                  <div className="text-lg font-bold text-foreground font-heading">M.S. Mechanical Engineering</div>
+                  <div className="text-sm text-muted-foreground">North Carolina State University</div>
                 </div>
                 <div>
-                  <div className="text-xl font-bold text-foreground font-heading">B.Tech Mechanical Engineering</div>
-                  <div className="text-muted-foreground">National Institute of Technology (NIT) Rourkela</div>
+                  <div className="text-lg font-bold text-foreground font-heading">B.Tech Mechanical Engineering</div>
+                  <div className="text-sm text-muted-foreground">National Institute of Technology (NIT) Rourkela</div>
                 </div>
               </div>
             </div>
@@ -49,12 +49,12 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-             <h2 className="text-3xl font-bold font-heading mb-8 text-foreground">Expertise</h2>
-             <div className="flex flex-wrap gap-3">
+             <h2 className="text-3xl font-bold font-heading mb-6 text-foreground">Expertise</h2>
+             <div className="flex flex-wrap gap-2">
                {skills.map((skill, i) => (
                  <span 
                   key={i} 
-                  className="px-6 py-3 bg-white rounded-xl shadow-sm border border-border/50 text-lg font-medium text-foreground hover:shadow-md transition-shadow cursor-default"
+                  className="px-4 py-2 bg-white rounded-lg shadow-sm border border-border/50 text-base font-medium text-foreground hover:shadow-md transition-shadow cursor-default"
                 >
                    {skill}
                  </span>

@@ -29,21 +29,21 @@ const projects = [
 
 export default function FeaturedWork() {
   return (
-    <section id="work" className="py-32 bg-background">
+    <section id="work" className="py-24 bg-background">
       <div className="container px-6 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 text-center"
+          className="mb-12 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-foreground">Selected Work</h2>
+          <h2 className="text-3xl font-bold font-heading mb-3 text-foreground">Selected Work</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Transforming complex enterprise requirements into scalable, high-impact AI products.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-12 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -53,32 +53,32 @@ export default function FeaturedWork() {
               transition={{ delay: index * 0.1 }}
               className="group"
             >
-              <Card className="bg-white border-none shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden rounded-3xl p-8 md:p-12 relative">
-                <div className="absolute top-0 right-0 p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <ArrowUpRight className="w-8 h-8 text-foreground" />
+              <Card className="bg-white border-none shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden rounded-2xl p-8 relative">
+                <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <ArrowUpRight className="w-5 h-5 text-foreground" />
                 </div>
 
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-4">
                   <div className="flex flex-wrap items-center gap-3">
-                    <Badge variant="secondary" className="rounded-full bg-secondary text-secondary-foreground font-medium px-4 py-1.5">
+                    <Badge variant="secondary" className="rounded-full bg-secondary text-secondary-foreground font-medium px-3 py-1 text-xs">
                       {project.category}
                     </Badge>
-                    <span className="text-sm font-bold text-primary">
+                    <span className="text-xs font-bold text-primary uppercase tracking-wide">
                       • {project.impact}
                     </span>
                   </div>
                   
-                  <h3 className="text-3xl font-bold font-heading text-foreground">
+                  <h3 className="text-2xl font-bold font-heading text-foreground">
                     {project.title}
                   </h3>
                   
-                  <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl">
+                  <p className="text-muted-foreground text-base leading-relaxed max-w-3xl">
                     {project.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 mt-4">
+                  <div className="flex flex-wrap gap-2 mt-2">
                     {project.tags.map(tag => (
-                      <span key={tag} className="text-sm font-medium text-muted-foreground bg-secondary/50 px-3 py-1 rounded-md">
+                      <span key={tag} className="text-xs font-medium text-muted-foreground bg-secondary/50 px-2.5 py-1 rounded-md">
                         {tag}
                       </span>
                     ))}
