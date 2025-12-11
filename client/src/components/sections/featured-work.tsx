@@ -15,7 +15,7 @@ const projects = [
     title: "Secure RAG Intelligence Platform",
     category: "Knowledge Management",
     impact: "40% Support Ticket Deflection",
-    description: "Launched a production-ready RAG assistant trained on proprietary knowledge bases. This allowed users to query mission-critical data in natural language, significantly reducing support load and improving operational efficiency.",
+    description: "Delivered enterprise-grade AI agents enabling natural-language queries on complex databases, significantly improving access to mission-critical data and accelerating cross-functional decision-making.",
     tags: ["RAG", "Data Privacy", "Enterprise Search", "Customer Success"]
   },
   {
@@ -37,7 +37,7 @@ export default function FeaturedWork() {
           transition={{ duration: 0.6 }}
           className="mb-20 max-w-3xl"
         >
-          <h1 className="text-4xl md:text-5xl font-bold font-heading mb-6 text-foreground leading-tight">
+          <h1 className="text-xl md:text-2xl font-bold font-heading mb-4 text-foreground leading-tight">
             I'm Rohit Pathak, a Senior Product Manager building Enterprise AI solutions.
           </h1>
           <p className="text-muted-foreground text-xl leading-relaxed">
