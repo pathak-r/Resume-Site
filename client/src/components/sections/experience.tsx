@@ -20,8 +20,6 @@ const experiences = [
     location: "Abu Dhabi, UAE",
     description: "Managed product lifecycle and delivered high-impact AI MVPs.",
     achievements: [
-      "Delivered two high-impact AI MVPs within 12 months.",
-      "Led 100+ executive stakeholder and customer discovery workshops.",
       "Recognized with 'Voice of the Customer' award for productivity gains.",
     ]
   },
