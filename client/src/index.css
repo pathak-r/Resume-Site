@@ -45,53 +45,52 @@
   --color-chart-4: hsl(var(--chart-4));
   --color-chart-5: hsl(var(--chart-5));
 
-  --font-sans: 'Inter', sans-serif;
-  --font-heading: 'Outfit', sans-serif;
+  --font-sans: 'Nunito', sans-serif;
+  --font-heading: 'Quicksand', sans-serif;
 }
 
-/* Black & Off-White Minimalist Theme */
+/* Off-White & Black Theme */
 :root {
-  /* Soft Black Background */
-  --background: 0 0% 5%; 
-  /* Warm Off-White Foreground */
-  --foreground: 40 10% 90%;
+  /* Warm Off-White Background */
+  --background: 40 20% 97%; 
+  /* Soft Black Foreground */
+  --foreground: 0 0% 10%;
 
-  /* Dark Grey Cards */
-  --card: 0 0% 8%;
-  --card-foreground: 40 10% 90%;
+  /* White Cards with slight warmth */
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
 
-  --popover: 0 0% 8%;
-  --popover-foreground: 40 10% 90%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 10%;
 
-  /* White Primary Accent */
-  --primary: 0 0% 100%;
-  --primary-foreground: 0 0% 0%;
+  /* Black Primary */
+  --primary: 0 0% 10%;
+  --primary-foreground: 40 20% 97%;
 
-  /* Subtle Grey Secondary */
-  --secondary: 0 0% 12%;
-  --secondary-foreground: 0 0% 80%;
+  /* Light Beige Secondary */
+  --secondary: 40 15% 92%;
+  --secondary-foreground: 0 0% 10%;
 
-  --muted: 0 0% 12%;
-  --muted-foreground: 0 0% 60%;
+  --muted: 40 10% 90%;
+  --muted-foreground: 0 0% 40%;
 
-  --accent: 0 0% 15%;
-  --accent-foreground: 0 0% 100%;
+  --accent: 40 15% 92%;
+  --accent-foreground: 0 0% 10%;
 
   --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 100%;
+  --destructive-foreground: 0 0% 98%;
 
-  --border: 0 0% 15%;
-  --input: 0 0% 15%;
-  --ring: 0 0% 80%;
+  --border: 0 0% 85%;
+  --input: 0 0% 85%;
+  --ring: 0 0% 10%;
 
-  --radius: 0rem; /* Sharper corners for minimal look */
+  --radius: 0.75rem; /* Rounded corners for the soft friendly feel */
 
-  /* Monochrome Charts */
-  --chart-1: 0 0% 100%;
-  --chart-2: 0 0% 80%;
-  --chart-3: 0 0% 60%;
-  --chart-4: 0 0% 40%;
-  --chart-5: 0 0% 20%;
+  --chart-1: 0 0% 10%;
+  --chart-2: 0 0% 30%;
+  --chart-3: 0 0% 50%;
+  --chart-4: 0 0% 70%;
+  --chart-5: 0 0% 90%;
 }
 
 @layer base {
@@ -102,6 +101,12 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold tracking-tight text-white;
+    @apply font-heading font-bold tracking-tight text-foreground;
+  }
+}
+
+@layer utilities {
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   }
 }
