@@ -49,43 +49,49 @@
   --font-heading: 'Outfit', sans-serif;
 }
 
-/* Dark Theme by Default for that Tech Feel */
+/* Black & Off-White Minimalist Theme */
 :root {
-  --background: 222 47% 11%;
-  --foreground: 210 40% 98%;
+  /* Soft Black Background */
+  --background: 0 0% 5%; 
+  /* Warm Off-White Foreground */
+  --foreground: 40 10% 90%;
 
-  --card: 217 33% 17%;
-  --card-foreground: 210 40% 98%;
+  /* Dark Grey Cards */
+  --card: 0 0% 8%;
+  --card-foreground: 40 10% 90%;
 
-  --popover: 222 47% 11%;
-  --popover-foreground: 210 40% 98%;
+  --popover: 0 0% 8%;
+  --popover-foreground: 40 10% 90%;
 
-  --primary: 199 89% 48%; /* Cyan/Teal Accent */
-  --primary-foreground: 222 47% 11%;
+  /* White Primary Accent */
+  --primary: 0 0% 100%;
+  --primary-foreground: 0 0% 0%;
 
-  --secondary: 217 33% 17%;
-  --secondary-foreground: 210 40% 98%;
+  /* Subtle Grey Secondary */
+  --secondary: 0 0% 12%;
+  --secondary-foreground: 0 0% 80%;
 
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20% 65%;
+  --muted: 0 0% 12%;
+  --muted-foreground: 0 0% 60%;
 
-  --accent: 199 89% 48%;
-  --accent-foreground: 222 47% 11%;
+  --accent: 0 0% 15%;
+  --accent-foreground: 0 0% 100%;
 
   --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive-foreground: 0 0% 100%;
 
-  --border: 217 33% 20%;
-  --input: 217 33% 20%;
-  --ring: 199 89% 48%;
+  --border: 0 0% 15%;
+  --input: 0 0% 15%;
+  --ring: 0 0% 80%;
 
-  --radius: 0.5rem;
+  --radius: 0rem; /* Sharper corners for minimal look */
 
-  --chart-1: 220 70% 50%;
-  --chart-2: 160 60% 45%;
-  --chart-3: 30 80% 55%;
-  --chart-4: 280 65% 60%;
-  --chart-5: 340 75% 55%;
+  /* Monochrome Charts */
+  --chart-1: 0 0% 100%;
+  --chart-2: 0 0% 80%;
+  --chart-3: 0 0% 60%;
+  --chart-4: 0 0% 40%;
+  --chart-5: 0 0% 20%;
 }
 
 @layer base {
@@ -96,6 +102,6 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold tracking-tight;
+    @apply font-heading font-bold tracking-tight text-white;
   }
 }
