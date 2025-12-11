@@ -38,10 +38,10 @@ export default function FeaturedWork() {
           className="mb-20 max-w-3xl"
         >
           <h1 className="text-xl md:text-2xl font-bold font-heading mb-4 text-foreground leading-tight">
-            I'm Rohit Pathak, a Senior Product Manager building Enterprise AI solutions.
+            Rohit Pathak.
           </h1>
           <p className="text-muted-foreground text-xl leading-relaxed">
-             Based in UAE. Specializing in GenAI copilots, RAG systems, and scalable SaaS platforms.
+             Based in UAE. Building GenAI copilots, RAG systems, and scalable SaaS platforms.
           </p>
         </motion.div>
 
