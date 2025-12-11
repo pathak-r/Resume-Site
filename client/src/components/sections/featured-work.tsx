@@ -29,21 +29,23 @@ const projects = [
 
 export default function FeaturedWork() {
   return (
-    <section id="work" className="py-24 bg-background">
+    <section id="work" className="pt-40 pb-24 bg-background min-h-screen">
       <div className="container px-6 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 text-center"
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-20 max-w-3xl"
         >
-          <h2 className="text-3xl font-bold font-heading mb-3 text-foreground">Selected Work</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Transforming complex enterprise requirements into scalable, high-impact AI products.
+          <h1 className="text-4xl md:text-5xl font-bold font-heading mb-6 text-foreground leading-tight">
+            I'm Rohit Pathak, a Senior Product Manager building Enterprise AI solutions.
+          </h1>
+          <p className="text-muted-foreground text-xl leading-relaxed">
+             Based in UAE. Specializing in GenAI copilots, RAG systems, and scalable SaaS platforms.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 gap-12 max-w-5xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={index}
