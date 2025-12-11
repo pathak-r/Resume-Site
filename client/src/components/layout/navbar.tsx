@@ -55,7 +55,7 @@ export default function Navbar() {
             </a>
           ))}
           <Button variant="default" size="sm" className="rounded-full px-6" asChild>
-            <a href="/assets/Rohit_Pathak_CV.pdf" download>Resume</a>
+            <a href="/Rohit_Pathak_CV.pdf" download>Resume</a>
           </Button>
         </div>
 
@@ -82,7 +82,7 @@ export default function Navbar() {
             </a>
           ))}
           <Button variant="default" className="w-full mt-4" asChild>
-            <a href="/assets/Rohit_Pathak_CV.pdf" download>Download Resume</a>
+            <a href="/Rohit_Pathak_CV.pdf" download>Download Resume</a>
           </Button>
         </div>
       )}
