@@ -51,8 +51,8 @@
 
 /* Off-White & Black Theme */
 :root {
-  /* Warm Off-White Background */
-  --background: 40 20% 97%; 
+  /* Warm Off-White Background - slightly darker */
+  --background: 40 15% 90%; 
   /* Soft Black Foreground */
   --foreground: 0 0% 10%;
 
