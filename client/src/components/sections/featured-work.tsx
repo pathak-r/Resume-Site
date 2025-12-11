@@ -12,7 +12,7 @@ const projects = [
     tags: ["LLM Agents", "Product Strategy", "3D Engineering", "Automation"]
   },
   {
-    title: "Secure RAG Intelligence Platform",
+    title: "Enterprise AI Agents & Natural Language Querying",
     category: "Knowledge Management",
     impact: "40% Support Ticket Deflection",
     description: "Delivered enterprise-grade AI agents enabling natural-language queries on complex databases, significantly improving access to mission-critical data and accelerating cross-functional decision-making.",
