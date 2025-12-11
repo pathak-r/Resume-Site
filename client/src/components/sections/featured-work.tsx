@@ -12,11 +12,11 @@ const projects = [
     tags: ["LLM Agents", "Product Strategy", "3D Engineering", "Automation"]
   },
   {
-    title: "Enterprise AI Agents & Natural Language Querying",
-    category: "Knowledge Management",
-    impact: "40% Support Ticket Deflection",
+    title: "AI Agents & Natural Language Querying",
+    category: "Data Intelligence",
+    impact: "Accelerated Decision-Making",
     description: "Delivered enterprise-grade AI agents enabling natural-language queries on complex databases, significantly improving access to mission-critical data and accelerating cross-functional decision-making.",
-    tags: ["RAG", "Data Privacy", "Enterprise Search", "Customer Success"]
+    tags: ["NL2SQL", "Data Accessibility", "Enterprise Search", "Decision Support"]
   },
   {
     title: "AI ROI & Telemetry Framework",
