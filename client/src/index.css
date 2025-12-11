@@ -51,24 +51,24 @@
 
 /* Off-White & Black Theme */
 :root {
-  /* Warm Off-White Background - slightly darker */
-  --background: 40 15% 90%; 
+  /* Warm Off-White Background - darker */
+  --background: 40 15% 85%; 
   /* Soft Black Foreground */
   --foreground: 0 0% 10%;
 
-  /* White Cards with slight warmth */
-  --card: 0 0% 100%;
+  /* Off-White Cards to match */
+  --card: 40 15% 94%;
   --card-foreground: 0 0% 10%;
 
-  --popover: 0 0% 100%;
+  --popover: 40 15% 94%;
   --popover-foreground: 0 0% 10%;
 
   /* Black Primary */
   --primary: 0 0% 10%;
   --primary-foreground: 40 20% 97%;
 
-  /* Light Beige Secondary */
-  --secondary: 40 15% 92%;
+  /* Darker Beige Secondary */
+  --secondary: 40 15% 80%;
   --secondary-foreground: 0 0% 10%;
 
   --muted: 40 10% 90%;
