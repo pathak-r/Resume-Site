@@ -23,7 +23,7 @@ export default function About() {
                 I am an AI-driven Senior Product Manager with over a decade of experience building enterprise SaaS and industrial-tech solutions. My passion lies in translating complex technical capabilities into intuitive products that solve real business problems.
               </p>
               <p>
-                Currently, I focus on Agentic AI and RAG systems, helping engineering teams automate workflows and access critical data faster. I believe in responsible AI development—balancing innovation with governance, security, and ethical standards.
+                Currently, I focus on Agentic AI and RAG systems, helping engineering teams automate workflows and access critical data faster. I believe in responsible AI development, balancing innovation with governance, security, and ethical standards.
               </p>
             </div>
 
