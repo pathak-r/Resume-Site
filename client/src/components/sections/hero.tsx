@@ -45,7 +45,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-bold leading-tight mb-6"
+            className="font-bold leading-tight mb-10"
             style={{
               fontSize: 'clamp(2.8rem, 6vw, 4.5rem)',
               letterSpacing: '-0.02em',
@@ -54,26 +54,10 @@ export default function Hero() {
             }}
             data-testid="text-hero-headline"
           >
-            Product Strategy<br />
-            <span style={{ color: 'var(--lf-primary)' }}>meets</span>{' '}
-            <span style={{ color: 'var(--lf-tertiary)' }}>Enterprise AI.</span>
+            Senior PM.<br />
+            <span style={{ color: 'var(--lf-primary)' }}>Enterprise AI.</span><br />
+            <span style={{ color: 'var(--lf-tertiary)', fontSize: '0.6em', letterSpacing: '-0.01em' }}>Abu Dhabi · 10+ Years</span>
           </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="mb-10 leading-relaxed"
-            style={{
-              fontSize: '1.125rem',
-              color: '#6b7071',
-              maxWidth: '520px',
-              letterSpacing: '0.01em',
-            }}
-            data-testid="text-hero-description"
-          >
-            10+ years turning complex AI into products people actually use. Based in Abu Dhabi.
-          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
