@@ -57,14 +57,6 @@ export default function Navbar() {
               {link.name}
             </a>
           ))}
-          <a
-            href="/Rohit_Pathak_CV.pdf"
-            download
-            data-testid="button-resume-download"
-            className="btn-primary-gradient px-6 py-2 text-sm font-semibold"
-          >
-            Resume
-          </a>
         </div>
 
         {/* Mobile Nav Toggle */}

@@ -67,13 +67,12 @@ export default function Hero() {
             style={{
               fontSize: '1.125rem',
               color: '#6b7071',
-              maxWidth: '600px',
+              maxWidth: '520px',
               letterSpacing: '0.01em',
             }}
             data-testid="text-hero-description"
           >
-            Bridging the gap between complex AI capabilities and real-world business value.
-            Building GenAI copilots, RAG systems, and scalable SaaS platforms.
+            10+ years turning complex AI into products people actually use. Based in Abu Dhabi.
           </motion.p>
 
           <motion.div
