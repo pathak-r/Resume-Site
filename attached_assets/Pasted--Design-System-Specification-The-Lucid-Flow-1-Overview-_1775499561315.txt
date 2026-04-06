@@ -1,0 +1,96 @@
+# Design System Specification: The Lucid Flow
+
+## 1. Overview & Creative North Star
+**Creative North Star: The Optimistic Architect**
+This design system is built to move away from the rigid, "boxed-in" feeling of traditional dashboards and portfolios. Instead, it embraces the persona of a Product Manager who is both a visionary and a precision-builder. We achieve this through **The Lucid Flow**—a design philosophy centered on extreme clarity, intentional asymmetry, and "breathable" layouts.
+
+By rejecting standard borders and heavy shadows, we create a high-end editorial experience. The interface should feel like a premium physical workspace: sun-drenched, organized, and filled with momentum. We break the template look by using oversized typography as structural anchors and overlapping "glass" layers to suggest depth and sophistication.
+
+---
+
+## 2. Colors & Surface Philosophy
+The palette is anchored in a crisp, airy environment, using vibrant coral for kinetic energy and soft blues for professional stability.
+
+### The Color Tokens (Material Design Convention)
+* **Primary (Energetic Coral):** `primary: #a83028` | `primary_container: #ff7668`
+* **Secondary (Soft Blue):** `secondary: #005f99` | `secondary_container: #afd5ff`
+* **Tertiary (Teal Depth):** `tertiary: #006382` | `tertiary_container: #0ac4fd`
+* **Neutral Surfaces:** `surface: #f5f6f7` | `surface_container_lowest: #ffffff`
+
+### The "No-Line" Rule
+**Explicit Instruction:** Prohibit the use of 1px solid borders for sectioning content.
+Structure must be defined through **Background Color Shifts**. For example:
+* A `surface_container_lowest` (#ffffff) card should sit on a `surface` (#f5f6f7) background.
+* A hero section might transition from `surface` to `surface_container_low` (#eff1f2) to denote a shift in context without a hard line.
+
+### Surface Hierarchy & Nesting
+Treat the UI as a series of stacked, fine-paper layers.
+* **Level 0 (Base):** `background` (#f5f6f7).
+* **Level 1 (Sections):** `surface_container_low` (#eff1f2).
+* **Level 2 (Interactive Cards):** `surface_container_lowest` (#ffffff).
+This "nesting" creates a soft, natural hierarchy that feels architectural rather than digital.
+
+### The "Glass & Gradient" Rule
+To add soul to the interface:
+* **Floating Navigation:** Use `surface_container_lowest` at 80% opacity with a `backdrop-filter: blur(20px)`.
+* **Kinetic Accents:** Main CTAs should not be flat. Apply a subtle linear gradient from `primary` (#a83028) to `primary_container` (#ff7668) at a 135-degree angle to provide a sense of "glow" and optimism.
+
+---
+
+## 3. Typography
+We utilize **Plus Jakarta Sans** for its modern, geometric clarity. The goal is an editorial feel where the type itself defines the layout boundaries.
+
+* **Display (The Anchor):** `display-lg` (3.5rem) should be used for hero statements. Apply a `-0.02em` letter-spacing to keep it tight and authoritative.
+* **Headlines:** `headline-lg` (2rem) and `headline-md` (1.75rem) provide the rhythm. Use generous `1.4` line-height to ensure the "airy" feel is maintained.
+* **Body (The Narrative):** `body-lg` (1rem) is our workhorse. Increase letter-spacing to `0.01em` for a premium, readable feel.
+* **Labels:** `label-md` (0.75rem) should always be uppercase with `0.05em` tracking when used for category tags or small metadata, ensuring high-end legibility.
+
+---
+
+## 4. Elevation & Depth
+In this system, depth is a whisper, not a shout. We avoid heavy, "eerie" shadows in favor of tonal layering.
+
+* **The Layering Principle:** Place a `surface_container_lowest` (#ffffff) element on top of `surface_container_low` (#eff1f2). The subtle contrast (hex-shift) creates the lift.
+* **Ambient Shadows:** For floating elements like Modals or Popovers, use an extra-diffused shadow.
+* **Blur:** 40px - 60px.
+* **Color:** `on_surface` (#2c2f30) at **4% to 6% opacity**.
+* **Offset:** Y: 12px.
+* **The "Ghost Border":** If a container requires further definition for accessibility, use the `outline_variant` (#abadae) at **15% opacity**. This creates a "breath" of a line rather than a hard boundary.
+
+---
+
+## 5. Components
+
+### Buttons
+* **Primary:** Pill-shaped (`full`: 9999px). Gradient background (Coral). White text (`on_primary`). No shadow on idle; 8% ambient shadow on hover.
+* **Secondary:** Pill-shaped. `secondary_container` (#afd5ff) background with `on_secondary_container` (#004a79) text. This provides a "soft blue" alternative to the energetic primary.
+* **Tertiary:** No background. Bold `primary` text. Padding should be generous to maintain the hit area.
+
+### Cards & Case Studies
+* **Forbid dividers.** Use `1.5rem` to `2rem` (md to lg) of vertical whitespace to separate content blocks.
+* **Corner Radius:** Use `lg` (2rem) for large case study cards and `md` (1.5rem) for smaller UI widgets.
+* **Asymmetry:** Encourage placing text on one side and an overlapping image container that breaks the card's edge slightly to create a bespoke, custom-coded feel.
+
+### Input Fields
+* **Style:** `surface_container_low` background, pill-shaped (`full`).
+* **State:** On focus, the background shifts to `surface_container_lowest` with a `primary` Ghost Border (20% opacity).
+
+### Chips (Project Tags)
+* **Selection:** Use `tertiary_container` (#0ac4fd) with `on_tertiary_container` (#00394d) text for a vibrant, teal-based professional tag.
+* **Shape:** `full` (pill).
+
+---
+
+## 6. Do's and Don'ts
+
+### Do
+* **Do** use asymmetrical layouts where imagery "breaks" the grid of the text.
+* **Do** lean into `surface_container_lowest` (pure white) for the most important content to make it "pop" against the off-white background.
+* **Do** use large amounts of white space—if a section feels crowded, double the padding.
+* **Do** use the energetic coral (`primary`) sparingly as a "heartbeat" across the page.
+
+### Don't
+* **Don't** use black (#000000) for text. Always use `on_surface` (#2c2f30) to maintain the "friendly" and "upbeat" atmosphere.
+* **Don't** use 1px solid borders to separate sections.
+* **Don't** use standard "drop shadows" with high opacity.
+* **Don't** use sharp corners. Everything must be `md` (1.5rem) or higher to maintain the "friendly" brand promise.

@@ -7,18 +7,30 @@ import Contact from "@/components/sections/contact";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-foreground selection:text-background">
+    <div
+      className="min-h-screen overflow-x-hidden"
+      style={{ background: 'var(--lf-surface, #f5f6f7)', color: 'var(--lf-on-surface, #2c2f30)' }}
+    >
       <Navbar />
       <main>
+        <Hero />
         <FeaturedWork />
         <Experience />
         <About />
         <Contact />
       </main>
-      
-      <footer className="py-12 text-center text-sm font-medium text-muted-foreground bg-background border-t border-border">
-        <div className="container mx-auto px-6">
-          <p>© {new Date().getFullYear()} Rohit Pathak. All rights reserved.</p>
+
+      <footer
+        className="py-10 text-center"
+        style={{
+          background: 'var(--lf-surface, #f5f6f7)',
+          color: '#abadae',
+          fontSize: '0.875rem',
+          fontWeight: 500,
+        }}
+      >
+        <div className="container mx-auto px-6 max-w-6xl">
+          <p>© {new Date().getFullYear()} Rohit Pathak · Senior Product Manager · Abu Dhabi, UAE</p>
         </div>
       </footer>
     </div>

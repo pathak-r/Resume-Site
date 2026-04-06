@@ -2,7 +2,6 @@ import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,11 +34,11 @@ export default function Navbar() {
   return (
     <nav className={cn(
       "fixed top-0 w-full z-50 transition-all duration-300",
-      scrolled ? "bg-background/80 backdrop-blur-md border-b border-border py-4" : "bg-transparent py-6"
+      scrolled ? "glass-nav shadow-ambient py-4" : "bg-transparent py-6"
     )}>
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold font-heading tracking-tight text-foreground">
-          rohit pathak<span className="text-primary">.</span>
+      <div className="container mx-auto px-6 flex items-center justify-between max-w-6xl">
+        <Link href="/" className="text-lg font-bold tracking-tight" style={{ color: 'var(--lf-on-surface)' }}>
+          rohit pathak<span style={{ color: 'var(--lf-primary)' }}>.</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -48,21 +47,32 @@ export default function Navbar() {
             <a
               key={link.name}
               href={link.href}
+              data-testid={`nav-link-${link.name.toLowerCase()}`}
               onClick={(e) => scrollToSection(e, link.href)}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm font-medium transition-colors"
+              style={{ color: 'var(--lf-muted-foreground, #6b7071)' }}
+              onMouseEnter={e => (e.currentTarget.style.color = 'var(--lf-on-surface)')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'var(--lf-muted-foreground, #6b7071)')}
             >
               {link.name}
             </a>
           ))}
-          <Button variant="default" size="sm" className="rounded-full px-6" asChild>
-            <a href="/Rohit_Pathak_CV.pdf" download>Resume</a>
-          </Button>
+          <a
+            href="/Rohit_Pathak_CV.pdf"
+            download
+            data-testid="button-resume-download"
+            className="btn-primary-gradient px-6 py-2 text-sm font-semibold"
+          >
+            Resume
+          </a>
         </div>
 
         {/* Mobile Nav Toggle */}
         <button
-          className="md:hidden p-2 text-foreground"
+          className="md:hidden p-2"
+          style={{ color: 'var(--lf-on-surface)' }}
           onClick={() => setIsOpen(!isOpen)}
+          data-testid="button-mobile-menu"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -70,20 +80,29 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-background border-b border-border p-6 flex flex-col gap-4 shadow-lg">
+        <div
+          className="md:hidden absolute top-full left-0 w-full p-6 flex flex-col gap-4 shadow-ambient"
+          style={{ background: 'rgba(255,255,255,0.96)', backdropFilter: 'blur(20px)' }}
+        >
           {links.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={(e) => scrollToSection(e, link.href)}
-              className="text-lg font-medium text-foreground py-2"
+              className="text-lg font-semibold py-2"
+              style={{ color: 'var(--lf-on-surface)' }}
             >
               {link.name}
             </a>
           ))}
-          <Button variant="default" className="w-full mt-4" asChild>
-            <a href="/Rohit_Pathak_CV.pdf" download>Download Resume</a>
-          </Button>
+          <a
+            href="/Rohit_Pathak_CV.pdf"
+            download
+            data-testid="button-resume-download-mobile"
+            className="btn-primary-gradient text-center px-6 py-3 text-base font-semibold mt-2"
+          >
+            Download Resume
+          </a>
         </div>
       )}
     </nav>
