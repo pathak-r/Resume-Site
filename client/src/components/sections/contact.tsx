@@ -133,7 +133,7 @@ export default function Contact() {
           className="mt-10 flex justify-start"
         >
           <a
-            href="https://linkedin.com/in/rohit-pathak-pm"
+            href="https://www.linkedin.com/in/pathakrohit/"
             target="_blank"
             rel="noopener noreferrer"
             data-testid="button-linkedin"
