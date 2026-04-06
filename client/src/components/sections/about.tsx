@@ -111,19 +111,6 @@ export default function About() {
               ))}
             </div>
 
-            {/* Certifications note */}
-            <div
-              className="mt-10 rounded-3xl p-7 shadow-ambient"
-              style={{ background: 'linear-gradient(135deg, rgba(168,48,40,0.06), rgba(10,196,253,0.08))', borderRadius: '1.5rem' }}
-              data-testid="card-certifications"
-            >
-              <span className="label-meta block mb-3" style={{ color: 'var(--lf-tertiary)' }}>Certifications</span>
-              <ul className="space-y-2" style={{ fontSize: '0.95rem', color: '#6b7071', lineHeight: 1.7 }}>
-                <li>· Microsoft Azure AI-900 (AI Fundamentals)</li>
-                <li>· Product-Led Growth · Reforge</li>
-                <li>· Certified SAFe® 6 Product Owner / Product Manager</li>
-              </ul>
-            </div>
           </motion.div>
 
         </div>
