@@ -75,13 +75,17 @@ export default function Experience() {
                 className="surface-lowest shadow-ambient rounded-3xl relative overflow-hidden"
                 style={{ padding: '2rem 2.5rem', borderRadius: '2rem' }}
               >
-                {/* Accent bar */}
+                {/* Radial gradient bloom — top-left accent wash */}
                 <div
-                  className="absolute left-0 top-0 bottom-0 w-1.5 rounded-r-full"
-                  style={{ background: exp.accent, opacity: 0.85 }}
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: `radial-gradient(ellipse 60% 70% at 0% 0%, ${exp.accent}, transparent)`,
+                    opacity: 0.07,
+                    borderRadius: '2rem',
+                  }}
                 />
 
-                <div className="pl-3">
+                <div className="relative">
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 mb-3">
                     <div>
                       <h3
