@@ -40,6 +40,69 @@ function fmt(n: number | null | undefined, decimals = 0): string {
   return n.toLocaleString("en-US", { maximumFractionDigits: decimals });
 }
 
+// ─── Well Detail Charts (separate component to avoid IIFE sizing bugs) ───────
+
+const CHART_AXIS = { tick: { fontSize: 10, fill: "#abadae" }, tickLine: false as const, axisLine: false as const };
+const CHART_GRID = { strokeDasharray: "3 3", stroke: "#eff1f2" };
+const CHART_TOOLTIP = { contentStyle: { background: "#fff", border: "none", borderRadius: "1rem", boxShadow: "0 8px 32px rgba(44,47,48,0.1)", fontSize: "0.78rem" } };
+
+function ChartCard({ title, color, height = 220, children }: { title: string; color: string; height?: number; children: React.ReactElement }) {
+  return (
+    <div className="surface-lowest shadow-ambient rounded-2xl p-6">
+      <div className="label-meta mb-4" style={{ color }}>{title}</div>
+      <ResponsiveContainer width="100%" height={height}>
+        {children}
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
+function WellDetailCharts({ rows }: { rows: any[] }) {
+  const data = rows.map((r) => ({
+    date: String(r.DATEPRD ?? "").slice(0, 10),
+    oil: r.BORE_OIL_VOL ?? 0,
+    water: r.BORE_WAT_VOL ?? 0,
+    wc: r.WATER_CUT_PCT ?? 0,
+    whp: r.AVG_WHP_P > 0 ? r.AVG_WHP_P : null,
+  }));
+
+  return (
+    <div className="flex flex-col gap-5">
+      <ChartCard title="Oil & Water Production (Sm³)" color="#a83028">
+        <LineChart data={data} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
+          <CartesianGrid {...CHART_GRID} />
+          <XAxis dataKey="date" interval="preserveStartEnd" {...CHART_AXIS} />
+          <YAxis {...CHART_AXIS} />
+          <Tooltip {...CHART_TOOLTIP} />
+          <Legend wrapperStyle={{ fontSize: "0.75rem" }} />
+          <Line type="monotone" dataKey="oil" stroke="#a83028" strokeWidth={1.5} dot={false} name="Oil (Sm³)" />
+          <Line type="monotone" dataKey="water" stroke="#005f99" strokeWidth={1.5} dot={false} name="Water (Sm³)" />
+        </LineChart>
+      </ChartCard>
+
+      <ChartCard title="Water Cut %" color="#0ac4fd">
+        <LineChart data={data} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
+          <CartesianGrid {...CHART_GRID} />
+          <XAxis dataKey="date" interval="preserveStartEnd" {...CHART_AXIS} />
+          <YAxis {...CHART_AXIS} />
+          <Tooltip {...CHART_TOOLTIP} />
+          <Line type="monotone" dataKey="wc" stroke="#0ac4fd" strokeWidth={1.5} dot={false} name="WC %" />
+        </LineChart>
+      </ChartCard>
+
+      <ChartCard title="Wellhead Pressure (bar)" color="#fbbf24">
+        <LineChart data={data} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
+          <CartesianGrid {...CHART_GRID} />
+          <XAxis dataKey="date" interval="preserveStartEnd" {...CHART_AXIS} />
+          <YAxis {...CHART_AXIS} />
+          <Tooltip {...CHART_TOOLTIP} />
+          <Line type="monotone" dataKey="whp" stroke="#fbbf24" strokeWidth={1.5} dot={false} name="WHP (bar)" connectNulls />
+        </LineChart>
+      </ChartCard>
+    </div>
+  );
+}
+
 // ─── Dashboard Tab ───────────────────────────────────────────────────────────
 
 function Dashboard({ well, start, end }: { well: string; start: string; end: string }) {
@@ -161,59 +224,9 @@ function Dashboard({ well, start, end }: { well: string; start: string; end: str
       )}
 
       {/* Well detail charts */}
-      {well !== "All Wells" && detailRows.length > 0 && (() => {
-        const chartData = thin(detailRows.map((r) => ({
-          date: r.DATEPRD?.slice(0, 10),
-          oil: r.BORE_OIL_VOL,
-          water: r.BORE_WAT_VOL,
-          wc: r.WATER_CUT_PCT,
-          whp: r.AVG_WHP_P > 0 ? r.AVG_WHP_P : null,
-        })));
-        const chartCard = (title: string, children: React.ReactNode) => (
-          <div className="surface-lowest shadow-ambient rounded-2xl p-6">
-            <div className="label-meta mb-4" style={{ color: "var(--lf-primary)" }}>{title}</div>
-            <ResponsiveContainer width="100%" height={220}>
-              {children as any}
-            </ResponsiveContainer>
-          </div>
-        );
-        const axisProps = { tick: { fontSize: 10, fill: "#abadae" }, tickLine: false as const, axisLine: false as const };
-        const gridProps = { strokeDasharray: "3 3", stroke: "#eff1f2" };
-        const tooltipStyle = { contentStyle: { background: "#fff", border: "none", borderRadius: "1rem", boxShadow: "0 8px 32px rgba(44,47,48,0.1)", fontSize: "0.78rem" } };
-        return (
-          <div className="grid grid-cols-1 gap-5">
-            {chartCard("Oil & Water Production (Sm³)",
-              <LineChart data={chartData} margin={{ top: 4, right: 8, bottom: 4, left: 8 }}>
-                <CartesianGrid {...gridProps} />
-                <XAxis dataKey="date" interval="preserveStartEnd" {...axisProps} />
-                <YAxis {...axisProps} />
-                <Tooltip {...tooltipStyle} />
-                <Legend wrapperStyle={{ fontSize: "0.75rem" }} />
-                <Line type="monotone" dataKey="oil" stroke="#a83028" strokeWidth={1.5} dot={false} name="Oil (Sm³)" />
-                <Line type="monotone" dataKey="water" stroke="#005f99" strokeWidth={1.5} dot={false} name="Water (Sm³)" />
-              </LineChart>
-            )}
-            {chartCard("Water Cut %",
-              <LineChart data={chartData} margin={{ top: 4, right: 8, bottom: 4, left: 8 }}>
-                <CartesianGrid {...gridProps} />
-                <XAxis dataKey="date" interval="preserveStartEnd" {...axisProps} />
-                <YAxis {...axisProps} />
-                <Tooltip {...tooltipStyle} />
-                <Line type="monotone" dataKey="wc" stroke="#0ac4fd" strokeWidth={1.5} dot={false} name="WC %" />
-              </LineChart>
-            )}
-            {chartCard("Wellhead Pressure (bar)",
-              <LineChart data={chartData} margin={{ top: 4, right: 8, bottom: 4, left: 8 }}>
-                <CartesianGrid {...gridProps} />
-                <XAxis dataKey="date" interval="preserveStartEnd" {...axisProps} />
-                <YAxis {...axisProps} />
-                <Tooltip {...tooltipStyle} />
-                <Line type="monotone" dataKey="whp" stroke="#fbbf24" strokeWidth={1.5} dot={false} name="WHP (bar)" connectNulls />
-              </LineChart>
-            )}
-          </div>
-        );
-      })()}
+      {well !== "All Wells" && detailRows.length > 0 && (
+        <WellDetailCharts rows={thin(detailRows)} />
+      )}
 
       {/* Well summary table */}
       {summaryRows.length > 0 && (
@@ -422,16 +435,17 @@ function Anomalies({ well }: { well: string }) {
     }, {})
   ).map(([name, value]) => ({ name, value }));
 
-  // Scatter timeline data
-  const scatterData = rows.map((row) => ({
-    x: String(row.DATEPRD ?? "").slice(0, 10),
-    y: Number(row.VALUE ?? row.BORE_OIL_VOL ?? 0),
-    z: String(row.ANOMALY_TYPE ?? ""),
-    well: String(row.WELL_NAME ?? ""),
-  }));
-
-  const tooltipStyle = { background: "#fff", border: "none", borderRadius: "1rem", boxShadow: "0 8px 32px rgba(44,47,48,0.1)", fontSize: "0.78rem" };
-  const axisStyle = { tick: { fontSize: 10, fill: "#abadae" }, tickLine: false as const, axisLine: false as const };
+  // Scatter timeline data — ts must be numeric for recharts ScatterChart x-axis
+  const scatterData = rows.map((row) => {
+    const dateStr = String(row.DATEPRD ?? "").slice(0, 10);
+    return {
+      x: dateStr,
+      ts: new Date(dateStr).getTime(),
+      y: Number(row.VALUE ?? 0),
+      z: String(row.ANOMALY_TYPE ?? ""),
+      well: String(row.WELL_NAME ?? ""),
+    };
+  });
 
   const cols = ["DATEPRD", "WELL_NAME", "ANOMALY_TYPE", "METRIC", "VALUE", "SEVERITY"].filter(k =>
     rows[0] && k in rows[0]
@@ -459,82 +473,87 @@ function Anomalies({ well }: { well: string }) {
 
       {/* Bar chart: by anomaly type */}
       {typeBars.length > 0 && (
-        <div className="surface-lowest shadow-ambient rounded-2xl p-6">
-          <div className="label-meta mb-4" style={{ color: "var(--lf-secondary)" }}>Anomalies by Type</div>
-          <ResponsiveContainer width="100%" height={260}>
-            <BarChart data={typeBars} layout="vertical" margin={{ top: 4, right: 16, bottom: 4, left: 130 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#eff1f2" horizontal={false} />
-              <XAxis type="number" {...axisStyle} />
-              <YAxis type="category" dataKey="name" width={120} tick={{ fontSize: 11, fill: "#6b7071" }} tickLine={false} axisLine={false} />
-              <Tooltip contentStyle={tooltipStyle} />
-              <Bar dataKey="value" fill="var(--lf-secondary)" radius={[0, 6, 6, 0]} name="Count" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+        <ChartCard title="Anomalies by Type" color="#0ac4fd" height={260}>
+          <BarChart data={typeBars} layout="vertical" margin={{ top: 4, right: 16, bottom: 4, left: 130 }}>
+            <CartesianGrid {...CHART_GRID} horizontal={false} />
+            <XAxis type="number" {...CHART_AXIS} />
+            <YAxis type="category" dataKey="name" width={120} tick={{ fontSize: 11, fill: "#6b7071" }} tickLine={false} axisLine={false} />
+            <Tooltip {...CHART_TOOLTIP} />
+            <Bar dataKey="value" fill="#0ac4fd" radius={[0, 6, 6, 0]} name="Count" />
+          </BarChart>
+        </ChartCard>
       )}
 
-      {/* Scatter: timeline of anomaly values */}
+      {/* Scatter: timeline using numeric timestamps on x-axis */}
       {scatterData.length > 0 && (
-        <div className="surface-lowest shadow-ambient rounded-2xl p-6">
-          <div className="label-meta mb-4" style={{ color: "var(--lf-primary)" }}>Anomaly Timeline</div>
-          <ResponsiveContainer width="100%" height={320}>
-            <ScatterChart margin={{ top: 4, right: 16, bottom: 48, left: 8 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#eff1f2" />
-              <XAxis dataKey="x" name="Date" {...axisStyle} angle={-35} textAnchor="end" height={60} />
-              <YAxis dataKey="y" name="Value" {...axisStyle} />
-              <ZAxis dataKey="z" name="Type" range={[40, 40]} />
-              <Tooltip
-                cursor={{ strokeDasharray: "3 3" }}
-                contentStyle={tooltipStyle}
-                content={({ active, payload }) =>
-                  active && payload?.[0] ? (
-                    <div style={{ ...tooltipStyle, padding: "0.5rem 0.75rem" }}>
-                      <div style={{ fontWeight: 600, color: "var(--lf-on-surface)", marginBottom: 2 }}>{payload[0].payload.well}</div>
-                      <div style={{ color: "#6b7071", fontSize: "0.75rem" }}>{payload[0].payload.z}</div>
-                      <div style={{ color: "var(--lf-on-surface)", fontSize: "0.8rem" }}>{payload[0].payload.x} · {payload[0].payload.y}</div>
-                    </div>
-                  ) : null
-                }
-              />
-              <Scatter data={scatterData} fill="var(--lf-primary)" fillOpacity={0.7} />
-            </ScatterChart>
-          </ResponsiveContainer>
-        </div>
+        <ChartCard title="Anomaly Timeline" color="#a83028" height={320}>
+          <ScatterChart margin={{ top: 4, right: 16, bottom: 48, left: 8 }}>
+            <CartesianGrid {...CHART_GRID} />
+            <XAxis
+              dataKey="ts"
+              type="number"
+              domain={["auto", "auto"]}
+              scale="time"
+              tickFormatter={(v) => new Date(v).toISOString().slice(0, 7)}
+              {...CHART_AXIS}
+              angle={-35}
+              textAnchor="end"
+              height={60}
+              name="Date"
+            />
+            <YAxis dataKey="y" name="Value" {...CHART_AXIS} />
+            <ZAxis dataKey="z" name="Type" range={[40, 40]} />
+            <Tooltip
+              cursor={{ strokeDasharray: "3 3" }}
+              content={({ active, payload }) =>
+                active && payload?.[0] ? (
+                  <div style={{ background: "#fff", border: "none", borderRadius: "1rem", boxShadow: "0 8px 32px rgba(44,47,48,0.1)", fontSize: "0.78rem", padding: "0.5rem 0.75rem" }}>
+                    <div style={{ fontWeight: 600, color: "#2c2f30", marginBottom: 2 }}>{payload[0].payload.well}</div>
+                    <div style={{ color: "#6b7071", fontSize: "0.75rem" }}>{payload[0].payload.z}</div>
+                    <div style={{ color: "#2c2f30", fontSize: "0.8rem" }}>{payload[0].payload.x} · {Number(payload[0].payload.y).toFixed(1)}</div>
+                  </div>
+                ) : null
+              }
+            />
+            <Scatter data={scatterData} fill="#a83028" fillOpacity={0.65} />
+          </ScatterChart>
+        </ChartCard>
       )}
 
-      {/* Table */}
+      {/* Table in scrollable frame */}
       {rows.length > 0 && (
-        <div className="surface-lowest shadow-ambient rounded-2xl p-6 overflow-x-auto">
-          <div className="label-meta mb-4" style={{ color: "var(--lf-tertiary)" }}>Anomaly Records</div>
-          <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
-            <thead>
-              <tr>
-                {cols.map(k => (
-                  <th key={k} className="text-left py-2 pr-6 label-meta" style={{ color: "#abadae", whiteSpace: "nowrap" }}>
-                    {k.replace(/_/g, " ")}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {rows.slice(0, 200).map((row, i) => (
-                <tr key={i} style={{ borderTop: "1px solid #eff1f2" }} data-testid={`anomaly-row-${i}`}>
-                  {cols.map((k, j) => (
-                    <td key={j} className="py-2.5 pr-6" style={{
-                      color: k === "SEVERITY" ? (severityColor[row[k]] || "var(--lf-on-surface)") : "var(--lf-on-surface)",
-                      fontWeight: k === "SEVERITY" ? 700 : 400,
-                      whiteSpace: "nowrap",
-                    }}>
-                      {row[k] === null || row[k] === undefined ? "—" : typeof row[k] === "number" ? fmt(row[k], 2) : String(row[k]).slice(0, 20)}
-                    </td>
+        <div className="surface-lowest shadow-ambient rounded-2xl p-6">
+          <div className="label-meta mb-4" style={{ color: "#fbbf24" }}>Anomaly Records
+            <span className="ml-2 font-normal" style={{ color: "#abadae" }}>({rows.length} total)</span>
+          </div>
+          <div className="overflow-x-auto overflow-y-auto" style={{ maxHeight: "380px" }}>
+            <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
+              <thead style={{ position: "sticky", top: 0, background: "#fff", zIndex: 1 }}>
+                <tr>
+                  {cols.map(k => (
+                    <th key={k} className="text-left py-2 pr-6 label-meta" style={{ color: "#abadae", whiteSpace: "nowrap" }}>
+                      {k.replace(/_/g, " ")}
+                    </th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          {rows.length > 200 && (
-            <p className="text-xs mt-2" style={{ color: "#abadae" }}>Showing first 200 of {rows.length} rows.</p>
-          )}
+              </thead>
+              <tbody>
+                {rows.map((row, i) => (
+                  <tr key={i} style={{ borderTop: "1px solid #eff1f2" }} data-testid={`anomaly-row-${i}`}>
+                    {cols.map((k, j) => (
+                      <td key={j} className="py-2 pr-6" style={{
+                        color: k === "SEVERITY" ? (severityColor[row[k]] || "#2c2f30") : "#2c2f30",
+                        fontWeight: k === "SEVERITY" ? 700 : 400,
+                        whiteSpace: "nowrap",
+                      }}>
+                        {row[k] === null || row[k] === undefined ? "—" : typeof row[k] === "number" ? fmt(row[k], 2) : String(row[k]).slice(0, 24)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 
