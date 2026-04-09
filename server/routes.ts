@@ -2,7 +2,10 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { createProxyMiddleware } from "http-proxy-middleware";
 
-const FASTAPI_BASE = "http://localhost:8000/api";
+// In dev this is localhost:8000 (the Geo RAG API workflow).
+// In production set GEO_RAG_API_URL to your Railway service URL, e.g.
+//   https://geo-rag-api-production.up.railway.app
+const GEO_RAG_UPSTREAM = (process.env.GEO_RAG_API_URL || "http://localhost:8000").replace(/\/$/, "");
 
 export async function registerRoutes(
   httpServer: Server,
@@ -14,7 +17,7 @@ export async function registerRoutes(
     try {
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), 300_000); // 5-min hard limit
-      const upstream = await fetch(`${FASTAPI_BASE}/chat`, {
+      const upstream = await fetch(`${GEO_RAG_UPSTREAM}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(req.body),
@@ -28,13 +31,13 @@ export async function registerRoutes(
     }
   });
 
-  // All other /api/geo/* requests (GET) are proxied to FastAPI.
-  // Express strips the mount prefix before passing to the middleware, so
-  // req.url arrives as e.g. "/health" — we prepend "/api/" to match FastAPI routes.
+  // All other /api/geo/* requests are proxied to the FastAPI service.
+  // Express strips the /api/geo mount prefix before passing to the middleware,
+  // so we prepend /api/ to match FastAPI's routes.
   app.use(
     "/api/geo",
     createProxyMiddleware({
-      target: "http://localhost:8000",
+      target: GEO_RAG_UPSTREAM,
       changeOrigin: true,
       pathRewrite: { "^/": "/api/" },
     })
