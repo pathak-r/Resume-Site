@@ -7,21 +7,13 @@ channel = "stable-24_05"
 packages = ["cargo", "glibcLocales", "libiconv", "libxcrypt", "rustc"]
 
 [deployment]
-deploymentTarget = "gce"
-build = ["sh", "-c", "bash start.sh"]
+deploymentTarget = "cloudrun"
+build = ["sh", "-c", "npm run build"]
 run = ["npm", "run", "start"]
 
 [[ports]]
 localPort = 5000
 externalPort = 80
-
-[[ports]]
-localPort = 5001
-externalPort = 3000
-
-[[ports]]
-localPort = 8000
-externalPort = 8000
 
 [env]
 PORT = "5000"
