@@ -107,7 +107,6 @@ function WellDetailCharts({ rows }: { rows: any[] }) {
 
 function Dashboard({ well, start, end }: { well: string; start: string; end: string }) {
   const [fieldRows, setFieldRows] = useState<any[]>([]);
-  const [summaryRows, setSummaryRows] = useState<any[]>([]);
   const [detailRows, setDetailRows] = useState<any[]>([]);
   const [metrics, setMetrics] = useState<any>(null);
   const [err, setErr] = useState<string | null>(null);
@@ -121,13 +120,9 @@ function Dashboard({ well, start, end }: { well: string; start: string; end: str
       try {
         if (well === "All Wells") {
           const q = new URLSearchParams({ start, end });
-          const [fo, su] = await Promise.all([
-            geoFetch<{ rows: any[] }>(`/production/field-oil-by-well?${q}`),
-            geoFetch<{ rows: any[] }>(`/production/summary?${q}`),
-          ]);
+          const fo = await geoFetch<{ rows: any[] }>(`/production/field-oil-by-well?${q}`);
           if (!cancelled) {
             setFieldRows(fo.rows);
-            setSummaryRows(su.rows);
             setDetailRows([]);
             setMetrics(null);
           }
@@ -136,7 +131,6 @@ function Dashboard({ well, start, end }: { well: string; start: string; end: str
           const d = await geoFetch<{ rows: any[]; metrics: any }>(`/production/well-detail?${q}`);
           if (!cancelled) {
             setFieldRows([]);
-            setSummaryRows([]);
             setDetailRows(d.rows);
             setMetrics(d.metrics);
           }
@@ -175,6 +169,15 @@ function Dashboard({ well, start, end }: { well: string; start: string; end: str
 
   return (
     <div className="space-y-8">
+      {/* Well title for single-well view */}
+      {well !== "All Wells" && (
+        <div>
+          <h2 className="text-2xl font-bold" style={{ color: "var(--lf-on-surface)", letterSpacing: "-0.02em" }}>
+            Well: {well}
+          </h2>
+        </div>
+      )}
+
       {/* KPI row */}
       {metrics && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -226,35 +229,6 @@ function Dashboard({ well, start, end }: { well: string; start: string; end: str
       {/* Well detail charts */}
       {well !== "All Wells" && detailRows.length > 0 && (
         <WellDetailCharts rows={thin(detailRows)} />
-      )}
-
-      {/* Well summary table */}
-      {summaryRows.length > 0 && (
-        <div className="surface-lowest shadow-ambient rounded-2xl p-6 overflow-x-auto">
-          <div className="label-meta mb-4" style={{ color: "var(--lf-tertiary)" }}>Well Summary</div>
-          <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
-            <thead>
-              <tr>
-                {Object.keys(summaryRows[0]).map((k) => (
-                  <th key={k} className="text-left py-2 pr-6 label-meta" style={{ color: "#abadae", whiteSpace: "nowrap" }}>
-                    {k.replace(/_/g, " ")}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {summaryRows.map((row, i) => (
-                <tr key={i} style={{ borderTop: "1px solid #eff1f2" }}>
-                  {Object.values(row).map((v: any, j) => (
-                    <td key={j} className="py-2.5 pr-6" style={{ color: "var(--lf-on-surface)", whiteSpace: "nowrap" }}>
-                      {v === null || v === undefined ? "—" : typeof v === "number" ? fmt(v, 1) : String(v).slice(0, 10)}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
       )}
 
       {loading && (
