@@ -7,9 +7,8 @@ channel = "stable-24_05"
 packages = ["cargo", "glibcLocales", "libiconv", "libxcrypt", "rustc"]
 
 [deployment]
-deploymentTarget = "autoscale"
-build = ["npm", "run", "build"]
-publicDir = "dist/public"
+deploymentTarget = "gce"
+build = ["sh", "-c", "bash start.sh"]
 run = ["npm", "run", "start"]
 
 [[ports]]
