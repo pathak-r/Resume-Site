@@ -16,7 +16,7 @@ import pandas as pd
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from langchain_core.messages import AIMessage, HumanMessage
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from pydantic import BaseModel, Field
 
 from src.agent import create_agent
@@ -228,29 +228,21 @@ def chat(body: ChatRequest):
         raise HTTPException(503, detail=_state.get("error") or "Agent not available")
     prior = [m.model_dump() for m in body.history]
     lc_history = _history_to_lc(prior)
+    messages = lc_history + [HumanMessage(content=body.message)]
     try:
-        result = agent.invoke(
-            {
-                "input": body.message,
-                "chat_history": lc_history,
-            }
-        )
+        result = agent.invoke({"messages": messages})
     except Exception as e:
         raise HTTPException(500, detail=str(e)) from e
-    response = result.get("output", "")
+    # langgraph returns {"messages": [...]} — last message is the AI response
+    last = result.get("messages", [])
+    response = last[-1].content if last else ""
+    # Extract document sources from tool messages if present
     sources = []
-    for step in result.get("intermediate_steps", []) or []:
-        if len(step) < 2:
-            continue
-        action, observation = step[0], step[1]
-        tool = getattr(action, "tool", None)
-        if tool == "search_well_documents" and "Source" in str(observation):
-            sources.append(
-                {
-                    "doc_type": "Well Document",
-                    "excerpt": str(observation)[:400],
-                }
-            )
+    for msg in result.get("messages", []):
+        if hasattr(msg, "name") and msg.name == "search_well_documents":
+            content = str(msg.content)
+            if "Source" in content or len(content) > 50:
+                sources.append({"doc_type": "Well Document", "excerpt": content[:400]})
     return {"response": response, "sources": sources}
 
 
