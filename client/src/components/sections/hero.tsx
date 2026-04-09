@@ -151,7 +151,7 @@ export default function Hero() {
                       className="inline-block w-1.5 h-1.5 rounded-full"
                       style={{ background: '#0ac4fd', boxShadow: '0 0 6px #0ac4fd' }}
                     />
-                    Live Demo
+                    What I'm currently building
                   </span>
                   <ArrowRight
                     className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
