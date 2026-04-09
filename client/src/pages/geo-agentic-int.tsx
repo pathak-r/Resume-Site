@@ -476,7 +476,10 @@ export default function GeoAgenticInt() {
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
 
-  const load = useCallback(async () => {
+  const [retryCount, setRetryCount] = useState(0);
+  const [warmingUp, setWarmingUp] = useState(false);
+
+  const load = useCallback(async (attempt = 0) => {
     setStatus("loading");
     try {
       const h = await geoFetch<{ ok: boolean; error: string | null }>("/health");
@@ -489,14 +492,25 @@ export default function GeoAgenticInt() {
       setMeta(m);
       setStart((s) => s || m.date_min);
       setEnd((e) => e || m.date_max);
+      setWarmingUp(false);
       setStatus("ok");
     } catch (e) {
-      setStatus("error");
-      setStatusMsg(e instanceof Error ? e.message : "Cannot reach API");
+      // The Python backend can take up to ~3 minutes to start in production
+      // (loading FAISS index + LLM packages). Keep retrying silently.
+      if (attempt < 24) {
+        setWarmingUp(true);
+        setStatus("loading");
+        setRetryCount(attempt + 1);
+        setTimeout(() => load(attempt + 1), 10_000); // retry every 10s
+      } else {
+        setWarmingUp(false);
+        setStatus("error");
+        setStatusMsg(e instanceof Error ? e.message : "Cannot reach API");
+      }
     }
   }, []);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => { load(0); }, [load]);
 
   const tabs: { id: Tab; label: string; icon: any }[] = [
     { id: "dashboard", label: "Dashboard", icon: BarChart2 },
