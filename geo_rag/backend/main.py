@@ -230,7 +230,10 @@ def chat(body: ChatRequest):
     lc_history = _history_to_lc(prior)
     messages = lc_history + [HumanMessage(content=body.message)]
     try:
-        result = agent.invoke({"messages": messages})
+        result = agent.invoke(
+            {"messages": messages},
+            {"recursion_limit": 10},
+        )
     except Exception as e:
         raise HTTPException(500, detail=str(e)) from e
     # langgraph returns {"messages": [...]} — last message is the AI response
