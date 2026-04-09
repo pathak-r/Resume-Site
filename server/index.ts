@@ -2,6 +2,22 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
+import { spawn } from "child_process";
+import path from "path";
+
+// In production, spawn the FastAPI backend (it runs as a separate workflow in dev).
+if (process.env.NODE_ENV === "production") {
+  const repoRoot = path.resolve(process.cwd());
+  const geoRagDir = path.join(repoRoot, "geo_rag");
+  const fastapi = spawn(
+    "python",
+    ["-m", "uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"],
+    { cwd: geoRagDir, stdio: "inherit" }
+  );
+  fastapi.on("error", (err) => console.error("[geo-rag] Failed to start FastAPI:", err));
+  fastapi.on("exit", (code) => console.warn(`[geo-rag] FastAPI exited with code ${code}`));
+  process.on("exit", () => fastapi.kill());
+}
 
 const app = express();
 const httpServer = createServer(app);
