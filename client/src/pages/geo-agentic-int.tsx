@@ -427,22 +427,25 @@ function Anomalies({ well }: { well: string }) {
 
   return (
     <div className="space-y-6">
-      {/* Severity count chips */}
-      <div className="flex flex-wrap gap-4">
+      {/* Severity count cards */}
+      <div className="grid grid-cols-3 gap-4">
         {["Critical", "High", "Medium"].map((sev) => (
-          <div key={sev} className="surface-lowest shadow-ambient rounded-2xl px-6 py-4 flex items-center gap-3" data-testid={`anomaly-count-${sev.toLowerCase()}`}>
-            <AlertTriangle className="w-4 h-4" style={{ color: severityColor[sev] }} />
-            <div>
-              <div className="label-meta" style={{ color: "#abadae" }}>{sev}</div>
-              <div className="font-bold text-lg" style={{ color: "var(--lf-on-surface)", letterSpacing: "-0.02em" }}>{counts[sev] ?? 0}</div>
+          <div
+            key={sev}
+            className="surface-lowest shadow-ambient rounded-2xl p-6"
+            style={{ borderTop: `3px solid ${severityColor[sev]}` }}
+            data-testid={`anomaly-count-${sev.toLowerCase()}`}
+          >
+            <div className="flex items-start justify-between mb-3">
+              <AlertTriangle className="w-7 h-7" style={{ color: severityColor[sev] }} />
+              {loading && <RefreshCw className="w-3.5 h-3.5 animate-spin" style={{ color: "#abadae" }} />}
+            </div>
+            <div className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "#abadae" }}>{sev}</div>
+            <div className="text-5xl font-bold" style={{ color: "var(--lf-on-surface)", letterSpacing: "-0.03em", lineHeight: 1 }}>
+              {counts[sev] ?? 0}
             </div>
           </div>
         ))}
-        {loading && (
-          <div className="flex items-center gap-2" style={{ color: "#abadae" }}>
-            <RefreshCw className="w-4 h-4 animate-spin" /> Loading…
-          </div>
-        )}
       </div>
 
       {/* Bar chart: by anomaly type */}
