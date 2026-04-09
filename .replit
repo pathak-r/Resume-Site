@@ -65,3 +65,8 @@ outputType = "console"
 
 [agent]
 mockupState = "FULLSTACK"
+
+[userenv]
+
+[userenv.production]
+GEO_RAG_API_URL = "https://geo-rag-backend-production.up.railway.app"
