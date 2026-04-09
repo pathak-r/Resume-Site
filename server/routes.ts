@@ -8,12 +8,14 @@ export async function registerRoutes(
   app: Express
 ): Promise<Server> {
   // Proxy /api/geo/* → FastAPI server on port 8000
+  // Express strips the mount prefix (/api/geo) before passing to the middleware,
+  // so req.url arrives as e.g. "/health". We prepend "/api" to match FastAPI's routes.
   app.use(
     "/api/geo",
     createProxyMiddleware({
       target: "http://localhost:8000",
       changeOrigin: true,
-      pathRewrite: { "^/api/geo": "/api" },
+      pathRewrite: { "^/": "/api/" },
     })
   );
 
