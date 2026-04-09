@@ -383,9 +383,6 @@ function Anomalies({ well }: { well: string }) {
   const [counts, setCounts] = useState<Record<string, number>>({});
   const [err, setErr] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [filterSeverity, setFilterSeverity] = useState<string>("");
-  const [filterType, setFilterType] = useState<string>("");
-  const [filterWell, setFilterWell] = useState<string>("");
 
   useEffect(() => {
     let cancelled = false;
@@ -428,53 +425,27 @@ function Anomalies({ well }: { well: string }) {
     rows[0] && k in rows[0]
   );
 
-  const uniqueTypes = Array.from(new Set(rows.map(r => String(r.ANOMALY_TYPE ?? "")))).sort();
-  const uniqueWells = Array.from(new Set(rows.map(r => String(r.WELL_NAME ?? "")))).sort();
-
-  const filteredRows = rows.filter(r =>
-    (!filterSeverity || r.SEVERITY === filterSeverity) &&
-    (!filterType || r.ANOMALY_TYPE === filterType) &&
-    (!filterWell || r.WELL_NAME === filterWell)
-  );
-
-  const hasFilter = filterSeverity || filterType || filterWell;
-
   return (
     <div className="space-y-6">
-      {/* Severity count cards — click to filter table */}
+      {/* Severity count cards */}
       <div className="grid grid-cols-3 gap-4">
-        {["Critical", "High", "Medium"].map((sev) => {
-          const active = filterSeverity === sev;
-          return (
-            <button
-              key={sev}
-              onClick={() => setFilterSeverity(active ? "" : sev)}
-              className="surface-lowest shadow-ambient rounded-2xl p-6 text-left transition-all"
-              style={{
-                borderTop: `3px solid ${severityColor[sev]}`,
-                outline: active ? `2px solid ${severityColor[sev]}` : "none",
-                outlineOffset: "2px",
-                background: active ? `${severityColor[sev]}0d` : undefined,
-                cursor: "pointer",
-              }}
-              data-testid={`anomaly-count-${sev.toLowerCase()}`}
-            >
-              <div className="flex items-start justify-between mb-3">
-                <AlertTriangle className="w-7 h-7" style={{ color: severityColor[sev] }} />
-                {active && (
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full" style={{ background: `${severityColor[sev]}22`, color: severityColor[sev] }}>
-                    Filtered
-                  </span>
-                )}
-                {loading && !active && <RefreshCw className="w-3.5 h-3.5 animate-spin" style={{ color: "#abadae" }} />}
-              </div>
-              <div className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "#abadae" }}>{sev}</div>
-              <div className="text-5xl font-bold" style={{ color: active ? severityColor[sev] : "var(--lf-on-surface)", letterSpacing: "-0.03em", lineHeight: 1 }}>
-                {counts[sev] ?? 0}
-              </div>
-            </button>
-          );
-        })}
+        {["Critical", "High", "Medium"].map((sev) => (
+          <div
+            key={sev}
+            className="surface-lowest shadow-ambient rounded-2xl p-6"
+            style={{ borderTop: `3px solid ${severityColor[sev]}` }}
+            data-testid={`anomaly-count-${sev.toLowerCase()}`}
+          >
+            <div className="flex items-start justify-between mb-3">
+              <AlertTriangle className="w-7 h-7" style={{ color: severityColor[sev] }} />
+              {loading && <RefreshCw className="w-3.5 h-3.5 animate-spin" style={{ color: "#abadae" }} />}
+            </div>
+            <div className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "#abadae" }}>{sev}</div>
+            <div className="text-5xl font-bold" style={{ color: "var(--lf-on-surface)", letterSpacing: "-0.03em", lineHeight: 1 }}>
+              {counts[sev] ?? 0}
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* Bar chart: by anomaly type */}
@@ -529,55 +500,9 @@ function Anomalies({ well }: { well: string }) {
       {/* Table in scrollable frame */}
       {rows.length > 0 && (
         <div className="surface-lowest shadow-ambient rounded-2xl p-6">
-          {/* Filter bar */}
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <div className="label-meta" style={{ color: "#fbbf24" }}>
-              Anomaly Records
-              <span className="ml-2 font-normal" style={{ color: "#abadae" }}>
-                {hasFilter ? `${filteredRows.length} of ${rows.length}` : `${rows.length} total`}
-              </span>
-            </div>
-            <div className="flex flex-wrap gap-2 ml-auto items-center">
-              {/* Anomaly Type dropdown */}
-              {uniqueTypes.length > 1 && (
-                <select
-                  value={filterType}
-                  onChange={e => setFilterType(e.target.value)}
-                  data-testid="filter-anomaly-type"
-                  className="text-xs rounded-lg px-3 py-1.5 border-0"
-                  style={{ background: "#eff1f2", color: "#2c2f30", cursor: "pointer" }}
-                >
-                  <option value="">All Types</option>
-                  {uniqueTypes.map(t => <option key={t} value={t}>{t}</option>)}
-                </select>
-              )}
-              {/* Well Name dropdown (only shown in All Wells mode) */}
-              {well === "All Wells" && uniqueWells.length > 1 && (
-                <select
-                  value={filterWell}
-                  onChange={e => setFilterWell(e.target.value)}
-                  data-testid="filter-well-name"
-                  className="text-xs rounded-lg px-3 py-1.5 border-0"
-                  style={{ background: "#eff1f2", color: "#2c2f30", cursor: "pointer" }}
-                >
-                  <option value="">All Wells</option>
-                  {uniqueWells.map(w => <option key={w} value={w}>{w}</option>)}
-                </select>
-              )}
-              {/* Clear all filters */}
-              {hasFilter && (
-                <button
-                  onClick={() => { setFilterSeverity(""); setFilterType(""); setFilterWell(""); }}
-                  data-testid="filter-clear-all"
-                  className="text-xs rounded-lg px-3 py-1.5 font-semibold"
-                  style={{ background: "#eff1f2", color: "#a83028", cursor: "pointer" }}
-                >
-                  Clear filters ×
-                </button>
-              )}
-            </div>
+          <div className="label-meta mb-4" style={{ color: "#fbbf24" }}>Anomaly Records
+            <span className="ml-2 font-normal" style={{ color: "#abadae" }}>({rows.length} total)</span>
           </div>
-
           <div className="overflow-x-auto overflow-y-auto" style={{ maxHeight: "380px" }}>
             <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
               <thead style={{ position: "sticky", top: 0, background: "#fff", zIndex: 1 }}>
@@ -590,13 +515,7 @@ function Anomalies({ well }: { well: string }) {
                 </tr>
               </thead>
               <tbody>
-                {filteredRows.length === 0 ? (
-                  <tr>
-                    <td colSpan={cols.length} className="py-8 text-center text-sm" style={{ color: "#abadae" }}>
-                      No records match the current filters
-                    </td>
-                  </tr>
-                ) : filteredRows.map((row, i) => (
+                {rows.map((row, i) => (
                   <tr key={i} style={{ borderTop: "1px solid #eff1f2" }} data-testid={`anomaly-row-${i}`}>
                     {cols.map((k, j) => (
                       <td key={j} className="py-2 pr-6" style={{
