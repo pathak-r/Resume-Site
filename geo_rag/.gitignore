@@ -1,0 +1,14 @@
+.env
+.streamlit/secrets.toml
+.venv/
+__pycache__/
+*.pyc
+# data/ is tracked for Streamlit Community Cloud (production xlsx, PDFs, faiss_index).
+# Do not commit .env or API keys.
+.DS_Store
+**/.DS_Store
+*.egg-info/
+dist/
+build/
+frontend/node_modules/
+frontend/dist/
