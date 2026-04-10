@@ -42,19 +42,6 @@ def load_daily_production(path: str = None) -> pd.DataFrame:
     return df
 
 
-def _monthly_oil_water_columns(df: pd.DataFrame) -> tuple[str, str]:
-    """Resolve oil / water volume columns (Equinor export variants)."""
-    cols = set(df.columns)
-    oil = "Oil\nSm3" if "Oil\nSm3" in cols else "Oil" if "Oil" in cols else None
-    water = "Water\nSm3" if "Water\nSm3" in cols else "Water" if "Water" in cols else None
-    if oil is None or water is None:
-        raise KeyError(
-            "Monthly sheet must include Oil and Water columns "
-            "(either 'Oil' / 'Water' or 'Oil\\nSm3' / 'Water\\nSm3')."
-        )
-    return oil, water
-
-
 def load_monthly_production(path: str = None) -> pd.DataFrame:
     """Load and clean monthly production data."""
     path = path or PRODUCTION_DATA_PATH
@@ -74,9 +61,8 @@ def load_monthly_production(path: str = None) -> pd.DataFrame:
         {"year": df["Year"].astype(int), "month": df["Month"].astype(int), "day": 1}
     )
 
-    oil_col, water_col = _monthly_oil_water_columns(df)
-    oil_vol = df[oil_col].fillna(0).astype(float)
-    water_vol = df[water_col].fillna(0).astype(float)
+    oil_vol = df["Oil"].fillna(0).astype(float)
+    water_vol = df["Water"].fillna(0).astype(float)
     total_liquid = oil_vol + water_vol
     df["WATER_CUT_PCT"] = np.where(
         total_liquid > 0,
