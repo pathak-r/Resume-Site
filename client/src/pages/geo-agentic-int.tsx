@@ -1038,7 +1038,7 @@ export default function GeoAgenticInt() {
               {tab === "dashboard" && <Dashboard well={well} start={start} end={end} />}
               {tab === "chat" && <Chat />}
               {tab === "anomalies" && <Anomalies well={well} />}
-              {tab === "comparison" && <WellComparison producerWells={meta?.producer_wells ?? []} />}
+              {tab === "comparison" && <WellComparison producerWells={meta?.producer_wells ?? meta?.wells ?? []} />}
             </motion.div>
           </>
         )}
