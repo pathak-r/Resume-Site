@@ -15,7 +15,7 @@ const skills = [
 
 export default function About() {
   return (
-    <section id="about" style={{ background: 'var(--lf-surface-container-low, #eff1f2)', padding: '6rem 0' }}>
+    <section id="about" style={{ background: 'var(--lf-surface-container-low, #eff1f2)', padding: '4rem 0' }}>
       <div className="container px-6 mx-auto max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 

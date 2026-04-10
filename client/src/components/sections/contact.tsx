@@ -32,7 +32,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      style={{ background: 'var(--lf-surface-container-low, #eff1f2)', padding: '6rem 0' }}
+      style={{ background: 'var(--lf-surface-container-low, #eff1f2)', padding: '4rem 0' }}
     >
       <div className="container px-6 mx-auto max-w-6xl">
         <motion.div

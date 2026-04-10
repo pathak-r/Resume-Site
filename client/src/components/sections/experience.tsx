@@ -42,7 +42,7 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" style={{ background: 'var(--lf-surface, #f5f6f7)', padding: '6rem 0' }}>
+    <section id="experience" style={{ background: 'var(--lf-surface, #f5f6f7)', padding: '4rem 0' }}>
       <div className="container px-6 mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
