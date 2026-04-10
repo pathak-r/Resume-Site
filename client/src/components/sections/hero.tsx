@@ -102,8 +102,6 @@ export default function Hero() {
             >
               {[
                 { value: "10+", label: "Years of Experience" },
-                { value: "3x", label: "Engineering Throughput" },
-                { value: "40%", label: "Support Deflection via RAG" },
               ].map((stat) => (
                 <div key={stat.label} data-testid={`stat-${stat.value.replace(/\W/g, '')}`}>
                   <div
