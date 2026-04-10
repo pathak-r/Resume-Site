@@ -900,9 +900,9 @@ export default function GeoAgenticInt() {
 
   const tabs: { id: Tab; label: string; icon: any }[] = [
     { id: "dashboard", label: "Production Dashboard", icon: BarChart2 },
+    { id: "comparison", label: "Well Comparison", icon: GitCompare },
     { id: "chat", label: "AI Assistant", icon: MessageSquare },
     { id: "anomalies", label: "Anomaly Detection", icon: AlertTriangle },
-    { id: "comparison", label: "Well Comparison", icon: GitCompare },
   ];
 
   return (
