@@ -4,9 +4,9 @@ import {
   AreaChart, Area, LineChart, Line, BarChart, Bar,
   ScatterChart, Scatter, ZAxis,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  ResponsiveContainer,
+  ResponsiveContainer, ReferenceArea,
 } from "recharts";
-import { Send, AlertTriangle, BarChart2, MessageSquare, RefreshCw } from "lucide-react";
+import { Send, AlertTriangle, BarChart2, MessageSquare, RefreshCw, GitCompare, ArrowLeftRight } from "lucide-react";
 import Navbar from "@/components/layout/navbar";
 
 const GEO_API = "/api/geo";
@@ -22,6 +22,7 @@ async function geoFetch<T>(path: string, init?: RequestInit): Promise<T> {
 
 type Meta = {
   wells: string[];
+  producer_wells: string[];
   date_min: string;
   date_max: string;
   total_wells: number;
@@ -542,9 +543,315 @@ function Anomalies({ well }: { well: string }) {
   );
 }
 
+// ─── Well Comparison Tab ──────────────────────────────────────────────────────
+
+type ComparisonData = {
+  well_a: { name: string; series: any[]; metrics: any; decline: any };
+  well_b: { name: string; series: any[]; metrics: any; decline: any };
+  divergence: { day_start: number; day_end: number; d_oil: number; d_wc: number; metrics: string[] }[];
+};
+
+const COL_A = "#a83028";
+const COL_B = "#0ac4fd";
+
+function WellComparison({ producerWells }: { producerWells: string[] }) {
+  const [wellA, setWellA] = useState(producerWells[0] ?? "");
+  const [wellB, setWellB] = useState(producerWells[1] ?? "");
+  const [data, setData] = useState<ComparisonData | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+  const [aiInsight, setAiInsight] = useState<string | null>(null);
+  const [loadingAI, setLoadingAI] = useState(false);
+
+  useEffect(() => {
+    if (!wellA || !wellB || wellA === wellB) return;
+    let cancelled = false;
+    setLoading(true);
+    setErr(null);
+    setData(null);
+    setAiInsight(null);
+    const q = new URLSearchParams({ well_a: wellA, well_b: wellB });
+    geoFetch<ComparisonData>(`/comparison?${q}`)
+      .then((d) => { if (!cancelled) setData(d); })
+      .catch((e) => { if (!cancelled) setErr(e.message); })
+      .finally(() => { if (!cancelled) setLoading(false); });
+    return () => { cancelled = true; };
+  }, [wellA, wellB]);
+
+  function swap() {
+    setWellA(wellB);
+    setWellB(wellA);
+  }
+
+  async function askAI() {
+    if (!data) return;
+    setLoadingAI(true);
+    setAiInsight(null);
+    const div = data.divergence;
+    const divSummary = div.length > 0
+      ? `Their production diverges significantly in ${div.length} period(s), most notably around day ${div[0].day_start}–${div[0].day_end} (oil diff: ${div[0].d_oil.toFixed(0)} Sm³/day, WC diff: ${div[0].d_wc.toFixed(1)}%).`
+      : "No strong statistical divergence was detected.";
+    const prompt = `Compare wells ${wellA} and ${wellB} from the Volve field. ${wellA} produced ${fmt(data.well_a.metrics.total_oil_sm3)} Sm³ over ${data.well_a.metrics.production_days} days (decline rate ${data.well_a.decline?.D_annual_pct?.toFixed(1) ?? "?"}%/yr, avg WC ${fmt(data.well_a.metrics.avg_water_cut_pct, 1)}%). ${wellB} produced ${fmt(data.well_b.metrics.total_oil_sm3)} Sm³ over ${data.well_b.metrics.production_days} days (decline rate ${data.well_b.decline?.D_annual_pct?.toFixed(1) ?? "?"}%/yr, avg WC ${fmt(data.well_b.metrics.avg_water_cut_pct, 1)}%). ${divSummary} Using their drilling and completion reports, explain the key reasons for any differences in their production performance.`;
+    try {
+      const res = await geoFetch<{ response: string }>("/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: prompt, history: [] }),
+      });
+      setAiInsight(res.response);
+    } catch (e) {
+      setAiInsight("Could not reach the AI agent. Please try again.");
+    } finally {
+      setLoadingAI(false);
+    }
+  }
+
+  // Merge both series onto a shared day x-axis
+  const mergedOil = React.useMemo(() => {
+    if (!data) return [];
+    const mapA = new Map((data.well_a.series || []).map((r: any) => [r.day, r]));
+    const mapB = new Map((data.well_b.series || []).map((r: any) => [r.day, r]));
+    const trendA = new Map((data.well_a.decline?.trend || []).map((r: any) => [r.day, r.q_trend]));
+    const trendB = new Map((data.well_b.decline?.trend || []).map((r: any) => [r.day, r.q_trend]));
+    const allDays = Array.from(new Set([...mapA.keys(), ...mapB.keys(), ...trendA.keys(), ...trendB.keys()])).sort((a, b) => a - b);
+    return allDays.map((day) => ({
+      day,
+      oil_a: mapA.get(day)?.oil ?? null,
+      oil_b: mapB.get(day)?.oil ?? null,
+      trend_a: trendA.get(day) ?? null,
+      trend_b: trendB.get(day) ?? null,
+    }));
+  }, [data]);
+
+  const mergedWC = React.useMemo(() => {
+    if (!data) return [];
+    const mapA = new Map((data.well_a.series || []).map((r: any) => [r.day, r.wc]));
+    const mapB = new Map((data.well_b.series || []).map((r: any) => [r.day, r.wc]));
+    const allDays = Array.from(new Set([...mapA.keys(), ...mapB.keys()])).sort((a, b) => a - b);
+    return allDays.map((day) => ({ day, wc_a: mapA.get(day) ?? null, wc_b: mapB.get(day) ?? null }));
+  }, [data]);
+
+  const mergedWHP = React.useMemo(() => {
+    if (!data) return [];
+    const mapA = new Map((data.well_a.series || []).map((r: any) => [r.day, r.whp]));
+    const mapB = new Map((data.well_b.series || []).map((r: any) => [r.day, r.whp]));
+    const allDays = Array.from(new Set([...mapA.keys(), ...mapB.keys()])).sort((a, b) => a - b);
+    return allDays.map((day) => ({ day, whp_a: mapA.get(day) ?? null, whp_b: mapB.get(day) ?? null }));
+  }, [data]);
+
+  const oilDivergence = data?.divergence.filter((d) => d.metrics.includes("oil")) ?? [];
+  const wcDivergence = data?.divergence.filter((d) => d.metrics.includes("wc")) ?? [];
+
+  const kpiRows = [
+    { label: "Total Oil (Sm³)", a: fmt(data?.well_a.metrics.total_oil_sm3), b: fmt(data?.well_b.metrics.total_oil_sm3), numeric: true, aVal: data?.well_a.metrics.total_oil_sm3, bVal: data?.well_b.metrics.total_oil_sm3 },
+    { label: "Production Days", a: fmt(data?.well_a.metrics.production_days), b: fmt(data?.well_b.metrics.production_days), numeric: true, aVal: data?.well_a.metrics.production_days, bVal: data?.well_b.metrics.production_days },
+    { label: "Avg Water Cut", a: data ? `${fmt(data.well_a.metrics.avg_water_cut_pct, 1)}%` : "—", b: data ? `${fmt(data.well_b.metrics.avg_water_cut_pct, 1)}%` : "—", numeric: true, aVal: data?.well_a.metrics.avg_water_cut_pct, bVal: data?.well_b.metrics.avg_water_cut_pct, lowerIsBetter: true },
+    { label: "Avg WHP (bar)", a: fmt(data?.well_a.metrics.avg_whp, 1), b: fmt(data?.well_b.metrics.avg_whp, 1), numeric: false },
+    { label: "Decline Rate (%/yr)", a: data?.well_a.decline ? `${data.well_a.decline.D_annual_pct.toFixed(1)}%` : "—", b: data?.well_b.decline ? `${data.well_b.decline.D_annual_pct.toFixed(1)}%` : "—", numeric: true, aVal: data?.well_a.decline?.D_annual_pct, bVal: data?.well_b.decline?.D_annual_pct, lowerIsBetter: true },
+    { label: "Initial Rate qi (Sm³/d)", a: fmt(data?.well_a.decline?.qi, 0), b: fmt(data?.well_b.decline?.qi, 0), numeric: false },
+  ];
+
+  return (
+    <div className="space-y-6">
+      {/* Well pickers */}
+      <div className="surface-lowest shadow-ambient rounded-2xl p-6">
+        <div className="label-meta mb-4" style={{ color: "var(--lf-primary)" }}>Select Wells to Compare</div>
+        <div className="flex flex-wrap items-center gap-3">
+          {/* Well A */}
+          <div className="flex items-center gap-2">
+            <span className="w-3 h-3 rounded-full shrink-0" style={{ background: COL_A }} />
+            <select
+              value={wellA}
+              onChange={(e) => setWellA(e.target.value)}
+              data-testid="select-well-a"
+              className="rounded-full px-4 py-2 text-sm font-semibold outline-none"
+              style={{ background: `${COL_A}18`, color: COL_A, border: `1.5px solid ${COL_A}` }}
+            >
+              {producerWells.map((w) => <option key={w} value={w}>{w}</option>)}
+            </select>
+          </div>
+
+          {/* Swap */}
+          <button
+            onClick={swap}
+            data-testid="button-swap-wells"
+            title="Swap wells"
+            className="w-9 h-9 flex items-center justify-center rounded-full transition-all"
+            style={{ background: "#eff1f2", color: "#6b7071" }}
+          >
+            <ArrowLeftRight className="w-4 h-4" />
+          </button>
+
+          {/* Well B */}
+          <div className="flex items-center gap-2">
+            <span className="w-3 h-3 rounded-full shrink-0" style={{ background: COL_B }} />
+            <select
+              value={wellB}
+              onChange={(e) => setWellB(e.target.value)}
+              data-testid="select-well-b"
+              className="rounded-full px-4 py-2 text-sm font-semibold outline-none"
+              style={{ background: `${COL_B}18`, color: COL_B, border: `1.5px solid ${COL_B}` }}
+            >
+              {producerWells.map((w) => <option key={w} value={w}>{w}</option>)}
+            </select>
+          </div>
+
+          {loading && <RefreshCw className="w-4 h-4 animate-spin ml-2" style={{ color: "#abadae" }} />}
+
+          {data && data.divergence.length > 0 && (
+            <span className="chip-teal ml-2">{data.divergence.length} divergence period{data.divergence.length > 1 ? "s" : ""} flagged</span>
+          )}
+        </div>
+        {wellA === wellB && (
+          <p className="text-xs mt-3" style={{ color: "#abadae" }}>Select two different wells to compare.</p>
+        )}
+        {err && <p className="text-xs mt-3" style={{ color: "#a83028" }}>{err}</p>}
+      </div>
+
+      {data && (
+        <>
+          {/* KPI comparison table */}
+          <div className="surface-lowest shadow-ambient rounded-2xl p-6 overflow-x-auto">
+            <div className="label-meta mb-4" style={{ color: "var(--lf-primary)" }}>Key Metrics Comparison</div>
+            <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
+              <thead>
+                <tr>
+                  <th className="text-left py-2 pr-8 label-meta" style={{ color: "#abadae" }}>Metric</th>
+                  <th className="text-right py-2 pr-8 font-semibold" style={{ color: COL_A }}>{wellA}</th>
+                  <th className="text-right py-2 font-semibold" style={{ color: COL_B }}>{wellB}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {kpiRows.map((row) => {
+                  const aWins = row.numeric && row.aVal != null && row.bVal != null && (row.lowerIsBetter ? row.aVal < row.bVal : row.aVal > row.bVal);
+                  const bWins = row.numeric && row.aVal != null && row.bVal != null && (row.lowerIsBetter ? row.bVal < row.aVal : row.bVal > row.aVal);
+                  return (
+                    <tr key={row.label} style={{ borderTop: "1px solid #eff1f2" }}>
+                      <td className="py-2.5 pr-8 label-meta" style={{ color: "#6b7071" }}>{row.label}</td>
+                      <td className="py-2.5 pr-8 text-right font-semibold" style={{ color: aWins ? COL_A : "var(--lf-on-surface)" }}>{row.a}</td>
+                      <td className="py-2.5 text-right font-semibold" style={{ color: bWins ? COL_B : "var(--lf-on-surface)" }}>{row.b}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Oil production chart with decline curves */}
+          {mergedOil.length > 0 && (
+            <ChartCard title="Oil Production vs Days on Production (Sm³/day)" color={COL_A} height={280}>
+              <LineChart data={mergedOil} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
+                <CartesianGrid {...CHART_GRID} />
+                <XAxis dataKey="day" {...CHART_AXIS} label={{ value: "Days since first production", position: "insideBottom", offset: -2, fontSize: 10, fill: "#abadae" }} />
+                <YAxis {...CHART_AXIS} />
+                <Tooltip {...CHART_TOOLTIP} labelFormatter={(v) => `Day ${v}`} />
+                <Legend wrapperStyle={{ fontSize: "0.75rem" }} />
+                {oilDivergence.map((d, i) => (
+                  <ReferenceArea key={i} x1={d.day_start} x2={d.day_end} fill="#fbbf2422" stroke="#fbbf24" strokeOpacity={0.3} />
+                ))}
+                <Line type="monotone" dataKey="oil_a" stroke={COL_A} strokeWidth={1.5} dot={false} name={`${wellA} Oil`} connectNulls />
+                <Line type="monotone" dataKey="oil_b" stroke={COL_B} strokeWidth={1.5} dot={false} name={`${wellB} Oil`} connectNulls />
+                <Line type="monotone" dataKey="trend_a" stroke={COL_A} strokeWidth={1} strokeDasharray="6 3" dot={false} name={`${wellA} Decline`} connectNulls />
+                <Line type="monotone" dataKey="trend_b" stroke={COL_B} strokeWidth={1} strokeDasharray="6 3" dot={false} name={`${wellB} Decline`} connectNulls />
+              </LineChart>
+            </ChartCard>
+          )}
+
+          {/* Water cut chart */}
+          {mergedWC.length > 0 && (
+            <ChartCard title="Water Cut % Trajectory" color="#6b7071" height={240}>
+              <LineChart data={mergedWC} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
+                <CartesianGrid {...CHART_GRID} />
+                <XAxis dataKey="day" {...CHART_AXIS} label={{ value: "Days since first production", position: "insideBottom", offset: -2, fontSize: 10, fill: "#abadae" }} />
+                <YAxis {...CHART_AXIS} domain={[0, 100]} />
+                <Tooltip {...CHART_TOOLTIP} labelFormatter={(v) => `Day ${v}`} />
+                <Legend wrapperStyle={{ fontSize: "0.75rem" }} />
+                {wcDivergence.map((d, i) => (
+                  <ReferenceArea key={i} x1={d.day_start} x2={d.day_end} fill="#a8302822" stroke="#a83028" strokeOpacity={0.3} />
+                ))}
+                <Line type="monotone" dataKey="wc_a" stroke={COL_A} strokeWidth={1.5} dot={false} name={`${wellA} WC%`} connectNulls />
+                <Line type="monotone" dataKey="wc_b" stroke={COL_B} strokeWidth={1.5} dot={false} name={`${wellB} WC%`} connectNulls />
+              </LineChart>
+            </ChartCard>
+          )}
+
+          {/* WHP chart */}
+          {mergedWHP.length > 0 && (
+            <ChartCard title="Wellhead Pressure (bar)" color="#fbbf24" height={220}>
+              <LineChart data={mergedWHP} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
+                <CartesianGrid {...CHART_GRID} />
+                <XAxis dataKey="day" {...CHART_AXIS} label={{ value: "Days since first production", position: "insideBottom", offset: -2, fontSize: 10, fill: "#abadae" }} />
+                <YAxis {...CHART_AXIS} />
+                <Tooltip {...CHART_TOOLTIP} labelFormatter={(v) => `Day ${v}`} />
+                <Legend wrapperStyle={{ fontSize: "0.75rem" }} />
+                <Line type="monotone" dataKey="whp_a" stroke={COL_A} strokeWidth={1.5} dot={false} name={`${wellA} WHP`} connectNulls />
+                <Line type="monotone" dataKey="whp_b" stroke={COL_B} strokeWidth={1.5} dot={false} name={`${wellB} WHP`} connectNulls />
+              </LineChart>
+            </ChartCard>
+          )}
+
+          {/* Divergence summary */}
+          {data.divergence.length > 0 && (
+            <div className="surface-lowest shadow-ambient rounded-2xl p-6">
+              <div className="label-meta mb-3" style={{ color: "#fbbf24" }}>
+                Flagged Divergence Periods
+                <span className="ml-2 font-normal" style={{ color: "#abadae" }}>(shaded bands on charts above)</span>
+              </div>
+              <div className="grid grid-cols-1 gap-2">
+                {data.divergence.map((d, i) => (
+                  <div key={i} className="flex items-center gap-4 py-2" style={{ borderTop: i > 0 ? "1px solid #eff1f2" : "none" }}>
+                    <span className="text-xs font-semibold rounded-full px-3 py-1" style={{ background: "#fbbf2418", color: "#b45309" }}>
+                      Day {d.day_start}–{d.day_end}
+                    </span>
+                    <span className="text-sm" style={{ color: "#6b7071" }}>
+                      {d.metrics.includes("oil") && <span className="mr-3">Oil Δ: <strong style={{ color: "var(--lf-on-surface)" }}>{d.d_oil > 0 ? "+" : ""}{d.d_oil.toFixed(0)} Sm³/d</strong></span>}
+                      {d.metrics.includes("wc") && <span>WC Δ: <strong style={{ color: "var(--lf-on-surface)" }}>{d.d_wc > 0 ? "+" : ""}{d.d_wc.toFixed(1)}%</strong></span>}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Ask AI panel */}
+          <div className="surface-lowest shadow-ambient rounded-2xl p-6">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="label-meta mb-1" style={{ color: "var(--lf-primary)" }}>AI Explanation</div>
+                <p className="text-sm" style={{ color: "#6b7071" }}>
+                  Ask the AI to explain why these wells perform differently, drawing from their drilling and completion reports.
+                </p>
+              </div>
+              <button
+                onClick={askAI}
+                disabled={loadingAI}
+                data-testid="button-ask-ai-comparison"
+                className="btn-primary-gradient px-5 py-2.5 text-sm font-semibold flex items-center gap-2 shrink-0 disabled:opacity-50"
+                style={{ borderRadius: "9999px" }}
+              >
+                {loadingAI ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                {loadingAI ? "Analysing…" : "Ask AI"}
+              </button>
+            </div>
+            {aiInsight && (
+              <div
+                className="mt-5 rounded-2xl px-5 py-4 text-sm"
+                style={{ background: "#eff1f2", color: "var(--lf-on-surface)", lineHeight: 1.7, whiteSpace: "pre-wrap" }}
+                data-testid="comparison-ai-insight"
+              >
+                {aiInsight}
+              </div>
+            )}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 // ─── Main Page ─────────────────────────────────────────────────────────────────
 
-type Tab = "dashboard" | "chat" | "anomalies";
+type Tab = "dashboard" | "chat" | "anomalies" | "comparison";
 
 export default function GeoAgenticInt() {
   const [status, setStatus] = useState<"loading" | "ok" | "error">("loading");
@@ -592,9 +899,10 @@ export default function GeoAgenticInt() {
   useEffect(() => { load(0); }, [load]);
 
   const tabs: { id: Tab; label: string; icon: any }[] = [
-    { id: "dashboard", label: "Dashboard", icon: BarChart2 },
-    { id: "chat", label: "AI Chat", icon: MessageSquare },
-    { id: "anomalies", label: "Anomalies", icon: AlertTriangle },
+    { id: "dashboard", label: "Production Dashboard", icon: BarChart2 },
+    { id: "chat", label: "AI Assistant", icon: MessageSquare },
+    { id: "anomalies", label: "Anomaly Detection", icon: AlertTriangle },
+    { id: "comparison", label: "Well Comparison", icon: GitCompare },
   ];
 
   return (
@@ -730,6 +1038,7 @@ export default function GeoAgenticInt() {
               {tab === "dashboard" && <Dashboard well={well} start={start} end={end} />}
               {tab === "chat" && <Chat />}
               {tab === "anomalies" && <Anomalies well={well} />}
+              {tab === "comparison" && <WellComparison producerWells={meta?.producer_wells ?? []} />}
             </motion.div>
           </>
         )}
