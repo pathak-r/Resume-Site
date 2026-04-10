@@ -123,10 +123,10 @@ export default function Hero() {
 
                 {/* Live badge */}
                 <div className="flex items-center justify-between mb-5">
-                  <span className="chip-teal flex items-center gap-1.5" style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.03em' }}>
+                  <span className="chip-teal flex items-center gap-2" style={{ fontSize: '0.95rem', fontWeight: 800, letterSpacing: '0.02em', padding: '0.45rem 1rem' }}>
                     <span
                       className="inline-block w-2 h-2 rounded-full"
-                      style={{ background: '#0ac4fd', boxShadow: '0 0 8px #0ac4fd' }}
+                      style={{ background: '#0ac4fd', boxShadow: '0 0 10px #0ac4fd' }}
                     />
                     What I'm currently building
                   </span>
