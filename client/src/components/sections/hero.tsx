@@ -60,7 +60,7 @@ export default function Hero() {
             >
               Senior PM.<br />
               <span style={{ color: 'var(--lf-primary)' }}>Enterprise AI.</span><br />
-              <span style={{ color: 'var(--lf-tertiary)', fontSize: '0.6em', letterSpacing: '-0.01em' }}>Abu Dhabi · 10+ Years</span>
+              <span style={{ color: 'var(--lf-tertiary)', fontSize: '0.6em', letterSpacing: '-0.01em' }}>Abu Dhabi · 10+ Years of Experience</span>
             </motion.h1>
 
             <motion.div
@@ -93,27 +93,6 @@ export default function Hero() {
               </a>
             </motion.div>
 
-            {/* Stat row */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.65 }}
-              className="flex flex-wrap gap-10 mt-16"
-            >
-              {[
-                { value: "10+", label: "Years of Experience" },
-              ].map((stat) => (
-                <div key={stat.label} data-testid={`stat-${stat.value.replace(/\W/g, '')}`}>
-                  <div
-                    className="font-bold"
-                    style={{ fontSize: '2rem', color: 'var(--lf-primary)', letterSpacing: '-0.02em' }}
-                  >
-                    {stat.value}
-                  </div>
-                  <div className="label-meta mt-0.5">{stat.label}</div>
-                </div>
-              ))}
-            </motion.div>
           </div>
 
           {/* Right — Featured project card */}
