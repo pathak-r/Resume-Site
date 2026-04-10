@@ -41,13 +41,12 @@ export default function FeaturedWork() {
           transition={{ duration: 0.5 }}
           className="mb-16 pt-24"
         >
-          <span className="label-meta block mb-4" style={{ color: 'var(--lf-primary)' }}>Selected Work</span>
           <h2
             className="font-bold"
             style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)', letterSpacing: '-0.02em', color: 'var(--lf-on-surface)' }}
             data-testid="heading-selected-work"
           >
-            Case Studies
+            Selected Work
           </h2>
         </motion.div>
 
