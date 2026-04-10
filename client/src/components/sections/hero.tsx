@@ -5,8 +5,8 @@ import { Link } from "wouter";
 export default function Hero() {
   return (
     <section
-      className="relative min-h-[90vh] flex items-center overflow-hidden surface-base"
-      style={{ paddingTop: '7rem' }}
+      className="relative overflow-hidden surface-base"
+      style={{ paddingTop: '7rem', paddingBottom: '5rem' }}
     >
       {/* Decorative background gradient blob */}
       <div
