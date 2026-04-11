@@ -30,7 +30,7 @@ const projects = [
 
 export default function FeaturedWork() {
   return (
-    <section id="work" className="surface-base" style={{ paddingBottom: '4rem' }}>
+    <section id="work" className="surface-base" style={{ paddingBottom: '3rem' }}>
       <div className="container px-6 mx-auto max-w-6xl">
 
         {/* Section header */}
@@ -39,7 +39,7 @@ export default function FeaturedWork() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-12 pt-4"
+          className="mb-10 pt-3"
         >
           <h2
             className="font-bold"
