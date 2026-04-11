@@ -143,10 +143,10 @@ export default function Hero() {
                 >
                   Volve Field AI Explorer
                 </h3>
-                <p className="text-xs mb-3" style={{ color: '#6b7071', lineHeight: 1.6 }}>
+                <p className="text-sm mb-3" style={{ color: '#6b7071', lineHeight: 1.6 }}>
                   I collect daily drilling reports, production data, and well completion reports (both structured and unstructured data) from Equinor's Volve field — the most comprehensive open subsurface dataset ever released from the Norwegian Continental Shelf — to build an agentic RAG system.
                 </p>
-                <p className="text-xs mb-6" style={{ color: '#6b7071', lineHeight: 1.6 }}>
+                <p className="text-sm mb-6" style={{ color: '#6b7071', lineHeight: 1.6 }}>
                   This visualizes production trends and anomalies, and answers questions like <strong style={{ color: '#4a4f50' }}>'why is this well's water cut rising?'</strong>, <strong style={{ color: '#4a4f50' }}>'what's the decline rate for the well F-1 C over the last 12 months?'</strong>, and <strong style={{ color: '#4a4f50' }}>'what drilling problems were encountered in F-12 that could explain current production behavior?'</strong>
                 </p>
 
