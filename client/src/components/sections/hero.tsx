@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section
       className="relative overflow-hidden surface-base"
-      style={{ paddingTop: '7rem', paddingBottom: '5rem' }}
+      style={{ paddingTop: '7rem', paddingBottom: '2rem' }}
     >
       {/* Decorative background gradient blob */}
       <div

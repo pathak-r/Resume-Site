@@ -39,7 +39,7 @@ export default function FeaturedWork() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-12 pt-8"
+          className="mb-12 pt-4"
         >
           <h2
             className="font-bold"
