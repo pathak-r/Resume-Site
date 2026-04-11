@@ -146,9 +146,14 @@ export default function Hero() {
                 <p className="text-base mb-3" style={{ color: '#6b7071', lineHeight: 1.6 }}>
                   I collect daily drilling reports, production data, and well completion reports (both structured and unstructured data) from Equinor's Volve field, the most comprehensive open subsurface dataset ever released from the Norwegian Continental Shelf, to build an agentic RAG system.
                 </p>
-                <p className="text-base mb-6" style={{ color: '#6b7071', lineHeight: 1.6 }}>
-                  This visualizes production trends and anomalies, and answers questions like <strong style={{ color: '#4a4f50' }}>'why is this well's water cut rising?'</strong>, <strong style={{ color: '#4a4f50' }}>'what's the decline rate for the well F-1 C over the last 12 months?'</strong>, and <strong style={{ color: '#4a4f50' }}>'what drilling problems were encountered in F-12 that could explain current production behavior?'</strong>
+                <p className="text-base mb-2" style={{ color: '#6b7071', lineHeight: 1.6 }}>
+                  This visualizes production trends and anomalies, and answers questions like:
                 </p>
+                <ul className="mb-6" style={{ color: '#6b7071', lineHeight: 1.7, paddingLeft: '1.25rem', listStyleType: 'disc' }}>
+                  <li className="text-base mb-1"><strong style={{ color: '#4a4f50' }}>'Why is this well's water cut rising?'</strong></li>
+                  <li className="text-base mb-1"><strong style={{ color: '#4a4f50' }}>'What's the decline rate for the well F-1 C over the last 12 months?'</strong></li>
+                  <li className="text-base"><strong style={{ color: '#4a4f50' }}>'What drilling problems were encountered in F-12 that could explain current production behavior?'</strong></li>
+                </ul>
 
                 {/* Feature pills */}
                 <div className="flex flex-wrap gap-2 mb-7">
@@ -190,7 +195,7 @@ export default function Hero() {
                 {/* CTA */}
                 <div className="mt-6">
                   <span className="btn-primary-gradient inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold pointer-events-none">
-                    Explore the Demo <ArrowRight className="w-3.5 h-3.5" />
+                    Explore <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
               </div>
