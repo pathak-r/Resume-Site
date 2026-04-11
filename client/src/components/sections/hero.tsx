@@ -150,9 +150,9 @@ export default function Hero() {
                   This visualizes production trends and anomalies, and answers questions like:
                 </p>
                 <ul className="mb-6" style={{ color: '#6b7071', lineHeight: 1.7, paddingLeft: '1.25rem', listStyleType: 'disc' }}>
-                  <li className="text-base mb-1">'Why is this well's water cut rising?'</li>
-                  <li className="text-base mb-1">'What's the decline rate for the well F-1 C over the last 12 months?'</li>
-                  <li className="text-base">'What drilling problems were encountered in F-12 that could explain current production behavior?'</li>
+                  <li className="text-base mb-1">Why is this well's water cut rising?</li>
+                  <li className="text-base mb-1">What's the decline rate for the well F-1 C over the last 12 months?</li>
+                  <li className="text-base">What drilling problems were encountered in F-12 that could explain current production behavior?</li>
                 </ul>
 
                 {/* Feature pills */}
