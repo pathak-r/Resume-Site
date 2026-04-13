@@ -930,7 +930,7 @@ export default function GeoAgenticInt() {
             >
               Volve Field RAG Explorer
             </h1>
-            <p style={{ fontSize: "1rem", color: "#6b7071", maxWidth: "560px", lineHeight: 1.6 }}>
+            <p style={{ fontSize: "1rem", color: "#6b7071", lineHeight: 1.6 }}>
               Production analytics, anomaly detection, and AI-powered Q&A over the Equinor Volve dataset.
             </p>
 
