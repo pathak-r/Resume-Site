@@ -163,6 +163,34 @@ def calculate_decline_rate(df: pd.DataFrame, well_name: str,
     return "\n".join(result)
 
 
+def _extract_relevant_snippet(text: str, query: str, window: int = 1500) -> str:
+    """
+    Extract the most query-relevant window from a long chunk.
+    Instead of always taking the first N chars, scans the text in steps and
+    returns the window where query terms appear most densely.
+    """
+    if len(text) <= window:
+        return text
+
+    query_terms = [t.lower() for t in query.split() if len(t) > 3]
+    text_lower = text.lower()
+
+    best_pos = 0
+    best_score = -1
+    step = 150
+
+    for pos in range(0, len(text) - window + 1, step):
+        segment = text_lower[pos:pos + window]
+        score = sum(segment.count(term) for term in query_terms)
+        if score > best_score:
+            best_score = score
+            best_pos = pos
+
+    # If no query terms found at all, fall back to the start of the text
+    snippet = text[best_pos:best_pos + window]
+    return snippet
+
+
 def document_search_tool(query: str, embeddings_model) -> str:
     """
     Search well documents (drilling reports, completion reports) for relevant information.
@@ -176,13 +204,13 @@ def document_search_tool(query: str, embeddings_model) -> str:
     formatted = ["Relevant documents found:\n"]
     for i, result in enumerate(results, 1):
         meta = result["metadata"]
-        source = meta.get("source_file", "Unknown")
         well = meta.get("well_name", "Unknown")
         doc_type = meta.get("doc_type", "Unknown").replace("_", " ").title()
         score = result["score"]
 
+        snippet = _extract_relevant_snippet(result["text"], query)
         formatted.append(f"--- Source {i} [{doc_type} | {well}] (relevance: {score:.2f}) ---")
-        formatted.append(result["text"][:1200])  # Limit text length
+        formatted.append(snippet)
         formatted.append("")
 
     return "\n".join(formatted)
