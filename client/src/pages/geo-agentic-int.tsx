@@ -708,6 +708,39 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
         {err && <p className="text-xs mt-3" style={{ color: "#a83028" }}>{err}</p>}
       </div>
 
+      {/* Ask AI panel — always visible once wells are selected */}
+      {wellA !== wellB && (
+        <div className="surface-lowest shadow-ambient rounded-2xl p-6">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <div className="label-meta mb-1" style={{ color: "var(--lf-primary)" }}>AI Explanation</div>
+              <p className="text-sm" style={{ color: "#6b7071" }}>
+                Ask the AI to explain why these wells perform differently, drawing from their drilling and completion reports.
+              </p>
+            </div>
+            <button
+              onClick={askAI}
+              disabled={loadingAI}
+              data-testid="button-ask-ai-comparison"
+              className="btn-primary-gradient px-5 py-2.5 text-sm font-semibold flex items-center gap-2 shrink-0 disabled:opacity-50"
+              style={{ borderRadius: "9999px" }}
+            >
+              {loadingAI ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+              {loadingAI ? "Analysing…" : "Ask AI"}
+            </button>
+          </div>
+          {aiInsight && (
+            <div
+              className="mt-5 rounded-2xl px-5 py-4 text-sm"
+              style={{ background: "#eff1f2", color: "var(--lf-on-surface)", lineHeight: 1.7, whiteSpace: "pre-wrap" }}
+              data-testid="comparison-ai-insight"
+            >
+              {aiInsight}
+            </div>
+          )}
+        </div>
+      )}
+
       {data && (
         <>
           {/* KPI comparison table */}
@@ -813,36 +846,6 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
             </div>
           )}
 
-          {/* Ask AI panel */}
-          <div className="surface-lowest shadow-ambient rounded-2xl p-6">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <div className="label-meta mb-1" style={{ color: "var(--lf-primary)" }}>AI Explanation</div>
-                <p className="text-sm" style={{ color: "#6b7071" }}>
-                  Ask the AI to explain why these wells perform differently, drawing from their drilling and completion reports.
-                </p>
-              </div>
-              <button
-                onClick={askAI}
-                disabled={loadingAI}
-                data-testid="button-ask-ai-comparison"
-                className="btn-primary-gradient px-5 py-2.5 text-sm font-semibold flex items-center gap-2 shrink-0 disabled:opacity-50"
-                style={{ borderRadius: "9999px" }}
-              >
-                {loadingAI ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
-                {loadingAI ? "Analysing…" : "Ask AI"}
-              </button>
-            </div>
-            {aiInsight && (
-              <div
-                className="mt-5 rounded-2xl px-5 py-4 text-sm"
-                style={{ background: "#eff1f2", color: "var(--lf-on-surface)", lineHeight: 1.7, whiteSpace: "pre-wrap" }}
-                data-testid="comparison-ai-insight"
-              >
-                {aiInsight}
-              </div>
-            )}
-          </div>
         </>
       )}
     </div>
@@ -864,7 +867,6 @@ export default function GeoAgenticInt() {
 
   const [retryCount, setRetryCount] = useState(0);
   const [warmingUp, setWarmingUp] = useState(false);
-  const tabsRef = useRef<HTMLDivElement>(null);
 
   const load = useCallback(async (attempt = 0) => {
     setStatus("loading");
@@ -1033,7 +1035,7 @@ export default function GeoAgenticInt() {
         {status === "ok" && (
           <>
             {/* Tab nav */}
-            <div ref={tabsRef} className="flex gap-2 mb-8">
+            <div className="flex gap-2 mb-8">
               {tabs.map(({ id, label, icon: Icon }) => (
                 <button
                   key={id}
@@ -1072,44 +1074,6 @@ export default function GeoAgenticInt() {
         Volve dataset — Equinor open data · Geo-Agentic RAG
       </footer>
 
-      {/* Sticky floating Ask AI button */}
-      {status === "ok" && tab !== "chat" && (
-        <motion.button
-          animate={{
-            scale: [0.85, 1, 1, 1.08, 1],
-            opacity: [0, 1, 1, 1, 1],
-          }}
-          transition={{ duration: 2, times: [0, 0.2, 0.65, 0.82, 1], ease: "easeInOut" }}
-          whileHover={{ scale: 1.06 }}
-          whileTap={{ scale: 0.96 }}
-          onClick={() => {
-            setTab("chat");
-            setTimeout(() => tabsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
-          }}
-          data-testid="button-floating-ask-ai"
-          style={{
-            position: "fixed",
-            bottom: "2rem",
-            right: "2rem",
-            zIndex: 50,
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
-            padding: "0.75rem 1.4rem",
-            borderRadius: "9999px",
-            background: "linear-gradient(135deg, #a83028, #ff7668)",
-            color: "#fff",
-            fontWeight: 600,
-            fontSize: "0.9rem",
-            boxShadow: "0 8px 28px rgba(168,48,40,0.35)",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          <MessageSquare className="w-4 h-4" />
-          Ask AI
-        </motion.button>
-      )}
     </div>
   );
 }
