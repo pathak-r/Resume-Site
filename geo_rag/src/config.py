@@ -22,7 +22,7 @@ FAISS_INDEX_PATH = os.path.join(DATA_DIR, "faiss_index")
 # --- RAG Configuration ---
 CHUNK_SIZE = 1000
 CHUNK_OVERLAP = 200
-TOP_K_RESULTS = 5
+TOP_K_RESULTS = 10
 
 # --- Anomaly Detection ---
 ANOMALY_WINDOW = 30  # Rolling window in days
