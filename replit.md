@@ -21,7 +21,7 @@ Personal portfolio website (React + Vite + Express) for Rohit Pathak, Senior PM 
 - **Embeddings**: OpenAI text-embedding-ada-002
 - **Vector store**: FAISS (`data/faiss_index/index.faiss` + `store_data.json`)
 - **Retrieval**: Three-layer stack — MultiQueryRetriever (gpt-4o-mini generates 3 query variants) → Hybrid BM25+FAISS per variant → Reciprocal Rank Fusion merge + dedup across all results
-- **Rebuilt index**: 832 semantic chunks from 94 Volve oil field PDFs
+- **Rebuilt index**: 3,525 chunks from 94 Volve oil field PDFs (two-pass: semantic → hard 1500-char ceiling)
 - **Ingest**: Run `cd geo_rag && python ingest.py` to rebuild (takes ~10 min via workflow)
 
 ## Environment Variables
