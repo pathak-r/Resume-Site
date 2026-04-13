@@ -934,7 +934,7 @@ export default function GeoAgenticInt() {
               Production analytics, anomaly detection, and AI-powered Q&A over the Equinor Volve dataset.
             </p>
 
-            <div style={{ maxWidth: "640px", marginTop: "1.5rem" }}>
+            <div style={{ marginTop: "1.5rem" }}>
               <p style={{ fontSize: "0.95rem", color: "#4a4e4f", lineHeight: 1.75, marginBottom: "1rem" }}>
                 I collect daily drilling reports, production data, and well completion reports (both structured
                 and unstructured data) from Equinor's Volve field, the most comprehensive open subsurface
