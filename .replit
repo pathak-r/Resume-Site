@@ -38,6 +38,10 @@ args = "Start application"
 task = "workflow.run"
 args = "Geo RAG API"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Rebuild FAISS Index"
+
 [[workflows.workflow]]
 name = "Start application"
 author = "agent"
@@ -55,6 +59,17 @@ author = "agent"
 task = "shell.exec"
 args = "cd geo_rag && uvicorn backend.main:app --host 0.0.0.0 --port 8000"
 waitForPort = 8000
+
+[workflows.workflow.metadata]
+outputType = "console"
+
+[[workflows.workflow]]
+name = "Rebuild FAISS Index"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd geo_rag && python ingest.py"
 
 [workflows.workflow.metadata]
 outputType = "console"
