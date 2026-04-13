@@ -1,23 +1,25 @@
 """
 PDF Ingestion Pipeline
-Parses well reports and drilling reports, chunks them for RAG.
+Parses well reports and drilling reports using LlamaParse + SemanticChunker.
 """
 import os
 import re
-import pdfplumber
 from typing import List, Dict
-from src.config import PDF_DIR, CHUNK_SIZE, CHUNK_OVERLAP
+from llama_parse import LlamaParse
+from langchain_experimental.text_splitter import SemanticChunker
+from src.config import PDF_DIR, LLAMA_CLOUD_API_KEY
+from src.llm import get_embeddings
 
 
 def extract_text_from_pdf(pdf_path: str) -> str:
-    """Extract text from a PDF file using pdfplumber."""
-    text = ""
-    with pdfplumber.open(pdf_path) as pdf:
-        for page in pdf.pages:
-            page_text = page.extract_text()
-            if page_text:
-                text += page_text + "\n\n"
-    return text
+    """Extract structured markdown text from a PDF file using LlamaParse."""
+    parser = LlamaParse(
+        api_key=LLAMA_CLOUD_API_KEY,
+        result_type="markdown",
+        verbose=False,
+    )
+    documents = parser.load_data(pdf_path)
+    return "\n\n".join(doc.text for doc in documents)
 
 
 def extract_metadata_from_filename(filename: str) -> Dict:
@@ -32,7 +34,6 @@ def extract_metadata_from_filename(filename: str) -> Dict:
 
     name = filename.replace(".pdf", "").replace(".PDF", "")
 
-    # Try to match daily drilling report pattern: 15_9_F_11_2013_03_08
     daily_match = re.match(
         r"15_9_F[_-]?(\d+)_(\d{4})_(\d{2})_(\d{2})", name
     )
@@ -44,7 +45,6 @@ def extract_metadata_from_filename(filename: str) -> Dict:
         metadata["doc_type"] = "daily_drilling_report"
         return metadata
 
-    # Try exploration well pattern: 15_9_19_A_1997_07_30
     expl_match = re.match(
         r"15_9_19_([A-Z])_(\d{4})_(\d{2})_(\d{2})", name
     )
@@ -56,7 +56,6 @@ def extract_metadata_from_filename(filename: str) -> Dict:
         metadata["doc_type"] = "daily_drilling_report"
         return metadata
 
-    # Try completion report pattern
     comp_match = re.match(r"F(\d+)_COMPLETION", name, re.IGNORECASE)
     if comp_match:
         well_num = comp_match.group(1)
@@ -64,7 +63,6 @@ def extract_metadata_from_filename(filename: str) -> Dict:
         metadata["doc_type"] = "completion_report"
         return metadata
 
-    # FWR (Final Well Report) pattern
     fwr_match = re.match(r"FWR_Completion_F(\d+)", name, re.IGNORECASE)
     if fwr_match:
         well_num = fwr_match.group(1)
@@ -72,7 +70,6 @@ def extract_metadata_from_filename(filename: str) -> Dict:
         metadata["doc_type"] = "final_well_report"
         return metadata
 
-    # 15-9-F-1-C pattern
     fc_match = re.match(r"15-9-F-(\d+)-([A-Z]+)", name, re.IGNORECASE)
     if fc_match:
         well_num = fc_match.group(1)
@@ -81,47 +78,9 @@ def extract_metadata_from_filename(filename: str) -> Dict:
         metadata["doc_type"] = "completion_report"
         return metadata
 
-    # Fallback
     metadata["well_name"] = "Unknown"
     metadata["doc_type"] = "unknown"
     return metadata
-
-
-def chunk_text(text: str, chunk_size: int = CHUNK_SIZE,
-               overlap: int = CHUNK_OVERLAP) -> List[str]:
-    """Split text into overlapping chunks."""
-    if not text.strip():
-        return []
-
-    # Split on paragraph boundaries first
-    paragraphs = re.split(r'\n\s*\n', text)
-    chunks = []
-    current_chunk = ""
-
-    for para in paragraphs:
-        para = para.strip()
-        if not para:
-            continue
-
-        if len(current_chunk) + len(para) <= chunk_size:
-            current_chunk += para + "\n\n"
-        else:
-            if current_chunk:
-                chunks.append(current_chunk.strip())
-                # Keep overlap from end of current chunk
-                words = current_chunk.split()
-                overlap_words = words[-overlap // 4:] if len(words) > overlap // 4 else words
-                current_chunk = " ".join(overlap_words) + "\n\n" + para + "\n\n"
-            else:
-                # Single paragraph exceeds chunk size — force split
-                for i in range(0, len(para), chunk_size - overlap):
-                    chunks.append(para[i:i + chunk_size])
-                current_chunk = ""
-
-    if current_chunk.strip():
-        chunks.append(current_chunk.strip())
-
-    return chunks
 
 
 def process_all_pdfs(pdf_dir: str = None) -> List[Dict]:
@@ -141,6 +100,9 @@ def process_all_pdfs(pdf_dir: str = None) -> List[Dict]:
 
     print(f"Found {len(pdf_files)} PDF files to process")
 
+    embeddings = get_embeddings()
+    chunker = SemanticChunker(embeddings)
+
     for filename in sorted(pdf_files):
         filepath = os.path.join(pdf_dir, filename)
         print(f"  Processing: {filename}")
@@ -153,7 +115,7 @@ def process_all_pdfs(pdf_dir: str = None) -> List[Dict]:
                 print(f"    Warning: No text extracted from {filename}")
                 continue
 
-            chunks = chunk_text(text)
+            chunks = chunker.split_text(text)
             print(f"    Extracted {len(chunks)} chunks")
 
             for i, chunk in enumerate(chunks):
