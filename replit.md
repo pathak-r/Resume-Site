@@ -20,7 +20,7 @@ Personal portfolio website (React + Vite + Express) for Rohit Pathak, Senior PM 
 - **Chunking**: SemanticChunker (langchain-experimental)
 - **Embeddings**: OpenAI text-embedding-ada-002
 - **Vector store**: FAISS (`data/faiss_index/index.faiss` + `store_data.json`)
-- **Retrieval**: Hybrid BM25 + FAISS via Reciprocal Rank Fusion (`rank-bm25`); both indices built from `store_data.json` at first query and cached for the process lifetime
+- **Retrieval**: Three-layer stack — MultiQueryRetriever (gpt-4o-mini generates 3 query variants) → Hybrid BM25+FAISS per variant → Reciprocal Rank Fusion merge + dedup across all results
 - **Rebuilt index**: 832 semantic chunks from 94 Volve oil field PDFs
 - **Ingest**: Run `cd geo_rag && python ingest.py` to rebuild (takes ~10 min via workflow)
 
