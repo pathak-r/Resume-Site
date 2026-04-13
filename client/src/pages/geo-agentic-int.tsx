@@ -864,6 +864,7 @@ export default function GeoAgenticInt() {
 
   const [retryCount, setRetryCount] = useState(0);
   const [warmingUp, setWarmingUp] = useState(false);
+  const tabsRef = useRef<HTMLDivElement>(null);
 
   const load = useCallback(async (attempt = 0) => {
     setStatus("loading");
@@ -1032,7 +1033,7 @@ export default function GeoAgenticInt() {
         {status === "ok" && (
           <>
             {/* Tab nav */}
-            <div className="flex gap-2 mb-8">
+            <div ref={tabsRef} className="flex gap-2 mb-8">
               {tabs.map(({ id, label, icon: Icon }) => (
                 <button
                   key={id}
@@ -1070,6 +1071,45 @@ export default function GeoAgenticInt() {
       <footer className="py-8 text-center" style={{ color: "#abadae", fontSize: "0.8rem" }}>
         Volve dataset — Equinor open data · Geo-Agentic RAG
       </footer>
+
+      {/* Sticky floating Ask AI button */}
+      {status === "ok" && tab !== "chat" && (
+        <motion.button
+          animate={{
+            scale: [0.85, 1, 1, 1.08, 1],
+            opacity: [0, 1, 1, 1, 1],
+          }}
+          transition={{ duration: 2, times: [0, 0.2, 0.65, 0.82, 1], ease: "easeInOut" }}
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.96 }}
+          onClick={() => {
+            setTab("chat");
+            setTimeout(() => tabsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+          }}
+          data-testid="button-floating-ask-ai"
+          style={{
+            position: "fixed",
+            bottom: "2rem",
+            right: "2rem",
+            zIndex: 50,
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            padding: "0.75rem 1.4rem",
+            borderRadius: "9999px",
+            background: "linear-gradient(135deg, #a83028, #ff7668)",
+            color: "#fff",
+            fontWeight: 600,
+            fontSize: "0.9rem",
+            boxShadow: "0 8px 28px rgba(168,48,40,0.35)",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          <MessageSquare className="w-4 h-4" />
+          Ask AI
+        </motion.button>
+      )}
     </div>
   );
 }
