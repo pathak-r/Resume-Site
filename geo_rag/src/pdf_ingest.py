@@ -7,7 +7,7 @@ import re
 from typing import List, Dict
 from llama_parse import LlamaParse
 from langchain_experimental.text_splitter import SemanticChunker
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from src.config import PDF_DIR, LLAMA_CLOUD_API_KEY, MAX_CHUNK_SIZE
 from src.llm import get_embeddings
 
