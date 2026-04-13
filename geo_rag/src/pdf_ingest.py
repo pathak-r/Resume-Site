@@ -11,13 +11,8 @@ from src.config import PDF_DIR, LLAMA_CLOUD_API_KEY
 from src.llm import get_embeddings
 
 
-def extract_text_from_pdf(pdf_path: str) -> str:
+def extract_text_from_pdf(pdf_path: str, parser: LlamaParse) -> str:
     """Extract structured markdown text from a PDF file using LlamaParse."""
-    parser = LlamaParse(
-        api_key=LLAMA_CLOUD_API_KEY,
-        result_type="markdown",
-        verbose=False,
-    )
     documents = parser.load_data(pdf_path)
     return "\n\n".join(doc.text for doc in documents)
 
@@ -100,6 +95,11 @@ def process_all_pdfs(pdf_dir: str = None) -> List[Dict]:
 
     print(f"Found {len(pdf_files)} PDF files to process")
 
+    parser = LlamaParse(
+        api_key=LLAMA_CLOUD_API_KEY,
+        result_type="markdown",
+        verbose=False,
+    )
     embeddings = get_embeddings()
     chunker = SemanticChunker(embeddings)
 
@@ -108,7 +108,7 @@ def process_all_pdfs(pdf_dir: str = None) -> List[Dict]:
         print(f"  Processing: {filename}")
 
         try:
-            text = extract_text_from_pdf(filepath)
+            text = extract_text_from_pdf(filepath, parser)
             metadata = extract_metadata_from_filename(filename)
 
             if not text.strip():
