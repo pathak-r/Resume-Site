@@ -934,6 +934,29 @@ export default function GeoAgenticInt() {
               Production analytics, anomaly detection, and AI-powered Q&A over the Equinor Volve dataset.
             </p>
 
+            <div style={{ maxWidth: "640px", marginTop: "1.5rem" }}>
+              <p style={{ fontSize: "0.95rem", color: "#4a4e4f", lineHeight: 1.75, marginBottom: "1rem" }}>
+                I collect daily drilling reports, production data, and well completion reports (both structured
+                and unstructured data) from Equinor's Volve field, the most comprehensive open subsurface
+                dataset ever released from the Norwegian Continental Shelf, to build an agentic RAG system.
+              </p>
+              <p style={{ fontSize: "0.95rem", color: "#4a4e4f", lineHeight: 1.75, marginBottom: "0.6rem" }}>
+                This visualizes production trends and anomalies, and answers questions like:
+              </p>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+                {[
+                  "Why is this well's water cut rising?",
+                  "What's the decline rate for the well F-1 C over the last 12 months?",
+                  "What drilling problems were encountered in F-12 that could explain current production behavior?",
+                ].map((q) => (
+                  <li key={q} style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem", fontSize: "0.95rem", color: "#4a4e4f", lineHeight: 1.6 }}>
+                    <span style={{ color: "var(--lf-primary)", marginTop: "0.1rem", flexShrink: 0 }}>•</span>
+                    <span>{q}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             {/* Well + Date filters */}
             {meta && (
               <div className="flex flex-wrap items-center gap-3 mt-6">
