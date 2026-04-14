@@ -67,12 +67,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex flex-col sm:flex-row items-start gap-4"
+              className="flex flex-wrap items-start gap-3"
             >
               <a
                 href="#work"
                 data-testid="button-view-work"
-                className="btn-primary-gradient flex items-center gap-2 px-8 py-3.5 text-base font-semibold whitespace-nowrap"
+                className="btn-primary-gradient flex items-center gap-2 px-7 py-3.5 text-base font-semibold whitespace-nowrap"
               >
                 View Selected Work <ArrowRight className="w-4 h-4" />
               </a>
@@ -80,7 +80,7 @@ export default function Hero() {
                 href="/Rohit_Pathak_CV.pdf"
                 download
                 data-testid="button-download-cv"
-                className="flex items-center gap-2 px-8 py-3.5 text-base font-semibold rounded-full transition-all duration-200 whitespace-nowrap"
+                className="flex items-center gap-2 px-5 py-3 text-sm font-semibold rounded-full transition-all duration-200 whitespace-nowrap"
                 style={{
                   background: 'var(--lf-surface-container-lowest, #ffffff)',
                   color: 'var(--lf-on-surface)',
@@ -96,7 +96,8 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="button-linkedin"
-                className="flex items-center gap-2 px-8 py-3.5 text-base font-semibold rounded-full transition-all duration-200 whitespace-nowrap"
+                title="Connect on LinkedIn"
+                className="flex items-center justify-center w-12 h-12 rounded-full transition-all duration-200"
                 style={{
                   background: 'var(--lf-surface-container-lowest, #ffffff)',
                   color: 'var(--lf-on-surface)',
@@ -105,7 +106,7 @@ export default function Hero() {
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 4px 24px rgba(44,47,48,0.13)')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 2px 16px rgba(44,47,48,0.07)')}
               >
-                <Linkedin className="w-4 h-4" /> LinkedIn
+                <Linkedin className="w-5 h-5" />
               </a>
             </motion.div>
 
