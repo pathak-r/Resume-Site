@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Linkedin } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 const contactItems = [
   {
@@ -124,25 +124,6 @@ export default function Contact() {
           })}
         </div>
 
-        {/* LinkedIn CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="mt-10 flex justify-start"
-        >
-          <a
-            href="https://www.linkedin.com/in/pathakrohit/"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-testid="button-linkedin"
-            className="btn-primary-gradient flex items-center gap-2 px-8 py-3.5 text-base font-semibold"
-          >
-            <Linkedin className="w-4 h-4" />
-            Connect on LinkedIn
-          </a>
-        </motion.div>
       </div>
     </section>
   );

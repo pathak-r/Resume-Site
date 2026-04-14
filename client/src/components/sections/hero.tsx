@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Download, BarChart2, MessageSquare, Zap } from "lucide-react";
+import { ArrowRight, Download, BarChart2, MessageSquare, Zap, Linkedin } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Hero() {
@@ -72,7 +72,7 @@ export default function Hero() {
               <a
                 href="#work"
                 data-testid="button-view-work"
-                className="btn-primary-gradient flex items-center gap-2 px-8 py-3.5 text-base font-semibold"
+                className="btn-primary-gradient flex items-center gap-2 px-8 py-3.5 text-base font-semibold whitespace-nowrap"
               >
                 View Selected Work <ArrowRight className="w-4 h-4" />
               </a>
@@ -80,7 +80,7 @@ export default function Hero() {
                 href="/Rohit_Pathak_CV.pdf"
                 download
                 data-testid="button-download-cv"
-                className="flex items-center gap-2 px-8 py-3.5 text-base font-semibold rounded-full transition-all duration-200"
+                className="flex items-center gap-2 px-8 py-3.5 text-base font-semibold rounded-full transition-all duration-200 whitespace-nowrap"
                 style={{
                   background: 'var(--lf-surface-container-lowest, #ffffff)',
                   color: 'var(--lf-on-surface)',
@@ -90,6 +90,22 @@ export default function Hero() {
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 2px 16px rgba(44,47,48,0.07)')}
               >
                 Download CV <Download className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/pathakrohit/"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="button-linkedin"
+                className="flex items-center gap-2 px-8 py-3.5 text-base font-semibold rounded-full transition-all duration-200 whitespace-nowrap"
+                style={{
+                  background: 'var(--lf-surface-container-lowest, #ffffff)',
+                  color: 'var(--lf-on-surface)',
+                  boxShadow: '0 2px 16px rgba(44,47,48,0.07)',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 4px 24px rgba(44,47,48,0.13)')}
+                onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 2px 16px rgba(44,47,48,0.07)')}
+              >
+                <Linkedin className="w-4 h-4" /> LinkedIn
               </a>
             </motion.div>
 
