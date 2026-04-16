@@ -79,7 +79,7 @@ export default function Hero() {
                   View Selected Work <ArrowRight className="w-4 h-4" />
                 </a>
                 <a
-                  href="/Rohit_Pathak_CV.pdf"
+                  href="/Rohit_Pathak_CV_2025.pdf"
                   download
                   data-testid="button-download-cv"
                   className="flex items-center gap-2 px-8 py-3.5 text-base font-semibold rounded-full transition-all duration-200 whitespace-nowrap"
