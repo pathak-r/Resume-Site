@@ -93,7 +93,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="/Rohit_Pathak_CV_2025.pdf"
+            href="/Rohit_Pathak_Resume.pdf"
             download
             data-testid="button-resume-download-mobile"
             className="btn-primary-gradient text-center px-6 py-3 text-base font-semibold mt-2"
