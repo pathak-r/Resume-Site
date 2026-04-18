@@ -914,7 +914,7 @@ export default function GeoAgenticInt() {
       {/* Page header — catalog panel */}
       <section className="catalog-section" style={{ paddingTop: "5.5rem" }} data-testid="section-geo-header">
         <div className="px-4">
-          <div className="catalog-panel">
+          <div className="catalog-panel" style={{ maxWidth: "1120px", padding: "2.5rem" }}>
             <div className="catalog-entry-row">
               <div className="catalog-entry-row__inner">
                 {/* Index column */}
@@ -1077,7 +1077,7 @@ export default function GeoAgenticInt() {
       </section>
 
       {/* Main content — aligned to catalog panel width */}
-      <div className="px-4 py-8" style={{ maxWidth: "var(--cat-panel-max)", margin: "0 auto" }}>
+      <div className="px-4 py-8" style={{ maxWidth: "1120px", margin: "0 auto" }}>
 
         {/* Status states */}
         {status === "loading" && (
