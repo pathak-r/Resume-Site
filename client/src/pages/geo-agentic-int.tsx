@@ -1005,70 +1005,6 @@ export default function GeoAgenticInt() {
                     ))}
                   </ul>
 
-                  {/* Well + Date filters — catalog tag style */}
-                  {meta && (
-                    <div className="flex flex-wrap items-center gap-2 mt-4">
-                      <select
-                        value={well}
-                        onChange={(e) => setWell(e.target.value)}
-                        data-testid="select-well"
-                        style={{
-                          fontSize: "var(--cat-fs-tag)",
-                          padding: "6px 10px",
-                          borderRadius: "var(--cat-radius)",
-                          border: "var(--cat-rule-width) solid var(--cat-rule)",
-                          background: "var(--cat-bg-card)",
-                          color: "var(--cat-text)",
-                          fontWeight: 500,
-                          outline: "none",
-                          cursor: "pointer",
-                        }}
-                      >
-                        <option value="All Wells">All Wells</option>
-                        {meta.wells.map((w) => (
-                          <option key={w} value={w}>{w}</option>
-                        ))}
-                      </select>
-                      <input
-                        type="date"
-                        value={start}
-                        min={meta.date_min}
-                        max={meta.date_max}
-                        onChange={(e) => setStart(e.target.value)}
-                        data-testid="input-date-start"
-                        style={{
-                          fontSize: "var(--cat-fs-tag)",
-                          padding: "6px 10px",
-                          borderRadius: "var(--cat-radius)",
-                          border: "var(--cat-rule-width) solid var(--cat-rule)",
-                          background: "var(--cat-bg-card)",
-                          color: "var(--cat-text)",
-                          fontWeight: 500,
-                          outline: "none",
-                        }}
-                      />
-                      <input
-                        type="date"
-                        value={end}
-                        min={meta.date_min}
-                        max={meta.date_max}
-                        onChange={(e) => setEnd(e.target.value)}
-                        data-testid="input-date-end"
-                        style={{
-                          fontSize: "var(--cat-fs-tag)",
-                          padding: "6px 10px",
-                          borderRadius: "var(--cat-radius)",
-                          border: "var(--cat-rule-width) solid var(--cat-rule)",
-                          background: "var(--cat-bg-card)",
-                          color: "var(--cat-text)",
-                          fontWeight: 500,
-                          outline: "none",
-                        }}
-                      />
-                      <span className="catalog-tag" style={{ marginLeft: "0.5rem" }}>{meta.total_wells} wells</span>
-                      <span className="catalog-tag">{fmt(meta.total_oil_sm3)} Sm³ total</span>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
@@ -1103,6 +1039,84 @@ export default function GeoAgenticInt() {
 
         {status === "ok" && (
           <>
+            {/* Filter bar — sits with the data it controls */}
+            {meta && (
+              <div
+                className="flex flex-wrap items-center gap-2 mb-6"
+                data-testid="filter-bar"
+              >
+                <span style={{
+                  fontSize: "var(--cat-fs-eyebrow)",
+                  letterSpacing: "var(--cat-ls-eyebrow)",
+                  textTransform: "uppercase",
+                  color: "var(--cat-text-tertiary)",
+                  fontWeight: 500,
+                  marginRight: "0.25rem",
+                }}>
+                  Filters
+                </span>
+                <select
+                  value={well}
+                  onChange={(e) => setWell(e.target.value)}
+                  data-testid="select-well"
+                  style={{
+                    fontSize: "var(--cat-fs-tag)",
+                    padding: "6px 10px",
+                    borderRadius: "var(--cat-radius)",
+                    border: "var(--cat-rule-width) solid var(--cat-rule)",
+                    background: "var(--cat-bg-card)",
+                    color: "var(--cat-text)",
+                    fontWeight: 500,
+                    outline: "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  <option value="All Wells">All Wells</option>
+                  {meta.wells.map((w) => (
+                    <option key={w} value={w}>{w}</option>
+                  ))}
+                </select>
+                <input
+                  type="date"
+                  value={start}
+                  min={meta.date_min}
+                  max={meta.date_max}
+                  onChange={(e) => setStart(e.target.value)}
+                  data-testid="input-date-start"
+                  style={{
+                    fontSize: "var(--cat-fs-tag)",
+                    padding: "6px 10px",
+                    borderRadius: "var(--cat-radius)",
+                    border: "var(--cat-rule-width) solid var(--cat-rule)",
+                    background: "var(--cat-bg-card)",
+                    color: "var(--cat-text)",
+                    fontWeight: 500,
+                    outline: "none",
+                  }}
+                />
+                <input
+                  type="date"
+                  value={end}
+                  min={meta.date_min}
+                  max={meta.date_max}
+                  onChange={(e) => setEnd(e.target.value)}
+                  data-testid="input-date-end"
+                  style={{
+                    fontSize: "var(--cat-fs-tag)",
+                    padding: "6px 10px",
+                    borderRadius: "var(--cat-radius)",
+                    border: "var(--cat-rule-width) solid var(--cat-rule)",
+                    background: "var(--cat-bg-card)",
+                    color: "var(--cat-text)",
+                    fontWeight: 500,
+                    outline: "none",
+                  }}
+                />
+                <span className="catalog-tag" style={{ marginLeft: "0.5rem" }}>{meta.total_wells} wells</span>
+                <span className="catalog-tag">{fmt(meta.total_oil_sm3)} Sm³ total</span>
+              </div>
+            )}
+
             {/* Tab nav — catalog style */}
             <div className="flex flex-wrap gap-2 mb-8" style={{ borderBottom: "var(--cat-rule-width) solid var(--cat-rule)", paddingBottom: "1rem" }}>
               {tabs.map(({ id, label, icon: Icon }) => {
