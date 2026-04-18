@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohit Pathak — Catalog Hero (Dark)</title>
+<style>
+  :root {
+    --bg-page: #1C1C1C;
+    --bg-panel: #1C1C1C;
+    --text-primary: #F2EFE8;
+    --text-secondary: #A8A49B;
+    --text-tertiary: #7A7771;
+    --border: rgba(242, 239, 232, 0.15);
+    --border-strong: rgba(242, 239, 232, 0.35);
+    --radius-md: 10px;
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem;
+    background: var(--bg-page);
+    font-family: var(--font-sans);
+    color: var(--text-primary);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 1.5rem;
+    border-bottom: 0.5px solid var(--border);
+    margin-bottom: 3.5rem;
+  }
+  .logo {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    font-size: 16px;
+    color: var(--text-secondary);
+  }
+  .nav-links span {
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+  .nav-links span:hover {
+    color: var(--text-primary);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .index-col {
+    padding-top: 4px;
+  }
+  .eyebrow {
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    color: var(--text-tertiary);
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .numeral {
+    font-size: 88px;
+    font-weight: 500;
+    margin: 18px 0 18px;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+  }
+  .filed {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin: 0 0 20px;
+  }
+  h1 {
+    font-size: 56px;
+    font-weight: 600;
+    margin: 0 0 28px;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    max-width: 920px;
+  }
+  .lede {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0 0 36px;
+    max-width: 640px;
+  }
+  .actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 12px 22px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.15s;
+    font-family: inherit;
+    border: 0.5px solid var(--border);
+    color: var(--text-secondary);
+  }
+  .btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+  }
+  .btn-primary {
+    border: 0.5px solid var(--border-strong);
+    color: var(--text-primary);
+  }
+  .btn-primary:hover {
+    background: rgba(242, 239, 232, 0.05);
+  }
+  @media (max-width: 900px) {
+    body { padding: 1.5rem; }
+    .grid { grid-template-columns: 1fr; gap: 2rem; }
+    .nav { margin-bottom: 2.5rem; }
+    .numeral { font-size: 64px; margin: 12px 0; }
+    h1 { font-size: 36px; }
+    .lede { font-size: 16px; }
+    .nav-links { gap: 1.25rem; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <span class="logo">rohit pathak</span>
+      <div class="nav-links">
+        <span>Work</span>
+        <span>About</span>
+        <span>Experience</span>
+        <span>Contact</span>
+      </div>
+    </nav>
+    <div class="grid">
+      <div class="index-col">
+        <p class="eyebrow">Entry № 01</p>
+        <p class="numeral">00</p>
+        <p class="eyebrow">Introduction</p>
+      </div>
+      <div>
+        <p class="filed">Filed under: senior pm · enterprise AI · abu dhabi</p>
+        <h1>Senior product manager shipping AI into software people actually depend on.</h1>
+        <p class="lede">Ten plus years turning complex technical capabilities into products that solve real business problems. Currently focused on agentic AI and RAG systems inside enterprise SaaS.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#work">View selected work →</a>
+          <a class="btn" href="#">Download CV</a>
+          <a class="btn" href="#">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

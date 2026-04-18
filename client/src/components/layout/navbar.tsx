@@ -2,15 +2,23 @@ import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
+const D = {
+  bg:        "#1C1C1C",
+  primary:   "#F2EFE8",
+  secondary: "#A8A49B",
+  border:    "rgba(242, 239, 232, 0.15)",
+  font:      '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+};
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
 
   const links = [
-    { name: "Work", href: "#work" },
-    { name: "About", href: "#about" },
+    { name: "Work",       href: "#work" },
+    { name: "About",      href: "#about" },
     { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
+    { name: "Contact",    href: "#contact" },
   ];
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -19,49 +27,43 @@ export default function Navbar() {
       window.location.href = `/${href}`;
       return;
     }
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
-    }
+    const el = document.querySelector(href);
+    if (el) { el.scrollIntoView({ behavior: "smooth" }); setIsOpen(false); }
   };
 
   return (
     <nav
       className="fixed top-0 w-full z-50"
       style={{
-        background: "var(--cat-bg)",
-        borderBottom: "var(--cat-rule-width) solid var(--cat-rule)",
-        fontFamily: "var(--cat-font)",
+        background: D.bg,
+        borderBottom: `0.5px solid ${D.border}`,
+        fontFamily: D.font,
+        WebkitFontSmoothing: "antialiased",
       }}
     >
       <div
-        className="mx-auto px-4 flex items-baseline justify-between py-4"
-        style={{ maxWidth: "calc(var(--cat-panel-max) + 4rem)" }}
+        className="mx-auto px-8 flex items-baseline justify-between py-4"
+        style={{ maxWidth: "1200px" }}
       >
         <Link
           href="/"
-          style={{ color: "var(--cat-text)", fontSize: "14px", fontWeight: 500 }}
+          style={{ color: D.primary, fontSize: "18px", fontWeight: 500, letterSpacing: "-0.01em", textDecoration: "none" }}
           data-testid="link-logo"
         >
           rohit pathak
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-baseline gap-5">
+        <div className="hidden md:flex items-baseline gap-8">
           {links.map((link) => (
             <a
               key={link.name}
               href={link.href}
               data-testid={`nav-link-${link.name.toLowerCase()}`}
               onClick={(e) => scrollToSection(e, link.href)}
-              className="transition-colors"
-              style={{
-                color: "var(--cat-text-secondary)",
-                fontSize: "13px",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--cat-text)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cat-text-secondary)")}
+              style={{ color: D.secondary, fontSize: "16px", textDecoration: "none", transition: "color 0.15s" }}
+              onMouseEnter={e => (e.currentTarget.style.color = D.primary)}
+              onMouseLeave={e => (e.currentTarget.style.color = D.secondary)}
             >
               {link.name}
             </a>
@@ -71,7 +73,7 @@ export default function Navbar() {
         {/* Mobile Toggle */}
         <button
           className="md:hidden p-2"
-          style={{ color: "var(--cat-text)" }}
+          style={{ color: D.primary }}
           onClick={() => setIsOpen(!isOpen)}
           data-testid="button-mobile-menu"
         >
@@ -82,18 +84,15 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div
-          className="md:hidden absolute top-full left-0 w-full p-6 flex flex-col gap-3"
-          style={{
-            background: "var(--cat-bg)",
-            borderBottom: "var(--cat-rule-width) solid var(--cat-rule)",
-          }}
+          className="md:hidden absolute top-full left-0 w-full px-8 py-6 flex flex-col gap-4"
+          style={{ background: D.bg, borderBottom: `0.5px solid ${D.border}` }}
         >
           {links.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={(e) => scrollToSection(e, link.href)}
-              style={{ color: "var(--cat-text)", fontSize: "14px", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}
+              style={{ color: D.secondary, fontSize: "16px", textDecoration: "none" }}
             >
               {link.name}
             </a>
@@ -102,7 +101,18 @@ export default function Navbar() {
             href="/Rohit_Pathak_Resume.pdf"
             download
             data-testid="button-resume-download-mobile"
-            className="catalog-btn catalog-btn--primary mt-2 justify-center"
+            style={{
+              marginTop: "0.5rem",
+              fontSize: "15px",
+              fontWeight: 500,
+              padding: "10px 18px",
+              borderRadius: "10px",
+              border: `0.5px solid ${D.border}`,
+              color: D.primary,
+              background: "transparent",
+              textDecoration: "none",
+              textAlign: "center",
+            }}
           >
             Download CV
           </a>
