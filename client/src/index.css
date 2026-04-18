@@ -121,7 +121,7 @@
   --cat-radius: 8px;
   --cat-radius-card: 12px;
 
-  --cat-index-col: 140px;
+  --cat-index-col: 200px;
   --cat-grid-gap: 2rem;
   --cat-panel-max: 960px;
 
@@ -134,10 +134,10 @@
   --cat-fs-body: 15px;
   --cat-fs-body-sm: 13px;
   --cat-lh-body: 1.75;
-  --cat-fs-numeral: 56px;
-  --cat-fs-h1: 36px;
-  --cat-fs-h2: 26px;
-  --cat-fs-h2-project: 22px;
+  --cat-fs-numeral: 80px;
+  --cat-fs-h1: 44px;
+  --cat-fs-h2: 36px;
+  --cat-fs-h2-project: 32px;
   --cat-fs-button: 13px;
   --cat-fs-tag: 11px;
 }

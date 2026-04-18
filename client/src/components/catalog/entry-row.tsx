@@ -17,7 +17,7 @@ export default function EntryRow({
   label,
   subLabel,
   subLabelColor,
-  numeralSize = 40,
+  numeralSize = 80,
   children,
   className = "",
 }: EntryRowProps) {
@@ -44,7 +44,7 @@ export default function EntryRow({
               lineHeight: 1,
               color: "var(--cat-text)",
               margin: 0,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.03em",
             }}
           >
             {numeral}

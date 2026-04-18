@@ -120,7 +120,7 @@ export default function Experience() {
                   <p className="catalog-meta" style={{ marginBottom: "4px" }}>Role</p>
                   <h3
                     style={{
-                      fontSize: "20px",
+                      fontSize: "24px",
                       fontWeight: 500,
                       margin: "0 0 4px",
                       color: "var(--cat-text)",

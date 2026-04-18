@@ -297,7 +297,7 @@ function Chat() {
                   key={q}
                   onClick={() => { setInput(q); }}
                   className="px-4 py-2 rounded-full surface-lowest shadow-ambient text-sm font-medium transition-all"
-                  style={{ color: "var(--lf-on-surface)" }}
+                  style={{ color: "#F2EFE8", border: "0.5px solid rgba(242,239,232,0.25)" }}
                   data-testid={`chat-suggestion-${q.slice(0, 10).replace(/\W/g, "")}`}
                 >
                   {q}
@@ -930,12 +930,12 @@ export default function GeoAgenticInt() {
                     Project № 01
                   </p>
                   <p style={{
-                    fontSize: "40px",
+                    fontSize: "80px",
                     fontWeight: 500,
                     lineHeight: 1,
                     color: "var(--cat-text)",
                     margin: 0,
-                    letterSpacing: "-0.02em",
+                    letterSpacing: "-0.03em",
                   }}>
                     01
                   </p>

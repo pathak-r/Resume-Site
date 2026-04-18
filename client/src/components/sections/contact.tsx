@@ -27,10 +27,10 @@ export default function Contact() {
             <p className="catalog-meta" style={{ marginBottom: "6px" }}>A brief entry on</p>
             <h2
               style={{
-                fontSize: "28px",
+                fontSize: "var(--cat-fs-h2)",
                 fontWeight: 500,
                 margin: "0 0 12px",
-                lineHeight: 1.2,
+                lineHeight: 1.15,
                 color: "var(--cat-text)",
                 letterSpacing: "-0.02em",
               }}
