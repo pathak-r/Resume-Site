@@ -114,17 +114,23 @@ function ProjectCol({ project, isRight }: { project: Project; isRight: boolean }
           style={{
             display: "inline-flex",
             alignItems: "center",
-            gap: "6px",
+            gap: "8px",
             fontSize: "13px",
-            fontWeight: 500,
-            color: "var(--cat-accent)",
-            marginTop: "auto",
+            fontWeight: 600,
+            color: "var(--cat-text)",
+            background: "transparent",
+            border: "0.5px solid rgba(242,239,232,0.5)",
+            borderRadius: "8px",
+            padding: "10px 18px",
+            marginTop: "20px",
             fontFamily: "var(--cat-font)",
+            letterSpacing: "0.01em",
+            alignSelf: "flex-start",
           }}
           data-testid={`link-explore-${project.title.replace(/\s+/g, "-").toLowerCase()}`}
         >
           {project.cta.label}
-          <ArrowRight size={13} strokeWidth={2} />
+          <ArrowRight size={14} strokeWidth={2} />
         </div>
       )}
     </div>
@@ -151,9 +157,9 @@ export default function CurrentWork() {
         <div className="catalog-section-header">
           <p
             style={{
-              fontSize: "var(--cat-fs-eyebrow)",
-              letterSpacing: "var(--cat-ls-eyebrow)",
-              color: "var(--cat-text-tertiary)",
+              fontSize: "14px",
+              letterSpacing: "0.06em",
+              color: "var(--cat-text-secondary)",
               textTransform: "uppercase",
               margin: 0,
               fontWeight: 500,
