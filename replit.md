@@ -8,11 +8,16 @@ Personal portfolio website (React + Vite + Express) for Rohit Pathak, Senior PM 
 - **Geo RAG API**: Python FastAPI (local port 8000 for dev; Railway for prod)
 - **Proxy**: Express forwards `/api/geo/*` → FastAPI
 
-## Key Design System (Lucid Flow)
-- Coral gradient CTAs: `#a83028` → `#ff7668`
-- Teal accent chips: `#0ac4fd`
-- Font: Plus Jakarta Sans
-- No borders, pill shapes, glassmorphism
+## Key Design System — Dark Catalog Theme
+- **Page background**: `#141414`
+- **Card/panel background**: `#1C1C1C` (with `0.5px solid rgba(242,239,232,0.15)` border + 12px radius)
+- **Inner sub-card background**: `#252525`
+- **Text primary**: `#F2EFE8` | secondary: `#A8A49B` | tertiary: `#7A7771`
+- **Border**: `rgba(242,239,232,0.15)` | border-strong: `rgba(242,239,232,0.35)`
+- **Accent (green)**: `#4CC9A0`
+- **Coral CTA gradient**: `#a83028` → `#ff7668` (chat send btn, selected-work primary btn)
+- Font: Inter / system-ui (navbar/hero inline) + Plus Jakarta Sans (headings)
+- CSS tokens: `--cat-*` in `client/src/index.css` cascade to all sections automatically
 - **Critical**: CSS variables (`var(--lf-*)`) do NOT work inside SVG/Recharts — always use hex strings
 
 ## RAG Backend (`geo_rag/`)

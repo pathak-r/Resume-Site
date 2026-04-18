@@ -42,9 +42,9 @@ function fmt(n: number | null | undefined, decimals = 0): string {
 
 // ─── Well Detail Charts (separate component to avoid IIFE sizing bugs) ───────
 
-const CHART_AXIS = { tick: { fontSize: 10, fill: "#abadae" }, tickLine: false as const, axisLine: false as const };
-const CHART_GRID = { strokeDasharray: "3 3", stroke: "#eff1f2" };
-const CHART_TOOLTIP = { contentStyle: { background: "#fff", border: "none", borderRadius: "1rem", boxShadow: "0 8px 32px rgba(44,47,48,0.1)", fontSize: "0.78rem" } };
+const CHART_AXIS = { tick: { fontSize: 10, fill: "#7A7771" }, tickLine: false as const, axisLine: false as const };
+const CHART_GRID = { strokeDasharray: "3 3", stroke: "rgba(242,239,232,0.08)" };
+const CHART_TOOLTIP = { contentStyle: { background: "#1C1C1C", border: "0.5px solid rgba(242,239,232,0.15)", borderRadius: "10px", boxShadow: "0 8px 32px rgba(0,0,0,0.5)", fontSize: "0.78rem", color: "#F2EFE8" } };
 
 function ChartCard({ title, color, height = 220, children }: { title: string; color: string; height?: number; children: React.ReactElement }) {
   return (
@@ -192,8 +192,8 @@ function Dashboard({ well, start, end }: { well: string; start: string; end: str
               className="surface-lowest shadow-ambient rounded-2xl p-5"
               data-testid={`kpi-${k.label.replace(/\W+/g, "-").toLowerCase()}`}
             >
-              <div className="label-meta mb-1" style={{ color: "#abadae" }}>{k.label}</div>
-              <div className="font-bold text-xl" style={{ color: "var(--lf-on-surface)", letterSpacing: "-0.02em" }}>
+              <div className="label-meta mb-1" style={{ color: "#7A7771" }}>{k.label}</div>
+              <div className="font-bold text-xl" style={{ color: "#F2EFE8", letterSpacing: "-0.02em" }}>
                 {k.value}
               </div>
             </div>
@@ -207,10 +207,10 @@ function Dashboard({ well, start, end }: { well: string; start: string; end: str
           <div className="label-meta mb-4">Daily Oil Production by Well (Sm³)</div>
           <ResponsiveContainer width="100%" height={320}>
             <AreaChart data={thin(pivoted)} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#eff1f2" />
-              <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#abadae" }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
-              <YAxis tick={{ fontSize: 11, fill: "#abadae" }} tickLine={false} axisLine={false} />
-              <Tooltip contentStyle={{ background: "#fff", border: "none", borderRadius: "1rem", boxShadow: "0 8px 32px rgba(44,47,48,0.1)", fontSize: "0.8rem" }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(242,239,232,0.08)" />
+              <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#7A7771" }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
+              <YAxis tick={{ fontSize: 11, fill: "#7A7771" }} tickLine={false} axisLine={false} />
+              <Tooltip contentStyle={{ background: "#1C1C1C", border: "0.5px solid rgba(242,239,232,0.15)", borderRadius: "10px", boxShadow: "0 8px 32px rgba(0,0,0,0.5)", fontSize: "0.8rem", color: "#F2EFE8" }} />
               <Legend wrapperStyle={{ fontSize: "0.78rem", paddingTop: "1rem" }} />
               {wells.map((w, i) => (
                 <Area key={w} type="monotone" dataKey={w} stackId="1"
@@ -281,12 +281,12 @@ function Chat() {
     <div className="flex flex-col" style={{ height: "60vh", minHeight: "400px" }}>
       <div
         className="flex-1 overflow-y-auto rounded-2xl p-6 mb-4 space-y-4"
-        style={{ background: "var(--lf-surface-container-low, #eff1f2)" }}
+        style={{ background: "#0F0F0F" }}
       >
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full gap-3 text-center">
-            <MessageSquare className="w-10 h-10" style={{ color: "#abadae" }} />
-            <p className="label-meta" style={{ color: "#abadae" }}>Ask about production trends, anomalies, or well documents</p>
+            <MessageSquare className="w-10 h-10" style={{ color: "#7A7771" }} />
+            <p className="label-meta" style={{ color: "#7A7771" }}>Ask about production trends, anomalies, or well documents</p>
             <div className="flex flex-wrap gap-2 justify-center mt-2">
               {[
                 "What anomalies were detected across all wells?",
@@ -314,11 +314,11 @@ function Chat() {
               style={{
                 background: m.role === "user"
                   ? "linear-gradient(135deg, #a83028, #ff7668)"
-                  : "#ffffff",
-                color: m.role === "user" ? "#fff" : "var(--lf-on-surface)",
+                  : "#252525",
+                color: m.role === "user" ? "#fff" : "#F2EFE8",
                 fontSize: "0.9rem",
                 lineHeight: 1.6,
-                boxShadow: m.role === "assistant" ? "0 2px 16px rgba(44,47,48,0.06)" : "none",
+                boxShadow: m.role === "assistant" ? "0 2px 16px rgba(0,0,0,0.4)" : "none",
                 whiteSpace: "pre-wrap",
               }}
               data-testid={`chat-message-${i}`}
@@ -330,7 +330,7 @@ function Chat() {
 
         {busy && (
           <div className="flex justify-start">
-            <div className="rounded-2xl px-5 py-3.5 surface-lowest shadow-ambient flex items-center gap-2" style={{ fontSize: "0.85rem", color: "#abadae" }}>
+            <div className="rounded-2xl px-5 py-3.5 surface-lowest shadow-ambient flex items-center gap-2" style={{ fontSize: "0.85rem", color: "#7A7771" }}>
               <RefreshCw className="w-3.5 h-3.5 animate-spin" /> Thinking…
             </div>
           </div>
@@ -355,12 +355,12 @@ function Chat() {
           data-testid="input-chat"
           className="flex-1 resize-none rounded-full px-5 py-3 text-sm font-medium outline-none transition-all"
           style={{
-            background: "var(--lf-surface-container-low, #eff1f2)",
-            color: "var(--lf-on-surface)",
-            border: "none",
+            background: "#252525",
+            color: "#F2EFE8",
+            border: "0.5px solid rgba(242,239,232,0.15)",
           }}
-          onFocus={e => e.currentTarget.style.background = "#ffffff"}
-          onBlur={e => e.currentTarget.style.background = "var(--lf-surface-container-low, #eff1f2)"}
+          onFocus={e => e.currentTarget.style.background = "#2C2C2C"}
+          onBlur={e => e.currentTarget.style.background = "#252525"}
         />
         <button
           onClick={send}
@@ -438,10 +438,10 @@ function Anomalies({ well }: { well: string }) {
           >
             <div className="flex items-start justify-between mb-3">
               <AlertTriangle className="w-7 h-7" style={{ color: severityColor[sev] }} />
-              {loading && <RefreshCw className="w-3.5 h-3.5 animate-spin" style={{ color: "#abadae" }} />}
+              {loading && <RefreshCw className="w-3.5 h-3.5 animate-spin" style={{ color: "#7A7771" }} />}
             </div>
-            <div className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "#abadae" }}>{sev}</div>
-            <div className="text-5xl font-bold" style={{ color: "var(--lf-on-surface)", letterSpacing: "-0.03em", lineHeight: 1 }}>
+            <div className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "#7A7771" }}>{sev}</div>
+            <div className="text-5xl font-bold" style={{ color: "#F2EFE8", letterSpacing: "-0.03em", lineHeight: 1 }}>
               {counts[sev] ?? 0}
             </div>
           </div>
@@ -484,10 +484,10 @@ function Anomalies({ well }: { well: string }) {
               cursor={{ strokeDasharray: "3 3" }}
               content={({ active, payload }) =>
                 active && payload?.[0] ? (
-                  <div style={{ background: "#fff", border: "none", borderRadius: "1rem", boxShadow: "0 8px 32px rgba(44,47,48,0.1)", fontSize: "0.78rem", padding: "0.5rem 0.75rem" }}>
-                    <div style={{ fontWeight: 600, color: "#2c2f30", marginBottom: 2 }}>{payload[0].payload.well}</div>
-                    <div style={{ color: "#6b7071", fontSize: "0.75rem" }}>{payload[0].payload.z}</div>
-                    <div style={{ color: "#2c2f30", fontSize: "0.8rem" }}>{payload[0].payload.x} · {Number(payload[0].payload.y).toFixed(1)}</div>
+                  <div style={{ background: "#1C1C1C", border: "0.5px solid rgba(242,239,232,0.15)", borderRadius: "10px", boxShadow: "0 8px 32px rgba(0,0,0,0.5)", fontSize: "0.78rem", padding: "0.5rem 0.75rem" }}>
+                    <div style={{ fontWeight: 600, color: "#F2EFE8", marginBottom: 2 }}>{payload[0].payload.well}</div>
+                    <div style={{ color: "#A8A49B", fontSize: "0.75rem" }}>{payload[0].payload.z}</div>
+                    <div style={{ color: "#F2EFE8", fontSize: "0.8rem" }}>{payload[0].payload.x} · {Number(payload[0].payload.y).toFixed(1)}</div>
                   </div>
                 ) : null
               }
@@ -505,10 +505,10 @@ function Anomalies({ well }: { well: string }) {
           </div>
           <div className="overflow-x-auto overflow-y-auto" style={{ maxHeight: "380px" }}>
             <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
-              <thead style={{ position: "sticky", top: 0, background: "#fff", zIndex: 1 }}>
+              <thead style={{ position: "sticky", top: 0, background: "#252525", zIndex: 1 }}>
                 <tr>
                   {cols.map(k => (
-                    <th key={k} className="text-left py-2 pr-6 label-meta" style={{ color: "#abadae", whiteSpace: "nowrap" }}>
+                    <th key={k} className="text-left py-2 pr-6 label-meta" style={{ color: "#7A7771", whiteSpace: "nowrap" }}>
                       {k.replace(/_/g, " ")}
                     </th>
                   ))}
@@ -516,10 +516,10 @@ function Anomalies({ well }: { well: string }) {
               </thead>
               <tbody>
                 {rows.map((row, i) => (
-                  <tr key={i} style={{ borderTop: "1px solid #eff1f2" }} data-testid={`anomaly-row-${i}`}>
+                  <tr key={i} style={{ borderTop: "1px solid rgba(242,239,232,0.08)" }} data-testid={`anomaly-row-${i}`}>
                     {cols.map((k, j) => (
                       <td key={j} className="py-2 pr-6" style={{
-                        color: k === "SEVERITY" ? (severityColor[row[k]] || "#2c2f30") : "#2c2f30",
+                        color: k === "SEVERITY" ? (severityColor[row[k]] || "#F2EFE8") : "#F2EFE8",
                         fontWeight: k === "SEVERITY" ? 700 : 400,
                         whiteSpace: "nowrap",
                       }}>
@@ -535,7 +535,7 @@ function Anomalies({ well }: { well: string }) {
       )}
 
       {rows.length === 0 && !loading && (
-        <p className="text-sm" style={{ color: "#abadae" }}>No anomalies detected for the selected filter.</p>
+        <p className="text-sm" style={{ color: "#7A7771" }}>No anomalies detected for the selected filter.</p>
       )}
       {err && <p className="text-sm" style={{ color: "#a83028" }}>{err}</p>}
     </div>
@@ -676,7 +676,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
             data-testid="button-swap-wells"
             title="Swap wells"
             className="w-9 h-9 flex items-center justify-center rounded-full transition-all"
-            style={{ background: "#eff1f2", color: "#6b7071" }}
+            style={{ background: "#252525", color: "#7A7771" }}
           >
             <ArrowLeftRight className="w-4 h-4" />
           </button>
@@ -695,14 +695,14 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
             </select>
           </div>
 
-          {loading && <RefreshCw className="w-4 h-4 animate-spin ml-2" style={{ color: "#abadae" }} />}
+          {loading && <RefreshCw className="w-4 h-4 animate-spin ml-2" style={{ color: "#7A7771" }} />}
 
           {data && data.divergence.length > 0 && (
             <span className="chip-teal ml-2">{data.divergence.length} divergence period{data.divergence.length > 1 ? "s" : ""} flagged</span>
           )}
         </div>
         {wellA === wellB && (
-          <p className="text-xs mt-3" style={{ color: "#abadae" }}>Select two different wells to compare.</p>
+          <p className="text-xs mt-3" style={{ color: "#7A7771" }}>Select two different wells to compare.</p>
         )}
         {err && <p className="text-xs mt-3" style={{ color: "#a83028" }}>{err}</p>}
       </div>
@@ -713,7 +713,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
           <div className="flex items-start justify-between gap-4">
             <div>
               <div className="label-meta mb-1">AI Explanation</div>
-              <p className="text-sm" style={{ color: "#6b7071" }}>
+              <p className="text-sm" style={{ color: "#A8A49B" }}>
                 Ask the AI to explain why these wells perform differently, drawing from their drilling and completion reports.
               </p>
             </div>
@@ -731,7 +731,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
           {aiInsight && (
             <div
               className="mt-5 rounded-2xl px-5 py-4 text-sm"
-              style={{ background: "#eff1f2", color: "var(--lf-on-surface)", lineHeight: 1.7, whiteSpace: "pre-wrap" }}
+              style={{ background: "#252525", color: "#F2EFE8", lineHeight: 1.7, whiteSpace: "pre-wrap" }}
               data-testid="comparison-ai-insight"
             >
               {aiInsight}
@@ -748,7 +748,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
             <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
               <thead>
                 <tr>
-                  <th className="text-left py-2 pr-8 label-meta" style={{ color: "#abadae" }}>Metric</th>
+                  <th className="text-left py-2 pr-8 label-meta" style={{ color: "#7A7771" }}>Metric</th>
                   <th className="text-right py-2 pr-8 font-semibold" style={{ color: COL_A }}>{wellA}</th>
                   <th className="text-right py-2 font-semibold" style={{ color: COL_B }}>{wellB}</th>
                 </tr>
@@ -758,10 +758,10 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
                   const aWins = row.numeric && row.aVal != null && row.bVal != null && (row.lowerIsBetter ? row.aVal < row.bVal : row.aVal > row.bVal);
                   const bWins = row.numeric && row.aVal != null && row.bVal != null && (row.lowerIsBetter ? row.bVal < row.aVal : row.bVal > row.aVal);
                   return (
-                    <tr key={row.label} style={{ borderTop: "1px solid #eff1f2" }}>
-                      <td className="py-2.5 pr-8 label-meta" style={{ color: "#6b7071" }}>{row.label}</td>
-                      <td className="py-2.5 pr-8 text-right font-semibold" style={{ color: aWins ? COL_A : "var(--lf-on-surface)" }}>{row.a}</td>
-                      <td className="py-2.5 text-right font-semibold" style={{ color: bWins ? COL_B : "var(--lf-on-surface)" }}>{row.b}</td>
+                    <tr key={row.label} style={{ borderTop: "1px solid rgba(242,239,232,0.08)" }}>
+                      <td className="py-2.5 pr-8 label-meta" style={{ color: "#7A7771" }}>{row.label}</td>
+                      <td className="py-2.5 pr-8 text-right font-semibold" style={{ color: aWins ? COL_A : "#F2EFE8" }}>{row.a}</td>
+                      <td className="py-2.5 text-right font-semibold" style={{ color: bWins ? COL_B : "#F2EFE8" }}>{row.b}</td>
                     </tr>
                   );
                 })}
@@ -774,7 +774,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
             <ChartCard title="Oil Production vs Days on Production (Sm³/day)" color={COL_A} height={280}>
               <LineChart data={mergedOil} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
                 <CartesianGrid {...CHART_GRID} />
-                <XAxis dataKey="day" {...CHART_AXIS} label={{ value: "Days since first production", position: "insideBottom", offset: -2, fontSize: 10, fill: "#abadae" }} />
+                <XAxis dataKey="day" {...CHART_AXIS} label={{ value: "Days since first production", position: "insideBottom", offset: -2, fontSize: 10, fill: "#7A7771" }} />
                 <YAxis {...CHART_AXIS} />
                 <Tooltip {...CHART_TOOLTIP} labelFormatter={(v) => `Day ${v}`} />
                 <Legend wrapperStyle={{ fontSize: "0.75rem" }} />
@@ -794,7 +794,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
             <ChartCard title="Water Cut % Trajectory" color="#6b7071" height={240}>
               <LineChart data={mergedWC} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
                 <CartesianGrid {...CHART_GRID} />
-                <XAxis dataKey="day" {...CHART_AXIS} label={{ value: "Days since first production", position: "insideBottom", offset: -2, fontSize: 10, fill: "#abadae" }} />
+                <XAxis dataKey="day" {...CHART_AXIS} label={{ value: "Days since first production", position: "insideBottom", offset: -2, fontSize: 10, fill: "#7A7771" }} />
                 <YAxis {...CHART_AXIS} domain={[0, 100]} />
                 <Tooltip {...CHART_TOOLTIP} labelFormatter={(v) => `Day ${v}`} />
                 <Legend wrapperStyle={{ fontSize: "0.75rem" }} />
@@ -812,7 +812,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
             <ChartCard title="Wellhead Pressure (bar)" color="#fbbf24" height={220}>
               <LineChart data={mergedWHP} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
                 <CartesianGrid {...CHART_GRID} />
-                <XAxis dataKey="day" {...CHART_AXIS} label={{ value: "Days since first production", position: "insideBottom", offset: -2, fontSize: 10, fill: "#abadae" }} />
+                <XAxis dataKey="day" {...CHART_AXIS} label={{ value: "Days since first production", position: "insideBottom", offset: -2, fontSize: 10, fill: "#7A7771" }} />
                 <YAxis {...CHART_AXIS} />
                 <Tooltip {...CHART_TOOLTIP} labelFormatter={(v) => `Day ${v}`} />
                 <Legend wrapperStyle={{ fontSize: "0.75rem" }} />
@@ -831,13 +831,13 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
               </div>
               <div className="grid grid-cols-1 gap-2">
                 {data.divergence.map((d, i) => (
-                  <div key={i} className="flex items-center gap-4 py-2" style={{ borderTop: i > 0 ? "1px solid #eff1f2" : "none" }}>
-                    <span className="text-xs font-semibold rounded-full px-3 py-1" style={{ background: "#fbbf2418", color: "#b45309" }}>
+                  <div key={i} className="flex items-center gap-4 py-2" style={{ borderTop: i > 0 ? "1px solid rgba(242,239,232,0.08)" : "none" }}>
+                    <span className="text-xs font-semibold rounded-full px-3 py-1" style={{ background: "#fbbf2418", color: "#fbbf24" }}>
                       Day {d.day_start}–{d.day_end}
                     </span>
-                    <span className="text-sm" style={{ color: "#6b7071" }}>
-                      {d.metrics.includes("oil") && <span className="mr-3">Oil Δ: <strong style={{ color: "var(--lf-on-surface)" }}>{d.d_oil > 0 ? "+" : ""}{d.d_oil.toFixed(0)} Sm³/d</strong></span>}
-                      {d.metrics.includes("wc") && <span>WC Δ: <strong style={{ color: "var(--lf-on-surface)" }}>{d.d_wc > 0 ? "+" : ""}{d.d_wc.toFixed(1)}%</strong></span>}
+                    <span className="text-sm" style={{ color: "#A8A49B" }}>
+                      {d.metrics.includes("oil") && <span className="mr-3">Oil Δ: <strong style={{ color: "#F2EFE8" }}>{d.d_oil > 0 ? "+" : ""}{d.d_oil.toFixed(0)} Sm³/d</strong></span>}
+                      {d.metrics.includes("wc") && <span>WC Δ: <strong style={{ color: "#F2EFE8" }}>{d.d_wc > 0 ? "+" : ""}{d.d_wc.toFixed(1)}%</strong></span>}
                     </span>
                   </div>
                 ))}
@@ -1017,7 +1017,7 @@ export default function GeoAgenticInt() {
 
         {/* Status states */}
         {status === "loading" && (
-          <div className="flex items-center justify-center py-24 gap-3" style={{ color: "#abadae" }}>
+          <div className="flex items-center justify-center py-24 gap-3" style={{ color: "#7A7771" }}>
             <RefreshCw className="w-5 h-5 animate-spin" />
             <span>Connecting to backend API…</span>
           </div>

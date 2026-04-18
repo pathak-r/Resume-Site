@@ -108,14 +108,14 @@
   /* Use these tokens for any newly-styled section. Existing --lf-*   */
   /* tokens remain in place for sections not yet migrated.            */
   /* ---------------------------------------------------------------- */
-  --cat-bg: #EDEAE3;
-  --cat-panel: #F4F2EC;
-  --cat-bg-card: #FFFFFF;
-  --cat-text: #1A1A1A;
-  --cat-text-secondary: #5F5E5A;
-  --cat-text-tertiary: #888780;
-  --cat-rule: rgba(0, 0, 0, 0.12);
-  --cat-accent: #0F6E56;
+  --cat-bg: #141414;
+  --cat-panel: #1C1C1C;
+  --cat-bg-card: #252525;
+  --cat-text: #F2EFE8;
+  --cat-text-secondary: #A8A49B;
+  --cat-text-tertiary: #7A7771;
+  --cat-rule: rgba(242, 239, 232, 0.15);
+  --cat-accent: #4CC9A0;
 
   --cat-rule-width: 0.5px;
   --cat-radius: 8px;
@@ -183,10 +183,10 @@
 
   /* Ambient shadow */
   .shadow-ambient {
-    box-shadow: 0 12px 48px rgba(44, 47, 48, 0.05);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
   }
   .shadow-ambient-hover:hover {
-    box-shadow: 0 12px 56px rgba(44, 47, 48, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   }
 
   /* Ghost border */
@@ -222,6 +222,7 @@
   .catalog-panel {
     background-color: var(--cat-panel);
     border-radius: var(--cat-radius-card);
+    border: 0.5px solid var(--cat-rule);
     padding: 2rem;
     max-width: var(--cat-panel-max);
     margin-left: auto;
@@ -301,14 +302,14 @@
   }
   .catalog-btn:hover {
     color: var(--cat-text);
-    background: rgba(0, 0, 0, 0.03);
+    background: rgba(242, 239, 232, 0.06);
   }
   .catalog-btn--primary {
     border-color: var(--cat-text);
     color: var(--cat-text);
   }
   .catalog-btn--primary:hover {
-    background: rgba(0, 0, 0, 0.04);
+    background: rgba(242, 239, 232, 0.07);
   }
 
   /* Tags — outline chip (transparent, secondary text) */
