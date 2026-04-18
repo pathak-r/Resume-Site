@@ -108,7 +108,7 @@
   /* Use these tokens for any newly-styled section. Existing --lf-*   */
   /* tokens remain in place for sections not yet migrated.            */
   /* ---------------------------------------------------------------- */
-  --cat-bg: #141414;
+  --cat-bg: #1C1C1C;
   --cat-panel: #1C1C1C;
   --cat-bg-card: #252525;
   --cat-text: #F2EFE8;
@@ -155,10 +155,10 @@
     letter-spacing: 0;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--lf-on-surface);
+    font-family: var(--cat-font);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: var(--cat-text);
   }
 }
 
@@ -217,13 +217,12 @@
   .catalog-section {
     background-color: var(--cat-bg);
     color: var(--cat-text);
+    padding: 3rem 2rem;
+    border-top: var(--cat-rule-width) solid var(--cat-rule);
   }
 
   .catalog-panel {
-    background-color: var(--cat-panel);
-    border-radius: var(--cat-radius-card);
-    border: 0.5px solid var(--cat-rule);
-    padding: 2rem;
+    padding: 0;
     max-width: var(--cat-panel-max);
     margin-left: auto;
     margin-right: auto;
@@ -237,7 +236,7 @@
   }
 
   @media (max-width: 600px) {
-    .catalog-panel { padding: 1.25rem; }
+    .catalog-section { padding: 2rem 1rem; }
     .catalog-entry-row__inner {
       grid-template-columns: 1fr;
       gap: 1.25rem;
@@ -359,7 +358,7 @@
   }
 
   /* Stack utility for catalog sections on the page */
-  .catalog-page-stack > * + * { margin-top: 1.5rem; }
+  .catalog-page-stack > * { margin-top: 0; }
 
   /* Label uppercase */
   .label-meta {
