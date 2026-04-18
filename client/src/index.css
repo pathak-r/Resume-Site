@@ -195,9 +195,9 @@
   }
 
   /* Section surface levels */
-  .surface-base { background-color: #f5f6f7; }
-  .surface-low { background-color: #eff1f2; }
-  .surface-lowest { background-color: #ffffff; }
+  .surface-base { background-color: var(--cat-bg); }
+  .surface-low { background-color: var(--cat-panel); }
+  .surface-lowest { background-color: var(--cat-bg-card); }
 
   /* Teal chip */
   .chip-teal {

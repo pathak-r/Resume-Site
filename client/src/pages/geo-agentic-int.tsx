@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import {
   AreaChart, Area, LineChart, Line, BarChart, Bar,
   ScatterChart, Scatter, ZAxis,
@@ -909,103 +908,173 @@ export default function GeoAgenticInt() {
   ];
 
   return (
-    <div className="min-h-screen surface-base">
+    <div className="min-h-screen" style={{ background: "var(--cat-bg)" }}>
       <Navbar />
 
-      {/* Page header */}
-      <div
-        className="surface-low"
-        style={{ paddingTop: "7rem", paddingBottom: "2rem" }}
-      >
-        <div className="container mx-auto px-6 max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="label-meta block mb-3" style={{ color: "var(--lf-primary)" }}>
-              Geo-Agentic Intelligence
-            </span>
-            <h1
-              className="font-bold mb-2"
-              style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", letterSpacing: "-0.02em", color: "var(--lf-on-surface)" }}
-              data-testid="heading-geo-page"
-            >
-              Volve Field RAG Explorer
-            </h1>
-            <p style={{ fontSize: "1rem", color: "#6b7071", lineHeight: 1.6 }}>
-              Production analytics, anomaly detection, and AI-powered Q&A over the Equinor Volve dataset.
-            </p>
+      {/* Page header — catalog panel */}
+      <section className="catalog-section" style={{ paddingTop: "5.5rem" }} data-testid="section-geo-header">
+        <div className="px-4">
+          <div className="catalog-panel">
+            <div className="catalog-entry-row">
+              <div className="catalog-entry-row__inner">
+                {/* Index column */}
+                <div>
+                  <p style={{
+                    fontSize: "var(--cat-fs-eyebrow)",
+                    letterSpacing: "var(--cat-ls-eyebrow)",
+                    textTransform: "uppercase",
+                    color: "var(--cat-text-tertiary)",
+                    fontWeight: 500,
+                    margin: "0 0 0.75rem",
+                  }}>
+                    Project № 01
+                  </p>
+                  <p style={{
+                    fontSize: "40px",
+                    fontWeight: 500,
+                    lineHeight: 1,
+                    color: "var(--cat-text)",
+                    margin: 0,
+                    letterSpacing: "-0.02em",
+                  }}>
+                    01
+                  </p>
+                  <p style={{
+                    fontSize: "var(--cat-fs-eyebrow)",
+                    letterSpacing: "var(--cat-ls-eyebrow)",
+                    textTransform: "uppercase",
+                    color: "var(--cat-text-tertiary)",
+                    fontWeight: 500,
+                    margin: "0.75rem 0 0",
+                  }}>
+                    Geo-Agentic AI
+                  </p>
+                </div>
 
-            <div style={{ marginTop: "1.5rem" }}>
-              <p style={{ fontSize: "0.95rem", color: "#4a4e4f", lineHeight: 1.75, marginBottom: "1rem" }}>
-                I collect daily drilling reports, production data, and well completion reports (both structured
-                and unstructured data) from Equinor's Volve field, the most comprehensive open subsurface
-                dataset ever released from the Norwegian Continental Shelf, to build an agentic RAG system.
-              </p>
-              <p style={{ fontSize: "0.95rem", color: "#4a4e4f", lineHeight: 1.75, marginBottom: "0.6rem" }}>
-                This visualizes production trends and anomalies, and answers questions like:
-              </p>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.4rem" }}>
-                {[
-                  "Why is this well's water cut rising?",
-                  "What's the decline rate for the well F-1 C over the last 12 months?",
-                  "What drilling problems were encountered in F-12 that could explain current production behavior?",
-                ].map((q) => (
-                  <li key={q} style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem", fontSize: "0.95rem", color: "#4a4e4f", lineHeight: 1.6 }}>
-                    <span style={{ color: "var(--lf-primary)", marginTop: "0.1rem", flexShrink: 0 }}>•</span>
-                    <span>{q}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+                {/* Content column */}
+                <div>
+                  <p style={{
+                    fontSize: "var(--cat-fs-body-sm)",
+                    color: "var(--cat-text-secondary)",
+                    margin: "0 0 0.5rem",
+                  }}>
+                    Filed under: agentic RAG · production analytics · Equinor Volve
+                  </p>
 
-            {/* Well + Date filters */}
-            {meta && (
-              <div className="flex flex-wrap items-center gap-3 mt-6">
-                <select
-                  value={well}
-                  onChange={(e) => setWell(e.target.value)}
-                  data-testid="select-well"
-                  className="rounded-full px-4 py-2 text-sm font-medium outline-none"
-                  style={{ background: "#ffffff", color: "var(--lf-on-surface)", border: "none", boxShadow: "0 2px 12px rgba(44,47,48,0.07)" }}
-                >
-                  <option value="All Wells">All Wells</option>
-                  {meta.wells.map((w) => (
-                    <option key={w} value={w}>{w}</option>
-                  ))}
-                </select>
-                <input
-                  type="date"
-                  value={start}
-                  min={meta.date_min}
-                  max={meta.date_max}
-                  onChange={(e) => setStart(e.target.value)}
-                  data-testid="input-date-start"
-                  className="rounded-full px-4 py-2 text-sm font-medium outline-none"
-                  style={{ background: "#ffffff", color: "var(--lf-on-surface)", border: "none", boxShadow: "0 2px 12px rgba(44,47,48,0.07)" }}
-                />
-                <input
-                  type="date"
-                  value={end}
-                  min={meta.date_min}
-                  max={meta.date_max}
-                  onChange={(e) => setEnd(e.target.value)}
-                  data-testid="input-date-end"
-                  className="rounded-full px-4 py-2 text-sm font-medium outline-none"
-                  style={{ background: "#ffffff", color: "var(--lf-on-surface)", border: "none", boxShadow: "0 2px 12px rgba(44,47,48,0.07)" }}
-                />
+                  <h1
+                    style={{
+                      fontSize: "var(--cat-fs-h1)",
+                      fontWeight: 500,
+                      lineHeight: 1.15,
+                      letterSpacing: "-0.02em",
+                      color: "var(--cat-text)",
+                      margin: "0 0 1rem",
+                    }}
+                    data-testid="heading-geo-page"
+                  >
+                    Volve Field RAG Explorer
+                  </h1>
 
-                {/* Meta chips */}
-                <div className="flex gap-2 ml-2">
-                  <span className="chip-teal">{meta.total_wells} Wells</span>
-                  <span className="chip-teal">{fmt(meta.total_oil_sm3)} Sm³ Total</span>
+                  <p style={{
+                    fontSize: "var(--cat-fs-body)",
+                    lineHeight: "var(--cat-lh-body)",
+                    color: "var(--cat-text-secondary)",
+                    margin: "0 0 1rem",
+                  }}>
+                    Daily drilling reports, production data, and well completion reports — both structured and unstructured — collected from Equinor's Volve field, the most comprehensive open subsurface dataset ever released from the Norwegian Continental Shelf, ingested into an agentic RAG system.
+                  </p>
+
+                  <p style={{
+                    fontSize: "var(--cat-fs-body)",
+                    lineHeight: "var(--cat-lh-body)",
+                    color: "var(--cat-text-secondary)",
+                    margin: "0 0 0.5rem",
+                  }}>
+                    Visualizes production trends and anomalies, and answers questions like:
+                  </p>
+                  <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.25rem", display: "flex", flexDirection: "column", gap: "0.35rem" }}>
+                    {[
+                      "Why is this well's water cut rising?",
+                      "What's the decline rate for well F-1 C over the last 12 months?",
+                      "What drilling problems in F-12 could explain current production behavior?",
+                    ].map((q) => (
+                      <li key={q} style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem", fontSize: "var(--cat-fs-body-sm)", color: "var(--cat-text-secondary)", lineHeight: 1.6 }}>
+                        <span style={{ color: "var(--cat-text-tertiary)", marginTop: "0.1rem", flexShrink: 0 }}>—</span>
+                        <span>{q}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Well + Date filters — catalog tag style */}
+                  {meta && (
+                    <div className="flex flex-wrap items-center gap-2 mt-4">
+                      <select
+                        value={well}
+                        onChange={(e) => setWell(e.target.value)}
+                        data-testid="select-well"
+                        style={{
+                          fontSize: "var(--cat-fs-tag)",
+                          padding: "6px 10px",
+                          borderRadius: "var(--cat-radius)",
+                          border: "var(--cat-rule-width) solid var(--cat-rule)",
+                          background: "var(--cat-bg-card)",
+                          color: "var(--cat-text)",
+                          fontWeight: 500,
+                          outline: "none",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <option value="All Wells">All Wells</option>
+                        {meta.wells.map((w) => (
+                          <option key={w} value={w}>{w}</option>
+                        ))}
+                      </select>
+                      <input
+                        type="date"
+                        value={start}
+                        min={meta.date_min}
+                        max={meta.date_max}
+                        onChange={(e) => setStart(e.target.value)}
+                        data-testid="input-date-start"
+                        style={{
+                          fontSize: "var(--cat-fs-tag)",
+                          padding: "6px 10px",
+                          borderRadius: "var(--cat-radius)",
+                          border: "var(--cat-rule-width) solid var(--cat-rule)",
+                          background: "var(--cat-bg-card)",
+                          color: "var(--cat-text)",
+                          fontWeight: 500,
+                          outline: "none",
+                        }}
+                      />
+                      <input
+                        type="date"
+                        value={end}
+                        min={meta.date_min}
+                        max={meta.date_max}
+                        onChange={(e) => setEnd(e.target.value)}
+                        data-testid="input-date-end"
+                        style={{
+                          fontSize: "var(--cat-fs-tag)",
+                          padding: "6px 10px",
+                          borderRadius: "var(--cat-radius)",
+                          border: "var(--cat-rule-width) solid var(--cat-rule)",
+                          background: "var(--cat-bg-card)",
+                          color: "var(--cat-text)",
+                          fontWeight: 500,
+                          outline: "none",
+                        }}
+                      />
+                      <span className="catalog-tag" style={{ marginLeft: "0.5rem" }}>{meta.total_wells} wells</span>
+                      <span className="catalog-tag">{fmt(meta.total_oil_sm3)} Sm³ total</span>
+                    </div>
+                  )}
                 </div>
               </div>
-            )}
-          </motion.div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Main content */}
       <div className="container mx-auto px-6 max-w-6xl py-8">
@@ -1034,44 +1103,46 @@ export default function GeoAgenticInt() {
 
         {status === "ok" && (
           <>
-            {/* Tab nav */}
-            <div className="flex gap-2 mb-8">
-              {tabs.map(({ id, label, icon: Icon }) => (
-                <button
-                  key={id}
-                  onClick={() => setTab(id)}
-                  data-testid={`tab-${id}`}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200"
-                  style={{
-                    background: tab === id ? "linear-gradient(135deg, #a83028, #ff7668)" : "#ffffff",
-                    color: tab === id ? "#ffffff" : "var(--lf-on-surface)",
-                    boxShadow: "0 2px 12px rgba(44,47,48,0.07)",
-                  }}
-                >
-                  <Icon className="w-4 h-4" />
-                  {label}
-                </button>
-              ))}
+            {/* Tab nav — catalog style */}
+            <div className="flex flex-wrap gap-2 mb-8" style={{ borderBottom: "var(--cat-rule-width) solid var(--cat-rule)", paddingBottom: "1rem" }}>
+              {tabs.map(({ id, label, icon: Icon }) => {
+                const active = tab === id;
+                return (
+                  <button
+                    key={id}
+                    onClick={() => setTab(id)}
+                    data-testid={`tab-${id}`}
+                    className="catalog-btn"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      borderColor: active ? "var(--cat-text)" : "var(--cat-rule)",
+                      color: active ? "var(--cat-text)" : "var(--cat-text-secondary)",
+                      background: "transparent",
+                      fontWeight: active ? 600 : 500,
+                    }}
+                  >
+                    <Icon className="w-3.5 h-3.5" />
+                    {label}
+                  </button>
+                );
+              })}
             </div>
 
             {/* Tab content */}
-            <motion.div
-              key={tab}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-            >
+            <div key={tab}>
               {tab === "dashboard" && <Dashboard well={well} start={start} end={end} />}
               {tab === "chat" && <Chat />}
               {tab === "anomalies" && <Anomalies well={well} />}
               {tab === "comparison" && <WellComparison producerWells={meta?.producer_wells ?? meta?.wells ?? []} />}
-            </motion.div>
+            </div>
           </>
         )}
       </div>
 
-      <footer className="py-8 text-center" style={{ color: "#abadae", fontSize: "0.8rem" }}>
-        Volve dataset — Equinor open data · Geo-Agentic RAG
+      <footer className="py-8 text-center" style={{ color: "var(--cat-text-tertiary)", fontSize: "var(--cat-fs-eyebrow)", letterSpacing: "var(--cat-ls-eyebrow)", textTransform: "uppercase" }}>
+        Volve dataset · Equinor open data · Geo-Agentic RAG
       </footer>
 
     </div>
