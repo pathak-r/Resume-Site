@@ -47,28 +47,27 @@ export default function About() {
 
             <p
               style={{
-                fontSize: "14px",
+                fontSize: "var(--cat-fs-body)",
                 lineHeight: 1.75,
                 color: "var(--cat-text)",
                 margin: "0 0 14px",
               }}
             >
-              AI-driven senior product manager with over a decade of experience in
-              enterprise SaaS and industrial tech. I translate complex technical
-              capabilities into products that solve real business problems.
+              I prototype before I pitch. Every real idea starts as something I build
+              myself — rough, working, put in front of users and stakeholders early.
+              I iterate on it alone until the feedback stops surprising me, and only
+              then do I bring in the team to build it properly.
             </p>
             <p
               style={{
-                fontSize: "14px",
+                fontSize: "var(--cat-fs-body)",
                 lineHeight: 1.75,
                 color: "var(--cat-text-secondary)",
                 margin: "0 0 20px",
               }}
             >
-              Currently focused on agentic AI and RAG systems — helping engineering
-              teams automate workflows and access critical data faster. I believe in
-              responsible AI development: innovation balanced with governance,
-              security, and ethical standards.
+              It's slower at the start and faster at the end. Most of the cost of
+              software is built wrong, not built slowly.
             </p>
 
             <p
