@@ -1,11 +1,16 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 
+const Hi = ({ children }: { children: React.ReactNode }) => (
+  <span style={{ color: "var(--cat-text)", fontWeight: 600 }}>{children}</span>
+);
+
 type Project = {
-  eyebrow: string;
+  eyebrow: React.ReactNode;
+  eyebrowBright?: boolean;
   title: string;
-  tagline: string;
-  description: string;
+  tagline: React.ReactNode;
+  description: React.ReactNode;
   tags: string[];
   cta: { label: string; href: string } | null;
 };
@@ -14,18 +19,36 @@ const projects: Project[] = [
   {
     eyebrow: "Geo-Agentic AI",
     title: "Volve Field RAG Explorer",
-    tagline: "Agentic RAG for Equinor's open Volve oil field dataset.",
-    description:
-      "Daily drilling reports, production data, and well completion reports — structured and unstructured — ingested into an agentic RAG system. Visualises production trends and answers operator questions about well performance in natural language.",
+    tagline: <><Hi>Agentic RAG</Hi> for Equinor's open Volve oil field dataset.</>,
+    description: (
+      <>
+        Daily drilling reports, production data, and well completion reports —
+        structured and unstructured — ingested into an agentic RAG system.
+        Visualises production trends and answers operator questions about well
+        performance in <Hi>natural language</Hi>.
+      </>
+    ),
     tags: ["FAISS", "OpenAI", "FastAPI", "React", "Recharts", "Python"],
     cta: { label: "Explore live demo", href: "/geo-agentic-int" },
   },
   {
-    eyebrow: "Vision AI · TestFlight",
+    eyebrow: (
+      <>
+        <Hi>Vision AI</Hi>
+        <span style={{ color: "var(--cat-text-tertiary)" }}> · </span>
+        <Hi>TestFlight</Hi>
+      </>
+    ),
     title: "PropScan",
-    tagline: "Vision-LLM defect detection for property inspections.",
-    description:
-      "Mobile inspection app using Gemini 2.5 Flash as a vision LLM to detect, classify, and localise construction defects from user-captured photos. Outputs annotated photos and an aggregated defect register with an overall site verdict.",
+    tagline: <><Hi>Vision-LLM</Hi> defect detection for property inspections.</>,
+    description: (
+      <>
+        Mobile inspection app using Gemini 2.5 Flash as a vision LLM to detect,
+        classify, and localise construction defects from user-captured photos.
+        Outputs annotated photos and an aggregated defect register with an overall
+        site verdict.
+      </>
+    ),
     tags: ["Gemini 2.5 Flash", "Structured JSON", "React Native", "Node.js", "Supabase", "PDFKit"],
     cta: null,
   },

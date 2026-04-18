@@ -93,7 +93,7 @@ export default function Hero() {
               }}
               data-testid="text-hero-headline"
             >
-              Senior product manager shipping AI into software people actually depend on.
+              Senior product manager. I build AI for industries where software has to work the first time.
             </h1>
 
             <p
@@ -102,13 +102,14 @@ export default function Hero() {
                 lineHeight: 1.65,
                 color: D.secondary,
                 margin: "0 0 28px",
-                maxWidth: "600px",
+                maxWidth: "620px",
               }}
               data-testid="text-hero-body"
             >
-              Ten plus years turning complex technical capabilities into products that
-              solve real business problems. Currently focused on agentic AI and RAG
-              systems inside enterprise SaaS.
+              Ten plus years shipping, turning complex technical capabilities into
+              products. I don't trust an idea until I've built a rough version of it,
+              so there are usually two or three of my own products in flight at any
+              given time.
             </p>
 
             <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
