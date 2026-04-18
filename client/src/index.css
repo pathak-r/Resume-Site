@@ -357,10 +357,10 @@
 
   /* Label uppercase */
   .label-meta {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--lf-muted-foreground, #6b7071);
+    color: var(--cat-text-tertiary);
   }
 }

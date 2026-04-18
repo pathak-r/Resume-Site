@@ -49,7 +49,7 @@ const CHART_TOOLTIP = { contentStyle: { background: "#fff", border: "none", bord
 function ChartCard({ title, color, height = 220, children }: { title: string; color: string; height?: number; children: React.ReactElement }) {
   return (
     <div className="surface-lowest shadow-ambient rounded-2xl p-6">
-      <div className="label-meta mb-4" style={{ color }}>{title}</div>
+      <div className="label-meta mb-4">{title}</div>
       <ResponsiveContainer width="100%" height={height}>
         {children}
       </ResponsiveContainer>
@@ -204,7 +204,7 @@ function Dashboard({ well, start, end }: { well: string; start: string; end: str
       {/* Field oil by well area chart */}
       {well === "All Wells" && pivoted.length > 0 && (
         <div className="surface-lowest shadow-ambient rounded-2xl p-6">
-          <div className="label-meta mb-4" style={{ color: "var(--lf-primary)" }}>Daily Oil Production by Well (Sm³)</div>
+          <div className="label-meta mb-4">Daily Oil Production by Well (Sm³)</div>
           <ResponsiveContainer width="100%" height={320}>
             <AreaChart data={thin(pivoted)} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#eff1f2" />
@@ -500,8 +500,8 @@ function Anomalies({ well }: { well: string }) {
       {/* Table in scrollable frame */}
       {rows.length > 0 && (
         <div className="surface-lowest shadow-ambient rounded-2xl p-6">
-          <div className="label-meta mb-4" style={{ color: "#fbbf24" }}>Anomaly Records
-            <span className="ml-2 font-normal" style={{ color: "#abadae" }}>({rows.length} total)</span>
+          <div className="label-meta mb-4">Anomaly Records
+            <span className="ml-2 font-normal" style={{ color: "var(--cat-text-tertiary)", textTransform: "none", letterSpacing: 0 }}>({rows.length} total)</span>
           </div>
           <div className="overflow-x-auto overflow-y-auto" style={{ maxHeight: "380px" }}>
             <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
@@ -654,7 +654,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
     <div className="space-y-6">
       {/* Well pickers */}
       <div className="surface-lowest shadow-ambient rounded-2xl p-6">
-        <div className="label-meta mb-4" style={{ color: "var(--lf-primary)" }}>Select Wells to Compare</div>
+        <div className="label-meta mb-4">Select Wells to Compare</div>
         <div className="flex flex-wrap items-center gap-3">
           {/* Well A */}
           <div className="flex items-center gap-2">
@@ -712,7 +712,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
         <div className="surface-lowest shadow-ambient rounded-2xl p-6">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <div className="label-meta mb-1" style={{ color: "var(--lf-primary)" }}>AI Explanation</div>
+              <div className="label-meta mb-1">AI Explanation</div>
               <p className="text-sm" style={{ color: "#6b7071" }}>
                 Ask the AI to explain why these wells perform differently, drawing from their drilling and completion reports.
               </p>
@@ -744,7 +744,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
         <>
           {/* KPI comparison table */}
           <div className="surface-lowest shadow-ambient rounded-2xl p-6 overflow-x-auto">
-            <div className="label-meta mb-4" style={{ color: "var(--lf-primary)" }}>Key Metrics Comparison</div>
+            <div className="label-meta mb-4">Key Metrics Comparison</div>
             <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
               <thead>
                 <tr>
@@ -825,9 +825,9 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
           {/* Divergence summary */}
           {data.divergence.length > 0 && (
             <div className="surface-lowest shadow-ambient rounded-2xl p-6">
-              <div className="label-meta mb-3" style={{ color: "#fbbf24" }}>
+              <div className="label-meta mb-3">
                 Flagged Divergence Periods
-                <span className="ml-2 font-normal" style={{ color: "#abadae" }}>(shaded bands on charts above)</span>
+                <span className="ml-2 font-normal" style={{ color: "var(--cat-text-tertiary)", textTransform: "none", letterSpacing: 0 }}>(shaded bands on charts above)</span>
               </div>
               <div className="grid grid-cols-1 gap-2">
                 {data.divergence.map((d, i) => (
@@ -1076,8 +1076,8 @@ export default function GeoAgenticInt() {
         </div>
       </section>
 
-      {/* Main content */}
-      <div className="container mx-auto px-6 max-w-6xl py-8">
+      {/* Main content — aligned to catalog panel width */}
+      <div className="px-4 py-8" style={{ maxWidth: "var(--cat-panel-max)", margin: "0 auto" }}>
 
         {/* Status states */}
         {status === "loading" && (
@@ -1089,7 +1089,7 @@ export default function GeoAgenticInt() {
 
         {status === "error" && (
           <div className="surface-lowest shadow-ambient rounded-2xl p-8 max-w-xl">
-            <div className="label-meta mb-2" style={{ color: "#a83028" }}>Backend Unavailable</div>
+            <div className="label-meta mb-2" style={{ color: "#a83028" }}>Backend unavailable</div>
             <p className="text-sm mb-4" style={{ color: "#6b7071" }}>{statusMsg}</p>
             <button
               onClick={load}
