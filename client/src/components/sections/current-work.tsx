@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 
@@ -32,27 +31,17 @@ const projects: Project[] = [
   },
 ];
 
-function ProjectCard({ project }: { project: Project }) {
-  const [hovered, setHovered] = useState(false);
-
-  const card = (
+function ProjectCol({ project, isRight }: { project: Project; isRight: boolean }) {
+  const inner = (
     <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      data-testid={`card-current-${project.title.replace(/\s+/g, "-").toLowerCase()}`}
       style={{
-        background: hovered && project.cta ? "rgba(242,239,232,0.04)" : "#252525",
-        border: "0.5px solid rgba(242,239,232,0.15)",
-        borderRadius: "8px",
-        padding: "1.75rem",
+        padding: isRight ? "0 0 0 2.5rem" : "0 2.5rem 0 0",
+        borderLeft: isRight ? "0.5px solid var(--cat-rule)" : "none",
         display: "flex",
         flexDirection: "column",
-        gap: "0",
-        transition: "background 0.15s ease",
-        cursor: project.cta ? "pointer" : "default",
         height: "100%",
-        boxSizing: "border-box",
       }}
+      data-testid={`col-current-${project.title.replace(/\s+/g, "-").toLowerCase()}`}
     >
       <p
         style={{
@@ -62,6 +51,7 @@ function ProjectCard({ project }: { project: Project }) {
           color: "var(--cat-text-tertiary)",
           fontWeight: 500,
           margin: "0 0 14px",
+          fontFamily: "var(--cat-font)",
         }}
       >
         {project.eyebrow}
@@ -75,6 +65,7 @@ function ProjectCard({ project }: { project: Project }) {
           letterSpacing: "-0.02em",
           color: "var(--cat-text)",
           margin: "0 0 6px",
+          fontFamily: "var(--cat-font)",
         }}
         data-testid={`heading-current-${project.title.replace(/\s+/g, "-").toLowerCase()}`}
       >
@@ -87,7 +78,8 @@ function ProjectCard({ project }: { project: Project }) {
           color: "var(--cat-text-secondary)",
           fontStyle: "italic",
           margin: "0 0 14px",
-          lineHeight: 1.5,
+          lineHeight: 1.55,
+          fontFamily: "var(--cat-font)",
         }}
       >
         {project.tagline}
@@ -99,13 +91,13 @@ function ProjectCard({ project }: { project: Project }) {
           lineHeight: 1.7,
           color: "var(--cat-text-secondary)",
           margin: "0 0 18px",
-          flex: 1,
+          fontFamily: "var(--cat-font)",
         }}
       >
         {project.description}
       </p>
 
-      <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: project.cta ? "18px" : "0" }}>
+      <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: project.cta ? "20px" : "0" }}>
         {project.tags.map((tag) => (
           <span
             key={tag}
@@ -125,10 +117,9 @@ function ProjectCard({ project }: { project: Project }) {
             gap: "6px",
             fontSize: "13px",
             fontWeight: 500,
-            color: hovered ? "var(--cat-text)" : "var(--cat-accent)",
-            transition: "color 0.15s ease",
+            color: "var(--cat-accent)",
             marginTop: "auto",
-            paddingTop: "4px",
+            fontFamily: "var(--cat-font)",
           }}
           data-testid={`link-explore-${project.title.replace(/\s+/g, "-").toLowerCase()}`}
         >
@@ -141,13 +132,16 @@ function ProjectCard({ project }: { project: Project }) {
 
   if (project.cta) {
     return (
-      <Link href={project.cta.href} style={{ textDecoration: "none", color: "inherit", display: "block", height: "100%" }}>
-        {card}
+      <Link
+        href={project.cta.href}
+        style={{ textDecoration: "none", color: "inherit", display: "block" }}
+      >
+        {inner}
       </Link>
     );
   }
 
-  return card;
+  return inner;
 }
 
 export default function CurrentWork() {
@@ -163,6 +157,7 @@ export default function CurrentWork() {
               textTransform: "uppercase",
               margin: 0,
               fontWeight: 500,
+              fontFamily: "var(--cat-font)",
             }}
             data-testid="heading-current-work"
           >
@@ -176,6 +171,7 @@ export default function CurrentWork() {
               textTransform: "uppercase",
               margin: 0,
               fontWeight: 500,
+              fontFamily: "var(--cat-font)",
             }}
           >
             02 Projects
@@ -186,11 +182,12 @@ export default function CurrentWork() {
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: "1.25rem",
+            gap: "0",
+            alignItems: "start",
           }}
         >
-          {projects.map((p) => (
-            <ProjectCard key={p.title} project={p} />
+          {projects.map((p, i) => (
+            <ProjectCol key={p.title} project={p} isRight={i === 1} />
           ))}
         </div>
       </div>

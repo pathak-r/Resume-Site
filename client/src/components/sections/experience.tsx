@@ -51,122 +51,145 @@ const experiences: ExperienceItem[] = [
   },
 ];
 
+const F = "var(--cat-font)";
+
 export default function Experience() {
   return (
     <section id="experience" className="catalog-section" data-testid="section-experience">
-      <div className="px-4">
-        <div className="catalog-panel">
-          <div className="catalog-section-header">
-            <h2
-              style={{
-                fontSize: "var(--cat-fs-eyebrow)",
-                letterSpacing: "var(--cat-ls-eyebrow)",
-                color: "var(--cat-text-tertiary)",
-                textTransform: "uppercase",
-                margin: 0,
-                fontWeight: 500,
-              }}
-              data-testid="heading-experience"
-            >
-              Experience
-            </h2>
-            <p
-              style={{
-                fontSize: "var(--cat-fs-eyebrow)",
-                letterSpacing: "var(--cat-ls-eyebrow)",
-                color: "var(--cat-text-tertiary)",
-                textTransform: "uppercase",
-                margin: 0,
-                fontWeight: 500,
-              }}
-            >
-              {String(experiences.length).padStart(2, "0")} Roles
-            </p>
-          </div>
+      <div className="catalog-panel">
+        <div className="catalog-section-header">
+          <p
+            style={{
+              fontSize: "var(--cat-fs-eyebrow)",
+              letterSpacing: "var(--cat-ls-eyebrow)",
+              color: "var(--cat-text-tertiary)",
+              textTransform: "uppercase",
+              margin: 0,
+              fontWeight: 500,
+              fontFamily: F,
+            }}
+            data-testid="heading-experience"
+          >
+            Experience
+          </p>
+          <p
+            style={{
+              fontSize: "var(--cat-fs-eyebrow)",
+              letterSpacing: "var(--cat-ls-eyebrow)",
+              color: "var(--cat-text-tertiary)",
+              textTransform: "uppercase",
+              margin: 0,
+              fontWeight: 500,
+              fontFamily: F,
+            }}
+          >
+            {String(experiences.length).padStart(2, "0")} Roles
+          </p>
+        </div>
 
-          {experiences.map((exp, index) => (
-            <div key={index} data-testid={`card-experience-${index}`}>
-              {index > 0 && <hr className="catalog-divider" />}
-              <div className="catalog-entry-row__inner">
-                <div>
-                  <p
-                    style={{
-                      fontSize: "var(--cat-fs-eyebrow)",
-                      letterSpacing: "var(--cat-ls-eyebrow)",
-                      color: "var(--cat-text-tertiary)",
-                      textTransform: "uppercase",
-                      margin: 0,
-                      fontWeight: 500,
-                    }}
-                    data-testid={`text-period-${index}`}
-                  >
-                    {exp.periodLabel}
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "var(--cat-fs-eyebrow)",
-                      letterSpacing: "var(--cat-ls-eyebrow)",
-                      color: "var(--cat-text-tertiary)",
-                      textTransform: "uppercase",
-                      margin: "10px 0 0",
-                      fontWeight: 500,
-                    }}
-                    data-testid={`text-location-${index}`}
-                  >
-                    {exp.location}
-                  </p>
-                </div>
-                <div>
-                  <p className="catalog-meta" style={{ marginBottom: "4px" }}>Role</p>
-                  <h3
-                    style={{
-                      fontSize: "24px",
-                      fontWeight: 500,
-                      margin: "0 0 4px",
-                      color: "var(--cat-text)",
-                      letterSpacing: "-0.01em",
-                    }}
-                    data-testid={`text-role-${index}`}
-                  >
-                    {exp.role}
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      color: "var(--cat-text-secondary)",
-                      margin: "0 0 14px",
-                    }}
-                    data-testid={`text-company-${index}`}
-                  >
-                    {exp.company}
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      lineHeight: 1.7,
-                      color: "var(--cat-text)",
-                      margin: "0 0 12px",
-                    }}
-                    data-testid={`text-exp-desc-${index}`}
-                  >
-                    {exp.description}
-                  </p>
-                  <ul style={{ margin: 0, paddingLeft: "1.1rem", color: "var(--cat-text-secondary)" }}>
-                    {exp.achievements.map((item, i) => (
-                      <li
-                        key={i}
-                        style={{ fontSize: "14px", lineHeight: 1.7, marginBottom: "4px" }}
-                        data-testid={`text-achievement-${index}-${i}`}
-                      >
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+        {experiences.map((exp, index) => (
+          <div key={index} data-testid={`card-experience-${index}`}>
+            {index > 0 && <hr className="catalog-divider" />}
+            <div className="catalog-entry-row__inner">
+              {/* Index column — dates + location */}
+              <div>
+                <p
+                  style={{
+                    fontSize: "var(--cat-fs-eyebrow)",
+                    letterSpacing: "var(--cat-ls-eyebrow)",
+                    color: "var(--cat-text-tertiary)",
+                    textTransform: "uppercase",
+                    margin: 0,
+                    fontWeight: 500,
+                    fontFamily: F,
+                    lineHeight: 1.5,
+                  }}
+                  data-testid={`text-period-${index}`}
+                >
+                  {exp.periodLabel}
+                </p>
+                <p
+                  style={{
+                    fontSize: "var(--cat-fs-eyebrow)",
+                    letterSpacing: "var(--cat-ls-eyebrow)",
+                    color: "var(--cat-text-tertiary)",
+                    textTransform: "uppercase",
+                    margin: "10px 0 0",
+                    fontWeight: 500,
+                    fontFamily: F,
+                    lineHeight: 1.5,
+                  }}
+                  data-testid={`text-location-${index}`}
+                >
+                  {exp.location}
+                </p>
+              </div>
+
+              {/* Content column */}
+              <div>
+                <p className="catalog-meta" style={{ marginBottom: "4px", fontFamily: F }}>Role</p>
+                <h3
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: 600,
+                    margin: "0 0 4px",
+                    color: "var(--cat-text)",
+                    letterSpacing: "-0.02em",
+                    lineHeight: 1.2,
+                    fontFamily: F,
+                  }}
+                  data-testid={`text-role-${index}`}
+                >
+                  {exp.role}
+                </h3>
+                <p
+                  style={{
+                    fontSize: "var(--cat-fs-body-sm)",
+                    color: "var(--cat-text-secondary)",
+                    margin: "0 0 14px",
+                    fontFamily: F,
+                  }}
+                  data-testid={`text-company-${index}`}
+                >
+                  {exp.company}
+                </p>
+                <p
+                  style={{
+                    fontSize: "var(--cat-fs-body-sm)",
+                    lineHeight: 1.7,
+                    color: "var(--cat-text)",
+                    margin: "0 0 12px",
+                    fontFamily: F,
+                  }}
+                  data-testid={`text-exp-desc-${index}`}
+                >
+                  {exp.description}
+                </p>
+                <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
+                  {exp.achievements.map((item, i) => (
+                    <li
+                      key={i}
+                      style={{
+                        display: "flex",
+                        alignItems: "flex-start",
+                        gap: "0.6rem",
+                        fontSize: "var(--cat-fs-body-sm)",
+                        lineHeight: 1.7,
+                        color: "var(--cat-text-secondary)",
+                        marginBottom: "4px",
+                        fontFamily: F,
+                      }}
+                      data-testid={`text-achievement-${index}-${i}`}
+                    >
+                      <span style={{ color: "var(--cat-text-tertiary)", flexShrink: 0, marginTop: "0.15rem" }}>—</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );
