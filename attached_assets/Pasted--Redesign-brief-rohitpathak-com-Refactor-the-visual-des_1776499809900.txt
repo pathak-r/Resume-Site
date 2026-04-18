@@ -1,0 +1,158 @@
+# Redesign brief — rohitpathak.com
+
+Refactor the visual design of the existing site to the "catalog" style described below. **Do not change the site's structure, routing, sections, or content.** Keep all existing copy except where this brief explicitly rewrites it. The goal is purely a visual + typographic overhaul.
+
+---
+
+## 1. Design philosophy
+
+The new look is **editorial / archival** — think a well-kept index or library catalog. It is quiet, typographic, and confident. It is *not* flashy, gradient-heavy, or pill-button-driven.
+
+Explicit "don'ts" (remove these from the current site):
+- No gradient blobs, no colored glow behind cards
+- No blue pill badges for categories (e.g. "GENERATIVE AI PRODUCT")
+- No red accent text for impact lines (e.g. "3× FASTER ENGINEERING WORKFLOWS")
+- No red/blue dual-accent system
+- No large rounded pill buttons
+- No colored top-edge accent strips on cards
+
+---
+
+## 2. Layout system
+
+Every major section uses the same two-column grid:
+
+```
+| 140px index column | 1fr content column |
+```
+
+- **Left (index) column** contains: entry number (e.g. "№ 02"), a large numeral (e.g. "02"), and a small category label (e.g. "PROPTECH", "VISION AI", "ABOUT").
+- **Right (content) column** contains: a small "Filed under" or "Project" label, the heading, body copy, and tag row.
+- Gap between columns: `2rem`.
+- Section separators: a single `0.5px` horizontal rule in a very light neutral.
+
+On viewports under 720px, collapse to a single column — the index row sits above the content, inline and smaller.
+
+---
+
+## 3. Typography
+
+- **Body / UI**: keep the current sans-serif (Inter or similar system sans is fine).
+- **Headings**: same family, weight **500 only** — never 600 or 700. Letter-spacing `-0.02em` on the hero heading.
+- **Case**: sentence case everywhere. No Title Case, no ALL CAPS except for the small index labels and section eyebrows.
+- **Sizes**:
+  - Hero H1: 36–44px, weight 500, line-height 1.15
+  - Section H2: 24–28px, weight 500
+  - Project H2: 22px, weight 500
+  - Body: 14–15px, line-height 1.75
+  - Eyebrow / index labels: 11px, letter-spacing 0.12em, uppercase
+  - Large entry numerals: 40–56px, weight 500, line-height 1
+
+---
+
+## 4. Color
+
+Replace the current blue (#0EA5E9-ish) + red (#DC2626-ish) dual-accent with a **single quiet palette**:
+
+- Background (page): `#F4F2EC` or a similar warm off-white (the current `--color-background-secondary` tone is close)
+- Background (cards / inner surfaces where needed): `#FFFFFF`
+- Text primary: near-black, e.g. `#1A1A1A`
+- Text secondary: `#5F5E5A`
+- Text tertiary (labels, metadata): `#888780`
+- Borders / rules: `rgba(0,0,0,0.12)` — always 0.5px
+- **Optional single accent** (use sparingly, if at all — for the TestFlight badge or similar): a deep ink-teal `#0F6E56`. Do not use red. Do not use the current bright blue.
+
+Dark mode: not required, but if implemented, invert cleanly (dark neutral bg, light text, same hierarchy).
+
+---
+
+## 5. Components
+
+### Buttons
+Replace all current pill buttons with **outline buttons**:
+- `border: 0.5px solid` (primary button uses solid `#1A1A1A` border, secondary uses the light neutral border)
+- `border-radius: 8px` (not fully rounded)
+- `padding: 6px 14px`
+- `font-size: 13px`
+- Text only, no background fill. Primary CTA has a subtle bg on hover.
+
+### Tags (tech stack, expertise)
+- Outline chips, `border: 0.5px solid` light neutral
+- `border-radius: 8px`, `padding: 3px 10px`
+- `font-size: 11px`, text in secondary color
+- **Do not** fill them with gray as the current site does
+
+### Cards
+Most sections should **not** use cards at all — just section separators. Use a card (white bg, 0.5px border, 12px radius) only for the Education block and Contact blocks.
+
+---
+
+## 6. Section-by-section changes
+
+### Header / Nav
+- Logo "rohit pathak" stays top-left, weight 500.
+- Nav links top-right: Work, About, Experience, Contact. Plain 13px, secondary color. No pills.
+
+### Hero (Entry № 01)
+- Left column: `№ 01`, large `00`, `INTRODUCTION` label.
+- Right column:
+  - Eyebrow: `Filed under: senior pm · enterprise AI · abu dhabi`
+  - Heading (replace current "Senior PM. Enterprise AI. Abu Dhabi · 10+ Years of Experience" block with one unified sentence): **"Senior product manager shipping AI into software people actually depend on."**
+  - Body paragraph (replace current marketing-y intro): "Ten plus years turning complex technical capabilities into products that solve real business problems. Currently focused on agentic AI and RAG systems inside enterprise SaaS."
+  - Three outline buttons: "View selected work →", "Download CV", "LinkedIn"
+- **Remove the entire right-hand "What I'm currently building" Volve card from the hero.** Move Volve Field RAG Explorer into Selected Work as Entry № 01 (it's the most recent project).
+
+### Selected Work
+Section header: small eyebrow `SELECTED WORK` on the left, `04 ENTRIES` on the right, thin rule below.
+
+Four entries, each following the same 140px | 1fr grid:
+
+1. **№ 01 · GEO-AGENTIC AI** — Volve Field RAG Explorer
+2. **№ 02 · GENERATIVE AI** — Enterprise AI Copilot System
+3. **№ 03 · DATA INTELLIGENCE** — AI Agents & Natural Language Querying
+4. **№ 04 · VISION AI · TESTFLIGHT** — PropScan *(new entry, copy below)*
+
+> PropScan copy:
+> Heading: **PropScan**
+> Italic tagline: *Vision-LLM defect detection for property inspections.*
+> Body: "Mobile inspection app that uses Gemini 2.5 Flash as a vision LLM to detect, classify, and localize construction defects from user-captured photos. Designed a structured-output prompt returning per-photo JSON (defect type, severity, bounding boxes) with a quality-gating pass at 80% confidence to suppress false positives. Post-processing renders annotated photos and an aggregated defect register with an overall verdict."
+> Tags: Gemini 2.5 Flash, structured JSON, React Native, Node.js, Supabase, PDFKit
+
+Drop the existing "AI ROI & Telemetry Framework" entry unless Rohit asks to keep it — it reads weaker than the other three.
+
+### About (Entry № 05)
+- Replace heading "The Optimistic Architect." with **"How I think about building."**
+- Keep the two existing paragraphs, trimmed lightly.
+- "Core Expertise" becomes a tag row directly below the paragraphs (same outline chip style), **not** a separate column with large pill buttons.
+
+### Experience
+Same 140px | 1fr grid. Left column holds the date range (e.g. `JAN 2023 — PRESENT`) as a small uppercase label. Right column holds role, company, location, and bullets. No cards — just separator rules between roles.
+
+### Education
+Keep as a small white card (this is the one place a card makes sense). Two entries, no change to copy.
+
+### Contact (Entry № 06)
+- Heading: "Get in touch" stays.
+- Replace the three icon-cards (Email / Phone / Location) with a simple vertical list inside one light card:
+  - Email · pathak.a.rohit@gmail.com
+  - Phone · +971 567 874 381
+  - Location · Abu Dhabi, UAE
+- No icons needed, or use simple monochrome line icons.
+
+---
+
+## 7. Implementation notes for the agent
+
+- Keep the existing React/Next.js (or whatever framework Replit built it in) component structure. This is a restyle, not a rewrite.
+- Centralize the design tokens (colors, spacing, type scale) in a single theme file or CSS variables block before touching components.
+- Build one reusable `<EntryRow>` component for the 140px | 1fr grid and use it for hero, every project, about, and experience. This is the single most important refactor.
+- Remove any animation libraries or scroll-reveal effects. The design is still and confident; it should not fade or slide in.
+
+---
+
+## 8. Out of scope
+
+- No new pages, routes, or sections
+- No CMS or data model changes
+- No analytics / SEO meta changes
+- No mobile app / PWA work

@@ -102,6 +102,39 @@
   --ring: #a83028;
 
   --radius: 1.5rem;
+
+  /* ---------------------------------------------------------------- */
+  /* Catalog design system (editorial / archival redesign)            */
+  /* Use these tokens for any newly-styled section. Existing --lf-*   */
+  /* tokens remain in place for sections not yet migrated.            */
+  /* ---------------------------------------------------------------- */
+  --cat-bg: #F4F2EC;
+  --cat-bg-card: #FFFFFF;
+  --cat-text: #1A1A1A;
+  --cat-text-secondary: #5F5E5A;
+  --cat-text-tertiary: #888780;
+  --cat-rule: rgba(0, 0, 0, 0.12);
+  --cat-accent: #0F6E56;
+
+  --cat-rule-width: 0.5px;
+  --cat-radius: 8px;
+  --cat-radius-card: 12px;
+
+  --cat-index-col: 140px;
+  --cat-grid-gap: 2rem;
+
+  /* Type scale */
+  --cat-fs-eyebrow: 11px;
+  --cat-ls-eyebrow: 0.12em;
+  --cat-fs-body: 15px;
+  --cat-fs-body-sm: 14px;
+  --cat-lh-body: 1.75;
+  --cat-fs-numeral: 48px;
+  --cat-fs-h1: 40px;
+  --cat-fs-h2: 26px;
+  --cat-fs-h2-project: 22px;
+  --cat-fs-button: 13px;
+  --cat-fs-tag: 11px;
 }
 
 @layer base {
@@ -171,6 +204,108 @@
     letter-spacing: 0.05em;
     text-transform: uppercase;
     padding: 0.25rem 0.75rem;
+  }
+
+  /* ---------------------------------------------------------------- */
+  /* Catalog component utilities                                      */
+  /* ---------------------------------------------------------------- */
+  .catalog-section {
+    background-color: var(--cat-bg);
+    color: var(--cat-text);
+  }
+
+  .catalog-entry-row__inner {
+    display: grid;
+    grid-template-columns: var(--cat-index-col) 1fr;
+    gap: var(--cat-grid-gap);
+    padding: 3rem 0;
+  }
+
+  @media (max-width: 720px) {
+    .catalog-entry-row__inner {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 2rem 0;
+    }
+  }
+
+  .catalog-eyebrow {
+    font-size: var(--cat-fs-eyebrow);
+    letter-spacing: var(--cat-ls-eyebrow);
+    text-transform: uppercase;
+    color: var(--cat-text-tertiary);
+    font-weight: 500;
+  }
+
+  .catalog-body {
+    font-size: var(--cat-fs-body);
+    line-height: var(--cat-lh-body);
+    color: var(--cat-text-secondary);
+  }
+
+  .catalog-h1 {
+    font-size: var(--cat-fs-h1);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--cat-text);
+  }
+
+  @media (max-width: 720px) {
+    .catalog-h1 {
+      font-size: 32px;
+    }
+  }
+
+  .catalog-h2 {
+    font-size: var(--cat-fs-h2);
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--cat-text);
+  }
+
+  /* Buttons — outline only, no fills, sentence case */
+  .catalog-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-radius: var(--cat-radius);
+    padding: 6px 14px;
+    font-size: var(--cat-fs-button);
+    font-weight: 500;
+    line-height: 1.5;
+    border: var(--cat-rule-width) solid var(--cat-rule);
+    color: var(--cat-text-secondary);
+    background: transparent;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .catalog-btn:hover {
+    color: var(--cat-text);
+    border-color: var(--cat-text);
+    background: rgba(0, 0, 0, 0.02);
+  }
+  .catalog-btn--primary {
+    border-color: var(--cat-text);
+    color: var(--cat-text);
+  }
+  .catalog-btn--primary:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  /* Tags — outline chip */
+  .catalog-tag {
+    display: inline-flex;
+    align-items: center;
+    border: var(--cat-rule-width) solid var(--cat-rule);
+    border-radius: var(--cat-radius);
+    padding: 3px 10px;
+    font-size: var(--cat-fs-tag);
+    color: var(--cat-text-secondary);
+    background: transparent;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
   }
 
   /* Label uppercase */
