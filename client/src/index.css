@@ -368,4 +368,29 @@
     text-transform: uppercase;
     color: var(--cat-text-tertiary);
   }
+
+  /* Hero two-column grid — collapses to single column on mobile */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 639px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .hero-grid .hero-index-col {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .hero-h1 {
+      font-size: 30px !important;
+    }
+  }
 }

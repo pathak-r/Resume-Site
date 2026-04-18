@@ -23,16 +23,9 @@ export default function Hero() {
       }}
     >
       <div style={{ maxWidth: "960px", margin: "0 auto" }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "220px 1fr",
-            gap: "3rem",
-            alignItems: "start",
-          }}
-        >
+        <div className="hero-grid">
           {/* Index column */}
-          <div style={{ paddingTop: "4px" }}>
+          <div className="hero-index-col" style={{ paddingTop: "4px" }}>
             <p
               style={{
                 fontSize: "13px",
@@ -82,6 +75,7 @@ export default function Hero() {
             </p>
 
             <h1
+              className="hero-h1"
               style={{
                 fontSize: "40px",
                 fontWeight: 600,
