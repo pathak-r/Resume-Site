@@ -144,7 +144,7 @@ export default function Experience() {
                 </h3>
                 <p
                   style={{
-                    fontSize: "var(--cat-fs-body-sm)",
+                    fontSize: "var(--cat-fs-body)",
                     color: "var(--cat-text-secondary)",
                     margin: "0 0 14px",
                     fontFamily: F,
@@ -155,8 +155,8 @@ export default function Experience() {
                 </p>
                 <p
                   style={{
-                    fontSize: "var(--cat-fs-body-sm)",
-                    lineHeight: 1.7,
+                    fontSize: "var(--cat-fs-body)",
+                    lineHeight: 1.65,
                     color: "var(--cat-text)",
                     margin: "0 0 12px",
                     fontFamily: F,
@@ -173,10 +173,10 @@ export default function Experience() {
                         display: "flex",
                         alignItems: "flex-start",
                         gap: "0.6rem",
-                        fontSize: "var(--cat-fs-body-sm)",
-                        lineHeight: 1.7,
+                        fontSize: "var(--cat-fs-body)",
+                        lineHeight: 1.65,
                         color: "var(--cat-text-secondary)",
-                        marginBottom: "4px",
+                        marginBottom: "6px",
                         fontFamily: F,
                       }}
                       data-testid={`text-achievement-${index}-${i}`}
