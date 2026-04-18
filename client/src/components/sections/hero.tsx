@@ -29,7 +29,7 @@ export default function Hero() {
                 lineHeight: "var(--cat-lh-body)",
                 color: "var(--cat-text-secondary)",
                 margin: "0 0 20px",
-                maxWidth: "480px",
+                maxWidth: "580px",
               }}
               data-testid="text-hero-body"
             >

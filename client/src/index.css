@@ -123,7 +123,7 @@
 
   --cat-index-col: 140px;
   --cat-grid-gap: 2rem;
-  --cat-panel-max: 760px;
+  --cat-panel-max: 960px;
 
   /* Font stack — system sans per reference */
   --cat-font: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Plus Jakarta Sans", sans-serif;
