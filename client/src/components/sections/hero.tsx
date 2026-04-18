@@ -14,16 +14,22 @@ export default function Hero() {
     <section
       data-testid="section-hero"
       style={{
-        background: D.bg,
+        background: "#141414",
         fontFamily: D.font,
         color: D.primary,
         WebkitFontSmoothing: "antialiased",
         MozOsxFontSmoothing: "grayscale",
-        padding: "0 2rem 5rem",
-        paddingTop: "calc(56px + 3.5rem)", /* clear fixed nav + gap */
+        padding: "calc(56px + 2.5rem) 2rem 2.5rem",
       }}
     >
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        {/* Card */}
+        <div style={{
+          background: D.bg,
+          borderRadius: "12px",
+          border: `0.5px solid ${D.border}`,
+          padding: "2.5rem 2.5rem 2.5rem",
+        }}>
         <div
           style={{
             display: "grid",
@@ -194,6 +200,7 @@ export default function Hero() {
             </div>
           </div>
         </div>
+        </div>{/* /card */}
       </div>
     </section>
   );
