@@ -93,7 +93,7 @@ export default function Hero() {
               }}
               data-testid="text-hero-headline"
             >
-              Senior product manager. I build AI for industries where software has to work the first time.
+              Senior product manager building AI products for critical infrastructure.
             </h1>
 
             <p
