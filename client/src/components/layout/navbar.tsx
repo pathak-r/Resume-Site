@@ -1,20 +1,10 @@
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
-import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const links = [
     { name: "Work", href: "#work" },
@@ -37,13 +27,21 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={cn(
-      "fixed top-0 w-full z-50 transition-all duration-300",
-      scrolled ? "glass-nav shadow-ambient py-4" : "bg-transparent py-6"
-    )}>
-      <div className="container mx-auto px-6 flex items-center justify-between max-w-6xl">
-        <Link href="/" className="text-lg font-bold tracking-tight" style={{ color: 'var(--lf-on-surface)' }}>
-          rohit pathak<span style={{ color: 'var(--lf-primary)' }}>.</span>
+    <nav
+      className="fixed top-0 w-full z-50"
+      style={{
+        background: "var(--cat-bg)",
+        borderBottom: "var(--cat-rule-width) solid var(--cat-rule)",
+      }}
+    >
+      <div className="container mx-auto px-6 max-w-6xl py-5 flex items-center justify-between">
+        <Link
+          href="/"
+          className="font-medium tracking-tight"
+          style={{ color: "var(--cat-text)", fontSize: "16px" }}
+          data-testid="link-logo"
+        >
+          rohit pathak
         </Link>
 
         {/* Desktop Nav */}
@@ -54,40 +52,52 @@ export default function Navbar() {
               href={link.href}
               data-testid={`nav-link-${link.name.toLowerCase()}`}
               onClick={(e) => scrollToSection(e, link.href)}
-              className="text-sm font-medium transition-colors"
-              style={{ color: 'var(--lf-muted-foreground, #6b7071)' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--lf-on-surface)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'var(--lf-muted-foreground, #6b7071)')}
+              className="transition-colors"
+              style={{
+                color: "var(--cat-text-secondary)",
+                fontSize: "13px",
+                fontWeight: 500,
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--cat-text)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cat-text-secondary)")}
             >
               {link.name}
             </a>
           ))}
         </div>
 
-        {/* Mobile Nav Toggle */}
+        {/* Mobile Toggle */}
         <button
           className="md:hidden p-2"
-          style={{ color: 'var(--lf-on-surface)' }}
+          style={{ color: "var(--cat-text)" }}
           onClick={() => setIsOpen(!isOpen)}
           data-testid="button-mobile-menu"
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
         <div
-          className="md:hidden absolute top-full left-0 w-full p-6 flex flex-col gap-4 shadow-ambient"
-          style={{ background: 'rgba(255,255,255,0.96)', backdropFilter: 'blur(20px)' }}
+          className="md:hidden absolute top-full left-0 w-full p-6 flex flex-col gap-3"
+          style={{
+            background: "var(--cat-bg)",
+            borderBottom: "var(--cat-rule-width) solid var(--cat-rule)",
+          }}
         >
           {links.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={(e) => scrollToSection(e, link.href)}
-              className="text-lg font-semibold py-2"
-              style={{ color: 'var(--lf-on-surface)' }}
+              style={{
+                color: "var(--cat-text)",
+                fontSize: "15px",
+                fontWeight: 500,
+                paddingTop: "0.5rem",
+                paddingBottom: "0.5rem",
+              }}
             >
               {link.name}
             </a>
@@ -96,9 +106,9 @@ export default function Navbar() {
             href="/Rohit_Pathak_Resume.pdf"
             download
             data-testid="button-resume-download-mobile"
-            className="btn-primary-gradient text-center px-6 py-3 text-base font-semibold mt-2"
+            className="catalog-btn catalog-btn--primary mt-2 justify-center"
           >
-            Download Resume
+            Download CV
           </a>
         </div>
       )}

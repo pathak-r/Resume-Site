@@ -27,15 +27,10 @@ export default function EntryRow({
       <div className="catalog-entry-row__inner">
         <div className="catalog-entry-row__index">
           <div
-            style={{
-              fontSize: "var(--cat-fs-eyebrow)",
-              letterSpacing: "var(--cat-ls-eyebrow)",
-              textTransform: "uppercase",
-              color: "var(--cat-text-tertiary)",
-              fontWeight: 500,
-            }}
+            className="catalog-eyebrow"
+            style={{ marginBottom: "1.5rem" }}
           >
-            {entryNumber}
+            Entry {entryNumber}
           </div>
           <div
             style={{
@@ -43,24 +38,13 @@ export default function EntryRow({
               fontWeight: 500,
               lineHeight: 1,
               color: "var(--cat-text)",
-              marginTop: "0.5rem",
-              marginBottom: "0.75rem",
-              letterSpacing: "-0.02em",
+              marginBottom: "1.25rem",
+              letterSpacing: "-0.025em",
             }}
           >
             {numeral}
           </div>
-          <div
-            style={{
-              fontSize: "var(--cat-fs-eyebrow)",
-              letterSpacing: "var(--cat-ls-eyebrow)",
-              textTransform: "uppercase",
-              color: "var(--cat-text-tertiary)",
-              fontWeight: 500,
-            }}
-          >
-            {label}
-          </div>
+          <div className="catalog-eyebrow">{label}</div>
         </div>
         <div className="catalog-entry-row__content">{children}</div>
       </div>

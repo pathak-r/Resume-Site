@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <section
       className="catalog-section"
-      style={{ paddingTop: "8rem", paddingBottom: "0" }}
+      style={{ paddingTop: "6rem", paddingBottom: "2rem" }}
       data-testid="section-hero"
     >
       <div className="container mx-auto px-6 max-w-6xl">
@@ -17,7 +17,7 @@ export default function Hero() {
         >
           <div
             className="catalog-eyebrow"
-            style={{ marginBottom: "1.25rem" }}
+            style={{ marginBottom: "1.5rem", textTransform: "none", letterSpacing: "0.01em", fontSize: "14px", color: "var(--cat-text-secondary)" }}
             data-testid="text-hero-eyebrow"
           >
             Filed under: senior pm · enterprise AI · abu dhabi
@@ -25,7 +25,7 @@ export default function Hero() {
 
           <h1
             className="catalog-h1"
-            style={{ marginBottom: "1.5rem", maxWidth: "44ch" }}
+            style={{ marginBottom: "2rem" }}
             data-testid="text-hero-headline"
           >
             Senior product manager shipping AI into software people actually depend on.
@@ -33,7 +33,7 @@ export default function Hero() {
 
           <p
             className="catalog-body"
-            style={{ maxWidth: "60ch", marginBottom: "2rem" }}
+            style={{ maxWidth: "62ch", marginBottom: "2.5rem" }}
             data-testid="text-hero-body"
           >
             Ten plus years turning complex technical capabilities into products that
@@ -41,13 +41,13 @@ export default function Hero() {
             systems inside enterprise SaaS.
           </p>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-3">
             <a
               href="#work"
               className="catalog-btn catalog-btn--primary"
               data-testid="button-view-work"
             >
-              View selected work <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />
+              View selected work <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
             </a>
             <a
               href="/Rohit_Pathak_Resume.pdf"
@@ -55,7 +55,7 @@ export default function Hero() {
               className="catalog-btn"
               data-testid="button-download-cv"
             >
-              <Download className="w-3.5 h-3.5" strokeWidth={1.5} />
+              <Download className="w-4 h-4" strokeWidth={1.5} />
               Download CV
             </a>
             <a
@@ -65,7 +65,7 @@ export default function Hero() {
               className="catalog-btn"
               data-testid="button-linkedin"
             >
-              <Linkedin className="w-3.5 h-3.5" strokeWidth={1.5} />
+              <Linkedin className="w-4 h-4" strokeWidth={1.5} />
               LinkedIn
             </a>
           </div>
