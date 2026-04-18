@@ -908,7 +908,7 @@ export default function GeoAgenticInt() {
   ];
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--cat-bg)" }}>
+    <div className="min-h-screen" style={{ background: "var(--cat-bg)", fontFamily: "var(--cat-font)" }}>
       <Navbar />
 
       {/* Page header — catalog panel */}
@@ -1043,6 +1043,7 @@ export default function GeoAgenticInt() {
             {meta && (
               <div
                 className="flex flex-wrap items-center gap-2 mb-6"
+                style={{ justifyContent: "center" }}
                 data-testid="filter-bar"
               >
                 <span style={{
@@ -1111,7 +1112,7 @@ export default function GeoAgenticInt() {
             )}
 
             {/* Tab nav — catalog style */}
-            <div className="flex flex-wrap gap-2 mb-8" style={{ borderBottom: "var(--cat-rule-width) solid var(--cat-rule)", paddingBottom: "1rem" }}>
+            <div className="flex flex-wrap gap-2 mb-8" style={{ borderBottom: "var(--cat-rule-width) solid var(--cat-rule)", paddingBottom: "1rem", justifyContent: "center" }}>
               {tabs.map(({ id, label, icon: Icon }) => {
                 const active = tab === id;
                 return (

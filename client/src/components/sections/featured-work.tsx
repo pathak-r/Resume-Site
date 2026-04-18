@@ -18,19 +18,6 @@ const projects: Project[] = [
   {
     entryNumber: "№ 01",
     numeral: "01",
-    label: "Geo-Agentic AI",
-    title: "Volve Field RAG Explorer",
-    tagline: "Agentic RAG for Equinor's open Volve oil field dataset.",
-    paragraphs: [
-      "Daily drilling reports, production data, and well completion reports — both structured and unstructured — collected from Equinor's Volve field, the most comprehensive open subsurface dataset ever released from the Norwegian Continental Shelf, indexed into an agentic RAG system.",
-      "Visualizes production trends and anomalies and answers operator questions like why a well's water cut is rising, the decline rate for F-1 C over the last 12 months, or what drilling problems in F-12 might explain current production behavior.",
-    ],
-    tags: ["FAISS", "OpenAI", "FastAPI", "React", "Recharts", "Python"],
-    href: "/geo-agentic-int",
-  },
-  {
-    entryNumber: "№ 02",
-    numeral: "02",
     label: "Generative AI",
     title: "Enterprise AI Copilot System",
     tagline: "LLM-based agents for complex 3D engineering workflows.",
@@ -40,8 +27,8 @@ const projects: Project[] = [
     tags: ["LLM agents", "Product strategy", "3D engineering", "Automation"],
   },
   {
-    entryNumber: "№ 03",
-    numeral: "03",
+    entryNumber: "№ 02",
+    numeral: "02",
     label: "Data Intelligence",
     title: "AI Agents & Natural Language Querying",
     tagline: "Natural-language access to mission-critical enterprise data.",
@@ -49,19 +36,6 @@ const projects: Project[] = [
       "Delivered enterprise-grade AI agents enabling natural-language queries on complex databases, significantly improving access to mission-critical data and accelerating cross-functional decision-making.",
     ],
     tags: ["NL2SQL", "Data accessibility", "Enterprise search", "Decision support"],
-  },
-  {
-    entryNumber: "№ 04",
-    numeral: "04",
-    label: "Vision AI",
-    subLabel: "TestFlight",
-    title: "PropScan",
-    tagline: "Vision-LLM defect detection for property inspections.",
-    paragraphs: [
-      "Mobile inspection app that uses Gemini 2.5 Flash as a vision LLM to detect, classify, and localize construction defects from user-captured photos.",
-      "Designed a structured-output prompt returning per-photo JSON (defect type, severity, bounding boxes) with a quality-gating pass at 80% confidence to suppress false positives. Post-processing renders annotated photos and an aggregated defect register with an overall verdict.",
-    ],
-    tags: ["Gemini 2.5 Flash", "structured JSON", "React Native", "Node.js", "Supabase", "PDFKit"],
   },
 ];
 

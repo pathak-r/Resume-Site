@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/navbar";
 import Hero from "@/components/sections/hero";
+import CurrentWork from "@/components/sections/current-work";
 import FeaturedWork from "@/components/sections/featured-work";
 import Experience from "@/components/sections/experience";
 import About from "@/components/sections/about";
@@ -14,6 +15,7 @@ export default function Home() {
       <Navbar />
       <main className="catalog-page-stack">
         <Hero />
+        <CurrentWork />
         <FeaturedWork />
         <Experience />
         <About />
