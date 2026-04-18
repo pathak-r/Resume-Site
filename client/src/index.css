@@ -383,12 +383,6 @@
       gap: 1.5rem;
     }
 
-    .hero-grid .hero-index-col {
-      display: flex;
-      align-items: baseline;
-      gap: 1rem;
-    }
-
     .hero-h1 {
       font-size: 30px !important;
     }
