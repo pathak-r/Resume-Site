@@ -121,23 +121,23 @@
   --cat-radius: 8px;
   --cat-radius-card: 12px;
 
-  --cat-index-col: 200px;
+  --cat-index-col: 220px;
   --cat-grid-gap: 2rem;
   --cat-panel-max: 960px;
 
-  /* Font stack — system sans per reference */
-  --cat-font: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Plus Jakarta Sans", sans-serif;
+  /* Font stack — Inter first, always */
+  --cat-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  /* Type scale */
+  /* Type scale — unified with hero card */
   --cat-fs-eyebrow: 11px;
   --cat-ls-eyebrow: 0.12em;
-  --cat-fs-body: 15px;
+  --cat-fs-body: 16px;
   --cat-fs-body-sm: 13px;
-  --cat-lh-body: 1.75;
-  --cat-fs-numeral: 80px;
-  --cat-fs-h1: 44px;
-  --cat-fs-h2: 36px;
-  --cat-fs-h2-project: 32px;
+  --cat-lh-body: 1.65;
+  --cat-fs-numeral: 72px;
+  --cat-fs-h1: 40px;
+  --cat-fs-h2: 40px;
+  --cat-fs-h2-project: 40px;
   --cat-fs-button: 13px;
   --cat-fs-tag: 11px;
 }
@@ -273,8 +273,8 @@
 
   .catalog-h2 {
     font-size: var(--cat-fs-h2);
-    font-weight: 500;
-    line-height: 1.25;
+    font-weight: 600;
+    line-height: 1.15;
     color: var(--cat-text);
   }
 

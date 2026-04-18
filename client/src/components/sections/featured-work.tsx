@@ -72,10 +72,11 @@ function ProjectBody({ project, index }: { project: Project; index: number }) {
       <h2
         style={{
           fontSize: "var(--cat-fs-h2-project)",
-          fontWeight: 500,
+          fontWeight: 600,
           margin: "0 0 6px",
+          lineHeight: 1.15,
           color: "var(--cat-text)",
-          letterSpacing: "-0.01em",
+          letterSpacing: "-0.025em",
         }}
         data-testid={`text-project-title-${index}`}
       >

@@ -930,7 +930,7 @@ export default function GeoAgenticInt() {
                     Project № 01
                   </p>
                   <p style={{
-                    fontSize: "80px",
+                    fontSize: "72px",
                     fontWeight: 500,
                     lineHeight: 1,
                     color: "var(--cat-text)",

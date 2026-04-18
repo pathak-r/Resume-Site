@@ -17,7 +17,7 @@ export default function EntryRow({
   label,
   subLabel,
   subLabelColor,
-  numeralSize = 80,
+  numeralSize = 72,
   children,
   className = "",
 }: EntryRowProps) {

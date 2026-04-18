@@ -28,12 +28,12 @@ export default function Hero() {
           background: D.bg,
           borderRadius: "12px",
           border: `0.5px solid ${D.border}`,
-          padding: "2.5rem 2.5rem 2.5rem",
+          padding: "2rem",
         }}>
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "260px 1fr",
+            gridTemplateColumns: "220px 1fr",
             gap: "3rem",
             alignItems: "start",
           }}
@@ -55,10 +55,10 @@ export default function Hero() {
             </p>
             <p
               style={{
-                fontSize: "88px",
+                fontSize: "72px",
                 fontWeight: 500,
-                margin: "18px 0",
-                lineHeight: 0.9,
+                margin: "14px 0",
+                lineHeight: 1,
                 letterSpacing: "-0.03em",
                 color: D.primary,
               }}
@@ -90,13 +90,13 @@ export default function Hero() {
 
             <h1
               style={{
-                fontSize: "56px",
+                fontSize: "40px",
                 fontWeight: 600,
-                margin: "0 0 28px",
-                lineHeight: 1.1,
+                margin: "0 0 20px",
+                lineHeight: 1.15,
                 letterSpacing: "-0.025em",
                 color: D.primary,
-                maxWidth: "920px",
+                maxWidth: "720px",
               }}
               data-testid="text-hero-headline"
             >
@@ -105,11 +105,11 @@ export default function Hero() {
 
             <p
               style={{
-                fontSize: "18px",
+                fontSize: "16px",
                 lineHeight: 1.65,
                 color: D.secondary,
-                margin: "0 0 36px",
-                maxWidth: "640px",
+                margin: "0 0 28px",
+                maxWidth: "600px",
               }}
               data-testid="text-hero-body"
             >

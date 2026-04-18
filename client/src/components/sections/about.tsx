@@ -34,11 +34,11 @@ export default function About() {
             <h2
               style={{
                 fontSize: "var(--cat-fs-h2)",
-                fontWeight: 500,
+                fontWeight: 600,
                 margin: "0 0 18px",
                 lineHeight: 1.15,
                 color: "var(--cat-text)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.025em",
               }}
               data-testid="heading-about"
             >
