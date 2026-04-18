@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohit Pathak — Catalog Hero</title>
+<style>
+  :root {
+    --color-background-page: #EDEAE3;
+    --color-background-secondary: #F4F2EC;
+    --color-background-primary: #FFFFFF;
+    --color-text-primary: #1A1A1A;
+    --color-text-secondary: #5F5E5A;
+    --color-text-tertiary: #888780;
+    --color-border-tertiary: rgba(0, 0, 0, 0.12);
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem;
+    background: var(--color-background-page);
+    font-family: var(--font-sans);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wrap {
+    max-width: 760px;
+    width: 100%;
+  }
+  .panel {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+  }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 1rem;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    margin-bottom: 2.5rem;
+  }
+  .logo { font-size: 14px; font-weight: 500; }
+  .nav-links { display: flex; gap: 1.25rem; font-size: 13px; color: var(--color-text-secondary); }
+  .grid {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--color-text-tertiary);
+    margin: 0;
+  }
+  .numeral {
+    font-size: 56px;
+    font-weight: 500;
+    margin: 8px 0 0;
+    line-height: 1;
+  }
+  .filed {
+    font-size: 13px;
+    color: var(--color-text-tertiary);
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-size: 36px;
+    font-weight: 500;
+    margin: 0 0 16px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .lede {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+    margin: 0 0 20px;
+    max-width: 480px;
+  }
+  .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn {
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: var(--border-radius-md);
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+  }
+  .btn-primary {
+    border: 0.5px solid var(--color-text-primary);
+    color: var(--color-text-primary);
+  }
+  .btn-secondary {
+    border: 0.5px solid var(--color-border-tertiary);
+    color: var(--color-text-secondary);
+  }
+  @media (max-width: 600px) {
+    body { padding: 1rem; }
+    .panel { padding: 1.25rem; }
+    .grid { grid-template-columns: 1fr; gap: 1.25rem; }
+    .numeral { font-size: 40px; }
+    h1 { font-size: 28px; }
+    .nav-links { gap: 0.75rem; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="panel">
+      <div class="nav">
+        <span class="logo">rohit pathak</span>
+        <div class="nav-links">
+          <span>Work</span><span>About</span><span>Experience</span><span>Contact</span>
+        </div>
+      </div>
+      <div class="grid">
+        <div>
+          <p class="eyebrow">ENTRY № 01</p>
+          <p class="numeral">00</p>
+          <p class="eyebrow" style="margin-top: 10px;">INTRODUCTION</p>
+        </div>
+        <div>
+          <p class="filed">Filed under: senior pm · enterprise AI · abu dhabi</p>
+          <h1>Senior product manager shipping AI into software people actually depend on.</h1>
+          <p class="lede">
+            Ten plus years turning complex technical capabilities into products that solve real business problems. Currently focused on agentic AI and RAG systems inside enterprise SaaS.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#work">View selected work →</a>
+            <a class="btn btn-secondary" href="#">Download CV</a>
+            <a class="btn btn-secondary" href="#">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -14,39 +14,56 @@ export default function EntryRow({
   numeral,
   label,
   children,
-  topRule = true,
+  topRule = false,
   className = "",
 }: EntryRowProps) {
   return (
     <div
-      className={`catalog-entry-row ${className}`}
+      className={className}
       style={{
         borderTop: topRule ? `var(--cat-rule-width) solid var(--cat-rule)` : "none",
       }}
     >
       <div className="catalog-entry-row__inner">
-        <div className="catalog-entry-row__index">
-          <div
-            className="catalog-eyebrow"
-            style={{ marginBottom: "1.5rem" }}
+        <div>
+          <p
+            style={{
+              fontSize: "var(--cat-fs-eyebrow)",
+              letterSpacing: "var(--cat-ls-eyebrow)",
+              textTransform: "uppercase",
+              color: "var(--cat-text-tertiary)",
+              fontWeight: 500,
+              margin: 0,
+            }}
           >
             Entry {entryNumber}
-          </div>
-          <div
+          </p>
+          <p
             style={{
               fontSize: "var(--cat-fs-numeral)",
               fontWeight: 500,
               lineHeight: 1,
               color: "var(--cat-text)",
-              marginBottom: "1.25rem",
-              letterSpacing: "-0.025em",
+              margin: "8px 0 0",
+              letterSpacing: "-0.02em",
             }}
           >
             {numeral}
-          </div>
-          <div className="catalog-eyebrow">{label}</div>
+          </p>
+          <p
+            style={{
+              fontSize: "var(--cat-fs-eyebrow)",
+              letterSpacing: "var(--cat-ls-eyebrow)",
+              textTransform: "uppercase",
+              color: "var(--cat-text-tertiary)",
+              fontWeight: 500,
+              margin: "10px 0 0",
+            }}
+          >
+            {label}
+          </p>
         </div>
-        <div className="catalog-entry-row__content">{children}</div>
+        <div>{children}</div>
       </div>
     </div>
   );

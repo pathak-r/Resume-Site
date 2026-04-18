@@ -32,20 +32,23 @@ export default function Navbar() {
       style={{
         background: "var(--cat-bg)",
         borderBottom: "var(--cat-rule-width) solid var(--cat-rule)",
+        fontFamily: "var(--cat-font)",
       }}
     >
-      <div className="container mx-auto px-6 max-w-6xl py-5 flex items-center justify-between">
+      <div
+        className="mx-auto px-4 flex items-baseline justify-between py-4"
+        style={{ maxWidth: "calc(var(--cat-panel-max) + 4rem)" }}
+      >
         <Link
           href="/"
-          className="font-medium tracking-tight"
-          style={{ color: "var(--cat-text)", fontSize: "16px" }}
+          style={{ color: "var(--cat-text)", fontSize: "14px", fontWeight: 500 }}
           data-testid="link-logo"
         >
           rohit pathak
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-baseline gap-5">
           {links.map((link) => (
             <a
               key={link.name}
@@ -56,7 +59,6 @@ export default function Navbar() {
               style={{
                 color: "var(--cat-text-secondary)",
                 fontSize: "13px",
-                fontWeight: 500,
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "var(--cat-text)")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cat-text-secondary)")}
@@ -73,7 +75,7 @@ export default function Navbar() {
           onClick={() => setIsOpen(!isOpen)}
           data-testid="button-mobile-menu"
         >
-          {isOpen ? <X size={22} /> : <Menu size={22} />}
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
@@ -91,13 +93,7 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={(e) => scrollToSection(e, link.href)}
-              style={{
-                color: "var(--cat-text)",
-                fontSize: "15px",
-                fontWeight: 500,
-                paddingTop: "0.5rem",
-                paddingBottom: "0.5rem",
-              }}
+              style={{ color: "var(--cat-text)", fontSize: "14px", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}
             >
               {link.name}
             </a>
