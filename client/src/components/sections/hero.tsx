@@ -4,20 +4,18 @@ export default function Hero() {
   return (
     <section
       className="catalog-section"
-      style={{ paddingTop: "5rem", paddingBottom: "2rem" }}
+      style={{ paddingTop: "5rem", paddingBottom: "0" }}
       data-testid="section-hero"
     >
       <div className="px-4">
         <div className="catalog-panel">
-          <EntryRow entryNumber="№ 01" numeral="00" label="Introduction">
-            <p
-              style={{
-                fontSize: "var(--cat-fs-body-sm)",
-                color: "var(--cat-text-tertiary)",
-                margin: "0 0 10px",
-              }}
-              data-testid="text-hero-eyebrow"
-            >
+          <EntryRow
+            entryNumber="№ 01"
+            numeral="00"
+            label="Introduction"
+            numeralSize={56}
+          >
+            <p className="catalog-meta" style={{ marginBottom: "10px" }} data-testid="text-hero-eyebrow">
               Filed under: senior pm · enterprise AI · abu dhabi
             </p>
 
@@ -41,19 +39,10 @@ export default function Hero() {
             </p>
 
             <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-              <a
-                href="#work"
-                className="catalog-btn catalog-btn--primary"
-                data-testid="button-view-work"
-              >
+              <a href="#work" className="catalog-btn catalog-btn--primary" data-testid="button-view-work">
                 View selected work →
               </a>
-              <a
-                href="/Rohit_Pathak_Resume.pdf"
-                download
-                className="catalog-btn"
-                data-testid="button-download-cv"
-              >
+              <a href="/Rohit_Pathak_Resume.pdf" download className="catalog-btn" data-testid="button-download-cv">
                 Download CV
               </a>
               <a

@@ -9,10 +9,10 @@ export default function Home() {
   return (
     <div
       className="min-h-screen overflow-x-hidden"
-      style={{ background: 'var(--lf-surface, #f5f6f7)', color: 'var(--lf-on-surface, #2c2f30)' }}
+      style={{ background: "var(--cat-bg)", color: "var(--cat-text)" }}
     >
       <Navbar />
-      <main>
+      <main className="catalog-page-stack">
         <Hero />
         <FeaturedWork />
         <Experience />
@@ -21,17 +21,16 @@ export default function Home() {
       </main>
 
       <footer
-        className="py-10 text-center"
         style={{
-          background: 'var(--lf-surface, #f5f6f7)',
-          color: '#abadae',
-          fontSize: '0.875rem',
-          fontWeight: 500,
+          background: "var(--cat-bg)",
+          color: "var(--cat-text-tertiary)",
+          fontSize: "12px",
+          padding: "2.5rem 1rem",
+          textAlign: "center",
+          letterSpacing: "0.04em",
         }}
       >
-        <div className="container mx-auto px-6 max-w-6xl">
-          <p>© {new Date().getFullYear()} Rohit Pathak · Senior Product Manager · Abu Dhabi, UAE</p>
-        </div>
+        © {new Date().getFullYear()} Rohit Pathak · Senior Product Manager · Abu Dhabi, UAE
       </footer>
     </div>
   );

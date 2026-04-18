@@ -1,118 +1,139 @@
-import { motion } from "framer-motion";
+import EntryRow from "@/components/catalog/entry-row";
 
-const skills = [
-  "Product Strategy",
+const expertise = [
+  "Product strategy",
   "Generative AI",
   "LLMs & RAG",
   "Enterprise SaaS",
-  "MLOps Awareness",
+  "MLOps awareness",
   "Roadmapping",
-  "Stakeholder Management",
+  "Stakeholder management",
   "Azure PaaS",
-  "Agentic Systems",
-  "Data Analytics",
+  "Agentic systems",
+  "Data analytics",
+];
+
+const education = [
+  {
+    degree: "M.S. Mechanical Engineering",
+    school: "North Carolina State University",
+  },
+  {
+    degree: "B.Tech Mechanical Engineering",
+    school: "National Institute of Technology (NIT) Rourkela",
+  },
 ];
 
 export default function About() {
   return (
-    <section id="about" style={{ background: 'var(--lf-surface-container-low, #eff1f2)', padding: '3rem 0' }}>
-      <div className="container px-6 mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-
-          {/* Bio */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="label-meta block mb-4" style={{ color: 'var(--lf-primary)' }}>About Me</span>
+    <section id="about" className="catalog-section" data-testid="section-about">
+      <div className="px-4">
+        <div className="catalog-panel">
+          <EntryRow entryNumber="№ 05" numeral="05" label="About">
+            <p className="catalog-meta" style={{ marginBottom: "6px" }}>A brief entry on</p>
             <h2
-              className="font-bold mb-8"
-              style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)', letterSpacing: '-0.02em', color: 'var(--lf-on-surface)' }}
+              style={{
+                fontSize: "28px",
+                fontWeight: 500,
+                margin: "0 0 18px",
+                lineHeight: 1.2,
+                color: "var(--cat-text)",
+                letterSpacing: "-0.02em",
+              }}
               data-testid="heading-about"
             >
-              The Optimistic Architect.
+              How I think about building.
             </h2>
 
-            <div className="space-y-5" style={{ fontSize: '1rem', color: '#6b7071', lineHeight: 1.8, letterSpacing: '0.01em' }}>
-              <p>
-                I am an AI-driven Senior Product Manager with over a decade of experience building enterprise SaaS and industrial-tech solutions. My passion lies in translating complex technical capabilities into intuitive products that solve real business problems.
-              </p>
-              <p>
-                Currently, I focus on Agentic AI and RAG systems, helping engineering teams automate workflows and access critical data faster. I believe in responsible AI development, balancing innovation with governance, security, and ethical standards.
-              </p>
-            </div>
-
-            {/* Education */}
-            <div className="mt-10 pt-10" style={{ borderTop: 'none' }}>
-              <span className="label-meta block mb-6">Education</span>
-              <div
-                className="surface-lowest rounded-3xl p-8 shadow-ambient"
-                style={{ borderRadius: '2rem' }}
-              >
-                <div className="space-y-6">
-                  <div data-testid="text-education-ms">
-                    <div className="font-bold text-lg" style={{ color: 'var(--lf-on-surface)', letterSpacing: '-0.01em' }}>
-                      M.S. Mechanical Engineering
-                    </div>
-                    <div className="text-sm mt-1" style={{ color: '#6b7071' }}>North Carolina State University</div>
-                  </div>
-                  <div data-testid="text-education-btech">
-                    <div className="font-bold text-lg" style={{ color: 'var(--lf-on-surface)', letterSpacing: '-0.01em' }}>
-                      B.Tech Mechanical Engineering
-                    </div>
-                    <div className="text-sm mt-1" style={{ color: '#6b7071' }}>National Institute of Technology (NIT) Rourkela</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Skills */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.15, duration: 0.5 }}
-          >
-            <span className="label-meta block mb-4" style={{ color: 'var(--lf-secondary)' }}>Core Expertise</span>
-            <h2
-              className="font-bold mb-8"
-              style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)', letterSpacing: '-0.02em', color: 'var(--lf-on-surface)' }}
-              data-testid="heading-expertise"
+            <p
+              style={{
+                fontSize: "14px",
+                lineHeight: 1.75,
+                color: "var(--cat-text)",
+                margin: "0 0 14px",
+              }}
             >
-              What I bring to the table.
-            </h2>
+              AI-driven senior product manager with over a decade of experience in
+              enterprise SaaS and industrial tech. I translate complex technical
+              capabilities into products that solve real business problems.
+            </p>
+            <p
+              style={{
+                fontSize: "14px",
+                lineHeight: 1.75,
+                color: "var(--cat-text-secondary)",
+                margin: "0 0 20px",
+              }}
+            >
+              Currently focused on agentic AI and RAG systems — helping engineering
+              teams automate workflows and access critical data faster. I believe in
+              responsible AI development: innovation balanced with governance,
+              security, and ethical standards.
+            </p>
 
-            <div className="flex flex-wrap gap-3">
-              {skills.map((skill, i) => (
-                <span
-                  key={i}
-                  className="px-5 py-2.5 surface-lowest shadow-ambient rounded-full font-semibold transition-all duration-200"
-                  style={{
-                    fontSize: '0.925rem',
-                    color: 'var(--lf-on-surface)',
-                    letterSpacing: '0.01em',
-                    cursor: 'default',
-                  }}
-                  data-testid={`chip-skill-${i}`}
-                  onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 24px rgba(44,47,48,0.1)';
-                    (e.currentTarget as HTMLElement).style.transform = 'translateY(-1px)';
-                  }}
-                  onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.boxShadow = '';
-                    (e.currentTarget as HTMLElement).style.transform = '';
-                  }}
-                >
+            <p
+              style={{
+                fontSize: "var(--cat-fs-eyebrow)",
+                letterSpacing: "var(--cat-ls-eyebrow)",
+                color: "var(--cat-text-tertiary)",
+                textTransform: "uppercase",
+                margin: "0 0 10px",
+                fontWeight: 500,
+              }}
+            >
+              Core Expertise
+            </p>
+            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "1.75rem" }}>
+              {expertise.map((skill, i) => (
+                <span key={skill} className="catalog-tag catalog-tag--filled" data-testid={`chip-skill-${i}`}>
                   {skill}
                 </span>
               ))}
             </div>
 
-          </motion.div>
-
+            <p
+              style={{
+                fontSize: "var(--cat-fs-eyebrow)",
+                letterSpacing: "var(--cat-ls-eyebrow)",
+                color: "var(--cat-text-tertiary)",
+                textTransform: "uppercase",
+                margin: "0 0 10px",
+                fontWeight: 500,
+              }}
+            >
+              Education
+            </p>
+            <div
+              style={{
+                background: "var(--cat-bg-card)",
+                borderRadius: "var(--cat-radius-card)",
+                border: `var(--cat-rule-width) solid var(--cat-rule)`,
+                padding: "1.25rem 1.5rem",
+              }}
+            >
+              {education.map((ed, i) => (
+                <div
+                  key={ed.degree}
+                  data-testid={`text-education-${i}`}
+                  style={{
+                    paddingTop: i === 0 ? 0 : "1rem",
+                    paddingBottom: i === education.length - 1 ? 0 : "1rem",
+                    borderBottom:
+                      i === education.length - 1
+                        ? "none"
+                        : `var(--cat-rule-width) solid var(--cat-rule)`,
+                  }}
+                >
+                  <div style={{ fontSize: "14px", fontWeight: 500, color: "var(--cat-text)" }}>
+                    {ed.degree}
+                  </div>
+                  <div style={{ fontSize: "13px", color: "var(--cat-text-secondary)", marginTop: "2px" }}>
+                    {ed.school}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </EntryRow>
         </div>
       </div>
     </section>

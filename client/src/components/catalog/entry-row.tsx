@@ -4,8 +4,10 @@ interface EntryRowProps {
   entryNumber: string;
   numeral: string;
   label: string;
+  subLabel?: string;
+  subLabelColor?: string;
+  numeralSize?: number;
   children: ReactNode;
-  topRule?: boolean;
   className?: string;
 }
 
@@ -13,17 +15,14 @@ export default function EntryRow({
   entryNumber,
   numeral,
   label,
+  subLabel,
+  subLabelColor,
+  numeralSize = 40,
   children,
-  topRule = false,
   className = "",
 }: EntryRowProps) {
   return (
-    <div
-      className={className}
-      style={{
-        borderTop: topRule ? `var(--cat-rule-width) solid var(--cat-rule)` : "none",
-      }}
-    >
+    <div className={className}>
       <div className="catalog-entry-row__inner">
         <div>
           <p
@@ -33,18 +32,18 @@ export default function EntryRow({
               textTransform: "uppercase",
               color: "var(--cat-text-tertiary)",
               fontWeight: 500,
-              margin: 0,
+              margin: "0 0 8px",
             }}
           >
             Entry {entryNumber}
           </p>
           <p
             style={{
-              fontSize: "var(--cat-fs-numeral)",
+              fontSize: `${numeralSize}px`,
               fontWeight: 500,
               lineHeight: 1,
               color: "var(--cat-text)",
-              margin: "8px 0 0",
+              margin: 0,
               letterSpacing: "-0.02em",
             }}
           >
@@ -62,6 +61,20 @@ export default function EntryRow({
           >
             {label}
           </p>
+          {subLabel && (
+            <p
+              style={{
+                fontSize: "var(--cat-fs-eyebrow)",
+                letterSpacing: "var(--cat-ls-eyebrow)",
+                textTransform: "uppercase",
+                color: subLabelColor || "var(--cat-accent)",
+                fontWeight: 500,
+                margin: "2px 0 0",
+              }}
+            >
+              {subLabel}
+            </p>
+          )}
         </div>
         <div>{children}</div>
       </div>

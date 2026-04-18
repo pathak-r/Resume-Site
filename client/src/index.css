@@ -306,7 +306,7 @@
     background: rgba(0, 0, 0, 0.04);
   }
 
-  /* Tags — outline chip */
+  /* Tags — outline chip (transparent, secondary text) */
   .catalog-tag {
     display: inline-flex;
     align-items: center;
@@ -319,6 +319,41 @@
     line-height: 1.5;
     letter-spacing: 0.01em;
   }
+
+  /* Filled tag — white bg, primary text (used for Core Expertise) */
+  .catalog-tag--filled {
+    background: var(--cat-bg-card);
+    color: var(--cat-text);
+    font-size: 12px;
+    padding: 4px 11px;
+  }
+
+  /* Section header (inside panel) — eyebrow left, count right */
+  .catalog-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 12px;
+    border-bottom: var(--cat-rule-width) solid var(--cat-rule);
+    margin-bottom: 2rem;
+  }
+
+  /* Hairline divider between entries inside same panel */
+  .catalog-divider {
+    border: 0;
+    border-top: var(--cat-rule-width) solid var(--cat-rule);
+    margin: 2rem 0;
+  }
+
+  /* Small filed-under / project / eyebrow text (sentence case, 13px) */
+  .catalog-meta {
+    font-size: 13px;
+    color: var(--cat-text-tertiary);
+    margin: 0;
+  }
+
+  /* Stack utility for catalog sections on the page */
+  .catalog-page-stack > * + * { margin-top: 1.5rem; }
 
   /* Label uppercase */
   .label-meta {
