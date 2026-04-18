@@ -110,7 +110,7 @@ function ProjectCol({ project, isRight }: { project: Project; isRight: boolean }
 
       <p
         style={{
-          fontSize: "14px",
+          fontSize: "var(--cat-fs-body)",
           lineHeight: 1.7,
           color: "var(--cat-text-secondary)",
           margin: "0 0 18px",

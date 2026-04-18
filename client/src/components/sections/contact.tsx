@@ -40,7 +40,7 @@ export default function Contact() {
             </h2>
             <p
               style={{
-                fontSize: "14px",
+                fontSize: "var(--cat-fs-body)",
                 lineHeight: 1.75,
                 color: "var(--cat-text-secondary)",
                 margin: "0 0 20px",
@@ -92,7 +92,7 @@ export default function Contact() {
                       href={item.href}
                       data-testid={`text-contact-value-${index}`}
                       style={{
-                        fontSize: "14px",
+                        fontSize: "var(--cat-fs-body)",
                         color: "var(--cat-text)",
                         textDecoration: "none",
                       }}
@@ -104,7 +104,7 @@ export default function Contact() {
                   ) : (
                     <span
                       data-testid={`text-contact-value-${index}`}
-                      style={{ fontSize: "14px", color: "var(--cat-text)" }}
+                      style={{ fontSize: "var(--cat-fs-body)", color: "var(--cat-text)" }}
                     >
                       {item.value}
                     </span>

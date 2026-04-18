@@ -59,7 +59,7 @@ function ProjectBody({ project, index }: { project: Project; index: number }) {
       {project.tagline && (
         <p
           style={{
-            fontSize: "14px",
+            fontSize: "var(--cat-fs-body)",
             color: "var(--cat-text-secondary)",
             fontStyle: "italic",
             margin: "0 0 16px",
@@ -72,7 +72,7 @@ function ProjectBody({ project, index }: { project: Project; index: number }) {
         <p
           key={i}
           style={{
-            fontSize: "14px",
+            fontSize: "var(--cat-fs-body)",
             lineHeight: 1.7,
             color: i === 0 ? "var(--cat-text)" : "var(--cat-text-secondary)",
             margin: i === project.paragraphs.length - 1 ? "0 0 18px" : "0 0 14px",

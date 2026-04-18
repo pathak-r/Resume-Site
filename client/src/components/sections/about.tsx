@@ -123,10 +123,10 @@ export default function About() {
                         : `var(--cat-rule-width) solid var(--cat-rule)`,
                   }}
                 >
-                  <div style={{ fontSize: "14px", fontWeight: 500, color: "var(--cat-text)" }}>
+                  <div style={{ fontSize: "var(--cat-fs-body)", fontWeight: 500, color: "var(--cat-text)" }}>
                     {ed.degree}
                   </div>
-                  <div style={{ fontSize: "13px", color: "var(--cat-text-secondary)", marginTop: "2px" }}>
+                  <div style={{ fontSize: "14px", color: "var(--cat-text-secondary)", marginTop: "2px" }}>
                     {ed.school}
                   </div>
                 </div>
