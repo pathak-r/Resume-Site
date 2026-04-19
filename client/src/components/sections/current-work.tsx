@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 
 const Hi = ({ children }: { children: React.ReactNode }) => (
-  <span style={{ color: "var(--cat-text)", fontWeight: 600 }}>{children}</span>
+  <span style={{ color: "var(--cat-accent)", fontWeight: 600 }}>{children}</span>
 );
 
 type Project = {
