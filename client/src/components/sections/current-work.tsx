@@ -22,8 +22,8 @@ const projects: Project[] = [
     tagline: <><Hi>Agentic RAG</Hi> for Equinor's open Volve oil field dataset.</>,
     description: (
       <>
-        Daily drilling reports, production data, and well completion reports —
-        structured and unstructured — ingested into an agentic RAG system.
+        Daily drilling reports, production data, and well completion reports,
+        structured and unstructured, ingested into an agentic RAG system.
         Visualises production trends and answers operator questions about well
         performance in <Hi>natural language</Hi>.
       </>

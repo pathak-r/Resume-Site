@@ -981,7 +981,7 @@ export default function GeoAgenticInt() {
                     color: "var(--cat-text-secondary)",
                     margin: "0 0 1rem",
                   }}>
-                    Daily drilling reports, production data, and well completion reports — both structured and unstructured — collected from Equinor's Volve field, the most comprehensive open subsurface dataset ever released from the Norwegian Continental Shelf, ingested into an agentic RAG system.
+                    Daily drilling reports, production data, and well completion reports, both structured and unstructured, collected from Equinor's Volve field, the most comprehensive open subsurface dataset ever released from the Norwegian Continental Shelf, ingested into an agentic RAG system.
                   </p>
 
                   <p style={{

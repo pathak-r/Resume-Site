@@ -54,7 +54,7 @@ export default function About() {
               }}
             >
               I prototype before I pitch. Every real idea starts as something I build
-              myself — rough, working, put in front of users and stakeholders early.
+              myself, rough, working, put in front of users and stakeholders early.
               I iterate on it alone until the feedback stops surprising me, and only
               then do I bring in the team to build it properly.
             </p>
