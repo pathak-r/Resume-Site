@@ -44,7 +44,6 @@ export default function Contact() {
                 lineHeight: 1.75,
                 color: "var(--cat-text-secondary)",
                 margin: "0 0 20px",
-                maxWidth: "440px",
               }}
             >
               Open to new opportunities in AI product leadership and enterprise SaaS.
