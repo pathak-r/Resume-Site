@@ -4,3 +4,13 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Replit agent / local tooling (not needed for deploy)
+.local/
+
+# Secrets — use Railway Variables, not git
+.env
+.env.*
+!.env.example
+geo_rag/.env
+*.env.local
