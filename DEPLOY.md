@@ -1,5 +1,16 @@
 # Deploy: Resume Site on Railway
 
+**GitHub:** https://github.com/pathak-r/Resume-Site
+
+**Railway project:** [resume-portfolio](https://railway.com/project/ba6ad2a5-6b41-41d9-a3ca-a899f4b76364)
+
+| Service | URL |
+|---------|-----|
+| resume-site | https://resume-site-production-3313.up.railway.app |
+| geo-rag | https://geo-rag-production.up.railway.app |
+
+**Helper scripts:** `./scripts/railway-setup.sh` (dashboard checklist), `./scripts/smoke-test.sh` (post-deploy curls).
+
 This repo runs as **two Railway services** from one GitHub repository.
 
 | Service | Root directory | Build | Start |

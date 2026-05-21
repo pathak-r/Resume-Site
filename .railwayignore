@@ -1,0 +1,6 @@
+# Exclude from resume-site CLI uploads (GitHub deploy uses service root directory)
+.local/
+geo_rag/
+node_modules/
+dist/
+.git/
