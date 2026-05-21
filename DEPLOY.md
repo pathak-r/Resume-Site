@@ -87,8 +87,12 @@ If proxied health fails but direct Geo health works, fix `GEO_RAG_API_URL`. If d
 3. Stop the Replit published deployment.
 4. Remove or stop the old `geo-rag-backend-production` Railway service if you replaced it with a new geo-rag service from this repo.
 
+## Geo RAG deploy note
+
+CLI uploads use [`geo_rag/.railwayignore`](geo_rag/.railwayignore) (omits `data/pdfs/` to stay under upload limits). FAISS + production data are still included. For full PDF sources on the server, connect **GitHub** as the service source with root directory `geo_rag` (includes entire `data/` from the repo).
+
 ## Ongoing
 
-- Push to `main` → auto-deploy (when GitHub is connected).
+- Push to `main` → auto-deploy (when GitHub is connected to each service).
 - API keys only in Railway Variables, never in git.
 - FAISS/PDF updates: commit `geo_rag/data/` or run `python ingest.py` in a Railway shell, then redeploy geo-rag.
