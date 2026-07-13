@@ -1,23 +1,21 @@
-import { Link } from "wouter";
-import EntryRow from "@/components/catalog/entry-row";
+import { CopilotFigure, Smart3DFigure } from "@/components/figures/figures";
 
 type Project = {
-  entryNumber: string;
-  numeral: string;
+  key: "sage" | "sky" | "apricot" | "lavender";
+  keyColor: string;
   label: string;
-  subLabel?: string;
   title: string;
-  tagline?: string;
+  tagline: string;
   paragraphs: string[];
   tags: string[];
-  href?: string;
-  external?: boolean;
+  figure: React.ReactNode;
+  wide?: boolean;
 };
 
 const projects: Project[] = [
   {
-    entryNumber: "№ 01",
-    numeral: "01",
+    key: "sage",
+    keyColor: "var(--key-sage)",
     label: "Generative AI",
     title: "Enterprise AI Copilot System",
     tagline: "LLM-based agents for complex 3D engineering workflows.",
@@ -25,59 +23,75 @@ const projects: Project[] = [
       "Led the strategy and development of an LLM-based agentic system designed to automate complex 3D engineering workflows. The product transformed how global engineering teams operate, saving hundreds of hours monthly.",
     ],
     tags: ["LLM agents", "Product strategy", "3D engineering", "Automation"],
+    figure: <CopilotFigure />,
   },
   {
-    entryNumber: "№ 02",
-    numeral: "02",
+    key: "sky",
+    keyColor: "var(--key-sky)",
     label: "Data Intelligence",
     title: "AI Agents & Natural Language Querying",
-    tagline: "Natural-language access to mission-critical enterprise data.",
+    tagline: "Plain-language questions, answered by the plant design model.",
     paragraphs: [
-      "Delivered enterprise-grade AI agents enabling natural-language queries on complex databases, significantly improving access to mission-critical data and accelerating cross-functional decision-making.",
+      "Delivered enterprise-grade AI agents enabling natural-language queries against plant design data — engineers ask about lines, equipment, and connectivity in plain English and get precise, model-grounded answers, accelerating access to mission-critical design data.",
     ],
-    tags: ["NL2SQL", "Data accessibility", "Enterprise search", "Decision support"],
+    tags: ["NL2SQL", "Enterprise search", "Decision support"],
+    figure: <Smart3DFigure />,
+    wide: true,
   },
 ];
 
-function ProjectBody({ project, index }: { project: Project; index: number }) {
-  return (
+function ProjectCard({ project }: { project: Project }) {
+  const body = (
     <>
-      <p className="catalog-meta" style={{ marginBottom: "4px" }}>Project</p>
+      <p
+        style={{
+          fontSize: "11px",
+          letterSpacing: "0.1em",
+          textTransform: "uppercase",
+          color: project.keyColor,
+          fontWeight: 600,
+          fontFamily: "var(--cat-font)",
+          margin: "0 0 10px",
+        }}
+      >
+        {project.label}
+      </p>
       <h2
         style={{
-          fontSize: "var(--cat-fs-h2-project)",
+          fontSize: "28px",
           fontWeight: 600,
           margin: "0 0 6px",
-          lineHeight: 1.15,
+          lineHeight: 1.2,
           color: "var(--cat-text)",
-          letterSpacing: "-0.025em",
+          letterSpacing: "-0.015em",
+          fontFamily: "var(--cat-font)",
         }}
-        data-testid={`text-project-title-${index}`}
+        data-testid={`text-project-title-${project.key}`}
       >
         {project.title}
       </h2>
-      {project.tagline && (
-        <p
-          style={{
-            fontSize: "var(--cat-fs-body)",
-            color: "var(--cat-text-secondary)",
-            fontStyle: "italic",
-            margin: "0 0 16px",
-          }}
-        >
-          {project.tagline}
-        </p>
-      )}
+      <p
+        style={{
+          fontSize: "15px",
+          color: "var(--cat-text-secondary)",
+          fontStyle: "italic",
+          margin: "0 0 14px",
+          fontFamily: "var(--cat-font-body)",
+        }}
+      >
+        {project.tagline}
+      </p>
       {project.paragraphs.map((p, i) => (
         <p
           key={i}
           style={{
-            fontSize: "var(--cat-fs-body)",
+            fontSize: "16px",
             lineHeight: 1.7,
-            color: i === 0 ? "var(--cat-text)" : "var(--cat-text-secondary)",
-            margin: i === project.paragraphs.length - 1 ? "0 0 18px" : "0 0 14px",
+            color: "var(--cat-text)",
+            margin: "0 0 18px",
+            fontFamily: "var(--cat-font-body)",
           }}
-          data-testid={`text-project-desc-${index}-${i}`}
+          data-testid={`text-project-desc-${project.key}-${i}`}
         >
           {p}
         </p>
@@ -86,7 +100,7 @@ function ProjectBody({ project, index }: { project: Project; index: number }) {
         {project.tags.map((tag) => (
           <span
             key={tag}
-            className="catalog-tag"
+            className="key-tag"
             data-testid={`chip-tag-${tag.replace(/\s+/g, "-").toLowerCase()}`}
           >
             {tag}
@@ -95,22 +109,43 @@ function ProjectBody({ project, index }: { project: Project; index: number }) {
       </div>
     </>
   );
+
+  return (
+    <div
+      className={`key-card key-card--${project.key}`}
+      data-testid={`card-project-${project.key}`}
+      style={{ marginBottom: "1.25rem" }}
+    >
+      {project.wide ? (
+        <div>
+          <div style={{ marginBottom: "1.5rem" }}>{body}</div>
+          {project.figure}
+        </div>
+      ) : (
+        <div className="work-card-grid">
+          <div>{project.figure}</div>
+          <div>{body}</div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function FeaturedWork() {
   return (
     <section id="work" className="catalog-section" style={{ paddingTop: "1.5rem" }} data-testid="section-work">
       <div className="px-4">
-        <div className="catalog-panel">
+        <div className="catalog-panel" style={{ maxWidth: "1040px" }}>
           <div className="catalog-section-header">
             <h2
               style={{
-                fontSize: "var(--cat-fs-eyebrow)",
-                letterSpacing: "var(--cat-ls-eyebrow)",
+                fontSize: "13px",
+                letterSpacing: "0.1em",
                 color: "var(--cat-text-tertiary)",
                 textTransform: "uppercase",
                 margin: 0,
-                fontWeight: 500,
+                fontWeight: 600,
+                fontFamily: "var(--cat-font)",
               }}
               data-testid="heading-selected-work"
             >
@@ -118,50 +153,21 @@ export default function FeaturedWork() {
             </h2>
             <p
               style={{
-                fontSize: "var(--cat-fs-eyebrow)",
-                letterSpacing: "var(--cat-ls-eyebrow)",
+                fontSize: "13px",
+                letterSpacing: "0.1em",
                 color: "var(--cat-text-tertiary)",
                 textTransform: "uppercase",
                 margin: 0,
-                fontWeight: 500,
+                fontWeight: 600,
+                fontFamily: "var(--cat-font)",
               }}
             >
-              {String(projects.length).padStart(2, "0")} Entries
+              {String(projects.length).padStart(2, "0")} Projects
             </p>
           </div>
 
-          {projects.map((project, index) => (
-            <div key={project.entryNumber} data-testid={`card-project-${index}`}>
-              {index > 0 && <hr className="catalog-divider" />}
-              <EntryRow
-                entryNumber={project.entryNumber}
-                numeral={project.numeral}
-                label={project.label}
-                subLabel={project.subLabel}
-              >
-                {project.href ? (
-                  project.external ? (
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: "inherit", textDecoration: "none" }}
-                    >
-                      <ProjectBody project={project} index={index} />
-                    </a>
-                  ) : (
-                    <Link
-                      href={project.href}
-                      style={{ color: "inherit", textDecoration: "none", display: "block" }}
-                    >
-                      <ProjectBody project={project} index={index} />
-                    </Link>
-                  )
-                ) : (
-                  <ProjectBody project={project} index={index} />
-                )}
-              </EntryRow>
-            </div>
+          {projects.map((project) => (
+            <ProjectCard key={project.key} project={project} />
           ))}
         </div>
       </div>

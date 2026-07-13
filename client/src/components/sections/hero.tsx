@@ -1,13 +1,4 @@
-const D = {
-  bg:          "#1C1C1C",
-  primary:     "#F2EFE8",
-  secondary:   "#A8A49B",
-  tertiary:    "#7A7771",
-  border:      "rgba(242, 239, 232, 0.15)",
-  borderStrong:"rgba(242, 239, 232, 0.35)",
-  radius:      "10px",
-  font:        '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-};
+import { HeroFigure } from "@/components/figures/figures";
 
 export default function Hero() {
   return (
@@ -15,75 +6,41 @@ export default function Hero() {
       data-testid="section-hero"
       style={{
         background: "var(--cat-bg)",
-        fontFamily: D.font,
-        color: D.primary,
+        color: "var(--cat-text)",
         WebkitFontSmoothing: "antialiased",
         MozOsxFontSmoothing: "grayscale",
-        padding: "calc(56px + 3rem) 2rem 3rem",
+        padding: "calc(56px + 4rem) 2rem 4rem",
       }}
     >
-      <div style={{ maxWidth: "960px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1040px", margin: "0 auto" }}>
         <div className="hero-grid">
-          {/* Index column */}
-          <div className="hero-index-col" style={{ paddingTop: "4px" }}>
-            <p
-              style={{
-                fontSize: "13px",
-                letterSpacing: "0.14em",
-                color: D.tertiary,
-                margin: 0,
-                textTransform: "uppercase",
-                fontWeight: 500,
-              }}
-              data-testid="text-hero-eyebrow-entry"
-            >
-              Entry № 01
-            </p>
-            <p
-              style={{
-                fontSize: "72px",
-                fontWeight: 500,
-                margin: "14px 0",
-                lineHeight: 1,
-                letterSpacing: "-0.03em",
-                color: D.primary,
-              }}
-            >
-              00
-            </p>
-            <p
-              style={{
-                fontSize: "13px",
-                letterSpacing: "0.14em",
-                color: D.tertiary,
-                margin: 0,
-                textTransform: "uppercase",
-                fontWeight: 500,
-              }}
-            >
-              Introduction
-            </p>
-          </div>
-
-          {/* Content column */}
+          {/* Text column */}
           <div>
             <p
-              style={{ fontSize: "16px", color: D.secondary, margin: "0 0 20px" }}
+              style={{
+                fontSize: "12px",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "var(--cat-text-tertiary)",
+                fontWeight: 600,
+                fontFamily: "var(--cat-font)",
+                margin: "0 0 18px",
+              }}
               data-testid="text-hero-eyebrow"
             >
-              Filed under: senior pm · enterprise AI · abu dhabi
+              Senior PM · Enterprise AI · Abu Dhabi
             </p>
 
             <h1
               className="hero-h1"
               style={{
-                fontSize: "40px",
+                fontSize: "42px",
                 fontWeight: 600,
-                margin: "0 0 20px",
+                margin: "0 0 18px",
                 lineHeight: 1.15,
-                letterSpacing: "-0.025em",
-                color: D.primary,
-                maxWidth: "720px",
+                letterSpacing: "-0.02em",
+                color: "var(--cat-text)",
+                fontFamily: "var(--cat-font)",
               }}
               data-testid="text-hero-headline"
             >
@@ -92,11 +49,12 @@ export default function Hero() {
 
             <p
               style={{
-                fontSize: "16px",
+                fontSize: "17px",
                 lineHeight: 1.65,
-                color: D.secondary,
+                color: "var(--cat-text-secondary)",
                 margin: "0 0 28px",
-                maxWidth: "620px",
+                maxWidth: "540px",
+                fontFamily: "var(--cat-font-body)",
               }}
               data-testid="text-hero-body"
             >
@@ -112,19 +70,19 @@ export default function Hero() {
                 data-testid="button-view-work"
                 style={{
                   fontSize: "15px",
-                  fontWeight: 500,
-                  padding: "12px 22px",
-                  borderRadius: D.radius,
-                  border: `0.5px solid ${D.borderStrong}`,
-                  color: D.primary,
-                  background: "transparent",
+                  fontWeight: 600,
+                  padding: "12px 24px",
+                  borderRadius: "10px",
+                  border: "1px solid var(--cat-text)",
+                  color: "var(--cat-bg)",
+                  background: "var(--cat-text)",
                   textDecoration: "none",
                   cursor: "pointer",
-                  fontFamily: D.font,
+                  fontFamily: "var(--cat-font)",
                   transition: "all 0.15s",
                 }}
-                onMouseEnter={e => (e.currentTarget.style.background = "rgba(242,239,232,0.05)")}
-                onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
+                onMouseEnter={e => (e.currentTarget.style.background = "#3A372F")}
+                onMouseLeave={e => (e.currentTarget.style.background = "var(--cat-text)")}
               >
                 View selected work →
               </a>
@@ -134,25 +92,19 @@ export default function Hero() {
                 data-testid="button-download-cv"
                 style={{
                   fontSize: "15px",
-                  fontWeight: 500,
-                  padding: "12px 22px",
-                  borderRadius: D.radius,
-                  border: `0.5px solid ${D.border}`,
-                  color: D.secondary,
+                  fontWeight: 600,
+                  padding: "12px 24px",
+                  borderRadius: "10px",
+                  border: "1px solid var(--cat-rule-strong)",
+                  color: "var(--cat-text)",
                   background: "transparent",
                   textDecoration: "none",
                   cursor: "pointer",
-                  fontFamily: D.font,
+                  fontFamily: "var(--cat-font)",
                   transition: "all 0.15s",
                 }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.color = D.primary;
-                  e.currentTarget.style.borderColor = D.borderStrong;
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.color = D.secondary;
-                  e.currentTarget.style.borderColor = D.border;
-                }}
+                onMouseEnter={e => (e.currentTarget.style.background = "rgba(34,32,28,0.04)")}
+                onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
               >
                 Download CV
               </a>
@@ -163,29 +115,34 @@ export default function Hero() {
                 data-testid="button-linkedin"
                 style={{
                   fontSize: "15px",
-                  fontWeight: 500,
-                  padding: "12px 22px",
-                  borderRadius: D.radius,
-                  border: `0.5px solid ${D.border}`,
-                  color: D.secondary,
+                  fontWeight: 600,
+                  padding: "12px 24px",
+                  borderRadius: "10px",
+                  border: "1px solid var(--cat-rule-strong)",
+                  color: "var(--cat-text-secondary)",
                   background: "transparent",
                   textDecoration: "none",
                   cursor: "pointer",
-                  fontFamily: D.font,
+                  fontFamily: "var(--cat-font)",
                   transition: "all 0.15s",
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.color = D.primary;
-                  e.currentTarget.style.borderColor = D.borderStrong;
+                  e.currentTarget.style.color = "var(--cat-text)";
+                  e.currentTarget.style.background = "rgba(34,32,28,0.04)";
                 }}
                 onMouseLeave={e => {
-                  e.currentTarget.style.color = D.secondary;
-                  e.currentTarget.style.borderColor = D.border;
+                  e.currentTarget.style.color = "var(--cat-text-secondary)";
+                  e.currentTarget.style.background = "transparent";
                 }}
               >
                 LinkedIn
               </a>
             </div>
+          </div>
+
+          {/* Figure column */}
+          <div aria-hidden="false">
+            <HeroFigure />
           </div>
         </div>
       </div>

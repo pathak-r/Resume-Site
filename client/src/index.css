@@ -40,8 +40,8 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Lucid Flow Design System */
@@ -104,29 +104,45 @@
   --radius: 1.5rem;
 
   /* ---------------------------------------------------------------- */
-  /* Catalog design system (editorial / archival redesign)            */
-  /* Use these tokens for any newly-styled section. Existing --lf-*   */
-  /* tokens remain in place for sections not yet migrated.            */
+  /* Warm-paper design system (light editorial redesign)               */
+  /* Bone paper background, ink text, pale color-keyed project tints.  */
   /* ---------------------------------------------------------------- */
-  --cat-bg: #1C1C1C;
-  --cat-panel: #1C1C1C;
-  --cat-bg-card: #252525;
-  --cat-text: #F2EFE8;
-  --cat-text-secondary: #A8A49B;
-  --cat-text-tertiary: #7A7771;
-  --cat-rule: rgba(242, 239, 232, 0.15);
-  --cat-accent: #4CC9A0;
+  --cat-bg: #F5F2EA;
+  --cat-panel: #F5F2EA;
+  --cat-bg-card: #FDFCF8;
+  --cat-text: #22201C;
+  --cat-text-secondary: #6E6A5E;
+  --cat-text-tertiary: #8A8474;
+  --cat-rule: #E5E0D3;
+  --cat-rule-strong: #D6D0C0;
+  --cat-accent: #2E6E4E;
 
-  --cat-rule-width: 0.5px;
+  /* Project key colors — one pale tint per project */
+  --key-sage: #2E6E4E;
+  --key-sage-tint: #E7EEE3;
+  --key-sage-line: #D5E0CE;
+  --key-sky: #33608C;
+  --key-sky-tint: #E4EBF2;
+  --key-sky-line: #D0DCE8;
+  --key-apricot: #B4562E;
+  --key-apricot-tint: #F6E9DC;
+  --key-apricot-line: #EAD7C4;
+  --key-lavender: #5B4E8C;
+  --key-lavender-tint: #EAE7F2;
+  --key-lavender-line: #DBD6E8;
+
+  --cat-rule-width: 1px;
   --cat-radius: 8px;
-  --cat-radius-card: 12px;
+  --cat-radius-card: 14px;
 
   --cat-index-col: 220px;
   --cat-grid-gap: 2rem;
   --cat-panel-max: 960px;
 
-  /* Font stack — Inter first, always */
-  --cat-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Font stacks — Bricolage Grotesque for headings/UI, Source Serif for body */
+  --cat-font: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --cat-font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --cat-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   /* Type scale — unified with hero card */
   --cat-fs-eyebrow: 11px;
@@ -147,7 +163,7 @@
     box-sizing: border-box;
   }
   body {
-    font-family: var(--cat-font);
+    font-family: var(--cat-font-body);
     background-color: var(--cat-bg);
     color: var(--cat-text);
     -webkit-font-smoothing: antialiased;
@@ -157,52 +173,56 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--cat-font);
     font-weight: 600;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.015em;
     color: var(--cat-text);
+  }
+  button, input, select, textarea {
+    font-family: var(--cat-font);
   }
 }
 
 @layer utilities {
-  /* Gradient CTA */
+  /* Primary CTA — ink fill on paper */
   .btn-primary-gradient {
-    background: linear-gradient(135deg, #a83028, #ff7668);
-    color: #ffffff;
+    background: #22201C;
+    color: #F5F2EA;
     border-radius: 9999px;
-    transition: box-shadow 0.2s ease;
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
   }
   .btn-primary-gradient:hover {
-    box-shadow: 0 8px 40px rgba(168, 48, 40, 0.18);
+    box-shadow: 0 6px 24px rgba(34, 32, 28, 0.22);
   }
 
   /* Glass nav */
   .glass-nav {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(245, 242, 234, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }
 
-  /* Ambient shadow */
+  /* Ambient shadow — soft paper lift */
   .shadow-ambient {
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 1px 2px rgba(34, 32, 28, 0.04), 0 8px 24px rgba(34, 32, 28, 0.06);
   }
   .shadow-ambient-hover:hover {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 4px rgba(34, 32, 28, 0.05), 0 12px 32px rgba(34, 32, 28, 0.09);
   }
 
   /* Ghost border */
   .ghost-border {
-    outline: 1px solid rgba(171, 173, 174, 0.15);
+    outline: 1px solid var(--cat-rule);
   }
 
   /* Section surface levels */
   .surface-base { background-color: var(--cat-bg); }
   .surface-low { background-color: var(--cat-panel); }
-  .surface-lowest { background-color: var(--cat-bg-card); }
+  .surface-lowest { background-color: var(--cat-bg-card); border: 1px solid var(--cat-rule); }
 
-  /* Teal chip */
+  /* Sky chip (was teal) */
   .chip-teal {
-    background-color: #0ac4fd;
-    color: #00394d;
+    background-color: var(--key-sky-tint);
+    color: var(--key-sky);
+    border: 1px solid var(--key-sky-line);
     border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 600;
@@ -301,14 +321,16 @@
   }
   .catalog-btn:hover {
     color: var(--cat-text);
-    background: rgba(242, 239, 232, 0.06);
+    background: rgba(34, 32, 28, 0.04);
   }
   .catalog-btn--primary {
     border-color: var(--cat-text);
-    color: var(--cat-text);
+    background: var(--cat-text);
+    color: var(--cat-bg);
   }
   .catalog-btn--primary:hover {
-    background: rgba(242, 239, 232, 0.07);
+    background: #3A372F;
+    color: var(--cat-bg);
   }
 
   /* Tags — outline chip (transparent, secondary text) */
@@ -325,12 +347,43 @@
     letter-spacing: 0.01em;
   }
 
-  /* Filled tag — white bg, primary text (used for Core Expertise) */
+  /* Filled tag — card bg, primary text (used for Core Expertise) */
   .catalog-tag--filled {
     background: var(--cat-bg-card);
     color: var(--cat-text);
     font-size: 12px;
     padding: 4px 11px;
+  }
+
+  /* Body copy — serif */
+  .serif-body {
+    font-family: var(--cat-font-body);
+  }
+
+  /* Color-keyed project card */
+  .key-card {
+    border-radius: var(--cat-radius-card);
+    border: 1px solid var(--cat-rule);
+    padding: 1.75rem;
+  }
+  .key-card--sage { background: var(--key-sage-tint); border-color: var(--key-sage-line); }
+  .key-card--sky { background: var(--key-sky-tint); border-color: var(--key-sky-line); }
+  .key-card--apricot { background: var(--key-apricot-tint); border-color: var(--key-apricot-line); }
+  .key-card--lavender { background: var(--key-lavender-tint); border-color: var(--key-lavender-line); }
+
+  /* Tag chip on tinted cards */
+  .key-tag {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(253, 252, 248, 0.65);
+    border: 1px solid rgba(34, 32, 28, 0.1);
+    border-radius: var(--cat-radius);
+    padding: 3px 10px;
+    font-size: var(--cat-fs-tag);
+    color: var(--cat-text-secondary);
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    font-family: var(--cat-font);
   }
 
   /* Section header (inside panel) — eyebrow left, count right */
@@ -369,22 +422,51 @@
     color: var(--cat-text-tertiary);
   }
 
-  /* Hero two-column grid — collapses to single column on mobile */
+  /* Hero two-column grid — text left, figure right; collapses on mobile */
   .hero-grid {
     display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 3rem;
-    align-items: start;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 3.5rem;
+    align-items: center;
   }
 
-  @media (max-width: 639px) {
+  @media (max-width: 767px) {
     .hero-grid {
       grid-template-columns: 1fr;
-      gap: 1.5rem;
+      gap: 2rem;
     }
 
     .hero-h1 {
       font-size: 30px !important;
+    }
+  }
+
+  /* Work card — figure + text two-column, collapses on mobile */
+  .work-card-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 2rem;
+    align-items: center;
+  }
+
+  @media (max-width: 767px) {
+    .work-card-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+
+  /* Two-up card grid */
+  .two-up-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  @media (max-width: 767px) {
+    .two-up-grid {
+      grid-template-columns: 1fr;
     }
   }
 }

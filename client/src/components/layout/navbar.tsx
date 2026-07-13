@@ -3,11 +3,12 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const D = {
-  bg:        "#1C1C1C",
-  primary:   "#F2EFE8",
-  secondary: "#A8A49B",
-  border:    "rgba(242, 239, 232, 0.15)",
-  font:      '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  bg:        "rgba(245, 242, 234, 0.88)",
+  bgSolid:   "#F5F2EA",
+  primary:   "#22201C",
+  secondary: "#6E6A5E",
+  border:    "#E5E0D3",
+  font:      '"Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
 };
 
 export default function Navbar() {
@@ -36,7 +37,9 @@ export default function Navbar() {
       className="fixed top-0 w-full z-50"
       style={{
         background: D.bg,
-        borderBottom: `0.5px solid ${D.border}`,
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        borderBottom: `1px solid ${D.border}`,
         fontFamily: D.font,
         WebkitFontSmoothing: "antialiased",
       }}
@@ -47,7 +50,7 @@ export default function Navbar() {
       >
         <Link
           href="/"
-          style={{ color: D.primary, fontSize: "18px", fontWeight: 500, letterSpacing: "-0.01em", textDecoration: "none" }}
+          style={{ color: D.primary, fontSize: "18px", fontWeight: 600, letterSpacing: "-0.01em", textDecoration: "none" }}
           data-testid="link-logo"
         >
           rohit pathak
@@ -85,7 +88,7 @@ export default function Navbar() {
       {isOpen && (
         <div
           className="md:hidden absolute top-full left-0 w-full px-8 py-6 flex flex-col gap-4"
-          style={{ background: D.bg, borderBottom: `0.5px solid ${D.border}` }}
+          style={{ background: D.bgSolid, borderBottom: `1px solid ${D.border}` }}
         >
           {links.map((link) => (
             <a
@@ -107,9 +110,9 @@ export default function Navbar() {
               fontWeight: 500,
               padding: "10px 18px",
               borderRadius: "10px",
-              border: `0.5px solid ${D.border}`,
-              color: D.primary,
-              background: "transparent",
+              border: `1px solid ${D.primary}`,
+              color: D.bgSolid,
+              background: D.primary,
               textDecoration: "none",
               textAlign: "center",
             }}

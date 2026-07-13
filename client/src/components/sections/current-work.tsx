@@ -1,91 +1,75 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
-
-const Hi = ({ children }: { children: React.ReactNode }) => (
-  <span style={{ color: "var(--cat-accent)", fontWeight: 600 }}>{children}</span>
-);
+import { VolveFigure, PropScanFigure } from "@/components/figures/figures";
 
 type Project = {
-  eyebrow: React.ReactNode;
-  eyebrowBright?: boolean;
+  key: "sage" | "sky" | "apricot" | "lavender";
+  keyColor: string;
+  label: string;
   title: string;
-  tagline: React.ReactNode;
-  description: React.ReactNode;
+  tagline: string;
+  description: string;
   tags: string[];
+  figure: React.ReactNode;
   cta: { label: string; href: string } | null;
 };
 
 const projects: Project[] = [
   {
-    eyebrow: "Geo-Agentic AI",
+    key: "apricot",
+    keyColor: "var(--key-apricot)",
+    label: "Geo-Agentic AI · Live demo",
     title: "Volve Field RAG Explorer",
-    tagline: <><Hi>Agentic RAG</Hi> for Equinor's open Volve oil field dataset.</>,
-    description: (
-      <>
-        Daily drilling reports, production data, and well completion reports,
-        structured and unstructured, ingested into an agentic RAG system.
-        Visualises production trends and answers operator questions about well
-        performance in <Hi>natural language</Hi>.
-      </>
-    ),
+    tagline: "Agentic RAG for Equinor's open Volve oil field dataset.",
+    description:
+      "Daily drilling reports, production data, and well completion reports, structured and unstructured, ingested into an agentic RAG system. Visualises production trends and answers operator questions about well performance in natural language.",
     tags: ["FAISS", "OpenAI", "FastAPI", "React", "Recharts", "Python"],
+    figure: <VolveFigure />,
     cta: { label: "Explore live demo", href: "/geo-agentic-int" },
   },
   {
-    eyebrow: (
-      <>
-        <Hi>Vision AI</Hi>
-        <span style={{ color: "var(--cat-text-tertiary)" }}> · </span>
-        <Hi>TestFlight</Hi>
-      </>
-    ),
+    key: "lavender",
+    keyColor: "var(--key-lavender)",
+    label: "Vision AI · TestFlight",
     title: "PropScan",
-    tagline: <><Hi>Vision-LLM</Hi> defect detection for property inspections.</>,
-    description: (
-      <>
-        Mobile inspection app using Gemini 2.5 Flash as a vision LLM to detect,
-        classify, and localise construction defects from user-captured photos.
-        Outputs annotated photos and an aggregated defect register with an overall
-        site verdict.
-      </>
-    ),
-    tags: ["Gemini 2.5 Flash", "Structured JSON", "React Native", "Node.js", "Supabase", "PDFKit"],
+    tagline: "Vision-LLM defect detection for property inspections.",
+    description:
+      "Mobile inspection app using Gemini 2.5 Flash as a vision LLM to detect, classify, and localise construction defects from user-captured photos. Outputs annotated photos and an aggregated defect register with an overall site verdict.",
+    tags: ["Gemini 2.5 Flash", "Structured JSON", "React Native", "Node.js", "Supabase"],
+    figure: <PropScanFigure />,
     cta: null,
   },
 ];
 
-function ProjectCol({ project, isRight }: { project: Project; isRight: boolean }) {
+function ProjectCard({ project }: { project: Project }) {
   const inner = (
     <div
-      style={{
-        padding: isRight ? "0 0 0 2.5rem" : "0 2.5rem 0 0",
-        borderLeft: isRight ? "0.5px solid var(--cat-rule)" : "none",
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-      }}
+      className={`key-card key-card--${project.key}`}
+      style={{ display: "flex", flexDirection: "column", height: "100%" }}
       data-testid={`col-current-${project.title.replace(/\s+/g, "-").toLowerCase()}`}
     >
+      <div style={{ marginBottom: "1.25rem" }}>{project.figure}</div>
+
       <p
         style={{
           fontSize: "11px",
-          letterSpacing: "0.12em",
+          letterSpacing: "0.1em",
           textTransform: "uppercase",
-          color: "var(--cat-text-tertiary)",
-          fontWeight: 500,
-          margin: "0 0 14px",
+          color: project.keyColor,
+          fontWeight: 600,
+          margin: "0 0 10px",
           fontFamily: "var(--cat-font)",
         }}
       >
-        {project.eyebrow}
+        {project.label}
       </p>
 
       <h3
         style={{
           fontSize: "22px",
           fontWeight: 600,
-          lineHeight: 1.15,
-          letterSpacing: "-0.02em",
+          lineHeight: 1.2,
+          letterSpacing: "-0.015em",
           color: "var(--cat-text)",
           margin: "0 0 6px",
           fontFamily: "var(--cat-font)",
@@ -97,12 +81,12 @@ function ProjectCol({ project, isRight }: { project: Project; isRight: boolean }
 
       <p
         style={{
-          fontSize: "13px",
+          fontSize: "14px",
           color: "var(--cat-text-secondary)",
           fontStyle: "italic",
-          margin: "0 0 14px",
+          margin: "0 0 12px",
           lineHeight: 1.55,
-          fontFamily: "var(--cat-font)",
+          fontFamily: "var(--cat-font-body)",
         }}
       >
         {project.tagline}
@@ -110,21 +94,21 @@ function ProjectCol({ project, isRight }: { project: Project; isRight: boolean }
 
       <p
         style={{
-          fontSize: "var(--cat-fs-body)",
+          fontSize: "15px",
           lineHeight: 1.7,
-          color: "var(--cat-text-secondary)",
+          color: "var(--cat-text)",
           margin: "0 0 18px",
-          fontFamily: "var(--cat-font)",
+          fontFamily: "var(--cat-font-body)",
         }}
       >
         {project.description}
       </p>
 
-      <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: project.cta ? "20px" : "0" }}>
+      <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: project.cta ? "18px" : 0 }}>
         {project.tags.map((tag) => (
           <span
             key={tag}
-            className="catalog-tag"
+            className="key-tag"
             data-testid={`chip-tag-current-${tag.replace(/\s+/g, "-").toLowerCase()}`}
           >
             {tag}
@@ -138,14 +122,14 @@ function ProjectCol({ project, isRight }: { project: Project; isRight: boolean }
             display: "inline-flex",
             alignItems: "center",
             gap: "8px",
-            fontSize: "13px",
+            fontSize: "14px",
             fontWeight: 600,
-            color: "var(--cat-accent)",
-            background: "transparent",
-            border: "0.5px solid rgba(76,201,160,0.45)",
-            borderRadius: "8px",
+            color: "var(--cat-bg)",
+            background: project.keyColor,
+            border: "none",
+            borderRadius: "9px",
             padding: "10px 18px",
-            marginTop: "20px",
+            marginTop: "auto",
             fontFamily: "var(--cat-font)",
             letterSpacing: "0.01em",
             alignSelf: "flex-start",
@@ -163,7 +147,7 @@ function ProjectCol({ project, isRight }: { project: Project; isRight: boolean }
     return (
       <Link
         href={project.cta.href}
-        style={{ textDecoration: "none", color: "inherit", display: "block" }}
+        style={{ textDecoration: "none", color: "inherit", display: "block", height: "100%" }}
       >
         {inner}
       </Link>
@@ -175,17 +159,17 @@ function ProjectCol({ project, isRight }: { project: Project; isRight: boolean }
 
 export default function CurrentWork() {
   return (
-    <section className="catalog-section" data-testid="section-current-work">
-      <div className="catalog-panel">
+    <section className="catalog-section" data-testid="section-current-work" style={{ borderTop: "none" }}>
+      <div className="catalog-panel" style={{ maxWidth: "1040px" }}>
         <div className="catalog-section-header">
           <p
             style={{
-              fontSize: "14px",
-              letterSpacing: "0.06em",
-              color: "var(--cat-text-secondary)",
+              fontSize: "13px",
+              letterSpacing: "0.1em",
+              color: "var(--cat-text-tertiary)",
               textTransform: "uppercase",
               margin: 0,
-              fontWeight: 500,
+              fontWeight: 600,
               fontFamily: "var(--cat-font)",
             }}
             data-testid="heading-current-work"
@@ -194,12 +178,12 @@ export default function CurrentWork() {
           </p>
           <p
             style={{
-              fontSize: "var(--cat-fs-eyebrow)",
-              letterSpacing: "var(--cat-ls-eyebrow)",
+              fontSize: "13px",
+              letterSpacing: "0.1em",
               color: "var(--cat-text-tertiary)",
               textTransform: "uppercase",
               margin: 0,
-              fontWeight: 500,
+              fontWeight: 600,
               fontFamily: "var(--cat-font)",
             }}
           >
@@ -207,16 +191,9 @@ export default function CurrentWork() {
           </p>
         </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "0",
-            alignItems: "start",
-          }}
-        >
-          {projects.map((p, i) => (
-            <ProjectCol key={p.title} project={p} isRight={i === 1} />
+        <div className="two-up-grid">
+          {projects.map((p) => (
+            <ProjectCard key={p.title} project={p} />
           ))}
         </div>
       </div>

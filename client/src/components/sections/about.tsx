@@ -1,5 +1,3 @@
-import EntryRow from "@/components/catalog/entry-row";
-
 const expertise = [
   "Product strategy",
   "Generative AI",
@@ -28,17 +26,33 @@ export default function About() {
   return (
     <section id="about" className="catalog-section" data-testid="section-about">
       <div className="px-4">
-        <div className="catalog-panel">
-          <EntryRow entryNumber="№ 05" numeral="05" label="About">
-            <p className="catalog-meta" style={{ marginBottom: "6px" }}>A brief entry on</p>
+        <div className="catalog-panel" style={{ maxWidth: "1040px" }}>
+          <div className="catalog-section-header">
+            <p
+              style={{
+                fontSize: "13px",
+                letterSpacing: "0.1em",
+                color: "var(--cat-text-tertiary)",
+                textTransform: "uppercase",
+                margin: 0,
+                fontWeight: 600,
+                fontFamily: "var(--cat-font)",
+              }}
+            >
+              About
+            </p>
+          </div>
+
+          <div style={{ maxWidth: "720px" }}>
             <h2
               style={{
-                fontSize: "var(--cat-fs-h2)",
+                fontSize: "32px",
                 fontWeight: 600,
                 margin: "0 0 18px",
-                lineHeight: 1.15,
+                lineHeight: 1.2,
                 color: "var(--cat-text)",
-                letterSpacing: "-0.025em",
+                letterSpacing: "-0.015em",
+                fontFamily: "var(--cat-font)",
               }}
               data-testid="heading-about"
             >
@@ -47,10 +61,11 @@ export default function About() {
 
             <p
               style={{
-                fontSize: "var(--cat-fs-body)",
+                fontSize: "17px",
                 lineHeight: 1.75,
                 color: "var(--cat-text)",
                 margin: "0 0 14px",
+                fontFamily: "var(--cat-font-body)",
               }}
             >
               I prototype before I pitch. Every real idea starts as something I build
@@ -60,10 +75,11 @@ export default function About() {
             </p>
             <p
               style={{
-                fontSize: "var(--cat-fs-body)",
+                fontSize: "17px",
                 lineHeight: 1.75,
                 color: "var(--cat-text-secondary)",
-                margin: "0 0 20px",
+                margin: "0 0 28px",
+                fontFamily: "var(--cat-font-body)",
               }}
             >
               It's slower at the start and faster at the end. Most of the cost of
@@ -72,12 +88,13 @@ export default function About() {
 
             <p
               style={{
-                fontSize: "var(--cat-fs-eyebrow)",
-                letterSpacing: "var(--cat-ls-eyebrow)",
+                fontSize: "11px",
+                letterSpacing: "0.1em",
                 color: "var(--cat-text-tertiary)",
                 textTransform: "uppercase",
                 margin: "0 0 10px",
-                fontWeight: 500,
+                fontWeight: 600,
+                fontFamily: "var(--cat-font)",
               }}
             >
               Core Expertise
@@ -92,12 +109,13 @@ export default function About() {
 
             <p
               style={{
-                fontSize: "var(--cat-fs-eyebrow)",
-                letterSpacing: "var(--cat-ls-eyebrow)",
+                fontSize: "11px",
+                letterSpacing: "0.1em",
                 color: "var(--cat-text-tertiary)",
                 textTransform: "uppercase",
                 margin: "0 0 10px",
-                fontWeight: 500,
+                fontWeight: 600,
+                fontFamily: "var(--cat-font)",
               }}
             >
               Education
@@ -106,7 +124,7 @@ export default function About() {
               style={{
                 background: "var(--cat-bg-card)",
                 borderRadius: "var(--cat-radius-card)",
-                border: `var(--cat-rule-width) solid var(--cat-rule)`,
+                border: "1px solid var(--cat-rule)",
                 padding: "1.25rem 1.5rem",
               }}
             >
@@ -118,21 +136,33 @@ export default function About() {
                     paddingTop: i === 0 ? 0 : "1rem",
                     paddingBottom: i === education.length - 1 ? 0 : "1rem",
                     borderBottom:
-                      i === education.length - 1
-                        ? "none"
-                        : `var(--cat-rule-width) solid var(--cat-rule)`,
+                      i === education.length - 1 ? "none" : "1px solid var(--cat-rule)",
                   }}
                 >
-                  <div style={{ fontSize: "var(--cat-fs-body)", fontWeight: 500, color: "var(--cat-text)" }}>
+                  <div
+                    style={{
+                      fontSize: "16px",
+                      fontWeight: 600,
+                      color: "var(--cat-text)",
+                      fontFamily: "var(--cat-font)",
+                    }}
+                  >
                     {ed.degree}
                   </div>
-                  <div style={{ fontSize: "14px", color: "var(--cat-text-secondary)", marginTop: "2px" }}>
+                  <div
+                    style={{
+                      fontSize: "14px",
+                      color: "var(--cat-text-secondary)",
+                      marginTop: "2px",
+                      fontFamily: "var(--cat-font-body)",
+                    }}
+                  >
                     {ed.school}
                   </div>
                 </div>
               ))}
             </div>
-          </EntryRow>
+          </div>
         </div>
       </div>
     </section>

@@ -147,7 +147,7 @@ export default function Experience() {
                     fontSize: "var(--cat-fs-body)",
                     color: "var(--cat-text-secondary)",
                     margin: "0 0 14px",
-                    fontFamily: F,
+                    fontFamily: "var(--cat-font-body)",
                   }}
                   data-testid={`text-company-${index}`}
                 >
@@ -159,7 +159,7 @@ export default function Experience() {
                     lineHeight: 1.65,
                     color: "var(--cat-text)",
                     margin: "0 0 12px",
-                    fontFamily: F,
+                    fontFamily: "var(--cat-font-body)",
                   }}
                   data-testid={`text-exp-desc-${index}`}
                 >
@@ -177,7 +177,7 @@ export default function Experience() {
                         lineHeight: 1.65,
                         color: "var(--cat-text-secondary)",
                         marginBottom: "6px",
-                        fontFamily: F,
+                        fontFamily: "var(--cat-font-body)",
                       }}
                       data-testid={`text-achievement-${index}-${i}`}
                     >

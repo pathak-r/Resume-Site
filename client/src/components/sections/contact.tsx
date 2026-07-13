@@ -1,5 +1,3 @@
-import EntryRow from "@/components/catalog/entry-row";
-
 const contactItems = [
   {
     label: "Email",
@@ -22,17 +20,33 @@ export default function Contact() {
   return (
     <section id="contact" className="catalog-section" data-testid="section-contact">
       <div className="px-4">
-        <div className="catalog-panel">
-          <EntryRow entryNumber="№ 06" numeral="06" label="Contact">
-            <p className="catalog-meta" style={{ marginBottom: "6px" }}>A brief entry on</p>
+        <div className="catalog-panel" style={{ maxWidth: "1040px" }}>
+          <div className="catalog-section-header">
+            <p
+              style={{
+                fontSize: "13px",
+                letterSpacing: "0.1em",
+                color: "var(--cat-text-tertiary)",
+                textTransform: "uppercase",
+                margin: 0,
+                fontWeight: 600,
+                fontFamily: "var(--cat-font)",
+              }}
+            >
+              Contact
+            </p>
+          </div>
+
+          <div style={{ maxWidth: "620px" }}>
             <h2
               style={{
-                fontSize: "var(--cat-fs-h2)",
+                fontSize: "32px",
                 fontWeight: 600,
                 margin: "0 0 12px",
-                lineHeight: 1.15,
+                lineHeight: 1.2,
                 color: "var(--cat-text)",
-                letterSpacing: "-0.025em",
+                letterSpacing: "-0.015em",
+                fontFamily: "var(--cat-font)",
               }}
               data-testid="heading-contact"
             >
@@ -40,10 +54,11 @@ export default function Contact() {
             </h2>
             <p
               style={{
-                fontSize: "var(--cat-fs-body)",
+                fontSize: "17px",
                 lineHeight: 1.75,
                 color: "var(--cat-text-secondary)",
                 margin: "0 0 20px",
+                fontFamily: "var(--cat-font-body)",
               }}
             >
               Open to new opportunities in AI product leadership and enterprise SaaS.
@@ -54,7 +69,7 @@ export default function Contact() {
               style={{
                 background: "var(--cat-bg-card)",
                 borderRadius: "var(--cat-radius-card)",
-                border: `var(--cat-rule-width) solid var(--cat-rule)`,
+                border: "1px solid var(--cat-rule)",
                 padding: "1.25rem 1.5rem",
               }}
             >
@@ -70,18 +85,17 @@ export default function Contact() {
                     paddingTop: index === 0 ? 0 : "0.75rem",
                     paddingBottom: index === contactItems.length - 1 ? 0 : "0.75rem",
                     borderBottom:
-                      index === contactItems.length - 1
-                        ? "none"
-                        : `var(--cat-rule-width) solid var(--cat-rule)`,
+                      index === contactItems.length - 1 ? "none" : "1px solid var(--cat-rule)",
                   }}
                 >
                   <span
                     style={{
-                      fontSize: "var(--cat-fs-eyebrow)",
-                      letterSpacing: "var(--cat-ls-eyebrow)",
+                      fontSize: "11px",
+                      letterSpacing: "0.1em",
                       textTransform: "uppercase",
                       color: "var(--cat-text-tertiary)",
-                      fontWeight: 500,
+                      fontWeight: 600,
+                      fontFamily: "var(--cat-font)",
                     }}
                   >
                     {item.label}
@@ -91,9 +105,10 @@ export default function Contact() {
                       href={item.href}
                       data-testid={`text-contact-value-${index}`}
                       style={{
-                        fontSize: "var(--cat-fs-body)",
+                        fontSize: "16px",
                         color: "var(--cat-text)",
                         textDecoration: "none",
+                        fontFamily: "var(--cat-font-body)",
                       }}
                       onMouseEnter={(e) => (e.currentTarget.style.color = "var(--cat-accent)")}
                       onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cat-text)")}
@@ -103,7 +118,11 @@ export default function Contact() {
                   ) : (
                     <span
                       data-testid={`text-contact-value-${index}`}
-                      style={{ fontSize: "var(--cat-fs-body)", color: "var(--cat-text)" }}
+                      style={{
+                        fontSize: "16px",
+                        color: "var(--cat-text)",
+                        fontFamily: "var(--cat-font-body)",
+                      }}
                     >
                       {item.value}
                     </span>
@@ -111,7 +130,7 @@ export default function Contact() {
                 </div>
               ))}
             </div>
-          </EntryRow>
+          </div>
         </div>
       </div>
     </section>
