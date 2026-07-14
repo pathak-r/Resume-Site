@@ -32,9 +32,13 @@ const FB = "var(--cat-font-body)";
 
 export default function Experience() {
   return (
-    <section id="experience" className="catalog-section" data-testid="section-experience">
+    <section
+      id="experience"
+      className="catalog-section exp-brief"
+      data-testid="section-experience"
+    >
       <div className="catalog-panel">
-        <div className="catalog-section-header">
+        <div className="catalog-section-header exp-brief-header">
           <p
             style={{
               fontSize: "var(--cat-fs-eyebrow)",
@@ -66,14 +70,14 @@ export default function Experience() {
 
         {experiences.map((exp, index) => (
           <div key={exp.years} data-testid={`card-experience-${index}`}>
-            {index > 0 && <hr className="catalog-divider" />}
+            {index > 0 && <hr className="exp-brief-divider" />}
             <div
               className="exp-brief-row"
               style={{
                 display: "grid",
-                gridTemplateColumns: "minmax(110px, 140px) 1fr",
-                gap: "1.75rem",
-                padding: "1.35rem 0",
+                gridTemplateColumns: "minmax(100px, 120px) 1fr",
+                gap: "1rem",
+                padding: "0.6rem 0",
                 alignItems: "baseline",
               }}
             >
@@ -86,7 +90,7 @@ export default function Experience() {
                   margin: 0,
                   fontWeight: 600,
                   fontFamily: F,
-                  lineHeight: 1.4,
+                  lineHeight: 1.35,
                 }}
                 data-testid={`text-period-${index}`}
               >
@@ -96,7 +100,7 @@ export default function Experience() {
               <p
                 style={{
                   fontSize: "var(--cat-fs-body)",
-                  lineHeight: 1.65,
+                  lineHeight: 1.45,
                   margin: 0,
                   fontFamily: FB,
                   color: "var(--cat-text-secondary)",
@@ -122,11 +126,20 @@ export default function Experience() {
       </div>
 
       <style>{`
+        .exp-brief-header {
+          margin-bottom: 0.75rem !important;
+          padding-bottom: 10px !important;
+        }
+        .exp-brief-divider {
+          border: 0;
+          border-top: var(--cat-rule-width) solid var(--cat-rule);
+          margin: 0;
+        }
         @media (max-width: 640px) {
           .exp-brief-row {
             grid-template-columns: 1fr !important;
-            gap: 0.4rem !important;
-            padding: 1.1rem 0 !important;
+            gap: 0.2rem !important;
+            padding: 0.55rem 0 !important;
           }
         }
       `}</style>
