@@ -44,7 +44,10 @@ export default function Hero() {
               }}
               data-testid="text-hero-headline"
             >
-              PM ← Gen AI ← Tech. Capital projects. Critical infrastructure.
+              PM ← Gen AI ← Tech.
+              <br />
+              Capital projects. Critical infrastructure.
+              <br />
               Refineries, offshore platforms, power plants.
             </h1>
 
