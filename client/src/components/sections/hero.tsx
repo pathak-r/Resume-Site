@@ -34,21 +34,49 @@ export default function Hero() {
             <h1
               className="hero-h1"
               style={{
-                fontSize: "42px",
-                fontWeight: 600,
                 margin: "0 0 18px",
-                lineHeight: 1.15,
+                fontWeight: 600,
                 letterSpacing: "-0.02em",
                 color: "var(--cat-text)",
                 fontFamily: "var(--cat-font)",
               }}
               data-testid="text-hero-headline"
             >
-              PM ← Gen AI ← Tech.
-              <br />
-              Capital projects. Critical infrastructure.
-              <br />
-              Refineries, offshore platforms, power plants.
+              <span
+                className="hero-h1-line1"
+                style={{
+                  display: "block",
+                  fontSize: "42px",
+                  lineHeight: 1.15,
+                  marginBottom: "8px",
+                }}
+              >
+                PM ← Gen AI ← Tech.
+              </span>
+              <span
+                className="hero-h1-line2"
+                style={{
+                  display: "block",
+                  fontSize: "26px",
+                  lineHeight: 1.3,
+                  color: "var(--cat-text-secondary)",
+                  marginBottom: "4px",
+                }}
+              >
+                Capital projects. Critical infrastructure.
+              </span>
+              <span
+                className="hero-h1-line3"
+                style={{
+                  display: "block",
+                  fontSize: "22px",
+                  lineHeight: 1.35,
+                  color: "var(--cat-text-secondary)",
+                  fontWeight: 500,
+                }}
+              >
+                Refineries, offshore platforms, power plants.
+              </span>
             </h1>
 
             <p
