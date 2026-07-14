@@ -1,14 +1,14 @@
 /**
- * Ink line-art figures — warm-paper design system.
+ * Ink line-art figures — Museum Wall (cream plates on olive).
  *
- * Rules: monoline strokes in ink (#3B382F) at 2–4 opacity levels,
+ * Rules: monoline strokes in ink at 2–4 opacity levels,
  * exactly one key color per figure (the element the AI touches),
  * monospace only for engineering annotation inside figures.
  * Hex colors only — CSS vars are unreliable inside SVG here.
  */
 
-const INK = "#3B382F";
-const INK_SOFT = "#6E6A5E";
+const INK = "#2C2A24";
+const INK_SOFT = "#5C584C";
 const MONO = "ui-monospace, 'SF Mono', Menlo, Consolas, monospace";
 
 /* ── Hero — signature infrastructure scene (ink + four key-color nodes) ── */
@@ -67,10 +67,10 @@ export function HeroFigure() {
       </g>
 
       {/* AI signal: four key-color nodes pulsing along the main line */}
-      <circle cx="176" cy="144" r="3.5" fill="#2E6E4E" />
-      <circle cx="258" cy="144" r="3.5" fill="#33608C" />
-      <circle cx="330" cy="144" r="3.5" fill="#B4562E" />
-      <circle cx="402" cy="180" r="3.5" fill="#5B4E8C" />
+      <circle cx="176" cy="144" r="3.5" fill="#4A6B4E" />
+      <circle cx="258" cy="144" r="3.5" fill="#3D6B78" />
+      <circle cx="330" cy="144" r="3.5" fill="#C45C3A" />
+      <circle cx="402" cy="180" r="3.5" fill="#6B5A78" />
 
       {/* leader + label */}
       <path d="M 110 62 L 110 40 L 148 40" stroke={INK} strokeWidth="0.7" fill="none" opacity="0.5" />
@@ -94,7 +94,7 @@ export function HeroFigure() {
 /* ── Enterprise AI Copilot — sage. Agent acting on a 3D model ── */
 
 export function CopilotFigure() {
-  const KEY = "#2E6E4E";
+  const KEY = "#4A6B4E";
   return (
     <svg
       viewBox="0 0 400 280"
@@ -165,7 +165,7 @@ export function CopilotFigure() {
 /* ── NL Querying — sky. Smart3D plant model query ── */
 
 export function Smart3DFigure() {
-  const KEY = "#33608C";
+  const KEY = "#3D6B78";
   return (
     <svg
       viewBox="0 0 640 310"
@@ -271,7 +271,7 @@ export function Smart3DFigure() {
 /* ── Volve RAG — apricot. Well strata + document chunks ── */
 
 export function VolveFigure() {
-  const KEY = "#B4562E";
+  const KEY = "#C45C3A";
   return (
     <svg
       viewBox="0 0 400 280"
@@ -353,7 +353,7 @@ export function VolveFigure() {
 /* ── PropScan — lavender. Vision-LLM defect detection ── */
 
 export function PropScanFigure() {
-  const KEY = "#5B4E8C";
+  const KEY = "#6B5A78";
   return (
     <svg
       viewBox="0 0 400 280"

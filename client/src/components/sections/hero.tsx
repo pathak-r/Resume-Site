@@ -112,7 +112,7 @@ export default function Hero() {
                   fontFamily: "var(--cat-font)",
                   transition: "all 0.15s",
                 }}
-                onMouseEnter={e => (e.currentTarget.style.background = "#3A372F")}
+                onMouseEnter={e => (e.currentTarget.style.background = "#E4DFD2")}
                 onMouseLeave={e => (e.currentTarget.style.background = "var(--cat-text)")}
               >
                 View selected work →
@@ -134,7 +134,7 @@ export default function Hero() {
                   fontFamily: "var(--cat-font)",
                   transition: "all 0.15s",
                 }}
-                onMouseEnter={e => (e.currentTarget.style.background = "rgba(34,32,28,0.04)")}
+                onMouseEnter={e => (e.currentTarget.style.background = "rgba(240,235,224,0.1)")}
                 onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
               >
                 Download CV
@@ -159,7 +159,7 @@ export default function Hero() {
                 }}
                 onMouseEnter={e => {
                   e.currentTarget.style.color = "var(--cat-text)";
-                  e.currentTarget.style.background = "rgba(34,32,28,0.04)";
+                  e.currentTarget.style.background = "rgba(240,235,224,0.1)";
                 }}
                 onMouseLeave={e => {
                   e.currentTarget.style.color = "var(--cat-text-secondary)";
@@ -171,8 +171,8 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Figure column */}
-          <div aria-hidden="false">
+          {/* Figure column — cream plate so ink drawing stays legible on olive */}
+          <div className="hero-figure-plate" aria-hidden="false">
             <HeroFigure />
           </div>
         </div>

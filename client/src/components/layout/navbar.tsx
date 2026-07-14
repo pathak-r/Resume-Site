@@ -3,11 +3,11 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const D = {
-  bg:        "rgba(245, 242, 234, 0.88)",
-  bgSolid:   "#F5F2EA",
-  primary:   "#22201C",
-  secondary: "#6E6A5E",
-  border:    "#E5E0D3",
+  bg:        "rgba(92, 101, 83, 0.9)",
+  bgSolid:   "#5C6553",
+  primary:   "#F0EBE0",
+  secondary: "#C4C9B8",
+  border:    "rgba(240, 235, 224, 0.18)",
   font:      '"Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
 };
 

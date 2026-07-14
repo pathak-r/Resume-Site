@@ -104,32 +104,38 @@
   --radius: 1.5rem;
 
   /* ---------------------------------------------------------------- */
-  /* Warm-paper design system (light editorial redesign)               */
-  /* Bone paper background, ink text, pale color-keyed project tints.  */
+  /* Museum Wall — olive gallery wall, cream plates, terracotta accent */
   /* ---------------------------------------------------------------- */
-  --cat-bg: #F5F2EA;
-  --cat-panel: #F5F2EA;
-  --cat-bg-card: #FDFCF8;
-  --cat-text: #22201C;
-  --cat-text-secondary: #6E6A5E;
-  --cat-text-tertiary: #8A8474;
-  --cat-rule: #E5E0D3;
-  --cat-rule-strong: #D6D0C0;
-  --cat-accent: #2E6E4E;
+  --cat-bg: #5C6553;
+  --cat-panel: #5C6553;
+  --cat-bg-card: #F3EFE4;
+  --cat-text: #F0EBE0;
+  --cat-text-secondary: #C4C9B8;
+  --cat-text-tertiary: #A3AA96;
+  --cat-rule: rgba(240, 235, 224, 0.18);
+  --cat-rule-strong: rgba(240, 235, 224, 0.34);
+  --cat-accent: #C45C3A;
 
-  /* Project key colors — one pale tint per project */
-  --key-sage: #2E6E4E;
-  --key-sage-tint: #E7EEE3;
-  --key-sage-line: #D5E0CE;
-  --key-sky: #33608C;
-  --key-sky-tint: #E4EBF2;
-  --key-sky-line: #D0DCE8;
-  --key-apricot: #B4562E;
-  --key-apricot-tint: #F6E9DC;
-  --key-apricot-line: #EAD7C4;
-  --key-lavender: #5B4E8C;
-  --key-lavender-tint: #EAE7F2;
-  --key-lavender-line: #DBD6E8;
+  /* Ink on cream plates (cards / figures) */
+  --cat-ink: #2C2A24;
+  --cat-ink-secondary: #5C584C;
+  --cat-ink-tertiary: #8A8474;
+  --cat-ink-rule: #E0DACB;
+  --cat-ink-rule-strong: #D0C9B8;
+
+  /* Project key colors — terracotta family + muted companions on cream */
+  --key-sage: #4A6B4E;
+  --key-sage-tint: #E8EDE4;
+  --key-sage-line: #D2DCCE;
+  --key-sky: #3D6B78;
+  --key-sky-tint: #E4EBED;
+  --key-sky-line: #CDDADF;
+  --key-apricot: #C45C3A;
+  --key-apricot-tint: #F5E8DF;
+  --key-apricot-line: #E8D2C4;
+  --key-lavender: #6B5A78;
+  --key-lavender-tint: #EDE8F0;
+  --key-lavender-line: #DBD4E0;
 
   --cat-rule-width: 1px;
   --cat-radius: 8px;
@@ -182,30 +188,30 @@
 }
 
 @layer utilities {
-  /* Primary CTA — ink fill on paper */
+  /* Primary CTA — cream fill on museum wall */
   .btn-primary-gradient {
-    background: #22201C;
-    color: #F5F2EA;
+    background: var(--cat-text);
+    color: var(--cat-bg);
     border-radius: 9999px;
     transition: box-shadow 0.2s ease, transform 0.15s ease;
   }
   .btn-primary-gradient:hover {
-    box-shadow: 0 6px 24px rgba(34, 32, 28, 0.22);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
   }
 
   /* Glass nav */
   .glass-nav {
-    background: rgba(245, 242, 234, 0.85);
+    background: rgba(92, 101, 83, 0.88);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }
 
-  /* Ambient shadow — soft paper lift */
+  /* Ambient shadow */
   .shadow-ambient {
-    box-shadow: 0 1px 2px rgba(34, 32, 28, 0.04), 0 8px 24px rgba(34, 32, 28, 0.06);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.14);
   }
   .shadow-ambient-hover:hover {
-    box-shadow: 0 2px 4px rgba(34, 32, 28, 0.05), 0 12px 32px rgba(34, 32, 28, 0.09);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 12px 32px rgba(0, 0, 0, 0.18);
   }
 
   /* Ghost border */
@@ -361,10 +367,28 @@
   }
 
   /* Color-keyed project card */
+  /* Cream plates remapped so nested var(--cat-text) reads as ink */
+  .key-card,
+  .hero-figure-plate {
+    --cat-text: var(--cat-ink);
+    --cat-text-secondary: var(--cat-ink-secondary);
+    --cat-text-tertiary: var(--cat-ink-tertiary);
+    --cat-rule: var(--cat-ink-rule);
+    --cat-rule-strong: var(--cat-ink-rule-strong);
+  }
+
+  .hero-figure-plate {
+    background: var(--cat-bg-card);
+    border: 1px solid var(--cat-ink-rule);
+    border-radius: var(--cat-radius-card);
+    padding: 1.25rem 1rem 1rem;
+  }
+
   .key-card {
     border-radius: var(--cat-radius-card);
     border: 1px solid var(--cat-rule);
     padding: 1.75rem;
+    color: var(--cat-ink);
   }
   .key-card--sage { background: var(--key-sage-tint); border-color: var(--key-sage-line); }
   .key-card--sky { background: var(--key-sky-tint); border-color: var(--key-sky-line); }
