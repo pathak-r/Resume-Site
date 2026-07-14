@@ -124,7 +124,7 @@ function ProjectCard({ project }: { project: Project }) {
             gap: "8px",
             fontSize: "14px",
             fontWeight: 600,
-            color: "var(--cat-bg)",
+            color: "var(--cat-on-accent)",
             background: project.keyColor,
             border: "none",
             borderRadius: "9px",

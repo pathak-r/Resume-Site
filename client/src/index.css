@@ -122,6 +122,8 @@
   --cat-ink-tertiary: #8A8474;
   --cat-ink-rule: #E0DACB;
   --cat-ink-rule-strong: #D0C9B8;
+  /* Text on terracotta / accent fills */
+  --cat-on-accent: #F0EBE0;
 
   /* Project key colors — terracotta family + muted companions on cream */
   --key-sage: #4A6B4E;
@@ -356,7 +358,8 @@
   /* Filled tag — card bg, primary text (used for Core Expertise) */
   .catalog-tag--filled {
     background: var(--cat-bg-card);
-    color: var(--cat-text);
+    color: var(--cat-ink);
+    border-color: var(--cat-ink-rule);
     font-size: 12px;
     padding: 4px 11px;
   }
@@ -369,12 +372,21 @@
   /* Color-keyed project card */
   /* Cream plates remapped so nested var(--cat-text) reads as ink */
   .key-card,
-  .hero-figure-plate {
+  .hero-figure-plate,
+  .cat-plate,
+  .surface-lowest {
     --cat-text: var(--cat-ink);
     --cat-text-secondary: var(--cat-ink-secondary);
     --cat-text-tertiary: var(--cat-ink-tertiary);
     --cat-rule: var(--cat-ink-rule);
     --cat-rule-strong: var(--cat-ink-rule-strong);
+  }
+
+  .cat-plate {
+    background: var(--cat-bg-card);
+    border: 1px solid var(--cat-ink-rule);
+    border-radius: var(--cat-radius-card);
+    color: var(--cat-ink);
   }
 
   .hero-figure-plate {

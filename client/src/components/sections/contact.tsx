@@ -65,14 +65,7 @@ export default function Contact() {
               Always happy to talk.
             </p>
 
-            <div
-              style={{
-                background: "var(--cat-bg-card)",
-                borderRadius: "var(--cat-radius-card)",
-                border: "1px solid var(--cat-rule)",
-                padding: "1.25rem 1.5rem",
-              }}
-            >
+            <div className="cat-plate" style={{ padding: "1.25rem 1.5rem" }}>
               {contactItems.map((item, index) => (
                 <div
                   key={item.label}

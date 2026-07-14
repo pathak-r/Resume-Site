@@ -1040,15 +1040,16 @@ export default function GeoAgenticInt() {
                     height: "32px",
                     padding: "0 10px",
                     borderRadius: "var(--cat-radius)",
-                    border: "var(--cat-rule-width) solid var(--cat-rule)",
+                    border: "var(--cat-rule-width) solid var(--cat-ink-rule)",
                     background: "var(--cat-bg-card)",
-                    color: "var(--cat-text)",
+                    color: "var(--cat-ink)",
                     fontWeight: 500,
                     fontFamily: "var(--cat-font)",
                     outline: "none",
                     boxSizing: "border-box",
                     lineHeight: 1,
                     minWidth: "150px",
+                    colorScheme: "light",
                   };
                   return (
                     <>

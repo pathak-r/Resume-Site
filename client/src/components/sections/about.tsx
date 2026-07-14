@@ -120,14 +120,7 @@ export default function About() {
             >
               Education
             </p>
-            <div
-              style={{
-                background: "var(--cat-bg-card)",
-                borderRadius: "var(--cat-radius-card)",
-                border: "1px solid var(--cat-rule)",
-                padding: "1.25rem 1.5rem",
-              }}
-            >
+            <div className="cat-plate" style={{ padding: "1.25rem 1.5rem" }}>
               {education.map((ed, i) => (
                 <div
                   key={ed.degree}
