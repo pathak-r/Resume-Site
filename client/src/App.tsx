@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import GeoAgenticInt from "@/pages/geo-agentic-int";
+import SectionBlendPreview from "@/pages/section-blend-preview";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -12,6 +13,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/geo-agentic-int" component={GeoAgenticInt} />
+      <Route path="/section-blend-preview" component={SectionBlendPreview} />
       <Route component={NotFound} />
     </Switch>
   );
