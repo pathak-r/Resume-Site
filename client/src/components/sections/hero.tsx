@@ -44,7 +44,8 @@ export default function Hero() {
               }}
               data-testid="text-hero-headline"
             >
-              Senior product manager building AI products for critical infrastructure.
+              PM ← Gen AI ← Tech. Capital projects. Critical infrastructure.
+              Refineries, offshore platforms, power plants.
             </h1>
 
             <p
@@ -58,10 +59,9 @@ export default function Hero() {
               }}
               data-testid="text-hero-body"
             >
-              Ten plus years shipping, turning complex technical capabilities into
-              products. I don't trust an idea until I've built a rough version of it,
-              so there are usually two or three of my own products in flight at any
-              given time.
+              Ten plus years turning complex technical capabilities into products. I
+              don't trust an idea until I've built a rough version of it, so there are
+              usually two or three of my own products in flight at any given time.
             </p>
 
             <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
