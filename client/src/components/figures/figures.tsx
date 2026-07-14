@@ -162,27 +162,36 @@ export function CopilotFigure() {
   );
 }
 
-/* ── NL Querying — sky. Smart3D plant model query ── */
+/* ── NL Querying — sky. Plant model query ── */
+/* variant "plate" = cream card (Selected Work). "wall" = olive museum wall hero. */
 
-export function Smart3DFigure() {
-  const KEY = "#3D6B78";
+type Smart3DFigureProps = {
+  variant?: "plate" | "wall";
+};
+
+export function Smart3DFigure({ variant = "plate" }: Smart3DFigureProps) {
+  const onWall = variant === "wall";
+  const ink = onWall ? "#E8E2D4" : INK;
+  const inkSoft = onWall ? "#C4C9B8" : INK_SOFT;
+  const KEY = onWall ? "#E8A060" : "#3D6B78";
+
   return (
     <svg
-      viewBox="0 0 640 310"
+      viewBox={onWall ? "0 0 640 255" : "0 0 640 310"}
       width="100%"
       role="img"
       aria-label="Isometric plant model; a natural-language query highlights line 6 inch P-1203 from vessel V-20 to exchanger E-115"
     >
-      <title>Natural-language query resolving against a Smart3D plant design model</title>
+      <title>Natural-language query resolving against a plant design model</title>
 
       {/* ground grid */}
-      <g stroke={INK} strokeWidth="0.5" opacity="0.13" fill="none">
+      <g stroke={ink} strokeWidth="0.5" opacity={onWall ? 0.2 : 0.13} fill="none">
         <path d="M 40 250 L 300 120 M 90 275 L 350 145 M 140 300 L 400 170" />
         <path d="M 240 120 L 560 280 M 180 150 L 500 310 M 300 90 L 620 250" />
       </g>
 
       {/* vessel V-20 */}
-      <g stroke={INK} strokeWidth="1.1" fill="none">
+      <g stroke={ink} strokeWidth="1.1" fill="none" opacity={onWall ? 0.85 : 1}>
         <ellipse cx="110" cy="78" rx="30" ry="11" />
         <path d="M 80 78 L 80 190 M 140 78 L 140 190" />
         <ellipse cx="110" cy="190" rx="30" ry="11" />
@@ -192,7 +201,7 @@ export function Smart3DFigure() {
       <rect x="68" y="58" width="86" height="176" rx="4" fill="none" stroke={KEY} strokeWidth="0.9" strokeDasharray="5 4" opacity="0.6" />
 
       {/* pipe rack */}
-      <g stroke={INK} strokeWidth="1" fill="none" opacity="0.75">
+      <g stroke={ink} strokeWidth="1" fill="none" opacity={onWall ? 0.55 : 0.75}>
         <path d="M 250 100 L 250 235 M 268 109 L 268 244" />
         <path d="M 400 100 L 400 235 M 418 109 L 418 244" />
         <path d="M 250 130 L 400 130 M 268 139 L 418 139 M 250 130 L 268 139 M 400 130 L 418 139" />
@@ -200,7 +209,7 @@ export function Smart3DFigure() {
       </g>
 
       {/* background pipe runs */}
-      <g stroke={INK} strokeWidth="1.1" fill="none" opacity="0.4">
+      <g stroke={ink} strokeWidth="1.1" fill="none" opacity={onWall ? 0.28 : 0.4}>
         <path d="M 190 122 L 470 122" />
         <path d="M 190 178 L 470 178" />
         <path d="M 200 183 L 460 183" opacity="0.6" />
@@ -222,7 +231,7 @@ export function Smart3DFigure() {
       <path d="M 224 121 L 240 135 M 224 135 L 240 121" stroke={KEY} strokeWidth="1.2" fill="none" />
 
       {/* exchanger E-115 */}
-      <g stroke={INK} strokeWidth="1.1" fill="none">
+      <g stroke={ink} strokeWidth="1.1" fill="none" opacity={onWall ? 0.85 : 1}>
         <ellipse cx="528" cy="208" rx="9" ry="16" />
         <path d="M 528 192 L 600 192 M 528 224 L 600 224" />
         <ellipse cx="600" cy="208" rx="9" ry="16" />
@@ -230,40 +239,46 @@ export function Smart3DFigure() {
       </g>
 
       {/* leaders + tags */}
-      <path d="M 110 55 L 110 34 L 148 34" stroke={INK} strokeWidth="0.7" fill="none" opacity="0.6" />
-      <text x="152" y="37" fontSize="10" fill={INK} fontFamily={MONO} fontWeight="600">V-20</text>
+      <path d="M 110 55 L 110 34 L 148 34" stroke={ink} strokeWidth="0.7" fill="none" opacity="0.6" />
+      <text x="152" y="37" fontSize="10" fill={ink} fontFamily={MONO} fontWeight="600">V-20</text>
 
       <path d="M 330 128 L 330 92 L 352 92" stroke={KEY} strokeWidth="0.7" fill="none" />
       <text x="356" y="95" fontSize="10" fill={KEY} fontFamily={MONO} fontWeight="600">6"-P-1203-A1A</text>
 
-      <path d="M 564 186 L 564 168 L 582 168" stroke={INK} strokeWidth="0.7" fill="none" opacity="0.6" />
-      <text x="586" y="171" fontSize="10" fill={INK} fontFamily={MONO} fontWeight="600">E-115</text>
+      <path d="M 564 186 L 564 168 L 582 168" stroke={ink} strokeWidth="0.7" fill="none" opacity="0.6" />
+      <text x="586" y="171" fontSize="10" fill={ink} fontFamily={MONO} fontWeight="600">E-115</text>
 
-      <text x="196" y="172" fontSize="9" fill={INK} opacity="0.5" fontFamily={MONO}>4"-P-1101-B1B</text>
+      <text x="196" y="172" fontSize="9" fill={ink} opacity="0.5" fontFamily={MONO}>4"-P-1101-B1B</text>
 
-      {/* attribute readout card */}
-      <g>
-        <rect x="452" y="30" width="172" height="86" rx="6" fill="#FDFCF8" stroke="#D0DCE8" strokeWidth="1" />
-        <text x="466" y="50" fontSize="9" fill={INK_SOFT} fontFamily={MONO} letterSpacing="1">LINE ATTRIBUTES</text>
-        <g fontSize="9.5" fontFamily={MONO}>
-          <text x="466" y="68" fill={INK_SOFT}>Tag</text>
-          <text x="510" y="68" fill={INK}>6"-P-1203-A1A</text>
-          <text x="466" y="84" fill={INK_SOFT}>From</text>
-          <text x="510" y="84" fill={INK}>V-20 · N2</text>
-          <text x="466" y="100" fill={INK_SOFT}>To</text>
-          <text x="510" y="100" fill={INK}>E-115 · N1</text>
+      {/* attribute readout — plate only; omitted on museum wall */}
+      {!onWall && (
+        <g>
+          <rect x="452" y="30" width="172" height="86" rx="6" fill="#FDFCF8" stroke="#D0DCE8" strokeWidth="1" />
+          <text x="466" y="50" fontSize="9" fill={inkSoft} fontFamily={MONO} letterSpacing="1">LINE ATTRIBUTES</text>
+          <g fontSize="9.5" fontFamily={MONO}>
+            <text x="466" y="68" fill={inkSoft}>Tag</text>
+            <text x="510" y="68" fill={ink}>6"-P-1203-A1A</text>
+            <text x="466" y="84" fill={inkSoft}>From</text>
+            <text x="510" y="84" fill={ink}>V-20 · N2</text>
+            <text x="466" y="100" fill={inkSoft}>To</text>
+            <text x="510" y="100" fill={ink}>E-115 · N1</text>
+          </g>
         </g>
-      </g>
+      )}
 
-      {/* query bar + results */}
-      <rect x="40" y="262" width="560" height="1" fill={INK} opacity="0.18" />
-      <text x="40" y="284" fontSize="12" fill={INK} fontFamily={MONO}>
-        ▸ which lines connect vessel V-20 to the exchangers?
-      </text>
-      <text x="40" y="303" fontSize="10.5" fill={KEY} fontFamily={MONO}>
-        1 line · 1 valve · 2 nozzles matched
-      </text>
-      <rect x="428" y="274" width="7" height="12" fill={KEY} />
+      {/* query bar + results — plate only; wall hero renders this as clear HTML overlay */}
+      {!onWall && (
+        <>
+          <rect x="40" y="262" width="560" height="1" fill={ink} opacity="0.18" />
+          <text x="40" y="284" fontSize="12" fill={ink} fontFamily={MONO}>
+            ▸ which lines connect vessel V-20 to the exchangers?
+          </text>
+          <text x="40" y="303" fontSize="10.5" fill={KEY} fontFamily={MONO}>
+            1 line · 1 valve · 2 nozzles matched
+          </text>
+          <rect x="428" y="274" width="7" height="12" fill={KEY} />
+        </>
+      )}
     </svg>
   );
 }
