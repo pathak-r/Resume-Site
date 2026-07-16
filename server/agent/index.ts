@@ -19,7 +19,7 @@ const MAX_CONVERSATION_MESSAGES = 40;
 const MAX_OUTPUT_TOKENS = 400;
 
 // --- rate limiting (in-memory; per-IP hourly + global daily) ---
-const RATE_LIMIT_PER_HOUR = 20;
+const RATE_LIMIT_PER_HOUR = 50;
 const GLOBAL_LIMIT_PER_DAY = 500;
 const ipBuckets = new Map<string, { count: number; resetAt: number }>();
 let globalBucket = { count: 0, resetAt: Date.now() + 86_400_000 };
