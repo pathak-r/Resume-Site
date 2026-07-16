@@ -97,25 +97,30 @@ export default function Hero() {
 
           <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
             <a
-              href="#work"
-              data-testid="button-view-work"
+              href="#interview"
+              data-testid="button-interview-me"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector("#interview")?.scrollIntoView({ behavior: "smooth" });
+                window.dispatchEvent(new CustomEvent("agent:focus"));
+              }}
               style={{
                 fontSize: "15px",
                 fontWeight: 600,
                 padding: "12px 24px",
                 borderRadius: "10px",
-                border: "1px solid var(--cat-text)",
-                color: "var(--cat-bg)",
-                background: "var(--cat-text)",
+                border: "1px solid var(--cat-accent)",
+                color: "var(--cat-on-accent)",
+                background: "var(--cat-accent)",
                 textDecoration: "none",
                 cursor: "pointer",
                 fontFamily: "var(--cat-font)",
                 transition: "all 0.15s",
               }}
-              onMouseEnter={e => (e.currentTarget.style.background = "#E4DFD2")}
-              onMouseLeave={e => (e.currentTarget.style.background = "var(--cat-text)")}
+              onMouseEnter={e => (e.currentTarget.style.background = "#A94D30")}
+              onMouseLeave={e => (e.currentTarget.style.background = "var(--cat-accent)")}
             >
-              View selected work →
+              Interview me ↓
             </a>
             <a
               href="/Rohit_Pathak_Resume.pdf"

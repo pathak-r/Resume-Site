@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import Hero from "@/components/sections/hero";
-import FeaturedWork from "@/components/sections/featured-work";
+import Projects from "@/components/sections/projects";
 
 /**
  * Mirrors the live homepage hero + Selected Work.
@@ -85,7 +85,7 @@ export default function HeroWallPreview() {
 
       <main>
         <Hero />
-        <FeaturedWork />
+        <Projects />
       </main>
     </div>
   );

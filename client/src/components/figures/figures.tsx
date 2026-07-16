@@ -163,13 +163,94 @@ export function CopilotFigure() {
 }
 
 /* ── NL Querying — sky. Plant model query ── */
-/* variant "plate" = cream card (Selected Work). "wall" = olive museum wall hero. */
+/* variant "plate" = cream card (wide). "wall" = olive museum wall hero.
+   "compact" = squarer recomposition for the half-width project-card slot. */
 
 type Smart3DFigureProps = {
-  variant?: "plate" | "wall";
+  variant?: "plate" | "wall" | "compact";
 };
 
+function Smart3DCompactFigure() {
+  const KEY = "#3D6B78";
+  return (
+    <svg
+      viewBox="0 0 400 280"
+      width="100%"
+      role="img"
+      aria-label="Isometric plant model; a natural-language query highlights line 6 inch P-1203 from vessel V-20 to exchanger E-115"
+    >
+      <title>Natural-language query resolving against a plant design model</title>
+
+      {/* ground grid */}
+      <g stroke={INK} strokeWidth="0.5" opacity="0.13" fill="none">
+        <path d="M 20 210 L 200 110 M 55 230 L 235 130 M 90 250 L 270 150" />
+        <path d="M 160 105 L 380 215 M 120 130 L 340 240 M 210 90 L 400 185" />
+      </g>
+
+      {/* vessel V-20 */}
+      <g stroke={INK} strokeWidth="1.1" fill="none">
+        <ellipse cx="80" cy="62" rx="22" ry="8" />
+        <path d="M 58 62 L 58 152 M 102 62 L 102 152" />
+        <ellipse cx="80" cy="152" rx="22" ry="8" />
+        <path d="M 64 158 L 64 180 M 96 158 L 96 180" opacity="0.55" />
+      </g>
+      <rect x="50" y="46" width="62" height="142" rx="4" fill="none" stroke={KEY} strokeWidth="0.9" strokeDasharray="5 4" opacity="0.6" />
+
+      {/* pipe rack */}
+      <g stroke={INK} strokeWidth="0.9" fill="none" opacity="0.7">
+        <path d="M 168 78 L 168 186 M 182 85 L 182 193" />
+        <path d="M 268 78 L 268 186 M 282 85 L 282 193" />
+        <path d="M 168 102 L 268 102 M 182 109 L 282 109 M 168 102 L 182 109 M 268 102 L 282 109" />
+        <path d="M 168 148 L 268 148 M 182 155 L 282 155 M 168 148 L 182 155 M 268 148 L 282 155" />
+      </g>
+
+      {/* background pipe run */}
+      <path d="M 130 138 L 320 138" stroke={INK} strokeWidth="1" fill="none" opacity="0.35" />
+
+      {/* HIGHLIGHTED LINE: vessel → rack → exchanger */}
+      <path
+        d="M 102 88 L 126 88 L 126 100 L 316 100 L 316 162 L 338 162"
+        stroke={KEY}
+        strokeWidth="1.7"
+        fill="none"
+      />
+      {/* flow tick */}
+      <path d="M 216 95 L 224 100 L 216 105" stroke={KEY} strokeWidth="1.2" fill="none" />
+      {/* valve */}
+      <path d="M 146 94 L 160 106 M 146 106 L 160 94" stroke={KEY} strokeWidth="1.2" fill="none" />
+
+      {/* exchanger E-115 */}
+      <g stroke={INK} strokeWidth="1.1" fill="none">
+        <ellipse cx="344" cy="162" rx="7" ry="13" />
+        <path d="M 344 149 L 388 149 M 344 175 L 388 175" />
+        <path d="M 356 175 L 356 192 M 380 175 L 380 192" opacity="0.5" />
+      </g>
+
+      {/* leaders + tags */}
+      <path d="M 80 42 L 80 26 L 108 26" stroke={INK} strokeWidth="0.7" fill="none" opacity="0.6" />
+      <text x="112" y="29" fontSize="9.5" fill={INK} fontFamily={MONO} fontWeight="600">V-20</text>
+
+      <path d="M 236 100 L 236 66 L 254 66" stroke={KEY} strokeWidth="0.7" fill="none" />
+      <text x="258" y="69" fontSize="9.5" fill={KEY} fontFamily={MONO} fontWeight="600">6"-P-1203-A1A</text>
+
+      <path d="M 366 143 L 366 128 L 380 128" stroke={INK} strokeWidth="0.7" fill="none" opacity="0.6" />
+      <text x="352" y="120" fontSize="9.5" fill={INK} fontFamily={MONO} fontWeight="600">E-115</text>
+
+      {/* query bar */}
+      <rect x="24" y="222" width="352" height="1" fill={INK} opacity="0.18" />
+      <text x="24" y="243" fontSize="10.5" fill={INK_SOFT} fontFamily={MONO}>
+        ▸ which lines connect V-20 to the exchangers?
+      </text>
+      <text x="24" y="261" fontSize="9" fill={KEY} fontFamily={MONO}>
+        1 line · 1 valve · 2 nozzles matched
+      </text>
+      <rect x="304" y="233" width="6" height="11" fill={KEY} opacity="0.9" />
+    </svg>
+  );
+}
+
 export function Smart3DFigure({ variant = "plate" }: Smart3DFigureProps) {
+  if (variant === "compact") return <Smart3DCompactFigure />;
   const onWall = variant === "wall";
   const ink = onWall ? "#E8E2D4" : INK;
   const inkSoft = onWall ? "#C4C9B8" : INK_SOFT;

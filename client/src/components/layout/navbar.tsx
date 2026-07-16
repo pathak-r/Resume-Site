@@ -7,29 +7,28 @@ const D = {
   bgSolid:   "#5C6553",
   primary:   "#F0EBE0",
   secondary: "#C4C9B8",
+  accent:    "#E8A060",
   border:    "rgba(240, 235, 224, 0.18)",
   font:      '"Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  mono:      "ui-monospace, 'SF Mono', Menlo, Consolas, monospace",
 };
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
 
-  const links = [
-    { name: "Work",       href: "#work" },
-    { name: "About",      href: "#about" },
-    { name: "Experience", href: "#experience" },
-    { name: "Contact",    href: "#contact" },
-  ];
-
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const goTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string, focusAgent = false) => {
     e.preventDefault();
     if (location !== "/") {
       window.location.href = `/${href}`;
       return;
     }
     const el = document.querySelector(href);
-    if (el) { el.scrollIntoView({ behavior: "smooth" }); setIsOpen(false); }
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      if (focusAgent) window.dispatchEvent(new CustomEvent("agent:focus"));
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -58,19 +57,32 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-baseline gap-8">
-          {links.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              data-testid={`nav-link-${link.name.toLowerCase()}`}
-              onClick={(e) => scrollToSection(e, link.href)}
-              style={{ color: D.secondary, fontSize: "16px", textDecoration: "none", transition: "color 0.15s" }}
-              onMouseEnter={e => (e.currentTarget.style.color = D.primary)}
-              onMouseLeave={e => (e.currentTarget.style.color = D.secondary)}
-            >
-              {link.name}
-            </a>
-          ))}
+          <a
+            href="#interview"
+            data-testid="nav-link-interview"
+            onClick={(e) => goTo(e, "#interview", true)}
+            style={{
+              color: D.accent,
+              fontSize: "14px",
+              fontFamily: D.mono,
+              textDecoration: "none",
+              transition: "opacity 0.15s",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.opacity = "0.8")}
+            onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+          >
+            ▸ interview me
+          </a>
+          <a
+            href="#contact"
+            data-testid="nav-link-contact"
+            onClick={(e) => goTo(e, "#contact")}
+            style={{ color: D.secondary, fontSize: "16px", textDecoration: "none", transition: "color 0.15s" }}
+            onMouseEnter={e => (e.currentTarget.style.color = D.primary)}
+            onMouseLeave={e => (e.currentTarget.style.color = D.secondary)}
+          >
+            Contact
+          </a>
         </div>
 
         {/* Mobile Toggle */}
@@ -90,16 +102,20 @@ export default function Navbar() {
           className="md:hidden absolute top-full left-0 w-full px-8 py-6 flex flex-col gap-4"
           style={{ background: D.bgSolid, borderBottom: `1px solid ${D.border}` }}
         >
-          {links.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => scrollToSection(e, link.href)}
-              style={{ color: D.secondary, fontSize: "16px", textDecoration: "none" }}
-            >
-              {link.name}
-            </a>
-          ))}
+          <a
+            href="#interview"
+            onClick={(e) => goTo(e, "#interview", true)}
+            style={{ color: D.accent, fontSize: "15px", fontFamily: D.mono, textDecoration: "none" }}
+          >
+            ▸ interview me
+          </a>
+          <a
+            href="#contact"
+            onClick={(e) => goTo(e, "#contact")}
+            style={{ color: D.secondary, fontSize: "16px", textDecoration: "none" }}
+          >
+            Contact
+          </a>
           <a
             href="/Rohit_Pathak_Resume.pdf"
             download

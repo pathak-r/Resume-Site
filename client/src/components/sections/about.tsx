@@ -22,50 +22,37 @@ const education = [
   },
 ];
 
+const F = "var(--cat-font)";
+const FB = "var(--cat-font-body)";
+
 export default function About() {
   return (
     <section id="about" className="catalog-section" data-testid="section-about">
-      <div className="px-4">
-        <div className="catalog-panel" style={{ maxWidth: "1040px" }}>
-          <div className="catalog-section-header">
-            <p
-              style={{
-                fontSize: "13px",
-                letterSpacing: "0.1em",
-                color: "var(--cat-text-tertiary)",
-                textTransform: "uppercase",
-                margin: 0,
-                fontWeight: 600,
-                fontFamily: "var(--cat-font)",
-              }}
-            >
-              About
-            </p>
-          </div>
+      <div className="catalog-panel">
+        <h2
+          style={{
+            fontSize: "32px",
+            fontWeight: 600,
+            margin: "0 0 24px",
+            lineHeight: 1.2,
+            color: "var(--cat-text)",
+            letterSpacing: "-0.015em",
+            fontFamily: F,
+          }}
+          data-testid="heading-about"
+        >
+          How I think about building.
+        </h2>
 
-          <div style={{ maxWidth: "720px" }}>
-            <h2
-              style={{
-                fontSize: "32px",
-                fontWeight: 600,
-                margin: "0 0 18px",
-                lineHeight: 1.2,
-                color: "var(--cat-text)",
-                letterSpacing: "-0.015em",
-                fontFamily: "var(--cat-font)",
-              }}
-              data-testid="heading-about"
-            >
-              How I think about building.
-            </h2>
-
+        <div className="about-grid">
+          <div>
             <p
               style={{
                 fontSize: "17px",
                 lineHeight: 1.75,
                 color: "var(--cat-text)",
                 margin: "0 0 14px",
-                fontFamily: "var(--cat-font-body)",
+                fontFamily: FB,
               }}
             >
               I prototype before I pitch. Every real idea starts as something I build
@@ -78,8 +65,8 @@ export default function About() {
                 fontSize: "17px",
                 lineHeight: 1.75,
                 color: "var(--cat-text-secondary)",
-                margin: "0 0 28px",
-                fontFamily: "var(--cat-font-body)",
+                margin: "0 0 24px",
+                fontFamily: FB,
               }}
             >
               It's slower at the start and faster at the end. Most of the cost of
@@ -94,70 +81,82 @@ export default function About() {
                 textTransform: "uppercase",
                 margin: "0 0 10px",
                 fontWeight: 600,
-                fontFamily: "var(--cat-font)",
+                fontFamily: F,
               }}
             >
               Core Expertise
             </p>
-            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "1.75rem" }}>
+            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
               {expertise.map((skill, i) => (
                 <span key={skill} className="catalog-tag catalog-tag--filled" data-testid={`chip-skill-${i}`}>
                   {skill}
                 </span>
               ))}
             </div>
+          </div>
 
+          <div className="cat-plate" style={{ padding: "1.25rem 1.5rem", alignSelf: "start" }}>
             <p
               style={{
                 fontSize: "11px",
                 letterSpacing: "0.1em",
-                color: "var(--cat-text-tertiary)",
+                color: "var(--cat-ink-tertiary)",
                 textTransform: "uppercase",
-                margin: "0 0 10px",
+                margin: "0 0 12px",
                 fontWeight: 600,
-                fontFamily: "var(--cat-font)",
+                fontFamily: F,
               }}
             >
               Education
             </p>
-            <div className="cat-plate" style={{ padding: "1.25rem 1.5rem" }}>
-              {education.map((ed, i) => (
+            {education.map((ed, i) => (
+              <div
+                key={ed.degree}
+                data-testid={`text-education-${i}`}
+                style={{
+                  paddingTop: i === 0 ? 0 : "1rem",
+                  paddingBottom: i === education.length - 1 ? 0 : "1rem",
+                  borderBottom:
+                    i === education.length - 1 ? "none" : "1px solid var(--cat-ink-rule)",
+                }}
+              >
                 <div
-                  key={ed.degree}
-                  data-testid={`text-education-${i}`}
                   style={{
-                    paddingTop: i === 0 ? 0 : "1rem",
-                    paddingBottom: i === education.length - 1 ? 0 : "1rem",
-                    borderBottom:
-                      i === education.length - 1 ? "none" : "1px solid var(--cat-rule)",
+                    fontSize: "16px",
+                    fontWeight: 600,
+                    color: "var(--cat-ink)",
+                    fontFamily: F,
                   }}
                 >
-                  <div
-                    style={{
-                      fontSize: "16px",
-                      fontWeight: 600,
-                      color: "var(--cat-text)",
-                      fontFamily: "var(--cat-font)",
-                    }}
-                  >
-                    {ed.degree}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "14px",
-                      color: "var(--cat-text-secondary)",
-                      marginTop: "2px",
-                      fontFamily: "var(--cat-font-body)",
-                    }}
-                  >
-                    {ed.school}
-                  </div>
+                  {ed.degree}
                 </div>
-              ))}
-            </div>
+                <div
+                  style={{
+                    fontSize: "14px",
+                    color: "var(--cat-ink-secondary)",
+                    marginTop: "2px",
+                    fontFamily: FB,
+                  }}
+                >
+                  {ed.school}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
+
+      <style>{`
+        .about-grid {
+          display: grid;
+          grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+          gap: 2.5rem;
+          align-items: start;
+        }
+        @media (max-width: 767px) {
+          .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+        }
+      `}</style>
     </section>
   );
 }

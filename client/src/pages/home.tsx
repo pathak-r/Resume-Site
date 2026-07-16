@@ -1,8 +1,7 @@
 import Navbar from "@/components/layout/navbar";
 import Hero from "@/components/sections/hero";
-import CurrentWork from "@/components/sections/current-work";
-import FeaturedWork from "@/components/sections/featured-work";
-import Experience from "@/components/sections/experience";
+import InterviewAgent from "@/components/agent/interview-agent";
+import Projects from "@/components/sections/projects";
 import About from "@/components/sections/about";
 import Contact from "@/components/sections/contact";
 
@@ -15,9 +14,8 @@ export default function Home() {
       <Navbar />
       <main className="catalog-page-stack">
         <Hero />
-        <CurrentWork />
-        <FeaturedWork />
-        <Experience />
+        <InterviewAgent />
+        <Projects />
         <About />
         <Contact />
       </main>

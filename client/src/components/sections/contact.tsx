@@ -16,116 +16,105 @@ const contactItems = [
   },
 ];
 
+const F = "var(--cat-font)";
+const FB = "var(--cat-font-body)";
+
 export default function Contact() {
   return (
     <section id="contact" className="catalog-section" data-testid="section-contact">
-      <div className="px-4">
-        <div className="catalog-panel" style={{ maxWidth: "1040px" }}>
-          <div className="catalog-section-header">
-            <p
-              style={{
-                fontSize: "13px",
-                letterSpacing: "0.1em",
-                color: "var(--cat-text-tertiary)",
-                textTransform: "uppercase",
-                margin: 0,
-                fontWeight: 600,
-                fontFamily: "var(--cat-font)",
-              }}
-            >
-              Contact
-            </p>
-          </div>
+      <div className="catalog-panel">
+        <h2
+          style={{
+            fontSize: "32px",
+            fontWeight: 600,
+            margin: "0 0 10px",
+            lineHeight: 1.2,
+            color: "var(--cat-text)",
+            letterSpacing: "-0.015em",
+            fontFamily: F,
+          }}
+          data-testid="heading-contact"
+        >
+          Get in touch.
+        </h2>
+        <p
+          style={{
+            fontSize: "17px",
+            lineHeight: 1.75,
+            color: "var(--cat-text-secondary)",
+            margin: "0 0 24px",
+            fontFamily: FB,
+            maxWidth: "620px",
+          }}
+        >
+          Open to new opportunities in AI product leadership and enterprise SaaS.
+          Always happy to talk.
+        </p>
 
-          <div style={{ maxWidth: "620px" }}>
-            <h2
-              style={{
-                fontSize: "32px",
-                fontWeight: 600,
-                margin: "0 0 12px",
-                lineHeight: 1.2,
-                color: "var(--cat-text)",
-                letterSpacing: "-0.015em",
-                fontFamily: "var(--cat-font)",
-              }}
-              data-testid="heading-contact"
+        <div className="contact-grid">
+          {contactItems.map((item, index) => (
+            <div
+              key={item.label}
+              className="cat-plate"
+              style={{ padding: "1rem 1.25rem" }}
+              data-testid={`row-contact-${index}`}
             >
-              Get in touch.
-            </h2>
-            <p
-              style={{
-                fontSize: "17px",
-                lineHeight: 1.75,
-                color: "var(--cat-text-secondary)",
-                margin: "0 0 20px",
-                fontFamily: "var(--cat-font-body)",
-              }}
-            >
-              Open to new opportunities in AI product leadership and enterprise SaaS.
-              Always happy to talk.
-            </p>
-
-            <div className="cat-plate" style={{ padding: "1.25rem 1.5rem" }}>
-              {contactItems.map((item, index) => (
-                <div
-                  key={item.label}
-                  data-testid={`row-contact-${index}`}
+              <p
+                style={{
+                  fontSize: "11px",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: "var(--cat-ink-tertiary)",
+                  fontWeight: 600,
+                  fontFamily: F,
+                  margin: "0 0 4px",
+                }}
+              >
+                {item.label}
+              </p>
+              {item.href ? (
+                <a
+                  href={item.href}
+                  data-testid={`text-contact-value-${index}`}
                   style={{
-                    display: "grid",
-                    gridTemplateColumns: "90px 1fr",
-                    gap: "1rem",
-                    alignItems: "baseline",
-                    paddingTop: index === 0 ? 0 : "0.75rem",
-                    paddingBottom: index === contactItems.length - 1 ? 0 : "0.75rem",
-                    borderBottom:
-                      index === contactItems.length - 1 ? "none" : "1px solid var(--cat-rule)",
+                    fontSize: "16px",
+                    color: "var(--cat-ink)",
+                    textDecoration: "none",
+                    fontFamily: FB,
+                    wordBreak: "break-word",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--cat-accent)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cat-ink)")}
+                >
+                  {item.value}
+                </a>
+              ) : (
+                <span
+                  data-testid={`text-contact-value-${index}`}
+                  style={{
+                    fontSize: "16px",
+                    color: "var(--cat-ink)",
+                    fontFamily: FB,
                   }}
                 >
-                  <span
-                    style={{
-                      fontSize: "11px",
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      color: "var(--cat-text-tertiary)",
-                      fontWeight: 600,
-                      fontFamily: "var(--cat-font)",
-                    }}
-                  >
-                    {item.label}
-                  </span>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      data-testid={`text-contact-value-${index}`}
-                      style={{
-                        fontSize: "16px",
-                        color: "var(--cat-text)",
-                        textDecoration: "none",
-                        fontFamily: "var(--cat-font-body)",
-                      }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--cat-accent)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cat-text)")}
-                    >
-                      {item.value}
-                    </a>
-                  ) : (
-                    <span
-                      data-testid={`text-contact-value-${index}`}
-                      style={{
-                        fontSize: "16px",
-                        color: "var(--cat-text)",
-                        fontFamily: "var(--cat-font-body)",
-                      }}
-                    >
-                      {item.value}
-                    </span>
-                  )}
-                </div>
-              ))}
+                  {item.value}
+                </span>
+              )}
             </div>
-          </div>
+          ))}
         </div>
       </div>
+
+      <style>{`
+        .contact-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 12px;
+        }
+        @media (max-width: 767px) {
+          .contact-grid { grid-template-columns: 1fr; }
+        }
+      `}</style>
     </section>
   );
 }

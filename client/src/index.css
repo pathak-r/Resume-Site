@@ -145,7 +145,7 @@
 
   --cat-index-col: 220px;
   --cat-grid-gap: 2rem;
-  --cat-panel-max: 960px;
+  --cat-panel-max: 1040px;
 
   /* Font stacks — Bricolage Grotesque for headings/UI, Source Serif for body */
   --cat-font: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;

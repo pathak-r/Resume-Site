@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { createProxyMiddleware } from "http-proxy-middleware";
+import { handleAgentChat } from "./agent";
 
 // In dev this is localhost:8000 (the Geo RAG API workflow).
 // In production set GEO_RAG_API_URL to your Railway service URL, e.g.
@@ -11,6 +12,9 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  // POST /api/agent/chat — the interview agent (SSE streaming).
+  app.post("/api/agent/chat", handleAgentChat);
+
   // POST /api/geo/chat — handled directly because express.json() has already
   // consumed the request body before the proxy middleware can forward it.
   app.post("/api/geo/chat", async (req, res) => {
