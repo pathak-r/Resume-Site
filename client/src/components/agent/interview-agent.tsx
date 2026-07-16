@@ -197,15 +197,15 @@ export default function InterviewAgent() {
       style={{
         background: "rgba(240,235,224,0.06)",
         border: "1px solid rgba(240,235,224,0.18)",
-        borderRadius: "7px",
-        padding: "10px 12px",
+        borderRadius: "8px",
+        padding: "13px 16px",
         fontFamily: MONO,
         display: "flex",
         alignItems: "center",
         gap: "10px",
       }}
     >
-      <span style={{ color: CREAM, fontSize: "14px", flexShrink: 0 }}>▸</span>
+      <span style={{ color: CREAM, fontSize: "15px", flexShrink: 0 }}>▸</span>
       <input
         ref={inputRef}
         value={input}
@@ -221,7 +221,7 @@ export default function InterviewAgent() {
           border: "none",
           outline: "none",
           color: CREAM,
-          fontSize: "14px",
+          fontSize: "15px",
           fontFamily: MONO,
         }}
       />
@@ -233,7 +233,7 @@ export default function InterviewAgent() {
           background: "transparent",
           border: "none",
           color: ACCENT,
-          fontSize: "13px",
+          fontSize: "14px",
           fontWeight: 600,
           fontFamily: MONO,
           cursor: streaming ? "default" : "pointer",
@@ -247,7 +247,7 @@ export default function InterviewAgent() {
   );
 
   const chips = (
-    <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px" }}>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "12px" }}>
       {chipSet.map((chip) => (
         <button
           key={chip}
@@ -255,12 +255,12 @@ export default function InterviewAgent() {
           disabled={streaming}
           data-testid={`chip-agent-${chip.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`}
           style={{
-            fontSize: "12px",
+            fontSize: "13px",
             color: CREAM_SOFT,
             background: "transparent",
             border: "1px solid rgba(240,235,224,0.18)",
             borderRadius: "20px",
-            padding: "4px 12px",
+            padding: "6px 14px",
             fontFamily: MONO,
             cursor: streaming ? "default" : "pointer",
             transition: "border-color 0.15s, color 0.15s",
@@ -292,8 +292,8 @@ export default function InterviewAgent() {
           style={{
             background: INK,
             border: `1px solid ${ACCENT}`,
-            borderRadius: "10px",
-            padding: "14px 18px 16px",
+            borderRadius: "12px",
+            padding: "20px 24px 22px",
           }}
         >
           {/* header */}
@@ -308,8 +308,8 @@ export default function InterviewAgent() {
           >
             <span
               style={{
-                fontSize: "10px",
-                letterSpacing: "0.1em",
+                fontSize: "11px",
+                letterSpacing: "0.12em",
                 textTransform: "uppercase",
                 color: ACCENT,
                 fontWeight: 600,
@@ -345,6 +345,30 @@ export default function InterviewAgent() {
             </span>
           </div>
 
+          {/* standing greeting — the agent speaks first */}
+          {messages.length === 0 && (
+            <div style={{ margin: "4px 0 16px", maxWidth: "85%" }}>
+              <p
+                style={{
+                  fontSize: "14px",
+                  color: CREAM,
+                  lineHeight: 1.65,
+                  margin: 0,
+                  background: "rgba(240,235,224,0.06)",
+                  border: "1px solid rgba(240,235,224,0.14)",
+                  borderRadius: "8px 8px 8px 2px",
+                  padding: "12px 15px",
+                  fontFamily: MONO,
+                }}
+                data-testid="text-agent-greeting"
+              >
+                I'm the AI version of Rohit — grounded in his CV, case studies, and the
+                questions recruiters actually ask. Screen him: work, availability,
+                failures, how he builds. All fair game.
+              </p>
+            </div>
+          )}
+
           {/* conversation (expanded only) */}
           {expanded && messages.length > 0 && (
             <div
@@ -362,7 +386,7 @@ export default function InterviewAgent() {
                   <div key={i} style={{ display: "flex", justifyContent: "flex-end", margin: "0 0 12px" }}>
                     <span
                       style={{
-                        fontSize: "13px",
+                        fontSize: "14px",
                         color: INK,
                         background: ACCENT,
                         borderRadius: "8px 8px 2px 8px",
@@ -380,7 +404,7 @@ export default function InterviewAgent() {
                     {(m.content || !streaming || i !== messages.length - 1) && m.content ? (
                       <p
                         style={{
-                          fontSize: "13px",
+                          fontSize: "14px",
                           color: CREAM,
                           lineHeight: 1.65,
                           margin: 0,
