@@ -211,7 +211,7 @@ export default function InterviewAgent() {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         onFocus={() => messages.length > 0 && setExpanded(true)}
-        placeholder="interview me — work, notice period, anything"
+        placeholder="ask me — work, notice period, anything"
         maxLength={500}
         data-testid="input-agent"
         style={{
@@ -241,7 +241,7 @@ export default function InterviewAgent() {
           flexShrink: 0,
         }}
       >
-        screen me →
+        ask →
       </button>
     </form>
   );
@@ -321,7 +321,15 @@ export default function InterviewAgent() {
             </span>
             <span
               className="agent-header-note"
-              style={{ fontSize: "11px", color: CREAM_FAINT, fontFamily: MONO, textAlign: "right" }}
+              style={{
+                fontSize: expanded ? "14px" : "13px",
+                color: expanded ? CREAM_FAINT : CREAM,
+                fontFamily: MONO,
+                textAlign: "right",
+                fontWeight: expanded ? 400 : 500,
+                letterSpacing: expanded ? undefined : "0.02em",
+                lineHeight: 1.35,
+              }}
             >
               {expanded ? (
                 <button
@@ -362,9 +370,9 @@ export default function InterviewAgent() {
                 }}
                 data-testid="text-agent-greeting"
               >
-                I'm the AI version of Rohit — grounded in his CV, case studies, and the
-                questions recruiters actually ask. Screen him: work, availability,
-                failures, how he builds. All fair game.
+                I'm the AI version of Rohit — grounded in his CV, case studies and all
+                that. Ask him: work, availability, failures, how he builds. All fair
+                game.
               </p>
             </div>
           )}
@@ -497,7 +505,10 @@ export default function InterviewAgent() {
 
       <style>{`
         @media (max-width: 640px) {
-          .agent-header-note { display: none; }
+          .agent-header-note {
+            font-size: 12px !important;
+            max-width: 58%;
+          }
         }
         #interview input::placeholder {
           color: ${CREAM_FAINT};
