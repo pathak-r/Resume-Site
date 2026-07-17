@@ -33,20 +33,21 @@ export default function Closing() {
 
         <p
           style={{
-            fontSize: "11px",
+            fontSize: "14px",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             color: "var(--cat-text-tertiary)",
             fontWeight: 600,
             fontFamily: F,
-            margin: "0 0 10px",
+            margin: "0 0 12px",
           }}
+          data-testid="text-reach-out-label"
         >
           Reach out
         </p>
         <p
           style={{
-            fontSize: "14px",
+            fontSize: "17px",
             fontFamily: MONO,
             margin: 0,
             color: "var(--cat-text-secondary)",

@@ -211,7 +211,7 @@ export default function InterviewAgent() {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         onFocus={() => messages.length > 0 && setExpanded(true)}
-        placeholder="work, notice period, anything"
+        placeholder="notice period, availability, failures, how I build. All fair game."
         maxLength={500}
         data-testid="input-agent"
         style={{
@@ -324,19 +324,31 @@ export default function InterviewAgent() {
             >
               ● live — rohit.agent
             </span>
-            <span
-              className="agent-header-note"
+            <div
               style={{
-                fontSize: expanded ? "14px" : "13px",
-                color: expanded ? CREAM_FAINT : CREAM,
-                fontFamily: MONO,
-                textAlign: "right",
-                fontWeight: expanded ? 400 : 500,
-                letterSpacing: expanded ? undefined : "0.02em",
-                lineHeight: 1.35,
+                display: "flex",
+                alignItems: "baseline",
+                gap: "14px",
+                flexShrink: 1,
+                minWidth: 0,
               }}
             >
-              {expanded ? (
+              <span
+                className="agent-header-note"
+                style={{
+                  fontSize: "13px",
+                  color: CREAM,
+                  fontFamily: MONO,
+                  textAlign: "right",
+                  fontWeight: 500,
+                  letterSpacing: "0.02em",
+                  lineHeight: 1.35,
+                }}
+                data-testid="text-agent-credentials"
+              >
+                10+ years · Hexagon · Nestlé
+              </span>
+              {expanded && (
                 <button
                   onClick={() => setExpanded(false)}
                   aria-label="Collapse chat"
@@ -348,17 +360,17 @@ export default function InterviewAgent() {
                     fontSize: "14px",
                     fontFamily: MONO,
                     cursor: "pointer",
+                    flexShrink: 0,
+                    padding: 0,
                   }}
                 >
                   —
                 </button>
-              ) : (
-                "RAG-grounded on my CV, case studies & more"
               )}
-            </span>
+            </div>
           </div>
 
-          {/* standing greeting — quiet single line; the input stays dominant */}
+          {/* RAG note — quiet line under status; hide once conversation starts */}
           {messages.length === 0 && (
             <p
               style={{
@@ -368,9 +380,9 @@ export default function InterviewAgent() {
                 margin: "0 0 12px",
                 fontFamily: MONO,
               }}
-              data-testid="text-agent-greeting"
+              data-testid="text-agent-rag"
             >
-              Ask me anything: work, availability, failures, how I build. All fair game.
+              RAG on my CV, case studies & more
             </p>
           )}
 

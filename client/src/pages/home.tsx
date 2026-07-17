@@ -2,6 +2,7 @@ import Navbar from "@/components/layout/navbar";
 import Hero from "@/components/sections/hero";
 import InterviewAgent from "@/components/agent/interview-agent";
 import Projects from "@/components/sections/projects";
+import Education from "@/components/sections/education";
 import Closing from "@/components/sections/closing";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
         <InterviewAgent />
         <Hero />
         <Projects />
+        <Education />
         <Closing />
       </main>
 
