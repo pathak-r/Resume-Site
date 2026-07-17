@@ -2,8 +2,7 @@ import Navbar from "@/components/layout/navbar";
 import Hero from "@/components/sections/hero";
 import InterviewAgent from "@/components/agent/interview-agent";
 import Projects from "@/components/sections/projects";
-import About from "@/components/sections/about";
-import Contact from "@/components/sections/contact";
+import Closing from "@/components/sections/closing";
 
 export default function Home() {
   return (
@@ -13,11 +12,10 @@ export default function Home() {
     >
       <Navbar />
       <main className="catalog-page-stack">
-        <Hero />
         <InterviewAgent />
+        <Hero />
         <Projects />
-        <About />
-        <Contact />
+        <Closing />
       </main>
 
       <footer

@@ -59,7 +59,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-baseline gap-8">
           <a
             href="#interview"
-            data-testid="nav-link-interview"
+            data-testid="nav-link-ask"
             onClick={(e) => goTo(e, "#interview", true)}
             style={{
               color: D.accent,
@@ -71,7 +71,7 @@ export default function Navbar() {
             onMouseEnter={e => (e.currentTarget.style.opacity = "0.8")}
             onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
           >
-            ▸ interview me
+            ▸ ask me
           </a>
           <a
             href="#contact"
@@ -107,7 +107,7 @@ export default function Navbar() {
             onClick={(e) => goTo(e, "#interview", true)}
             style={{ color: D.accent, fontSize: "15px", fontFamily: D.mono, textDecoration: "none" }}
           >
-            ▸ interview me
+            ▸ ask me
           </a>
           <a
             href="#contact"

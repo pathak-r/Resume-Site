@@ -195,10 +195,10 @@ export default function InterviewAgent() {
         send(input);
       }}
       style={{
-        background: "rgba(240,235,224,0.06)",
-        border: "1px solid rgba(240,235,224,0.18)",
+        background: "rgba(240,235,224,0.08)",
+        border: "1px solid rgba(240,235,224,0.28)",
         borderRadius: "8px",
-        padding: "13px 16px",
+        padding: "15px 17px",
         fontFamily: MONO,
         display: "flex",
         alignItems: "center",
@@ -211,7 +211,7 @@ export default function InterviewAgent() {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         onFocus={() => messages.length > 0 && setExpanded(true)}
-        placeholder="ask me — work, notice period, anything"
+        placeholder="work, notice period, anything"
         maxLength={500}
         data-testid="input-agent"
         style={{
@@ -284,7 +284,12 @@ export default function InterviewAgent() {
     <section
       id="interview"
       className="catalog-section"
-      style={{ borderTop: "none", paddingTop: 0, paddingBottom: "1.5rem", scrollMarginTop: "72px" }}
+      style={{
+        borderTop: "none",
+        paddingTop: "calc(56px + 2.5rem)",
+        paddingBottom: "0.5rem",
+        scrollMarginTop: "72px",
+      }}
       data-testid="section-interview"
     >
       <div className="catalog-panel">
@@ -348,33 +353,25 @@ export default function InterviewAgent() {
                   —
                 </button>
               ) : (
-                "10+ yrs · Hexagon · Nestlé — or just ask"
+                "RAG-grounded on my CV, case studies & more"
               )}
             </span>
           </div>
 
-          {/* standing greeting — the agent speaks first */}
+          {/* standing greeting — quiet single line; the input stays dominant */}
           {messages.length === 0 && (
-            <div style={{ margin: "4px 0 16px", maxWidth: "85%" }}>
-              <p
-                style={{
-                  fontSize: "14px",
-                  color: CREAM,
-                  lineHeight: 1.65,
-                  margin: 0,
-                  background: "rgba(240,235,224,0.06)",
-                  border: "1px solid rgba(240,235,224,0.14)",
-                  borderRadius: "8px 8px 8px 2px",
-                  padding: "12px 15px",
-                  fontFamily: MONO,
-                }}
-                data-testid="text-agent-greeting"
-              >
-                I'm the AI version of Rohit — grounded in his CV, case studies and all
-                that. Ask him: work, availability, failures, how he builds. All fair
-                game.
-              </p>
-            </div>
+            <p
+              style={{
+                fontSize: "13px",
+                color: CREAM_FAINT,
+                lineHeight: 1.6,
+                margin: "0 0 12px",
+                fontFamily: MONO,
+              }}
+              data-testid="text-agent-greeting"
+            >
+              Ask me anything: work, availability, failures, how I build. All fair game.
+            </p>
           )}
 
           {/* conversation (expanded only) */}
