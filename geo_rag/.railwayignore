@@ -8,3 +8,4 @@ frontend/dist/
 data/pdfs/.parse_cache/
 # PDFs are already embedded in FAISS; omit source PDFs to keep CLI uploads under timeout
 data/pdfs/
+data/faiss_index/backup_*/
