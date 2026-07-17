@@ -61,20 +61,32 @@ export default function Hero() {
                 fontSize: "26px",
                 lineHeight: 1.3,
                 color: "var(--cat-text-secondary)",
-                marginBottom: "4px",
+                marginBottom: "2px",
               }}
             >
-              Capital projects. Critical infrastructure.
+              Capital projects.
+            </span>
+            <span
+              className="hero-h1-line2"
+              style={{
+                display: "block",
+                fontSize: "26px",
+                lineHeight: 1.3,
+                color: "var(--cat-text-tertiary)",
+                marginBottom: "2px",
+              }}
+            >
+              Critical infrastructure.
             </span>
             <span
               className="hero-h1-line3"
               style={{
                 display: "block",
-                fontSize: "22px",
+                fontSize: "20px",
                 lineHeight: 1.35,
-                color: "var(--cat-text-secondary)",
+                color: "var(--cat-text-tertiary)",
                 fontWeight: 500,
-                marginBottom: "8px",
+                marginBottom: "6px",
               }}
             >
               Refineries, offshore platforms, power plants.
@@ -84,8 +96,8 @@ export default function Hero() {
                 display: "block",
                 fontSize: "22px",
                 lineHeight: 1.35,
-                color: "var(--cat-text)",
-                fontWeight: 500,
+                color: "#E8A060",
+                fontWeight: 600,
               }}
               data-testid="text-hero-tenure"
             >
@@ -93,7 +105,7 @@ export default function Hero() {
             </span>
           </h1>
 
-          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+          <div className="hero-cta-row">
             <a
               href="#interview"
               data-testid="button-ask-questions"
@@ -105,7 +117,7 @@ export default function Hero() {
               style={{
                 fontSize: "15px",
                 fontWeight: 600,
-                padding: "12px 24px",
+                padding: "10px 18px",
                 borderRadius: "10px",
                 border: "1px solid var(--cat-accent)",
                 color: "var(--cat-on-accent)",
@@ -114,6 +126,8 @@ export default function Hero() {
                 cursor: "pointer",
                 fontFamily: "var(--cat-font)",
                 transition: "all 0.15s",
+                whiteSpace: "nowrap",
+                flexShrink: 0,
               }}
               onMouseEnter={(e) => (e.currentTarget.style.background = "#A94D30")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "var(--cat-accent)")}
@@ -127,7 +141,7 @@ export default function Hero() {
               style={{
                 fontSize: "15px",
                 fontWeight: 600,
-                padding: "12px 24px",
+                padding: "10px 18px",
                 borderRadius: "10px",
                 border: "1px solid var(--cat-rule-strong)",
                 color: "var(--cat-text)",
@@ -136,6 +150,8 @@ export default function Hero() {
                 cursor: "pointer",
                 fontFamily: "var(--cat-font)",
                 transition: "all 0.15s",
+                whiteSpace: "nowrap",
+                flexShrink: 0,
               }}
               onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(240,235,224,0.1)")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
@@ -150,7 +166,7 @@ export default function Hero() {
               style={{
                 fontSize: "15px",
                 fontWeight: 600,
-                padding: "12px 24px",
+                padding: "10px 18px",
                 borderRadius: "10px",
                 border: "1px solid var(--cat-rule-strong)",
                 color: "var(--cat-text-secondary)",
@@ -159,6 +175,8 @@ export default function Hero() {
                 cursor: "pointer",
                 fontFamily: "var(--cat-font)",
                 transition: "all 0.15s",
+                whiteSpace: "nowrap",
+                flexShrink: 0,
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = "var(--cat-text)";

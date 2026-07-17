@@ -468,8 +468,15 @@
 
   .hero-wall-frame {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-    gap: 3rem;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 1.6rem;
+    align-items: center;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: nowrap;
     align-items: center;
   }
 
@@ -478,6 +485,10 @@
     .hero-wall-frame {
       grid-template-columns: 1fr;
       gap: 2.25rem;
+    }
+
+    .hero-cta-row {
+      flex-wrap: wrap;
     }
 
     .hero-h1-line1 {
