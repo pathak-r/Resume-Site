@@ -19,7 +19,8 @@ export default function Navbar() {
 
   const goTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string, focusAgent = false) => {
     e.preventDefault();
-    if (location !== "/") {
+    const onHome = location === "/" || location === "/hello";
+    if (!onHome) {
       window.location.href = `/${href}`;
       return;
     }

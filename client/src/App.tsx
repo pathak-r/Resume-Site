@@ -14,6 +14,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/hello" component={Home} />
       <Route path="/geo-agentic-int" component={GeoAgenticInt} />
       <Route path="/section-blend-preview" component={SectionBlendPreview} />
       <Route path="/hero-nl-preview" component={HeroNlPreview} />

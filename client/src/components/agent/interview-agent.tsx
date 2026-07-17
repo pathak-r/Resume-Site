@@ -305,41 +305,34 @@ export default function InterviewAgent() {
           <div
             style={{
               display: "flex",
-              alignItems: "baseline",
+              alignItems: "flex-start",
               justifyContent: "space-between",
               gap: "12px",
               marginBottom: "10px",
             }}
           >
-            <span
-              style={{
-                fontSize: "11px",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: ACCENT,
-                fontWeight: 600,
-                fontFamily: MONO,
-              }}
-              data-testid="text-agent-status"
-            >
-              ● live — rohit.agent
-            </span>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "baseline",
-                gap: "14px",
-                flexShrink: 1,
-                minWidth: 0,
-              }}
-            >
+            <div style={{ minWidth: 0 }}>
               <span
-                className="agent-header-note"
                 style={{
+                  display: "block",
+                  fontSize: "11px",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: ACCENT,
+                  fontWeight: 600,
+                  fontFamily: MONO,
+                }}
+                data-testid="text-agent-status"
+              >
+                ● live — rohit.agent
+              </span>
+              <span
+                style={{
+                  display: "block",
+                  marginTop: "6px",
                   fontSize: "13px",
                   color: CREAM,
                   fontFamily: MONO,
-                  textAlign: "right",
                   fontWeight: 500,
                   letterSpacing: "0.02em",
                   lineHeight: 1.35,
@@ -348,6 +341,33 @@ export default function InterviewAgent() {
               >
                 10+ years · Hexagon · Nestlé
               </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "14px",
+                flexShrink: 1,
+                minWidth: 0,
+              }}
+            >
+              {messages.length === 0 && (
+                <span
+                  className="agent-header-note"
+                  style={{
+                    fontSize: "13px",
+                    color: CREAM_FAINT,
+                    fontFamily: MONO,
+                    textAlign: "right",
+                    fontWeight: 400,
+                    letterSpacing: "0.02em",
+                    lineHeight: 1.35,
+                  }}
+                  data-testid="text-agent-rag"
+                >
+                  RAG on my CV, case studies & more
+                </span>
+              )}
               {expanded && (
                 <button
                   onClick={() => setExpanded(false)}
@@ -369,22 +389,6 @@ export default function InterviewAgent() {
               )}
             </div>
           </div>
-
-          {/* RAG note — quiet line under status; hide once conversation starts */}
-          {messages.length === 0 && (
-            <p
-              style={{
-                fontSize: "13px",
-                color: CREAM_FAINT,
-                lineHeight: 1.6,
-                margin: "0 0 12px",
-                fontFamily: MONO,
-              }}
-              data-testid="text-agent-rag"
-            >
-              RAG on my CV, case studies & more
-            </p>
-          )}
 
           {/* conversation (expanded only) */}
           {expanded && messages.length > 0 && (
@@ -516,7 +520,7 @@ export default function InterviewAgent() {
         @media (max-width: 640px) {
           .agent-header-note {
             font-size: 12px !important;
-            max-width: 58%;
+            max-width: 48%;
           }
         }
         #interview input::placeholder {
