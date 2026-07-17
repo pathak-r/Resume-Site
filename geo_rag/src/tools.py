@@ -16,12 +16,15 @@ def production_query_tool(df: pd.DataFrame, well_name: str,
                           end_date: Optional[str] = None) -> str:
     """
     Query production data for a specific well.
-    Returns a text summary of the data.
+    Returns a text summary plus sample daily points when a date range is set.
     """
     result = query_production_data(df, well_name, start_date, end_date, metric)
 
     if result.empty:
-        return f"No production data found for well matching '{well_name}'."
+        return (
+            f"No production data found for well matching '{well_name}'. "
+            f"Use a Volve well id such as '15/9-F-11 H' or 'F-11' (F-1 means 15/9-F-1 C)."
+        )
 
     well = result["WELL_NAME"].iloc[0]
     date_range = f"{result['DATEPRD'].min().strftime('%Y-%m-%d')} to {result['DATEPRD'].max().strftime('%Y-%m-%d')}"
@@ -33,9 +36,15 @@ def production_query_tool(df: pd.DataFrame, well_name: str,
     ]
 
     if "BORE_OIL_VOL" in result.columns:
-        summary_lines.append(f"  Oil production: avg={result['BORE_OIL_VOL'].mean():.1f}, "
-                             f"max={result['BORE_OIL_VOL'].max():.1f}, "
-                             f"total={result['BORE_OIL_VOL'].sum():.1f} Sm3")
+        oil = result["BORE_OIL_VOL"]
+        summary_lines.append(f"  Oil production: avg={oil.mean():.1f}, "
+                             f"max={oil.max():.1f}, "
+                             f"total={oil.sum():.1f} Sm3")
+        peak = result.loc[oil.idxmax()]
+        summary_lines.append(
+            f"  Peak oil day: {peak['DATEPRD'].strftime('%Y-%m-%d')} "
+            f"({peak['BORE_OIL_VOL']:.1f} Sm3)"
+        )
     if "BORE_WAT_VOL" in result.columns:
         summary_lines.append(f"  Water production: avg={result['BORE_WAT_VOL'].mean():.1f}, "
                              f"max={result['BORE_WAT_VOL'].max():.1f}, "
@@ -61,6 +70,33 @@ def production_query_tool(df: pd.DataFrame, well_name: str,
             trend = "increasing" if change > 5 else "decreasing" if change < -5 else "stable"
             summary_lines.append(f"  Recent trend: {trend} ({change:+.1f}% over last 30 records)")
 
+    # When a date window is requested, include monthly rollups + sample daily rows
+    if start_date or end_date:
+        if "BORE_OIL_VOL" in result.columns:
+            monthly = (
+                result.set_index("DATEPRD")
+                .resample("MS")["BORE_OIL_VOL"]
+                .agg(["mean", "sum", "count"])
+            )
+            if not monthly.empty:
+                summary_lines.append("  Monthly oil (avg Sm3/day, total Sm3, days):")
+                for ts, row in monthly.iterrows():
+                    summary_lines.append(
+                        f"    {ts.strftime('%Y-%m')}: avg={row['mean']:.1f}, "
+                        f"total={row['sum']:.1f}, days={int(row['count'])}"
+                    )
+        sample = result.head(5)
+        cols = [c for c in ["DATEPRD", "BORE_OIL_VOL", "BORE_WAT_VOL", "WATER_CUT_PCT", "AVG_WHP_P"]
+                if c in result.columns]
+        if cols:
+            summary_lines.append("  Sample daily rows (first 5 in range):")
+            for _, row in sample.iterrows():
+                parts = [row["DATEPRD"].strftime("%Y-%m-%d")]
+                for c in cols[1:]:
+                    val = row[c]
+                    parts.append(f"{c}={val:.1f}" if pd.notna(val) else f"{c}=n/a")
+                summary_lines.append("    " + " | ".join(parts))
+
     return "\n".join(summary_lines)
 
 
@@ -80,8 +116,12 @@ def calculate_recovery_factor(df: pd.DataFrame, well_name: str,
     RF = Cumulative Oil Produced / Original Oil in Place (OOIP)
     If OOIP not provided, returns cumulative production only.
     """
-    mask = df["WELL_NAME"].str.contains(well_name, case=False, na=False)
-    well_data = df[mask]
+    from src.wells import resolve_production_mask
+
+    resolved = resolve_production_mask(df["WELL_NAME"].unique(), well_name)
+    if resolved is None:
+        return f"No data found for well matching '{well_name}'."
+    well_data = df[df["WELL_NAME"] == resolved]
 
     if well_data.empty:
         return f"No data found for well matching '{well_name}'."
@@ -113,8 +153,12 @@ def calculate_decline_rate(df: pd.DataFrame, well_name: str,
     Calculate production decline rate for a well.
     Uses exponential decline model: q(t) = qi * exp(-D*t)
     """
-    mask = df["WELL_NAME"].str.contains(well_name, case=False, na=False)
-    well_data = df[mask].copy()
+    from src.wells import resolve_production_mask
+
+    resolved = resolve_production_mask(df["WELL_NAME"].unique(), well_name)
+    if resolved is None:
+        return f"No data found for well matching '{well_name}'."
+    well_data = df[df["WELL_NAME"] == resolved].copy()
 
     if well_data.empty:
         return f"No data found for well matching '{well_name}'."
@@ -191,25 +235,38 @@ def _extract_relevant_snippet(text: str, query: str, window: int = 1500) -> str:
     return snippet
 
 
-def document_search_tool(query: str, embeddings_model) -> str:
+def document_search_tool(
+    query: str,
+    embeddings_model,
+    well_name: Optional[str] = None,
+    doc_type: Optional[str] = None,
+) -> str:
     """
     Search well documents (drilling reports, completion reports) for relevant information.
+    Prefer passing well_name to avoid retrieving the wrong well's completion reports.
     Returns formatted search results with source citations.
     """
-    results = search_documents_multi_query(query, embeddings_model)
+    results = search_documents_multi_query(
+        query, embeddings_model, well_name=well_name, doc_type=doc_type
+    )
 
     if not results:
-        return "No relevant documents found for this query."
+        scope = f" for well '{well_name}'" if well_name else ""
+        return f"No relevant documents found{scope} for this query."
 
     formatted = ["Relevant documents found:\n"]
     for i, result in enumerate(results, 1):
         meta = result["metadata"]
         well = meta.get("well_name", "Unknown")
-        doc_type = meta.get("doc_type", "Unknown").replace("_", " ").title()
+        doc_type_label = meta.get("doc_type", "Unknown").replace("_", " ").title()
+        source_file = meta.get("source_file", "unknown")
         score = result["score"]
 
         snippet = _extract_relevant_snippet(result["text"], query)
-        formatted.append(f"--- Source {i} [{doc_type} | {well}] (relevance: {score:.2f}) ---")
+        formatted.append(
+            f"--- Source {i} [{doc_type_label} | {well} | {source_file}] "
+            f"(relevance: {score:.2f}) ---"
+        )
         formatted.append(snippet)
         formatted.append("")
 

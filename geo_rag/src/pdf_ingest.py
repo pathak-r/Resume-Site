@@ -4,15 +4,11 @@ Parses well reports and drilling reports using LlamaParse + SemanticChunker.
 """
 import os
 import re
-from typing import List, Dict
-from llama_parse import LlamaParse
-from langchain_experimental.text_splitter import SemanticChunker
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from src.config import PDF_DIR, LLAMA_CLOUD_API_KEY, MAX_CHUNK_SIZE
-from src.llm import get_embeddings
+from typing import List, Dict, Any
+from src.config import PDF_DIR, LLAMA_CLOUD_API_KEY, MAX_CHUNK_SIZE, MIN_CHUNK_CHARS
 
 
-def extract_text_from_pdf(pdf_path: str, parser: LlamaParse) -> str:
+def extract_text_from_pdf(pdf_path: str, parser: Any) -> str:
     """Extract structured markdown text from a PDF file using LlamaParse."""
     documents = parser.load_data(pdf_path)
     return "\n\n".join(doc.text for doc in documents)
@@ -23,12 +19,26 @@ def extract_metadata_from_filename(filename: str) -> Dict:
     Extract well name and date from PDF filename.
     Examples:
         15_9_F_11_2013_03_08.pdf -> well=15/9-F-11, date=2013-03-08
+        15_9_F_1_C_2014_03_02.pdf -> well=15/9-F-1 C, date=2014-03-02
         15_9_19_A_1997_07_30.pdf -> well=15/9-19A, date=1997-07-30
-        F12_COMPLETION_REPORT_1.PDF -> well=F-12, type=completion_report
+        F12_COMPLETION_REPORT_1.PDF -> well=15/9-F-12, type=completion_report
     """
     metadata = {"source_file": filename}
 
     name = filename.replace(".pdf", "").replace(".PDF", "")
+
+    # Sidetrack daily: 15_9_F_1_C_2014_03_02 (letter before year)
+    daily_st_match = re.match(
+        r"15_9_F[_-]?(\d+)_([A-Za-z]+)_(\d{4})_(\d{2})_(\d{2})", name
+    )
+    if daily_st_match:
+        well_num = daily_st_match.group(1)
+        sidetrack = daily_st_match.group(2).upper()
+        year, month, day = daily_st_match.group(3, 4, 5)
+        metadata["well_name"] = f"15/9-F-{well_num} {sidetrack}"
+        metadata["date"] = f"{year}-{month}-{day}"
+        metadata["doc_type"] = "daily_drilling_report"
+        return metadata
 
     daily_match = re.match(
         r"15_9_F[_-]?(\d+)_(\d{4})_(\d{2})_(\d{2})", name
@@ -66,10 +76,11 @@ def extract_metadata_from_filename(filename: str) -> Dict:
         metadata["doc_type"] = "final_well_report"
         return metadata
 
+    # 15-9-F-1-C-COMPLETION_REPORT_1
     fc_match = re.match(r"15-9-F-(\d+)-([A-Z]+)", name, re.IGNORECASE)
     if fc_match:
         well_num = fc_match.group(1)
-        sidetrack = fc_match.group(2)
+        sidetrack = fc_match.group(2).upper()
         metadata["well_name"] = f"15/9-F-{well_num} {sidetrack}"
         metadata["doc_type"] = "completion_report"
         return metadata
@@ -79,11 +90,42 @@ def extract_metadata_from_filename(filename: str) -> Dict:
     return metadata
 
 
+_JUNK_ONLY = re.compile(
+    r"^(?:\|[\s\-:]*|\|?\s*(?:description|synergi\s*no|p\.?)\s*\|?|no\.?\s*(?:0|xxx)?|"
+    r"ref\.?|statoil(?:\s+#?\s*final\s+well\s+report)?|"
+    r"\|?\s*-{3,}\s*\|?)$",
+    re.I,
+)
+
+
+def is_junk_chunk(text: str, min_chars: int = None) -> bool:
+    """Drop empty, tiny, or header/separator-only chunks before embedding."""
+    min_chars = MIN_CHUNK_CHARS if min_chars is None else min_chars
+    if not text or not text.strip():
+        return True
+    cleaned = text.strip()
+    if len(cleaned) < min_chars:
+        return True
+    # Separator / column-header fragments
+    if _JUNK_ONLY.match(cleaned):
+        return True
+    # Mostly pipes / dashes with almost no words
+    word_chars = re.sub(r"[^\w]", "", cleaned)
+    if len(word_chars) < 20 and cleaned.count("|") >= 1:
+        return True
+    return False
+
+
 def process_all_pdfs(pdf_dir: str = None) -> List[Dict]:
     """
     Process all PDFs in the directory.
     Returns list of {text, metadata} dicts ready for embedding.
     """
+    from llama_parse import LlamaParse
+    from langchain_experimental.text_splitter import SemanticChunker
+    from langchain_text_splitters import RecursiveCharacterTextSplitter
+    from src.llm import get_embeddings
+
     pdf_dir = pdf_dir or PDF_DIR
     documents = []
 
@@ -112,6 +154,8 @@ def process_all_pdfs(pdf_dir: str = None) -> List[Dict]:
         separators=["\n\n", "\n", "|", " ", ""],
     )
 
+    dropped_junk = 0
+
     for filename in sorted(pdf_files):
         filepath = os.path.join(pdf_dir, filename)
         print(f"  Processing: {filename}")
@@ -135,6 +179,15 @@ def process_all_pdfs(pdf_dir: str = None) -> List[Dict]:
                 else:
                     chunks.append(sc)
 
+            # Pass 3: drop junk
+            kept = []
+            for sc in chunks:
+                if is_junk_chunk(sc):
+                    dropped_junk += 1
+                else:
+                    kept.append(sc)
+            chunks = kept
+
             oversized = sum(1 for sc in semantic_chunks if len(sc) > MAX_CHUNK_SIZE)
             print(f"    {len(semantic_chunks)} semantic chunks → {len(chunks)} final chunks "
                   f"({oversized} re-split for exceeding {MAX_CHUNK_SIZE} chars)")
@@ -153,5 +206,6 @@ def process_all_pdfs(pdf_dir: str = None) -> List[Dict]:
         except Exception as e:
             print(f"    Error processing {filename}: {e}")
 
-    print(f"\nTotal documents for embedding: {len(documents)}")
+    print(f"\nDropped {dropped_junk} junk chunks")
+    print(f"Total documents for embedding: {len(documents)}")
     return documents

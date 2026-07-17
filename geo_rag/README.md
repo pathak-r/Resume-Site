@@ -23,6 +23,12 @@ cp .env.example .env          # add OPENAI_API_KEY
 
 Ensure `data/production/Volve production data.xlsx`, `data/pdfs/*.pdf`, and `data/faiss_index/` exist (run `python ingest.py` once if the index is missing).
 
+To fix metadata / drop junk chunks **without** re-parsing PDFs:
+
+```bash
+python repair_index.py
+```
+
 **2. API + hot-reload UI (two terminals)**
 
 Terminal A — FastAPI only (proxied by Vite):

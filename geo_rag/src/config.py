@@ -20,9 +20,9 @@ PDF_DIR = os.path.join(DATA_DIR, "pdfs")
 FAISS_INDEX_PATH = os.path.join(DATA_DIR, "faiss_index")
 
 # --- RAG Configuration ---
-CHUNK_SIZE = 1000       # Target size for SemanticChunker (guidance only)
-CHUNK_OVERLAP = 200
+# SemanticChunker chooses split points; oversized pieces are re-split below.
 MAX_CHUNK_SIZE = 1500   # Hard ceiling: any chunk larger than this is re-split
+MIN_CHUNK_CHARS = 100   # Drop tiny / separator-only chunks before indexing
 TOP_K_RESULTS = 10
 
 # --- Anomaly Detection ---

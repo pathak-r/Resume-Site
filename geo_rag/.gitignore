@@ -8,6 +8,7 @@ __pycache__/
 .DS_Store
 **/.DS_Store
 data/pdfs/.parse_cache/
+data/faiss_index/backup_*/
 *.egg-info/
 dist/
 build/

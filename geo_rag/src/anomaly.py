@@ -13,8 +13,11 @@ def detect_anomalies(df: pd.DataFrame, well_name: str = None) -> pd.DataFrame:
     Returns DataFrame with anomaly flags and descriptions.
     """
     if well_name:
-        mask = df["WELL_NAME"].str.contains(well_name, case=False, na=False)
-        data = df[mask].copy()
+        from src.wells import resolve_production_mask
+        resolved = resolve_production_mask(df["WELL_NAME"].unique(), well_name)
+        if resolved is None:
+            return df.iloc[0:0].copy()
+        data = df[df["WELL_NAME"] == resolved].copy()
     else:
         data = df.copy()
 

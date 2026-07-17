@@ -111,13 +111,17 @@ def query_production_data(df: pd.DataFrame, well_name: str = None,
     """
     Query production data with filters.
     Used by the agent as a tool to answer production-related questions.
+    Well matching uses canonical Volve IDs (avoids F-1 matching F-11/F-14).
     """
+    from src.wells import resolve_production_mask
+
     result = df.copy()
 
     if well_name:
-        # Fuzzy match on well name
-        mask = result["WELL_NAME"].str.contains(well_name, case=False, na=False)
-        result = result[mask]
+        resolved = resolve_production_mask(result["WELL_NAME"].unique(), well_name)
+        if resolved is None:
+            return result.iloc[0:0].copy()
+        result = result[result["WELL_NAME"] == resolved]
 
     if start_date:
         result = result[result["DATEPRD"] >= pd.to_datetime(start_date)]

@@ -30,15 +30,20 @@ You have access to tools for:
 
 When answering questions:
 - You are in a multi-turn chat: short follow-ups like "proceed", "use available data only", "same well", or "elaborate" refer to the previous user question—carry forward the well name, metric, or task from context and call tools as needed.
-- Always specify which well(s) you're analyzing
-- Cite specific data points and document sources
+- Always specify which well(s) you're analyzing using canonical names
+- When calling search_well_documents, ALWAYS pass well_name when the user named a well
+- Cite specific data points and document source_file names from tool output
+- Only use facts returned by tools — never invent rates, depths, or events
 - If a question requires both production data AND document context, use both tools
 - Flag any anomalies or concerning trends proactively
 - Use subsurface engineering terminology appropriately
-- When uncertain, say so — never fabricate data
+- When uncertain or tools return nothing, say so
 
-The Volve field wells are: 15/9-F-1 C, 15/9-F-11 H, 15/9-F-12 H, 15/9-F-14 H,
-15/9-F-15 D, 15/9-F-4 AH, 15/9-F-5 AH
+Well name rules:
+- Canonical wells: 15/9-F-1 C, 15/9-F-11 H, 15/9-F-12 H, 15/9-F-14 H,
+  15/9-F-15 D, 15/9-F-4 AH, 15/9-F-5 AH
+- Short forms: F-11 → 15/9-F-11 H; F-1 or F-1 C → 15/9-F-1 C (never F-11/F-12/F-14/F-15)
+- Prefer exact ids like "15/9-F-14 H" or "F-14" in tool calls
 
 The field produced from 2008 to 2016, with total production of ~63 million barrels.
 The reservoir is in the Hugin Formation at approximately 2750-3120m depth.
@@ -46,7 +51,9 @@ The reservoir is in the Hugin Formation at approximately 2750-3120m depth.
 
 
 class ProductionQueryInput(BaseModel):
-    well_name: str = Field(description="Well name or partial match, e.g. 'F-1' or 'F-11'")
+    well_name: str = Field(
+        description="Well id, e.g. '15/9-F-11 H', 'F-11', or 'F-1' (F-1 means 15/9-F-1 C only)"
+    )
     metric: Optional[str] = Field(default=None, description="Specific metric: BORE_OIL_VOL, BORE_WAT_VOL, WATER_CUT_PCT, AVG_WHP_P, GOR")
     start_date: Optional[str] = Field(default=None, description="Start date filter YYYY-MM-DD")
     end_date: Optional[str] = Field(default=None, description="End date filter YYYY-MM-DD")
@@ -68,6 +75,14 @@ class DeclineRateInput(BaseModel):
 
 class DocumentSearchInput(BaseModel):
     query: str = Field(description="Natural language query to search well documents")
+    well_name: Optional[str] = Field(
+        default=None,
+        description="Well to scope search to, e.g. '15/9-F-14 H' or 'F-14'. Strongly recommended.",
+    )
+    doc_type: Optional[str] = Field(
+        default=None,
+        description="Optional doc type filter: daily_drilling_report, completion_report, final_well_report",
+    )
 
 
 def create_agent(df: pd.DataFrame):
@@ -81,7 +96,8 @@ def create_agent(df: pd.DataFrame):
                 production_query_tool(df, well_name, metric, start_date, end_date),
             name="query_production_data",
             description="Query well production data. Use this for questions about oil/water/gas rates, "
-                        "water cut, pressure, or production trends for specific wells.",
+                        "water cut, pressure, or production trends for specific wells. "
+                        "Pass start_date/end_date for period-specific questions.",
             args_schema=ProductionQueryInput,
         ),
         StructuredTool.from_function(
@@ -106,11 +122,13 @@ def create_agent(df: pd.DataFrame):
             args_schema=DeclineRateInput,
         ),
         StructuredTool.from_function(
-            func=lambda query: document_search_tool(query, embeddings),
+            func=lambda query, well_name=None, doc_type=None:
+                document_search_tool(query, embeddings, well_name=well_name, doc_type=doc_type),
             name="search_well_documents",
             description="Search drilling reports, completion reports, and final well reports. "
                         "Use this for questions about drilling operations, well construction, "
-                        "geological findings, formation data, or historical well events.",
+                        "geological findings, formation data, or historical well events. "
+                        "Always pass well_name when the question is about a specific well.",
             args_schema=DocumentSearchInput,
         ),
     ]
