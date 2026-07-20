@@ -211,7 +211,7 @@ export default function InterviewAgent() {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         onFocus={() => messages.length > 0 && setExpanded(true)}
-        placeholder="notice period, availability, failures, how I build. All fair game."
+        placeholder="Ask about work, availability, failures, how I build. All fair game."
         maxLength={500}
         data-testid="input-agent"
         style={{
@@ -311,36 +311,61 @@ export default function InterviewAgent() {
               marginBottom: "10px",
             }}
           >
-            <div style={{ minWidth: 0 }}>
-              <span
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                minWidth: 0,
+              }}
+            >
+              <img
+                src="/rohit-portrait-v2.jpg"
+                alt="Rohit Pathak"
+                width={48}
+                height={48}
+                data-testid="img-agent-portrait"
                 style={{
-                  display: "block",
-                  fontSize: "11px",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: ACCENT,
-                  fontWeight: 600,
-                  fontFamily: MONO,
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  objectPosition: "center center",
+                  flexShrink: 0,
+                  border: "1px solid rgba(232,160,96,0.35)",
                 }}
-                data-testid="text-agent-status"
-              >
-                ● live — rohit.agent
-              </span>
-              <span
-                style={{
-                  display: "block",
-                  marginTop: "6px",
-                  fontSize: "13px",
-                  color: CREAM,
-                  fontFamily: MONO,
-                  fontWeight: 500,
-                  letterSpacing: "0.02em",
-                  lineHeight: 1.35,
-                }}
-                data-testid="text-agent-credentials"
-              >
-                10+ years · Hexagon · Nestlé
-              </span>
+              />
+              <div style={{ minWidth: 0 }}>
+                <span
+                  style={{
+                    display: "block",
+                    fontSize: "11px",
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    color: ACCENT,
+                    fontWeight: 600,
+                    fontFamily: MONO,
+                  }}
+                  data-testid="text-agent-status"
+                >
+                  ● live — rohit.agent
+                </span>
+                <span
+                  style={{
+                    display: "block",
+                    marginTop: "6px",
+                    fontSize: "13px",
+                    color: CREAM,
+                    fontFamily: MONO,
+                    fontWeight: 500,
+                    letterSpacing: "0.02em",
+                    lineHeight: 1.35,
+                  }}
+                  data-testid="text-agent-credentials"
+                >
+                  10+ years · Hexagon · Nestlé
+                </span>
+              </div>
             </div>
             <div
               style={{
