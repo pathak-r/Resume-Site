@@ -20,6 +20,17 @@ This repo runs as **two Railway services** from one GitHub repository.
 
 The Node app proxies Geo RAG at `/api/geo/*` using `GEO_RAG_API_URL`. Browsers only hit the resume-site URL.
 
+## AutoSignal (`/autosignal`)
+
+Static app built from the separate **AutoSignal** repo (`web/` → `client/public/autosignal/`). Express serves it before the portfolio SPA catch-all (`server/static.ts`). The browser calls the AutoSignal Railway API directly (`VITE_API_URL` baked at build time).
+
+| Check | URL |
+|-------|-----|
+| App | `https://rohitpathak.com/autosignal/` |
+| API health | `https://api-production-5d604.up.railway.app/health` |
+
+To refresh the static build: rebuild AutoSignal `web/` with production `VITE_API_URL`, copy `web/dist/*` into `client/public/autosignal/`, commit, push.
+
 ## Railway setup
 
 1. [railway.app](https://railway.app) → **New Project** → **Deploy from GitHub** → this repo.
