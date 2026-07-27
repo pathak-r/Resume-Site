@@ -13,12 +13,18 @@ export function serveStatic(app: Express) {
   // AutoSignal (separate Vite app) lives under /autosignal — serve before portfolio SPA.
   const autosignalPath = path.join(distPath, "autosignal");
   if (fs.existsSync(autosignalPath)) {
-    app.get("/autosignal", (_req, res) => {
-      res.redirect(301, "/autosignal/");
+    // Use originalUrl so we don't loop: Express's default non-strict routing
+    // treats /autosignal and /autosignal/ as the same path for app.get().
+    app.use((req, res, next) => {
+      const pathOnly = req.originalUrl.split("?")[0];
+      if (pathOnly === "/autosignal") {
+        return res.redirect(301, "/autosignal/");
+      }
+      next();
     });
     app.use(
       "/autosignal",
-      express.static(autosignalPath, { index: "index.html", fallthrough: true }),
+      express.static(autosignalPath, { index: "index.html", redirect: false }),
     );
     app.use("/autosignal", (_req: Request, res: Response) => {
       res.sendFile(path.join(autosignalPath, "index.html"));
