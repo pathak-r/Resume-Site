@@ -446,6 +446,85 @@ export function VolveFigure() {
   );
 }
 
+/* ── AutoSignal — steel. NHTSA-backed vehicle research ── */
+
+export function AutoSignalFigure() {
+  const KEY = "#4A5F6E";
+  return (
+    <svg
+      viewBox="0 0 400 280"
+      width="100%"
+      role="img"
+      aria-label="Car profile with signal arcs and NHTSA document sources — TSB, recall, complaint"
+    >
+      <title>NHTSA research signals pinned to a vehicle</title>
+
+      {/* ground / road */}
+      <path d="M 24 198 L 376 198" stroke={INK} strokeWidth="1" opacity="0.35" fill="none" />
+      <path d="M 40 210 L 360 210" stroke={INK} strokeWidth="0.7" opacity="0.2" fill="none" />
+
+      {/* car side profile */}
+      <g stroke={INK} strokeWidth="1.2" fill="none">
+        <path d="M 70 176 C 78 176, 86 150, 102 148 L 148 148 L 178 118 L 248 118 L 278 148 L 318 150 C 330 150, 336 162, 336 176 L 70 176 Z" />
+        <path d="M 178 118 L 188 148 M 248 118 L 238 148" opacity="0.55" />
+        <path d="M 102 148 L 318 150" opacity="0.35" />
+      </g>
+      {/* wheels */}
+      <g stroke={INK} strokeWidth="1.2" fill="none">
+        <circle cx="118" cy="176" r="16" />
+        <circle cx="118" cy="176" r="6" opacity="0.45" />
+        <circle cx="292" cy="176" r="16" />
+        <circle cx="292" cy="176" r="6" opacity="0.45" />
+      </g>
+
+      {/* signal arcs from roof */}
+      <g stroke={KEY} strokeWidth="1.2" fill="none">
+        <path d="M 210 118 L 210 96" />
+        <path d="M 196 88 C 210 78, 224 78, 238 88" opacity="0.9" />
+        <path d="M 186 76 C 210 58, 234 58, 258 76" opacity="0.55" />
+        <path d="M 176 64 C 210 40, 244 40, 278 64" opacity="0.3" />
+      </g>
+      <circle cx="210" cy="118" r="2.8" fill={KEY} />
+
+      {/* source pins */}
+      <g fill={KEY}>
+        <circle cx="96" cy="88" r="2.6" />
+        <circle cx="330" cy="72" r="2.6" />
+        <circle cx="348" cy="128" r="2.6" />
+      </g>
+      <g stroke={INK} strokeWidth="0.7" fill="none" opacity="0.45">
+        <path d="M 98 90 L 200 110" strokeDasharray="3 3" />
+        <path d="M 328 74 L 220 100" strokeDasharray="3 3" />
+        <path d="M 346 128 L 318 148" strokeDasharray="3 3" />
+      </g>
+
+      {/* document chips */}
+      <g fill="none" stroke={INK} strokeWidth="0.8" opacity="0.75">
+        <rect x="52" y="48" width="52" height="28" rx="2" />
+        <path d="M 58 58 h 28 M 58 64 h 20" />
+        <rect x="308" y="36" width="52" height="28" rx="2" />
+        <path d="M 314 46 h 28 M 314 52 h 20" />
+        <rect x="330" y="108" width="48" height="28" rx="2" />
+        <path d="M 336 118 h 24 M 336 124 h 16" />
+      </g>
+      <g fontSize="8.5" fill={INK_SOFT} fontFamily={MONO}>
+        <text x="58" y="44">TSB 23-018</text>
+        <text x="314" y="32">recall 24V-112</text>
+        <text x="336" y="104">complaint</text>
+      </g>
+
+      {/* query bar */}
+      <rect x="20" y="240" width="360" height="1" fill={INK} opacity="0.18" />
+      <text x="20" y="260" fontSize="10.5" fill={INK_SOFT} fontFamily={MONO}>
+        ▸ any TSBs for soft brake pedal on 2018 Civic?
+      </text>
+      <text x="20" y="276" fontSize="9" fill={KEY} fontFamily={MONO}>
+        3 sources · NHTSA grounded
+      </text>
+    </svg>
+  );
+}
+
 /* ── PropScan — lavender. Vision-LLM defect detection ── */
 
 export function PropScanFigure() {

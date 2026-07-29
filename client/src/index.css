@@ -138,6 +138,9 @@
   --key-lavender: #6B5A78;
   --key-lavender-tint: #EDE8F0;
   --key-lavender-line: #DBD4E0;
+  --key-steel: #4A5F6E;
+  --key-steel-tint: #E6EBEE;
+  --key-steel-line: #D0D8DE;
 
   --cat-rule-width: 1px;
   --cat-radius: 8px;
@@ -406,6 +409,7 @@
   .key-card--sky { background: var(--key-sky-tint); border-color: var(--key-sky-line); }
   .key-card--apricot { background: var(--key-apricot-tint); border-color: var(--key-apricot-line); }
   .key-card--lavender { background: var(--key-lavender-tint); border-color: var(--key-lavender-line); }
+  .key-card--steel { background: var(--key-steel-tint); border-color: var(--key-steel-line); }
 
   /* Tag chip on tinted cards */
   .key-tag {

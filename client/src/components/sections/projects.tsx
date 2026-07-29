@@ -5,6 +5,7 @@ import {
   Smart3DFigure,
   VolveFigure,
   PropScanFigure,
+  AutoSignalFigure,
 } from "@/components/figures/figures";
 
 const F = "var(--cat-font)";
@@ -12,7 +13,7 @@ const FB = "var(--cat-font-body)";
 
 type Project = {
   id: string;
-  key: "sage" | "sky" | "apricot" | "lavender";
+  key: "sage" | "sky" | "apricot" | "lavender" | "steel";
   keyColor: string;
   label: string;
   badge?: string;
@@ -21,7 +22,7 @@ type Project = {
   description: string;
   tags: string[];
   figure: React.ReactNode;
-  cta?: { label: string; href: string };
+  cta?: { label: string; href: string; external?: boolean };
 };
 
 const projects: Project[] = [
@@ -36,6 +37,24 @@ const projects: Project[] = [
       "Led the strategy and development of an LLM-based agentic system automating complex 3D engineering workflows — saving global engineering teams dozens of hours monthly, with a clear path to hundreds as coverage grows.",
     tags: ["LLM agents", "Product strategy", "3D engineering", "Automation"],
     figure: <CopilotFigure />,
+  },
+  {
+    id: "card-autosignal",
+    key: "steel",
+    keyColor: "var(--key-steel)",
+    label: "Vehicle Research AI",
+    badge: "Live demo",
+    title: "AutoSignal",
+    tagline: "NHTSA-backed research — TSBs, recalls, and complaints in plain language.",
+    description:
+      "Ask natural-language questions about vehicle safety and reliability. AutoSignal grounds answers in NHTSA technical service bulletins, recalls, complaints, and investigations — a live research surface for buyers and operators.",
+    tags: ["NHTSA", "RAG", "FastAPI", "React", "Postgres"],
+    figure: <AutoSignalFigure />,
+    cta: {
+      label: "Explore live demo",
+      href: "https://www.rohitpathak.com/autosignal/",
+      external: true,
+    },
   },
   {
     id: "card-volve",
@@ -79,6 +98,43 @@ const projects: Project[] = [
 ];
 
 function ProjectCard({ project, flip }: { project: Project; flip: boolean }) {
+  const ctaStyle = {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "8px",
+    fontSize: "14px",
+    fontWeight: 600,
+    color: "var(--cat-on-accent)",
+    background: project.keyColor,
+    borderRadius: "9px",
+    padding: "9px 16px",
+    textDecoration: "none",
+    fontFamily: F,
+    letterSpacing: "0.01em",
+  } as const;
+
+  const cta = project.cta ? (
+    project.cta.external ? (
+      <a
+        href={project.cta.href}
+        data-testid={`link-explore-${project.key}`}
+        style={ctaStyle}
+      >
+        {project.cta.label}
+        <ArrowRight size={14} strokeWidth={2} />
+      </a>
+    ) : (
+      <Link
+        href={project.cta.href}
+        data-testid={`link-explore-${project.key}`}
+        style={ctaStyle}
+      >
+        {project.cta.label}
+        <ArrowRight size={14} strokeWidth={2} />
+      </Link>
+    )
+  ) : null;
+
   const text = (
     <div>
       <p
@@ -152,29 +208,7 @@ function ProjectCard({ project, flip }: { project: Project; flip: boolean }) {
       </p>
 
       <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" }}>
-        {project.cta && (
-          <Link
-            href={project.cta.href}
-            data-testid={`link-explore-${project.key}`}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              fontSize: "14px",
-              fontWeight: 600,
-              color: "var(--cat-on-accent)",
-              background: project.keyColor,
-              borderRadius: "9px",
-              padding: "9px 16px",
-              textDecoration: "none",
-              fontFamily: F,
-              letterSpacing: "0.01em",
-            }}
-          >
-            {project.cta.label}
-            <ArrowRight size={14} strokeWidth={2} />
-          </Link>
-        )}
+        {cta}
         {project.tags.map((tag) => (
           <span
             key={tag}

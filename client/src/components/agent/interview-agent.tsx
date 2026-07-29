@@ -23,6 +23,7 @@ type Msg = {
 
 const CARD_LINKS: Record<string, { label: string; anchor: string }> = {
   copilot: { label: "Enterprise AI Copilot", anchor: "#card-copilot" },
+  autosignal: { label: "AutoSignal", anchor: "#card-autosignal" },
   "nl-query": { label: "AI Agents & NL Querying", anchor: "#card-nl-query" },
   volve: { label: "Volve Field RAG Explorer", anchor: "#card-volve" },
   propscan: { label: "PropScan", anchor: "#card-propscan" },
