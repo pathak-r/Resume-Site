@@ -32,7 +32,12 @@ we spent some time looking and trying out stuff with models like defog where nat
 
 ---
 
-## Volve Field RAG Explorer (personal, live demo)
+## Volve Field RAG Explorer (live demo on this site)
+
+Clarification for answers: the Volve demo queries Equinor's open Volve oil-field
+corpus (well PDFs + production data) via its own FAISS/agent stack. That is not the
+same as this interview agent's corpus (CV, case studies, FAQ). The CV is not Volve
+field data and does not serve as the demo's retrieval corpus.
 
 - Why I built it (what I wanted to learn/prove):
 

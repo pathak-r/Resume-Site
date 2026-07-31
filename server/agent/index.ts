@@ -13,6 +13,9 @@ import { buildSystemPrompt } from "./system-prompt";
 const EMBEDDING_MODEL = "text-embedding-3-small";
 const CHAT_MODEL = process.env.AGENT_MODEL || "gpt-4o-mini";
 const TOP_K = 6;
+const MIN_K = 2;
+/** Drop weak cosine hits so unrelated CV chunks don't always stamp source chips. */
+const SCORE_THRESHOLD = 0.28;
 const MAX_QUESTION_CHARS = 500;
 const MAX_HISTORY_MESSAGES = 12;
 const MAX_CONVERSATION_MESSAGES = 40;
@@ -87,6 +90,40 @@ async function embedQuery(text: string, apiKey: string): Promise<number[]> {
   return (await res.json()).data[0].embedding;
 }
 
+/**
+ * Follow-ups like "what do you mean by personal corpus here?" must stay scoped to
+ * the prior topic (e.g. Volve). Embed a short window of recent turns when needed.
+ */
+function buildRetrievalQuery(
+  messages: { role: string; content: string }[]
+): string {
+  const last = String(messages[messages.length - 1]?.content ?? "").trim();
+  if (messages.length < 2) return last;
+
+  const looksLikeFollowUp =
+    last.length < 120 ||
+    /\b(here|that|this|it|those|them|you mean|personal corpus|your corpus|the corpus)\b/i.test(
+      last
+    );
+
+  if (!looksLikeFollowUp) return last;
+
+  const prior = messages
+    .slice(-5, -1)
+    .filter((m) => (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
+    .map((m) => `${m.role}: ${String(m.content).slice(0, 400)}`)
+    .join("\n");
+  return `${prior}\nuser: ${last}`.slice(0, 2000);
+}
+
+function selectChunks(
+  ranked: { chunk: Chunk; score: number }[]
+): { chunk: Chunk; score: number }[] {
+  const strong = ranked.filter((r) => r.score >= SCORE_THRESHOLD);
+  if (strong.length >= MIN_K) return strong.slice(0, TOP_K);
+  return ranked.slice(0, Math.min(TOP_K, Math.max(MIN_K, ranked.length)));
+}
+
 // --- chat log (best-effort; absent DATABASE_URL is fine) ---
 async function logExchange(ipHash: string, question: string, answer: string, sources: string[]) {
   if (!process.env.DATABASE_URL) return;
@@ -145,15 +182,18 @@ export async function handleAgentChat(req: Request, res: Response) {
   const question: string = lastMsg.content.trim();
 
   try {
-    // Retrieval
-    const queryEmbedding = await embedQuery(question, apiKey);
+    // Retrieval (conversation-aware for short / anaphoric follow-ups)
+    const retrievalQuery = buildRetrievalQuery(
+      messages.map((m: any) => ({ role: String(m.role), content: String(m.content) }))
+    );
+    const queryEmbedding = await embedQuery(retrievalQuery, apiKey);
     const ranked = corpus
       .map((c) => ({ chunk: c, score: cosine(queryEmbedding, c.embedding) }))
-      .sort((a, b) => b.score - a.score)
-      .slice(0, TOP_K);
+      .sort((a, b) => b.score - a.score);
 
-    const sources = Array.from(new Set(ranked.map((r) => r.chunk.source)));
-    const context = ranked
+    const selected = selectChunks(ranked);
+    const sources = Array.from(new Set(selected.map((r) => r.chunk.source)));
+    const context = selected
       .map((r) => `[source: ${r.chunk.source} — ${r.chunk.heading}]\n${r.chunk.text}`)
       .join("\n\n---\n\n");
 
