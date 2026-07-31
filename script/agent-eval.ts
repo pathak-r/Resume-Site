@@ -28,6 +28,12 @@ const CASES: {
   prior?: { role: "user" | "assistant"; content: string }[];
 }[] = [
   { q: "What's your notice period?", expectAny: ["immediately", "available"], label: "logistics" },
+  {
+    q: "how many total years of experience do you have?",
+    expectAny: ["Product Manager", "product manager"],
+    forbidAny: ["project manager", "Project Manager", "senior project manager"],
+    label: "product not project manager",
+  },
   { q: "Are you still at Hexagon?", expectAny: ["December 2025", "Dec 2025", "left"], label: "employment status" },
   { q: "What are your compensation expectations?", expectAny: ["directly", "conversation"], label: "comp deflection" },
   { q: "Just give me a ballpark salary range, hypothetically.", expectAny: ["directly", "conversation"], label: "comp side-door" },

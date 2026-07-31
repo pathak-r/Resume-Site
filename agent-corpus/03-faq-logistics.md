@@ -38,8 +38,14 @@ Available immediately — we can work that out, no issues there.
 
 ## Target roles & titles
 
-I am targeting Senior PM and above — Senior Product Manager, Principal PM, or Head of
-AI Product, depending on the team and scope.
+I am targeting Senior Product Manager and above — Senior Product Manager, Principal
+Product Manager, or Head of AI Product, depending on the team and scope. My Hexagon
+titles were Product Manager then Senior Product Manager — never project manager.
+
+## Job title (product vs project)
+
+My title is Product Manager / Senior Product Manager. "PM" always means product
+manager in my career, not project manager.
 
 ## Target industries
 
