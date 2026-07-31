@@ -3,14 +3,14 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const D = {
-  bg:        "rgba(92, 101, 83, 0.9)",
-  bgSolid:   "#5C6553",
-  primary:   "#F0EBE0",
-  secondary: "#C4C9B8",
-  accent:    "#E8A060",
-  border:    "rgba(240, 235, 224, 0.18)",
-  font:      '"Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-  mono:      "ui-monospace, 'SF Mono', Menlo, Consolas, monospace",
+  bg: "rgba(244, 242, 236, 0.92)",
+  bgSolid: "#F4F2EC",
+  primary: "#1F2421",
+  secondary: "#5E6660",
+  accent: "#2F6F6A",
+  border: "rgba(31, 36, 33, 0.1)",
+  font: '"IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  mono: '"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace',
 };
 
 export default function Navbar() {
@@ -50,13 +50,12 @@ export default function Navbar() {
       >
         <Link
           href="/"
-          style={{ color: D.primary, fontSize: "18px", fontWeight: 600, letterSpacing: "-0.01em", textDecoration: "none" }}
+          style={{ color: D.primary, fontSize: "17px", fontWeight: 600, letterSpacing: "-0.01em", textDecoration: "none" }}
           data-testid="link-logo"
         >
           rohit pathak
         </Link>
 
-        {/* Desktop Nav */}
         <div className="hidden md:flex items-baseline gap-8">
           <a
             href="#interview"
@@ -69,8 +68,8 @@ export default function Navbar() {
               textDecoration: "none",
               transition: "opacity 0.15s",
             }}
-            onMouseEnter={e => (e.currentTarget.style.opacity = "0.8")}
-            onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.8")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
           >
             ▸ ask me
           </a>
@@ -78,15 +77,14 @@ export default function Navbar() {
             href="#contact"
             data-testid="nav-link-contact"
             onClick={(e) => goTo(e, "#contact")}
-            style={{ color: D.secondary, fontSize: "16px", textDecoration: "none", transition: "color 0.15s" }}
-            onMouseEnter={e => (e.currentTarget.style.color = D.primary)}
-            onMouseLeave={e => (e.currentTarget.style.color = D.secondary)}
+            style={{ color: D.secondary, fontSize: "15px", textDecoration: "none", transition: "color 0.15s" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = D.primary)}
+            onMouseLeave={(e) => (e.currentTarget.style.color = D.secondary)}
           >
             Contact
           </a>
         </div>
 
-        {/* Mobile Toggle */}
         <button
           className="md:hidden p-2"
           style={{ color: D.primary }}
@@ -97,7 +95,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <div
           className="md:hidden absolute top-full left-0 w-full px-8 py-6 flex flex-col gap-4"
@@ -126,10 +123,10 @@ export default function Navbar() {
               fontSize: "15px",
               fontWeight: 500,
               padding: "10px 18px",
-              borderRadius: "10px",
-              border: `1px solid ${D.primary}`,
-              color: D.bgSolid,
-              background: D.primary,
+              borderRadius: "8px",
+              border: `1px solid ${D.accent}`,
+              color: "#F4F2EC",
+              background: D.accent,
               textDecoration: "none",
               textAlign: "center",
             }}

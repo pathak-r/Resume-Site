@@ -29,8 +29,8 @@ export default function Home() {
     >
       <Navbar />
       <main className="catalog-page-stack">
-        <InterviewAgent />
         <Hero />
+        <InterviewAgent />
         <Projects />
         <Education />
         <Closing />

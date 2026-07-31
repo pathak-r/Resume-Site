@@ -1,5 +1,5 @@
 const F = "var(--cat-font)";
-const MONO = "ui-monospace, 'SF Mono', Menlo, Consolas, monospace";
+const MONO = "var(--cat-font-mono)";
 
 const linkStyle: React.CSSProperties = {
   color: "var(--cat-text)",

@@ -1,18 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * rohit.agent — the interview chat plate under the hero.
+ * rohit.agent — the interview chat plate under the PM strip.
  * Collapsed: single input bar + starter chips.
- * Expanded: fixed-height conversation (scrolls internally), source chips,
+ * Expanded: tall conversation (scrolls internally), source chips,
  * card deep-links, contextual suggestion chips, SSE streaming from /api/agent/chat.
  */
 
-const INK = "#2C2A24";
-const CREAM = "#F0EBE0";
-const CREAM_SOFT = "#C4C9B8";
-const CREAM_FAINT = "#A3AA96";
-const ACCENT = "#E8A060";
-const MONO = "ui-monospace, 'SF Mono', Menlo, Consolas, monospace";
+const INK = "#1F2421";
+const PLATE = "#FFFEFA";
+const MUTED = "#5E6660";
+const FAINT = "#8A918A";
+const RULE = "rgba(31, 36, 33, 0.12)";
+const ACCENT = "#2F6F6A";
+const ON_ACCENT = "#F4F2EC";
+const MONO = '"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace';
+const SANS = '"IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
 type Msg = {
   role: "user" | "assistant";
@@ -196,17 +199,17 @@ export default function InterviewAgent() {
         send(input);
       }}
       style={{
-        background: "rgba(240,235,224,0.08)",
-        border: "1px solid rgba(240,235,224,0.28)",
-        borderRadius: "8px",
-        padding: "15px 17px",
+        background: "#F4F2EC",
+        border: `1px solid ${RULE}`,
+        borderRadius: "10px",
+        padding: "18px 20px",
         fontFamily: MONO,
         display: "flex",
         alignItems: "center",
-        gap: "10px",
+        gap: "12px",
       }}
     >
-      <span style={{ color: CREAM, fontSize: "15px", flexShrink: 0 }}>▸</span>
+      <span style={{ color: ACCENT, fontSize: "16px", flexShrink: 0 }}>▸</span>
       <input
         ref={inputRef}
         value={input}
@@ -221,8 +224,8 @@ export default function InterviewAgent() {
           background: "transparent",
           border: "none",
           outline: "none",
-          color: CREAM,
-          fontSize: "15px",
+          color: INK,
+          fontSize: "16px",
           fontFamily: MONO,
         }}
       />
@@ -234,7 +237,7 @@ export default function InterviewAgent() {
           background: "transparent",
           border: "none",
           color: ACCENT,
-          fontSize: "14px",
+          fontSize: "15px",
           fontWeight: 600,
           fontFamily: MONO,
           cursor: streaming ? "default" : "pointer",
@@ -248,7 +251,7 @@ export default function InterviewAgent() {
   );
 
   const chips = (
-    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "12px" }}>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "14px" }}>
       {chipSet.map((chip) => (
         <button
           key={chip}
@@ -257,22 +260,22 @@ export default function InterviewAgent() {
           data-testid={`chip-agent-${chip.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`}
           style={{
             fontSize: "13px",
-            color: CREAM_SOFT,
+            color: MUTED,
             background: "transparent",
-            border: "1px solid rgba(240,235,224,0.18)",
-            borderRadius: "20px",
-            padding: "6px 14px",
+            border: `1px solid ${RULE}`,
+            borderRadius: "8px",
+            padding: "7px 14px",
             fontFamily: MONO,
             cursor: streaming ? "default" : "pointer",
             transition: "border-color 0.15s, color 0.15s",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.borderColor = ACCENT;
-            e.currentTarget.style.color = CREAM;
+            e.currentTarget.style.color = INK;
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = "rgba(240,235,224,0.18)";
-            e.currentTarget.style.color = CREAM_SOFT;
+            e.currentTarget.style.borderColor = RULE;
+            e.currentTarget.style.color = MUTED;
           }}
         >
           {chip}
@@ -287,61 +290,61 @@ export default function InterviewAgent() {
       className="catalog-section"
       style={{
         borderTop: "none",
-        paddingTop: "calc(56px + 2.5rem)",
-        paddingBottom: "0.5rem",
+        paddingTop: "0.5rem",
+        paddingBottom: "1.5rem",
         scrollMarginTop: "72px",
       }}
       data-testid="section-interview"
     >
-      <div className="catalog-panel">
+      <div className="catalog-panel" style={{ maxWidth: "1080px" }}>
         <div
           style={{
-            background: INK,
-            border: `1px solid ${ACCENT}`,
-            borderRadius: "12px",
-            padding: "20px 24px 22px",
+            background: PLATE,
+            border: `1px solid ${RULE}`,
+            borderRadius: "14px",
+            padding: "28px 28px 26px",
+            boxShadow: "0 1px 2px rgba(31,36,33,0.04), 0 12px 32px rgba(31,36,33,0.06)",
           }}
         >
-          {/* header */}
           <div
             style={{
               display: "flex",
               alignItems: "flex-start",
               justifyContent: "space-between",
               gap: "12px",
-              marginBottom: "10px",
+              marginBottom: "16px",
             }}
           >
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "12px",
+                gap: "14px",
                 minWidth: 0,
               }}
             >
               <img
                 src="/rohit-portrait-v2.jpg"
                 alt="Rohit Pathak"
-                width={48}
-                height={48}
+                width={56}
+                height={56}
                 data-testid="img-agent-portrait"
                 style={{
-                  width: "48px",
-                  height: "48px",
+                  width: "56px",
+                  height: "56px",
                   borderRadius: "50%",
                   objectFit: "cover",
                   objectPosition: "center center",
                   flexShrink: 0,
-                  border: "1px solid rgba(232,160,96,0.35)",
+                  border: `1px solid ${RULE}`,
                 }}
               />
               <div style={{ minWidth: 0 }}>
                 <span
                   style={{
                     display: "block",
-                    fontSize: "11px",
-                    letterSpacing: "0.12em",
+                    fontSize: "12px",
+                    letterSpacing: "0.1em",
                     textTransform: "uppercase",
                     color: ACCENT,
                     fontWeight: 600,
@@ -355,11 +358,10 @@ export default function InterviewAgent() {
                   style={{
                     display: "block",
                     marginTop: "6px",
-                    fontSize: "13px",
-                    color: CREAM,
-                    fontFamily: MONO,
+                    fontSize: "14px",
+                    color: INK,
+                    fontFamily: SANS,
                     fontWeight: 500,
-                    letterSpacing: "0.02em",
                     lineHeight: 1.35,
                   }}
                   data-testid="text-agent-credentials"
@@ -382,12 +384,11 @@ export default function InterviewAgent() {
                   className="agent-header-note"
                   style={{
                     fontSize: "13px",
-                    color: CREAM_FAINT,
-                    fontFamily: MONO,
+                    color: FAINT,
+                    fontFamily: SANS,
                     textAlign: "right",
                     fontWeight: 400,
-                    letterSpacing: "0.02em",
-                    lineHeight: 1.35,
+                    lineHeight: 1.4,
                   }}
                   data-testid="text-agent-rag"
                 >
@@ -402,8 +403,8 @@ export default function InterviewAgent() {
                   style={{
                     background: "transparent",
                     border: "none",
-                    color: CREAM_FAINT,
-                    fontSize: "14px",
+                    color: FAINT,
+                    fontSize: "16px",
                     fontFamily: MONO,
                     cursor: "pointer",
                     flexShrink: 0,
@@ -416,14 +417,14 @@ export default function InterviewAgent() {
             </div>
           </div>
 
-          {/* conversation (expanded only) */}
           {expanded && messages.length > 0 && (
             <div
               ref={scrollRef}
               style={{
-                maxHeight: "min(55vh, 520px)",
+                maxHeight: "min(48vh, 480px)",
+                minHeight: "220px",
                 overflowY: "auto",
-                marginBottom: "12px",
+                marginBottom: "16px",
                 paddingRight: "4px",
               }}
               data-testid="agent-conversation"
@@ -433,13 +434,13 @@ export default function InterviewAgent() {
                   <div key={i} style={{ display: "flex", justifyContent: "flex-end", margin: "0 0 12px" }}>
                     <span
                       style={{
-                        fontSize: "14px",
-                        color: INK,
+                        fontSize: "15px",
+                        color: ON_ACCENT,
                         background: ACCENT,
-                        borderRadius: "8px 8px 2px 8px",
-                        padding: "8px 12px",
+                        borderRadius: "10px 10px 2px 10px",
+                        padding: "10px 14px",
                         maxWidth: "75%",
-                        fontFamily: MONO,
+                        fontFamily: SANS,
                         lineHeight: 1.5,
                       }}
                     >
@@ -447,19 +448,19 @@ export default function InterviewAgent() {
                     </span>
                   </div>
                 ) : (
-                  <div key={i} style={{ margin: "0 0 14px", maxWidth: "85%" }}>
+                  <div key={i} style={{ margin: "0 0 14px", maxWidth: "88%" }}>
                     {(m.content || !streaming || i !== messages.length - 1) && m.content ? (
                       <p
                         style={{
-                          fontSize: "14px",
-                          color: CREAM,
+                          fontSize: "15px",
+                          color: INK,
                           lineHeight: 1.65,
                           margin: 0,
-                          background: "rgba(240,235,224,0.06)",
-                          border: "1px solid rgba(240,235,224,0.14)",
-                          borderRadius: "8px 8px 8px 2px",
-                          padding: "9px 12px",
-                          fontFamily: MONO,
+                          background: "#F4F2EC",
+                          border: `1px solid ${RULE}`,
+                          borderRadius: "10px 10px 10px 2px",
+                          padding: "12px 14px",
+                          fontFamily: SANS,
                           whiteSpace: "pre-wrap",
                         }}
                       >
@@ -475,7 +476,7 @@ export default function InterviewAgent() {
                                   .querySelector(CARD_LINKS[m.card!].anchor)
                                   ?.scrollIntoView({ behavior: "smooth" });
                               }}
-                              style={{ color: ACCENT, textDecoration: "none" }}
+                              style={{ color: ACCENT, textDecoration: "none", fontWeight: 500 }}
                             >
                               ↳ see the {CARD_LINKS[m.card].label} card below
                             </a>
@@ -491,7 +492,7 @@ export default function InterviewAgent() {
                               width: "5px",
                               height: "5px",
                               borderRadius: "50%",
-                              background: CREAM_FAINT,
+                              background: FAINT,
                               opacity: o,
                             }}
                           />
@@ -504,10 +505,10 @@ export default function InterviewAgent() {
                           <span
                             key={s}
                             style={{
-                              fontSize: "10px",
-                              color: CREAM_FAINT,
-                              border: "1px solid rgba(240,235,224,0.14)",
-                              borderRadius: "20px",
+                              fontSize: "11px",
+                              color: FAINT,
+                              border: `1px solid ${RULE}`,
+                              borderRadius: "6px",
                               padding: "2px 8px",
                               fontFamily: MONO,
                             }}
@@ -526,7 +527,7 @@ export default function InterviewAgent() {
           {error && (
             <p
               style={{
-                fontSize: "12px",
+                fontSize: "13px",
                 color: ACCENT,
                 fontFamily: MONO,
                 margin: "0 0 10px",
@@ -550,8 +551,8 @@ export default function InterviewAgent() {
           }
         }
         #interview input::placeholder {
-          color: ${CREAM_FAINT};
-          opacity: 0.8;
+          color: ${FAINT};
+          opacity: 0.9;
         }
       `}</style>
     </section>
