@@ -34,6 +34,7 @@ in the first week the chat is live. Each question maps to the doc where its answ
 - What was the hardest product decision on the copilot?
 - Tell me about the NL querying product — how does it work technically?
 - Why did you build the Volve RAG explorer? What did it teach you?
+- What's AutoSignal? How does the NHTSA corpus work — and did you run evals?
 - What's PropScan's status — is it going anywhere commercially?
 - What went wrong on each of these? What would you redo?
 - How hands-on are you technically? What did you personally build?

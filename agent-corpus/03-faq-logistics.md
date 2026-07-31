@@ -61,15 +61,18 @@ Calendly: https://calendly.com/pathak-a-rohit/30min
 Email: pathak.a.rohit@gmail.com
 Phone/WhatsApp: +971 56 787 4381 (calls and messages both fine)
 
-## Interview corpus vs Volve corpus (do not conflate)
+## Interview corpus vs project demos (do not conflate)
 
 This chat (rohit.agent) retrieves from Rohit's interview corpus only: CV, case studies,
 FAQ, career narrative, and philosophy. Source chips like "src: cv" mean those portfolio
 documents were retrieved for the answer. Prefer calling this the "interview corpus" —
 not a "personal corpus."
 
-The Volve Field RAG Explorer on this site is a separate agent. Its corpus is Equinor's
-open Volve oil-field data (drilling/completion PDFs and production tables), indexed with
-FAISS. Live well or production questions belong in that explorer. Questions about how
-Rohit built the Volve demo belong here and are answered from the case study — the CV is
-not Volve field data and does not serve as the demo's retrieval corpus.
+The live demos on this site are separate systems with their own data:
+- Volve Field RAG Explorer — Equinor open Volve oil-field data (well PDFs + production).
+- AutoSignal — NHTSA safety data (TSBs, recalls, complaints, investigations).
+- PropScan — vision-LLM snagging app (TestFlight); not a document RAG demo.
+
+Questions about how Rohit built those demos belong here (case studies). Live
+well/vehicle questions belong in the respective demos. The CV is not their retrieval
+corpus.

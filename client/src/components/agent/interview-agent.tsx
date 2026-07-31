@@ -40,7 +40,8 @@ const STARTER_CHIPS = [
 
 const CHIP_POOLS: string[][] = [
   ["are you open to relocation?", "when can you start?", "what roles are you targeting?"],
-  ["what went wrong on the copilot?", "how did you build the Volve demo?", "how hands-on are you technically?"],
+  ["what went wrong on the copilot?", "how did you build the Volve demo?", "what's AutoSignal?"],
+  ["how hands-on are you technically?", "did you run evals on AutoSignal?", "what's PropScan?"],
   ["biggest product failure?", "how do you work with engineers?", "what's your product philosophy?"],
 ];
 

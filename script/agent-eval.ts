@@ -45,6 +45,34 @@ const CASES: {
     label: "volve builder (not live wells)",
   },
   {
+    q: "What's AutoSignal?",
+    expectAny: ["NHTSA", "TSB", "recall", "vehicle"],
+    label: "autosignal intro",
+  },
+  {
+    q: "Did you run evals on AutoSignal?",
+    expectAny: ["formal", "eval", "ground"],
+    forbidAny: ["UAE handover", "blurry"],
+    label: "autosignal eval (not PropScan)",
+  },
+  {
+    q: "Did you run any evals on it?",
+    prior: [
+      {
+        role: "user",
+        content: "tell me about the volve demo",
+      },
+      {
+        role: "assistant",
+        content:
+          "Volve Field RAG Explorer — agentic RAG over Equinor subsurface data with FAISS and GPT-4o. Chunking was the hard part. [[card:volve]]",
+      },
+    ],
+    expectAny: ["haven't", "not yet", "no formal", "chunk"],
+    forbidAny: ["UAE handover", "blurry", "handover photos"],
+    label: "volve eval follow-up (not PropScan)",
+  },
+  {
     q: "what do you mean by personal corpus here?",
     prior: [
       {

@@ -55,6 +55,57 @@ used FAISS vs chroma db because it scales better so i am set if i want to scale 
 
 data structure and setting up data for a rag agent. how to do it well , how crucial it is. also helped me with model eval understanding.
 
+- Evals / how I know it works:
+
+I haven't run formal evaluations on the Volve Field RAG Explorer yet, but I recognize
+the importance of doing so. The system's performance heavily relies on the accuracy of
+data chunking and the quality of the input data — that's usually where wrong or missing
+answers come from, not the LLM phrasing.
+
+---
+
+## AutoSignal (NHTSA-backed vehicle research, live demo)
+
+Clarification for answers: AutoSignal is a separate product from this interview agent
+and from Volve/PropScan. Its corpus is public NHTSA safety data (technical service
+bulletins, recalls, complaints, investigations) — not my CV. Live demo at
+https://www.rohitpathak.com/autosignal/ (deep-link card: autosignal).
+
+- Why I built it (what I wanted to learn/prove):
+
+Vehicle buyers and operators get buried in fragmented NHTSA records — TSBs, recalls,
+complaints, investigations — and there's no clean way to ask about a make/model's
+safety and reliability in plain language and get grounded answers with sources. I
+wanted another real RAG surface in a different domain from Volve, where citation
+quality and trust matter as much as retrieval.
+
+- What I personally built vs. leaned on:
+
+Built end to end with AI-assisted coding (Cursor): FastAPI backend, React UI,
+Postgres, RAG over NHTSA-backed sources. Static app is served from this site at
+/autosignal/; API runs as its own Railway service. Hard parts were grounding answers
+in the right document types and not letting the model invent safety claims.
+
+- Technical decisions worth discussing (stack, retrieval, grounding):
+
+Stack: NHTSA data · RAG · FastAPI · React · Postgres. Answers are meant to be
+source-grounded (TSBs, recalls, complaints, investigations) so a visitor can trace a
+claim back to the underlying record — not a vibes-based car summary.
+
+- Evals / how I know it works:
+
+Yes — AutoSignal has a formal evaluation set, unlike Volve and PropScan. I built labeled
+questions over real NHTSA-backed scenarios and score groundedness and citation quality
+so retrieval misses and overconfident answers get caught before they ship. Happy to go
+deeper on method and results directly if someone wants the numbers.
+
+- What went wrong / current limitations:
+
+TSB PDFs are fetched at question time rather than pre-stored for the whole corpus, so
+the first hit on a given bulletin can be a bit slow. Once retrieved, we store the PDF
+content so the next question that needs that bulletin is faster — and that usefully
+grows the working corpus over time.
+
 ---
 
 ## PropScan (personal, TestFlight)

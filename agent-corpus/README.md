@@ -22,7 +22,7 @@ pipeline.
 | Doc | What it feeds |
 |---|---|
 | 01-career-narrative.md | "Walk me through your background", role-by-role depth |
-| 02-case-studies.md | Project deep-dives for all four site cards |
+| 02-case-studies.md | Project deep-dives for site cards (copilot/NL, Volve, AutoSignal, PropScan) |
 | 03-faq-logistics.md | Notice period, comp, location, visa, availability |
 | 04-philosophy-working-style.md | Behavioral questions, leadership style, self-assessment |
 | 05-boundaries-policy.md | What the agent won't answer, and what it says instead |

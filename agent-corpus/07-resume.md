@@ -26,6 +26,11 @@ interface across time-series, tables, reports, and logs. Hybrid retrieval (vecto
 with anomaly detection. Stack: Python, LangChain, LangGraph, OpenAI, FAISS, BM25,
 LlamaParse, React, FastAPI, Railway.
 
+AutoSignal — NHTSA-Backed Vehicle Research (rohitpathak.com/autosignal/): plain-language
+RAG over NHTSA technical service bulletins, recalls, complaints, and investigations.
+Source-grounded answers for vehicle safety and reliability questions. Formal eval set for
+groundedness and citation quality. Stack: FastAPI, React, Postgres, RAG, Railway.
+
 Vision-LLM for Construction Defect Detection (internal TestFlight): mobile app detecting
 construction defects from photos via Gemini 2.5 Flash. Structured JSON output: defect
 type, severity, bounding boxes. Confidence gating (≥80%) suppresses false positives.
