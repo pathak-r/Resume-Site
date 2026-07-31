@@ -97,7 +97,7 @@ const projects: Project[] = [
   },
 ];
 
-function ProjectCard({ project, flip }: { project: Project; flip: boolean }) {
+function ProjectCard({ project }: { project: Project }) {
   const ctaStyle = {
     display: "inline-flex",
     alignItems: "center",
@@ -231,7 +231,7 @@ function ProjectCard({ project, flip }: { project: Project; flip: boolean }) {
       style={{ marginBottom: "1.25rem", scrollMarginTop: "80px" }}
       data-testid={`card-project-${project.key}`}
     >
-      <div className={flip ? "project-card-grid project-card-grid--flip" : "project-card-grid"}>
+      <div className="project-card-grid">
         {figure}
         {text}
       </div>
@@ -243,8 +243,8 @@ export default function Projects() {
   return (
     <section id="work" className="catalog-section" style={{ borderTop: "none", paddingTop: "1.5rem" }} data-testid="section-work">
       <div className="catalog-panel">
-        {projects.map((project, i) => (
-          <ProjectCard key={project.key} project={project} flip={i % 2 === 1} />
+        {projects.map((project) => (
+          <ProjectCard key={project.key} project={project} />
         ))}
       </div>
 
@@ -255,15 +255,11 @@ export default function Projects() {
           gap: 2rem;
           align-items: center;
         }
-        .project-card-grid--flip > :first-child { order: 2; }
-        .project-card-grid--flip > :last-child { order: 1; }
         @media (max-width: 767px) {
           .project-card-grid {
             grid-template-columns: 1fr;
             gap: 1.25rem;
           }
-          .project-card-grid--flip > :first-child { order: 1; }
-          .project-card-grid--flip > :last-child { order: 2; }
         }
       `}</style>
     </section>
