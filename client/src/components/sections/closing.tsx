@@ -27,7 +27,7 @@ export default function Closing() {
           }}
           data-testid="text-closing-statement"
         >
-          I prototype before I pitch
+          Anyway, the sun is out. Go look at the sky
           <span style={{ color: "var(--cat-accent)" }}>.</span>
         </h2>
 
