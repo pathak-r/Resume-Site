@@ -2,17 +2,6 @@ import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
-const D = {
-  bg: "rgba(244, 242, 236, 0.92)",
-  bgSolid: "#F4F2EC",
-  primary: "#1F2421",
-  secondary: "#5E6660",
-  accent: "#2F6F6A",
-  border: "rgba(31, 36, 33, 0.1)",
-  font: '"IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-  mono: '"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace',
-};
-
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
@@ -33,61 +22,56 @@ export default function Navbar() {
   };
 
   return (
-    <nav
-      className="fixed top-0 w-full z-50"
-      style={{
-        background: D.bg,
-        backdropFilter: "blur(16px)",
-        WebkitBackdropFilter: "blur(16px)",
-        borderBottom: `1px solid ${D.border}`,
-        fontFamily: D.font,
-        WebkitFontSmoothing: "antialiased",
-      }}
-    >
+    <nav className="fixed top-0 w-full z-50 glass-nav" style={{ borderBottom: "1px solid var(--cat-rule)" }}>
       <div
-        className="mx-auto px-8 flex items-baseline justify-between py-4"
-        style={{ maxWidth: "1200px" }}
+        className="mx-auto px-6 flex items-center justify-between py-4"
+        style={{ maxWidth: "var(--cat-panel-max)" }}
       >
         <Link
           href="/"
-          style={{ color: D.primary, fontSize: "17px", fontWeight: 600, letterSpacing: "-0.01em", textDecoration: "none" }}
+          style={{
+            color: "var(--cat-text)",
+            fontSize: "1.15rem",
+            fontWeight: 700,
+            letterSpacing: "-0.03em",
+            textDecoration: "none",
+            fontFamily: "var(--cat-font)",
+          }}
           data-testid="link-logo"
         >
           rohit pathak
         </Link>
 
-        <div className="hidden md:flex items-baseline gap-8">
+        <div className="hidden md:flex items-center gap-5">
           <a
-            href="#interview"
-            data-testid="nav-link-ask"
-            onClick={(e) => goTo(e, "#interview", true)}
-            style={{
-              color: D.accent,
-              fontSize: "14px",
-              fontFamily: D.mono,
-              textDecoration: "none",
-              transition: "opacity 0.15s",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.8")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            href="#work"
+            data-testid="nav-link-work"
+            onClick={(e) => goTo(e, "#work")}
+            className="nav-link"
           >
-            ▸ ask me
+            Work
           </a>
           <a
             href="#contact"
             data-testid="nav-link-contact"
             onClick={(e) => goTo(e, "#contact")}
-            style={{ color: D.secondary, fontSize: "15px", textDecoration: "none", transition: "color 0.15s" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = D.primary)}
-            onMouseLeave={(e) => (e.currentTarget.style.color = D.secondary)}
+            className="nav-link"
           >
             Contact
+          </a>
+          <a
+            href="#interview"
+            data-testid="nav-link-ask"
+            onClick={(e) => goTo(e, "#interview", true)}
+            className="nav-ask"
+          >
+            Ask me
           </a>
         </div>
 
         <button
           className="md:hidden p-2"
-          style={{ color: D.primary }}
+          style={{ color: "var(--cat-text)" }}
           onClick={() => setIsOpen(!isOpen)}
           data-testid="button-mobile-menu"
         >
@@ -97,44 +81,63 @@ export default function Navbar() {
 
       {isOpen && (
         <div
-          className="md:hidden absolute top-full left-0 w-full px-8 py-6 flex flex-col gap-4"
-          style={{ background: D.bgSolid, borderBottom: `1px solid ${D.border}` }}
+          className="md:hidden absolute top-full left-0 w-full px-6 py-6 flex flex-col gap-4"
+          style={{ background: "var(--cat-bg)", borderBottom: "1px solid var(--cat-rule)" }}
         >
-          <a
-            href="#interview"
-            onClick={(e) => goTo(e, "#interview", true)}
-            style={{ color: D.accent, fontSize: "15px", fontFamily: D.mono, textDecoration: "none" }}
-          >
-            ▸ ask me
+          <a href="#work" onClick={(e) => goTo(e, "#work")} className="nav-link">
+            Work
           </a>
-          <a
-            href="#contact"
-            onClick={(e) => goTo(e, "#contact")}
-            style={{ color: D.secondary, fontSize: "16px", textDecoration: "none" }}
-          >
+          <a href="#contact" onClick={(e) => goTo(e, "#contact")} className="nav-link">
             Contact
+          </a>
+          <a href="#interview" onClick={(e) => goTo(e, "#interview", true)} className="nav-ask" style={{ alignSelf: "flex-start" }}>
+            Ask me
           </a>
           <a
             href="/Rohit_Pathak_Resume.pdf"
             download
             data-testid="button-resume-download-mobile"
-            style={{
-              marginTop: "0.5rem",
-              fontSize: "15px",
-              fontWeight: 500,
-              padding: "10px 18px",
-              borderRadius: "8px",
-              border: `1px solid ${D.accent}`,
-              color: "#F4F2EC",
-              background: D.accent,
-              textDecoration: "none",
-              textAlign: "center",
-            }}
+            className="catalog-btn catalog-btn--primary"
+            style={{ marginTop: "0.5rem", height: "auto", padding: "0.85rem 1.1rem" }}
           >
             Download CV
           </a>
         </div>
       )}
+
+      <style>{`
+        .nav-link {
+          font-family: var(--cat-font-mono);
+          font-size: 0.7rem;
+          font-weight: 500;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          text-decoration: none;
+          color: var(--cat-text-tertiary);
+          border-bottom: 1px solid transparent;
+        }
+        .nav-link:hover {
+          color: var(--cat-text);
+          border-bottom-color: var(--cat-text);
+        }
+        .nav-ask {
+          font-family: var(--cat-font-mono);
+          font-size: 0.7rem;
+          font-weight: 500;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          text-decoration: none;
+          color: var(--cat-on-accent);
+          background: var(--cat-accent);
+          padding: 0.45rem 0.75rem;
+          border: 1px solid var(--cat-ink);
+          box-shadow: 2px 2px 0 var(--cat-ink);
+        }
+        .nav-ask:hover {
+          transform: translate(-1px, -1px);
+          box-shadow: 3px 3px 0 var(--cat-ink);
+        }
+      `}</style>
     </nav>
   );
 }

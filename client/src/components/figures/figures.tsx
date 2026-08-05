@@ -334,7 +334,7 @@ export function Smart3DFigure({ variant = "plate" }: Smart3DFigureProps) {
       {/* attribute readout — plate only; omitted on museum wall */}
       {!onWall && (
         <g>
-          <rect x="452" y="30" width="172" height="86" rx="6" fill="#FDFCF8" stroke="#D0DCE8" strokeWidth="1" />
+          <rect x="452" y="30" width="172" height="86" rx="0" fill="rgba(201,197,188,0.85)" stroke="#8f8b81" strokeWidth="1" />
           <text x="466" y="50" fontSize="9" fill={inkSoft} fontFamily={MONO} letterSpacing="1">LINE ATTRIBUTES</text>
           <g fontSize="9.5" fontFamily={MONO}>
             <text x="466" y="68" fill={inkSoft}>Tag</text>
@@ -576,7 +576,7 @@ export function PropScanFigure() {
 
       {/* label card */}
       <g>
-        <rect x="292" y="88" width="96" height="64" rx="6" fill="#FDFCF8" stroke="#DBD6E8" strokeWidth="1" />
+        <rect x="292" y="88" width="96" height="64" rx="0" fill="rgba(201,197,188,0.85)" stroke="#8f8b81" strokeWidth="1" />
         <text x="304" y="106" fontSize="9" fill={KEY} fontFamily={MONO} fontWeight="600">CRACK · WALL</text>
         <text x="304" y="122" fontSize="9" fill={INK_SOFT} fontFamily={MONO}>conf 0.91</text>
         <text x="304" y="138" fontSize="9" fill={INK_SOFT} fontFamily={MONO}>sev: moderate</text>

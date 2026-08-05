@@ -1,18 +1,21 @@
-const F = "var(--cat-font)";
-
 export default function Education() {
   return (
-    <section id="education" className="catalog-section" data-testid="section-education">
+    <section
+      id="education"
+      className="catalog-section"
+      style={{ background: "transparent" }}
+      data-testid="section-education"
+    >
       <div className="catalog-panel">
         <p
           style={{
-            fontSize: "11px",
-            letterSpacing: "0.12em",
+            fontSize: "0.65rem",
+            letterSpacing: "0.14em",
             textTransform: "uppercase",
             color: "var(--cat-text-tertiary)",
-            fontWeight: 600,
-            fontFamily: F,
-            margin: "0 0 10px",
+            fontWeight: 500,
+            fontFamily: "var(--cat-font-mono)",
+            margin: "0 0 0.45rem",
           }}
           data-testid="text-education-label"
         >
@@ -20,10 +23,10 @@ export default function Education() {
         </p>
         <p
           style={{
-            fontSize: "17px",
+            fontSize: "1.05rem",
             lineHeight: 1.55,
             color: "var(--cat-text-secondary)",
-            fontFamily: "var(--cat-font-body)",
+            fontFamily: "var(--cat-font)",
             margin: 0,
             maxWidth: "36em",
           }}

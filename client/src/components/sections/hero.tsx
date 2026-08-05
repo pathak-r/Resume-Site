@@ -1,28 +1,26 @@
-const F = "var(--cat-font)";
-
 export default function Hero() {
   return (
     <section
       data-testid="section-hero"
       style={{
-        background: "var(--cat-bg)",
+        background: "transparent",
         color: "var(--cat-text)",
         WebkitFontSmoothing: "antialiased",
-        MozOsxFontSmoothing: "grayscale",
-        padding: "calc(56px + 2rem) 2rem 1.25rem",
+        padding: "calc(56px + 2.75rem) 1.5rem 1.75rem",
       }}
     >
       <div className="hero-pm-strip">
         <h1
           className="hero-pm-title"
           style={{
-            margin: "0 0 10px",
-            fontSize: "clamp(26px, 4vw, 34px)",
-            fontWeight: 600,
-            letterSpacing: "-0.02em",
-            lineHeight: 1.25,
+            margin: "0 0 0.75rem",
+            fontSize: "clamp(2rem, 5vw, 3.1rem)",
+            fontWeight: 700,
+            letterSpacing: "-0.04em",
+            lineHeight: 1.05,
             color: "var(--cat-text)",
-            fontFamily: F,
+            fontFamily: "var(--cat-font)",
+            maxWidth: "18ch",
           }}
           data-testid="text-hero-headline"
         >
@@ -31,11 +29,11 @@ export default function Hero() {
 
         <p
           style={{
-            fontSize: "15px",
-            color: "var(--cat-text-secondary)",
-            fontFamily: F,
-            margin: "0 0 20px",
-            letterSpacing: "0.01em",
+            fontSize: "0.78rem",
+            color: "var(--cat-text-tertiary)",
+            fontFamily: "var(--cat-font-mono)",
+            margin: "0 0 1.5rem",
+            letterSpacing: "0.06em",
             lineHeight: 1.4,
           }}
           data-testid="text-hero-eyebrow"
@@ -48,18 +46,21 @@ export default function Hero() {
             href="/Rohit_Pathak_Resume.pdf"
             download
             data-testid="button-download-cv"
+            className="catalog-btn catalog-btn--primary"
             style={{
-              fontSize: "14px",
-              fontWeight: 600,
-              padding: "9px 16px",
-              borderRadius: "8px",
-              border: "1px solid var(--cat-accent)",
-              color: "var(--cat-on-accent)",
-              background: "var(--cat-accent)",
-              textDecoration: "none",
-              fontFamily: F,
+              height: "auto",
+              padding: "0.9rem 1.15rem",
+              fontSize: "0.72rem",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              fontFamily: "var(--cat-font-mono)",
+              gap: "0.65rem",
             }}
           >
+            <span
+              aria-hidden="true"
+              style={{ width: 8, height: 8, background: "var(--cat-ink)", display: "inline-block" }}
+            />
             Download CV
           </a>
           <a
@@ -67,16 +68,17 @@ export default function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             data-testid="button-linkedin"
+            className="catalog-btn"
             style={{
-              fontSize: "14px",
-              fontWeight: 500,
-              padding: "9px 16px",
-              borderRadius: "8px",
-              border: "1px solid var(--cat-rule-strong)",
-              color: "var(--cat-text-secondary)",
-              background: "transparent",
-              textDecoration: "none",
-              fontFamily: F,
+              height: "auto",
+              padding: "0.9rem 1.15rem",
+              fontSize: "0.72rem",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              fontFamily: "var(--cat-font-mono)",
+              borderColor: "var(--cat-ink)",
+              borderRadius: 0,
+              color: "var(--cat-text)",
             }}
           >
             LinkedIn

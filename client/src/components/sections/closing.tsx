@@ -1,45 +1,49 @@
-const F = "var(--cat-font)";
-const MONO = "var(--cat-font-mono)";
-
 const linkStyle: React.CSSProperties = {
   color: "var(--cat-text)",
   textDecoration: "none",
-  transition: "color 0.15s",
+  borderBottom: "1px solid transparent",
+  transition: "border-color 0.15s",
 };
 
 export default function Closing() {
   const hover = (e: React.MouseEvent<HTMLAnchorElement>, on: boolean) => {
-    e.currentTarget.style.color = on ? "var(--cat-accent)" : "var(--cat-text)";
+    e.currentTarget.style.borderBottomColor = on ? "var(--cat-ink)" : "transparent";
   };
 
   return (
-    <section id="contact" className="catalog-section" data-testid="section-closing">
+    <section
+      id="contact"
+      className="catalog-section"
+      style={{ background: "transparent" }}
+      data-testid="section-closing"
+    >
       <div className="catalog-panel">
         <h2
           style={{
-            fontSize: "34px",
+            fontSize: "clamp(1.6rem, 3.5vw, 2.2rem)",
             fontWeight: 600,
-            margin: "0 0 32px",
-            lineHeight: 1.2,
+            margin: "0 0 1.5rem",
+            lineHeight: 1.15,
             color: "var(--cat-text)",
-            letterSpacing: "-0.015em",
-            fontFamily: F,
+            letterSpacing: "-0.03em",
+            fontFamily: "var(--cat-font)",
+            maxWidth: "18ch",
           }}
           data-testid="text-closing-statement"
         >
           Anyway, the sun is out. Go look at the sky
-          <span style={{ color: "var(--cat-accent)" }}>.</span>
+          <span style={{ background: "var(--cat-accent)", padding: "0 0.12em" }}>.</span>
         </h2>
 
         <p
           style={{
-            fontSize: "14px",
-            letterSpacing: "0.12em",
+            fontSize: "0.65rem",
+            letterSpacing: "0.14em",
             textTransform: "uppercase",
             color: "var(--cat-text-tertiary)",
-            fontWeight: 600,
-            fontFamily: F,
-            margin: "0 0 12px",
+            fontWeight: 500,
+            fontFamily: "var(--cat-font-mono)",
+            margin: "0 0 0.45rem",
           }}
           data-testid="text-reach-out-label"
         >
@@ -47,11 +51,11 @@ export default function Closing() {
         </p>
         <p
           style={{
-            fontSize: "17px",
-            fontFamily: MONO,
+            fontSize: "0.9rem",
+            fontFamily: "var(--cat-font-mono)",
             margin: 0,
             color: "var(--cat-text-secondary)",
-            lineHeight: 1.8,
+            lineHeight: 1.7,
             wordBreak: "break-word",
           }}
           data-testid="text-contact-line"

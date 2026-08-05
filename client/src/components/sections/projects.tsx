@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import {
@@ -8,13 +9,9 @@ import {
   AutoSignalFigure,
 } from "@/components/figures/figures";
 
-const F = "var(--cat-font)";
-const FB = "var(--cat-font-body)";
-
 type Project = {
   id: string;
   key: "sage" | "sky" | "apricot" | "lavender" | "steel";
-  keyColor: string;
   label: string;
   badge?: string;
   title: string;
@@ -29,7 +26,6 @@ const projects: Project[] = [
   {
     id: "card-copilot",
     key: "sage",
-    keyColor: "var(--key-sage)",
     label: "Generative AI",
     title: "Enterprise AI Copilot System",
     tagline: "LLM-based agents for complex 3D engineering workflows.",
@@ -41,7 +37,6 @@ const projects: Project[] = [
   {
     id: "card-autosignal",
     key: "steel",
-    keyColor: "var(--key-steel)",
     label: "Vehicle Research AI",
     badge: "Live demo",
     title: "AutoSignal",
@@ -52,14 +47,13 @@ const projects: Project[] = [
     figure: <AutoSignalFigure />,
     cta: {
       label: "Explore live demo",
-      href: "https://www.rohitpathak.com/autosignal/",
+      href: "/autosignal/",
       external: true,
     },
   },
   {
     id: "card-volve",
     key: "apricot",
-    keyColor: "var(--key-apricot)",
     label: "Geo-Agentic AI",
     badge: "Live demo",
     title: "Volve Field RAG Explorer",
@@ -73,7 +67,6 @@ const projects: Project[] = [
   {
     id: "card-nl-query",
     key: "sky",
-    keyColor: "var(--key-sky)",
     label: "Data Intelligence",
     title: "AI Agents & Natural Language Querying",
     tagline: "Plain-language questions, answered by the plant design model.",
@@ -85,7 +78,6 @@ const projects: Project[] = [
   {
     id: "card-propscan",
     key: "lavender",
-    keyColor: "var(--key-lavender)",
     label: "Vision AI",
     badge: "TestFlight",
     title: "PropScan",
@@ -97,143 +89,102 @@ const projects: Project[] = [
   },
 ];
 
-function ProjectCard({ project }: { project: Project }) {
-  const ctaStyle = {
+function ProjectCta({ project }: { project: Project }) {
+  if (!project.cta) return null;
+  const style = {
     display: "inline-flex",
     alignItems: "center",
     gap: "8px",
-    fontSize: "14px",
-    fontWeight: 600,
+    fontSize: "0.72rem",
+    fontWeight: 500,
+    letterSpacing: "0.1em",
+    textTransform: "uppercase" as const,
     color: "var(--cat-on-accent)",
-    background: project.keyColor,
-    borderRadius: "9px",
-    padding: "9px 16px",
+    background: "var(--cat-accent)",
+    border: "1px solid var(--cat-ink)",
+    boxShadow: "2px 2px 0 var(--cat-ink)",
+    borderRadius: 0,
+    padding: "0.65rem 0.9rem",
     textDecoration: "none",
-    fontFamily: F,
-    letterSpacing: "0.01em",
-  } as const;
+    fontFamily: "var(--cat-font-mono)",
+  };
 
-  const cta = project.cta ? (
-    project.cta.external ? (
-      <a
-        href={project.cta.href}
-        data-testid={`link-explore-${project.key}`}
-        style={ctaStyle}
-      >
+  if (project.cta.external) {
+    return (
+      <a href={project.cta.href} data-testid={`link-explore-${project.key}`} style={style}>
         {project.cta.label}
         <ArrowRight size={14} strokeWidth={2} />
       </a>
-    ) : (
-      <Link
-        href={project.cta.href}
-        data-testid={`link-explore-${project.key}`}
-        style={ctaStyle}
-      >
-        {project.cta.label}
-        <ArrowRight size={14} strokeWidth={2} />
-      </Link>
-    )
-  ) : null;
+    );
+  }
 
-  const text = (
-    <div>
-      <p
-        style={{
-          fontSize: "11px",
-          letterSpacing: "0.1em",
-          textTransform: "uppercase",
-          color: project.keyColor,
-          fontWeight: 600,
-          margin: "0 0 10px",
-          fontFamily: F,
-        }}
-      >
-        {project.label}
-        {project.badge && (
-          <span
-            style={{
-              marginLeft: "8px",
-              background: project.keyColor,
-              color: "var(--cat-on-accent)",
-              borderRadius: "4px",
-              padding: "2px 8px",
-              fontSize: "10px",
-              letterSpacing: "0.08em",
-            }}
-          >
-            {project.badge}
-          </span>
-        )}
-      </p>
-
-      <h2
-        style={{
-          fontSize: "26px",
-          fontWeight: 600,
-          margin: "0 0 6px",
-          lineHeight: 1.2,
-          color: "var(--cat-text)",
-          letterSpacing: "-0.015em",
-          fontFamily: F,
-        }}
-        data-testid={`text-project-title-${project.key}`}
-      >
-        {project.title}
-      </h2>
-
-      <p
-        style={{
-          fontSize: "15px",
-          color: "var(--cat-text-secondary)",
-          fontStyle: "italic",
-          margin: "0 0 12px",
-          lineHeight: 1.55,
-          fontFamily: FB,
-        }}
-      >
-        {project.tagline}
-      </p>
-
-      <p
-        style={{
-          fontSize: "15px",
-          lineHeight: 1.7,
-          color: "var(--cat-text)",
-          margin: "0 0 16px",
-          fontFamily: FB,
-        }}
-        data-testid={`text-project-desc-${project.key}`}
-      >
-        {project.description}
-      </p>
-
-      <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" }}>
-        {cta}
-        {project.tags.map((tag) => (
-          <span
-            key={tag}
-            className="key-tag"
-            data-testid={`chip-tag-${project.key}-${tag.replace(/\s+/g, "-").toLowerCase()}`}
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-    </div>
+  return (
+    <Link href={project.cta.href} data-testid={`link-explore-${project.key}`} style={style}>
+      {project.cta.label}
+      <ArrowRight size={14} strokeWidth={2} />
+    </Link>
   );
+}
 
-  const figure = <div>{project.figure}</div>;
+function ProjectItem({ project }: { project: Project }) {
+  const [open, setOpen] = useState(false);
 
   return (
     <div
       id={project.id}
-      className={`key-card key-card--${project.key}`}
-      style={{ marginBottom: "1.25rem", scrollMarginTop: "80px" }}
+      className={`project-item${open ? " is-open" : ""}`}
+      tabIndex={0}
       data-testid={`card-project-${project.key}`}
+      onClick={() => setOpen((v) => !v)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          setOpen((v) => !v);
+        }
+      }}
     >
-      <div className="project-card-grid">
-        {figure}
-        {text}
+      <div className="project-row">
+        <div className="project-thumb" aria-hidden="true">
+          {project.figure}
+        </div>
+        <span className="project-label">{project.label}</span>
+        <span className="project-copy">
+          <span className="project-title" data-testid={`text-project-title-${project.key}`}>
+            {project.title}
+            {project.badge && <span className="project-badge">{project.badge}</span>}
+          </span>
+          <span className="project-desc">{project.tagline}</span>
+        </span>
+        {project.badge === "Live demo" && (
+          <span className="project-go" aria-hidden="true">
+            →
+          </span>
+        )}
+      </div>
+
+      <div className="project-expand">
+        <div className="project-expand-inner">
+          <div className="project-expand-figure" aria-hidden="true">
+            {project.figure}
+          </div>
+          <div className="project-expand-body">
+            <p style={{ margin: 0 }} data-testid={`text-project-desc-${project.key}`}>
+              {project.description}
+            </p>
+            <div className="project-expand-tags" onClick={(e) => e.stopPropagation()}>
+              <ProjectCta project={project} />
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="key-tag"
+                  data-testid={`chip-tag-${project.key}-${tag.replace(/\s+/g, "-").toLowerCase()}`}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -241,27 +192,19 @@ function ProjectCard({ project }: { project: Project }) {
 
 export default function Projects() {
   return (
-    <section id="work" className="catalog-section" style={{ borderTop: "none", paddingTop: "1.5rem" }} data-testid="section-work">
+    <section
+      id="work"
+      className="catalog-section"
+      style={{ background: "transparent" }}
+      data-testid="section-work"
+    >
       <div className="catalog-panel">
-        {projects.map((project) => (
-          <ProjectCard key={project.key} project={project} />
-        ))}
+        <div className="project-list">
+          {projects.map((project) => (
+            <ProjectItem key={project.key} project={project} />
+          ))}
+        </div>
       </div>
-
-      <style>{`
-        .project-card-grid {
-          display: grid;
-          grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-          gap: 2rem;
-          align-items: center;
-        }
-        @media (max-width: 767px) {
-          .project-card-grid {
-            grid-template-columns: 1fr;
-            gap: 1.25rem;
-          }
-        }
-      `}</style>
     </section>
   );
 }

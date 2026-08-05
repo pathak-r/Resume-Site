@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <div
       className="min-h-screen overflow-x-hidden"
-      style={{ background: "var(--cat-bg)", color: "var(--cat-text)" }}
+      style={{ background: "transparent", color: "var(--cat-text)" }}
     >
       <Navbar />
       <main className="catalog-page-stack">
@@ -38,15 +38,23 @@ export default function Home() {
 
       <footer
         style={{
-          background: "var(--cat-bg)",
+          maxWidth: "var(--cat-panel-max)",
+          margin: "0 auto",
+          width: "100%",
+          padding: "1.25rem 1.5rem 1.75rem",
+          borderTop: "1px solid var(--cat-rule)",
+          display: "flex",
+          justifyContent: "space-between",
+          gap: "1rem",
+          flexWrap: "wrap",
+          fontFamily: "var(--cat-font-mono)",
+          fontSize: "0.68rem",
+          letterSpacing: "0.06em",
           color: "var(--cat-text-tertiary)",
-          fontSize: "12px",
-          padding: "2.5rem 1rem",
-          textAlign: "center",
-          letterSpacing: "0.04em",
+          background: "transparent",
         }}
       >
-        © {new Date().getFullYear()} Rohit Pathak · Senior Product Manager · Abu Dhabi, UAE
+        <span>© {new Date().getFullYear()} Rohit Pathak · Senior Product Manager · Abu Dhabi, UAE</span>
       </footer>
     </div>
   );

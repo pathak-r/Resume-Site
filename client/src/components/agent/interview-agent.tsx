@@ -7,15 +7,15 @@ import { useEffect, useRef, useState } from "react";
  * card deep-links, contextual suggestion chips, SSE streaming from /api/agent/chat.
  */
 
-const INK = "#1F2421";
-const PLATE = "#FFFEFA";
-const MUTED = "#5E6660";
-const FAINT = "#8A918A";
-const RULE = "rgba(31, 36, 33, 0.12)";
-const ACCENT = "#2F6F6A";
-const ON_ACCENT = "#F4F2EC";
-const MONO = '"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace';
-const SANS = '"IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+const INK = "var(--cat-ink)";
+const PLATE = "rgba(20, 20, 20, 0.03)";
+const MUTED = "var(--cat-text-secondary)";
+const FAINT = "var(--cat-text-tertiary)";
+const RULE = "var(--cat-rule)";
+const ACCENT = "var(--cat-accent)";
+const ON_ACCENT = "var(--cat-on-accent)";
+const MONO = "var(--cat-font-mono)";
+const SANS = "var(--cat-font)";
 
 type Msg = {
   role: "user" | "assistant";
@@ -200,14 +200,14 @@ export default function InterviewAgent() {
         send(input);
       }}
       style={{
-        background: "#F4F2EC",
-        border: `1px solid ${RULE}`,
-        borderRadius: "10px",
-        padding: "18px 20px",
+        background: "transparent",
+        borderBottom: `1px solid ${RULE}`,
+        borderRadius: 0,
+        padding: "0 0 0.75rem",
         fontFamily: MONO,
         display: "flex",
         alignItems: "center",
-        gap: "12px",
+        gap: "0.65rem",
       }}
     >
       <span style={{ color: ACCENT, fontSize: "16px", flexShrink: 0 }}>▸</span>
@@ -226,7 +226,7 @@ export default function InterviewAgent() {
           border: "none",
           outline: "none",
           color: INK,
-          fontSize: "16px",
+          fontSize: "0.95rem",
           fontFamily: MONO,
         }}
       />
@@ -235,24 +235,27 @@ export default function InterviewAgent() {
         disabled={streaming}
         data-testid="button-agent-send"
         style={{
-          background: "transparent",
+          background: INK,
           border: "none",
-          color: ACCENT,
-          fontSize: "15px",
-          fontWeight: 600,
+          color: "#f4f1ea",
+          fontSize: "0.65rem",
+          fontWeight: 500,
+          letterSpacing: "0.1em",
+          textTransform: "uppercase",
           fontFamily: MONO,
           cursor: streaming ? "default" : "pointer",
           opacity: streaming ? 0.5 : 1,
           flexShrink: 0,
+          padding: "0.55rem 0.75rem",
         }}
       >
-        ask →
+        Send
       </button>
     </form>
   );
 
   const chips = (
-    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "14px" }}>
+    <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginTop: "0.15rem" }}>
       {chipSet.map((chip) => (
         <button
           key={chip}
@@ -260,23 +263,26 @@ export default function InterviewAgent() {
           disabled={streaming}
           data-testid={`chip-agent-${chip.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`}
           style={{
-            fontSize: "13px",
+            fontSize: "0.68rem",
+            letterSpacing: "0.04em",
             color: MUTED,
             background: "transparent",
             border: `1px solid ${RULE}`,
-            borderRadius: "8px",
-            padding: "7px 14px",
+            borderRadius: 0,
+            padding: "0.4rem 0.65rem",
             fontFamily: MONO,
             cursor: streaming ? "default" : "pointer",
-            transition: "border-color 0.15s, color 0.15s",
+            transition: "border-color 0.15s, color 0.15s, background 0.15s",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = ACCENT;
+            e.currentTarget.style.borderColor = INK;
             e.currentTarget.style.color = INK;
+            e.currentTarget.style.background = "var(--cat-accent-soft)";
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.borderColor = RULE;
             e.currentTarget.style.color = MUTED;
+            e.currentTarget.style.background = "transparent";
           }}
         >
           {chip}
@@ -290,21 +296,49 @@ export default function InterviewAgent() {
       id="interview"
       className="catalog-section"
       style={{
-        borderTop: "none",
-        paddingTop: "0.5rem",
+        background: "transparent",
+        paddingTop: "2.25rem",
         paddingBottom: "1.5rem",
         scrollMarginTop: "72px",
       }}
       data-testid="section-interview"
     >
-      <div className="catalog-panel" style={{ maxWidth: "1080px" }}>
+      <div className="catalog-panel">
+        <p
+          style={{
+            margin: "0 0 0.45rem",
+            fontFamily: MONO,
+            fontSize: "0.65rem",
+            fontWeight: 500,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: FAINT,
+          }}
+        >
+          Interview agent
+        </p>
+        <h2
+          style={{
+            margin: "0 0 1.35rem",
+            fontSize: "clamp(1.35rem, 2.8vw, 1.75rem)",
+            fontWeight: 600,
+            letterSpacing: "-0.03em",
+            color: INK,
+            fontFamily: SANS,
+            maxWidth: "20ch",
+          }}
+        >
+          Ask me anything.
+        </h2>
         <div
           style={{
             background: PLATE,
-            border: `1px solid ${RULE}`,
-            borderRadius: "14px",
-            padding: "28px 28px 26px",
-            boxShadow: "0 1px 2px rgba(31,36,33,0.04), 0 12px 32px rgba(31,36,33,0.06)",
+            border: `1px solid ${INK}`,
+            borderRadius: 0,
+            padding: "1rem",
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.85rem",
           }}
         >
           <div
@@ -313,7 +347,6 @@ export default function InterviewAgent() {
               alignItems: "flex-start",
               justifyContent: "space-between",
               gap: "12px",
-              marginBottom: "16px",
             }}
           >
             <div
@@ -327,24 +360,24 @@ export default function InterviewAgent() {
               <img
                 src="/rohit-portrait-v2.jpg"
                 alt="Rohit Pathak"
-                width={56}
-                height={56}
+                width={48}
+                height={48}
                 data-testid="img-agent-portrait"
                 style={{
-                  width: "56px",
-                  height: "56px",
-                  borderRadius: "50%",
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: 0,
                   objectFit: "cover",
                   objectPosition: "center center",
                   flexShrink: 0,
-                  border: `1px solid ${RULE}`,
+                  border: `1px solid ${INK}`,
                 }}
               />
               <div style={{ minWidth: 0 }}>
                 <span
                   style={{
                     display: "block",
-                    fontSize: "12px",
+                    fontSize: "0.7rem",
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
                     color: ACCENT,
@@ -359,7 +392,7 @@ export default function InterviewAgent() {
                   style={{
                     display: "block",
                     marginTop: "6px",
-                    fontSize: "14px",
+                    fontSize: "0.9rem",
                     color: INK,
                     fontFamily: SANS,
                     fontWeight: 500,
@@ -384,9 +417,9 @@ export default function InterviewAgent() {
                 <span
                   className="agent-header-note"
                   style={{
-                    fontSize: "13px",
+                    fontSize: "0.78rem",
                     color: FAINT,
-                    fontFamily: SANS,
+                    fontFamily: MONO,
                     textAlign: "right",
                     fontWeight: 400,
                     lineHeight: 1.4,
@@ -425,7 +458,6 @@ export default function InterviewAgent() {
                 maxHeight: "min(48vh, 480px)",
                 minHeight: "220px",
                 overflowY: "auto",
-                marginBottom: "16px",
                 paddingRight: "4px",
               }}
               data-testid="agent-conversation"
@@ -435,10 +467,11 @@ export default function InterviewAgent() {
                   <div key={i} style={{ display: "flex", justifyContent: "flex-end", margin: "0 0 12px" }}>
                     <span
                       style={{
-                        fontSize: "15px",
+                        fontSize: "0.95rem",
                         color: ON_ACCENT,
                         background: ACCENT,
-                        borderRadius: "10px 10px 2px 10px",
+                        border: `1px solid ${INK}`,
+                        borderRadius: 0,
                         padding: "10px 14px",
                         maxWidth: "75%",
                         fontFamily: SANS,
@@ -453,13 +486,13 @@ export default function InterviewAgent() {
                     {(m.content || !streaming || i !== messages.length - 1) && m.content ? (
                       <p
                         style={{
-                          fontSize: "15px",
+                          fontSize: "0.95rem",
                           color: INK,
                           lineHeight: 1.65,
                           margin: 0,
-                          background: "#F4F2EC",
+                          background: "transparent",
                           border: `1px solid ${RULE}`,
-                          borderRadius: "10px 10px 10px 2px",
+                          borderRadius: 0,
                           padding: "12px 14px",
                           fontFamily: SANS,
                           whiteSpace: "pre-wrap",
@@ -477,9 +510,14 @@ export default function InterviewAgent() {
                                   .querySelector(CARD_LINKS[m.card!].anchor)
                                   ?.scrollIntoView({ behavior: "smooth" });
                               }}
-                              style={{ color: ACCENT, textDecoration: "none", fontWeight: 500 }}
+                              style={{
+                                color: ACCENT,
+                                textDecoration: "none",
+                                fontWeight: 600,
+                                borderBottom: `1px solid ${ACCENT}`,
+                              }}
                             >
-                              ↳ see the {CARD_LINKS[m.card].label} card below
+                              ↳ see {CARD_LINKS[m.card].label} below
                             </a>
                           </>
                         )}
@@ -492,7 +530,7 @@ export default function InterviewAgent() {
                             style={{
                               width: "5px",
                               height: "5px",
-                              borderRadius: "50%",
+                              borderRadius: 0,
                               background: FAINT,
                               opacity: o,
                             }}
@@ -506,11 +544,13 @@ export default function InterviewAgent() {
                           <span
                             key={s}
                             style={{
-                              fontSize: "11px",
+                              fontSize: "0.62rem",
+                              letterSpacing: "0.06em",
+                              textTransform: "uppercase",
                               color: FAINT,
                               border: `1px solid ${RULE}`,
-                              borderRadius: "6px",
-                              padding: "2px 8px",
+                              borderRadius: 0,
+                              padding: "0.2rem 0.45rem",
                               fontFamily: MONO,
                             }}
                           >
@@ -528,10 +568,10 @@ export default function InterviewAgent() {
           {error && (
             <p
               style={{
-                fontSize: "13px",
+                fontSize: "0.78rem",
                 color: ACCENT,
                 fontFamily: MONO,
-                margin: "0 0 10px",
+                margin: 0,
               }}
               data-testid="text-agent-error"
             >
