@@ -1,3 +1,5 @@
+import CvPreviewButton from "@/components/cv-preview";
+
 export default function Hero() {
   return (
     <section
@@ -42,9 +44,7 @@ export default function Hero() {
         </p>
 
         <div className="hero-cta-row">
-          <a
-            href="/Rohit_Pathak_Resume.pdf"
-            download
+          <CvPreviewButton
             data-testid="button-download-cv"
             className="catalog-btn catalog-btn--primary"
             style={{
@@ -61,8 +61,8 @@ export default function Hero() {
               aria-hidden="true"
               style={{ width: 8, height: 8, background: "var(--cat-ink)", display: "inline-block" }}
             />
-            Download CV
-          </a>
+            View CV
+          </CvPreviewButton>
           <a
             href="https://www.linkedin.com/in/pathakrohit/"
             target="_blank"

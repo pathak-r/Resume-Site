@@ -201,13 +201,15 @@ export default function Projects() {
       data-testid="section-work"
     >
       <div className="catalog-panel">
-        <div className="project-list-header">
+        <div className="project-list-intro">
           <p className="project-list-label" data-testid="text-work-label">
             Selected work
           </p>
+          <h2 className="project-list-title" data-testid="text-work-title">
+            Built for one hard job each.
+          </h2>
           <p className="project-list-hint" data-testid="text-work-hint">
-            <span className="project-list-hint--hover">Hover a row for details</span>
-            <span className="project-list-hint--touch">Tap a row for details</span>
+            Hover or tap any row for the full story.
           </p>
         </div>
         <div className="project-list">

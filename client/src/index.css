@@ -399,16 +399,12 @@
   }
 
   /* Project list — FastGage rows (not cards) */
-  .project-list-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-    margin: 0 0 0.75rem;
+  .project-list-intro {
+    margin: 0;
   }
 
   .project-list-label {
-    margin: 0;
+    margin: 0 0 0.45rem;
     font-family: var(--cat-font-mono);
     font-size: 0.65rem;
     font-weight: 500;
@@ -417,27 +413,24 @@
     color: var(--cat-text-tertiary);
   }
 
+  .project-list-title {
+    margin: 0 0 0.5rem;
+    font-family: var(--cat-font);
+    font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--cat-text);
+    max-width: 20ch;
+  }
+
   .project-list-hint {
-    margin: 0;
-    font-family: var(--cat-font-mono);
-    font-size: 0.62rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    color: var(--cat-text-tertiary);
-    text-align: right;
-  }
-
-  .project-list-hint--touch {
-    display: none;
-  }
-
-  @media (hover: none) {
-    .project-list-hint--hover {
-      display: none;
-    }
-    .project-list-hint--touch {
-      display: inline;
-    }
+    margin: 0 0 1.35rem;
+    font-family: var(--cat-font);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--cat-text-secondary);
+    max-width: 36ch;
   }
 
   .project-list {

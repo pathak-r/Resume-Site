@@ -1,6 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import CvPreviewButton from "@/components/cv-preview";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -93,15 +94,16 @@ export default function Navbar() {
           <a href="#interview" onClick={(e) => goTo(e, "#interview", true)} className="nav-ask" style={{ alignSelf: "flex-start" }}>
             Ask me
           </a>
-          <a
-            href="/Rohit_Pathak_Resume.pdf"
-            download
+          <CvPreviewButton
             data-testid="button-resume-download-mobile"
             className="catalog-btn catalog-btn--primary"
             style={{ marginTop: "0.5rem", height: "auto", padding: "0.85rem 1.1rem" }}
+            onOpenChange={(open) => {
+              if (open) setIsOpen(false);
+            }}
           >
-            Download CV
-          </a>
+            View CV
+          </CvPreviewButton>
         </div>
       )}
 
