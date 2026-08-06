@@ -133,7 +133,9 @@ function ProjectItem({ project }: { project: Project }) {
     <div
       id={project.id}
       className={`project-item${open ? " is-open" : ""}`}
+      role="button"
       tabIndex={0}
+      aria-expanded={open}
       data-testid={`card-project-${project.key}`}
       onClick={() => setOpen((v) => !v)}
       onKeyDown={(e) => {
@@ -199,6 +201,15 @@ export default function Projects() {
       data-testid="section-work"
     >
       <div className="catalog-panel">
+        <div className="project-list-header">
+          <p className="project-list-label" data-testid="text-work-label">
+            Selected work
+          </p>
+          <p className="project-list-hint" data-testid="text-work-hint">
+            <span className="project-list-hint--hover">Hover a row for details</span>
+            <span className="project-list-hint--touch">Tap a row for details</span>
+          </p>
+        </div>
         <div className="project-list">
           {projects.map((project) => (
             <ProjectItem key={project.key} project={project} />

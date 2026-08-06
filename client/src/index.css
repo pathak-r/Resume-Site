@@ -399,6 +399,47 @@
   }
 
   /* Project list — FastGage rows (not cards) */
+  .project-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 0 0 0.75rem;
+  }
+
+  .project-list-label {
+    margin: 0;
+    font-family: var(--cat-font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cat-text-tertiary);
+  }
+
+  .project-list-hint {
+    margin: 0;
+    font-family: var(--cat-font-mono);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--cat-text-tertiary);
+    text-align: right;
+  }
+
+  .project-list-hint--touch {
+    display: none;
+  }
+
+  @media (hover: none) {
+    .project-list-hint--hover {
+      display: none;
+    }
+    .project-list-hint--touch {
+      display: inline;
+    }
+  }
+
   .project-list {
     border-top: 1px solid var(--cat-rule);
   }
