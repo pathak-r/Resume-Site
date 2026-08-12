@@ -54,7 +54,7 @@ export default function Home() {
           background: "transparent",
         }}
       >
-        <span>© {new Date().getFullYear()} Rohit Pathak · Senior Product Manager · Abu Dhabi, UAE</span>
+        <span>© {new Date().getFullYear()} Rohit Pathak · Technical Product Manager · Abu Dhabi, UAE</span>
       </footer>
     </div>
   );

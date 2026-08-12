@@ -388,20 +388,22 @@ export default function InterviewAgent() {
                 >
                   ● live — rohit.agent
                 </span>
-                <span
-                  style={{
-                    display: "block",
-                    marginTop: "6px",
-                    fontSize: "0.9rem",
-                    color: INK,
-                    fontFamily: SANS,
-                    fontWeight: 500,
-                    lineHeight: 1.35,
-                  }}
-                  data-testid="text-agent-credentials"
-                >
-                  10+ years · Hexagon · Nestlé
-                </span>
+                {messages.length === 0 && (
+                  <span
+                    style={{
+                      display: "block",
+                      marginTop: "6px",
+                      fontSize: "0.78rem",
+                      color: FAINT,
+                      fontFamily: MONO,
+                      fontWeight: 400,
+                      lineHeight: 1.4,
+                    }}
+                    data-testid="text-agent-rag"
+                  >
+                    RAG on my CV, case studies & more
+                  </span>
+                )}
               </div>
             </div>
             <div
@@ -409,26 +411,10 @@ export default function InterviewAgent() {
                 display: "flex",
                 alignItems: "flex-start",
                 gap: "14px",
-                flexShrink: 1,
+                flexShrink: 0,
                 minWidth: 0,
               }}
             >
-              {messages.length === 0 && (
-                <span
-                  className="agent-header-note"
-                  style={{
-                    fontSize: "0.78rem",
-                    color: FAINT,
-                    fontFamily: MONO,
-                    textAlign: "right",
-                    fontWeight: 400,
-                    lineHeight: 1.4,
-                  }}
-                  data-testid="text-agent-rag"
-                >
-                  RAG on my CV, case studies & more
-                </span>
-              )}
               {expanded && (
                 <button
                   onClick={() => setExpanded(false)}
@@ -585,12 +571,6 @@ export default function InterviewAgent() {
       </div>
 
       <style>{`
-        @media (max-width: 640px) {
-          .agent-header-note {
-            font-size: 12px !important;
-            max-width: 48%;
-          }
-        }
         #interview input::placeholder {
           color: ${FAINT};
           opacity: 0.9;

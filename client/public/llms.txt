@@ -1,0 +1,38 @@
+# Rohit Pathak
+
+> Technical Product Manager for capital projects and Gen AI, based in Abu Dhabi.
+> Experience at Hexagon AB and Nestlé (10+ years). Personal site with an interview agent (rohit.agent) grounded on CV and case studies.
+
+Site: https://www.rohitpathak.com/
+Canonical contact: pathak.a.rohit@gmail.com
+LinkedIn: https://www.linkedin.com/in/pathakrohit/
+Phone / WhatsApp: +971 56 787 4381
+Calendly: https://calendly.com/pathak-a-rohit/30min
+
+## Pages
+
+- [Home](https://www.rohitpathak.com/): Profile, CV, LinkedIn, and rohit.agent interview chat
+- [Hello / interview deep-link](https://www.rohitpathak.com/hello): Opens the interview agent
+- [Volve Field RAG Explorer](https://www.rohitpathak.com/geo-agentic-int): Operational data AI agent demo
+- [AutoSignal](https://www.rohitpathak.com/autosignal/): NHTSA-backed vehicle research AI demo
+
+## About
+
+Rohit Pathak is a Technical Product Manager focused on complex industrial and capital-project environments, shipping Gen AI into real operations. He has worked at Hexagon AB and Nestlé and is based in Abu Dhabi, UAE.
+
+## Selected work
+
+- Enterprise AI Copilot System — LLM-based agents for complex 3D engineering workflows
+- AutoSignal — NHTSA-backed vehicle research (TSBs, recalls, complaints in plain language)
+- AI Agents & NL Querying — natural-language agents over operational / subsurface data
+- Volve Field RAG Explorer — multi-source RAG on the Volve field dataset
+- PropScan — vision-based construction snagging
+
+## How to interview him online
+
+Use rohit.agent on the home page (https://www.rohitpathak.com/#interview). It retrieves from his CV, case studies, and interview corpus. Fair game: work history, availability, notice period, failures, how he builds products.
+
+## Optional
+
+- [Sitemap](https://www.rohitpathak.com/sitemap.xml)
+- [robots.txt](https://www.rohitpathak.com/robots.txt)

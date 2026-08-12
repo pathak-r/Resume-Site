@@ -16,17 +16,17 @@ export default function Hero() {
           className="hero-pm-title"
           style={{
             margin: "0 0 0.75rem",
-            fontSize: "clamp(2rem, 5vw, 3.1rem)",
+            fontSize: "clamp(1.5rem, 3.2vw, 2.1rem)",
             fontWeight: 700,
             letterSpacing: "-0.04em",
-            lineHeight: 1.05,
+            lineHeight: 1.15,
             color: "var(--cat-text)",
             fontFamily: "var(--cat-font)",
-            maxWidth: "18ch",
+            maxWidth: "28ch",
           }}
           data-testid="text-hero-headline"
         >
-          PM for capital projects: refineries, offshore, power.
+          Technical PM. Capital projects. Gen AI.
         </h1>
 
         <p
@@ -40,7 +40,7 @@ export default function Hero() {
           }}
           data-testid="text-hero-eyebrow"
         >
-          Gen AI · 10+ years · Abu Dhabi
+          10+ years · Abu Dhabi · Hexagon AB · Nestlé
         </p>
 
         <div className="hero-cta-row">

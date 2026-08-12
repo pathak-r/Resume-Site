@@ -1,0 +1,36 @@
+# https://www.rohitpathak.com/robots.txt
+User-agent: *
+Allow: /
+
+# Preview / mockup surfaces — not for indexing
+Disallow: /hero-copy-mockup.html
+Disallow: /fastgage-look-mockup.html
+Disallow: /layout-mockup.html
+Disallow: /design-preview.html
+Disallow: /section-blend-preview
+Disallow: /hero-nl-preview
+Disallow: /hero-wall-preview
+
+# Common AI crawlers (explicit allow; same as *)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://www.rohitpathak.com/sitemap.xml
