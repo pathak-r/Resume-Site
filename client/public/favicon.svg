@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" fill="#b08a2e"/>
+  <rect x="1" y="1" width="30" height="30" fill="none" stroke="#141414" stroke-width="2"/>
+  <!-- Geometric R, Space Grotesk-adjacent, ink on ochre -->
+  <path
+    fill="#141414"
+    d="M9 7h9.2c3.35 0 5.55 1.85 5.55 4.85 0 2.2-1.15 3.75-3.15 4.45L26 25h-4.15l-5.05-7.85H12.4V25H9V7zm3.4 3.05v5.55h5.55c1.7 0 2.7-.9 2.7-2.75s-1-2.8-2.7-2.8H12.4z"
+  />
+</svg>
