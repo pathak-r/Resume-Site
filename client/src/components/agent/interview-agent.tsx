@@ -358,7 +358,7 @@ export default function InterviewAgent() {
               }}
             >
               <img
-                src="/rohit-portrait-v2.jpg"
+                src="/rohit-portrait-v3.jpg"
                 alt="Rohit Pathak"
                 width={48}
                 height={48}
