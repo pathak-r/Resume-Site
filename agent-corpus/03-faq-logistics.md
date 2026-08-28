@@ -77,7 +77,7 @@ not a "personal corpus."
 The live demos on this site are separate systems with their own data:
 - Volve Field RAG Explorer — Equinor open Volve oil-field data (well PDFs + production).
 - AutoSignal — NHTSA safety data (TSBs, recalls, complaints, investigations).
-- PropScan — vision-LLM snagging app (TestFlight); not a document RAG demo.
+- Structra — vision-LLM inspection app (App Store; formerly PropScan); not a document RAG demo.
 
 Questions about how Rohit built those demos belong here (case studies). Live
 well/vehicle questions belong in the respective demos. The CV is not their retrieval

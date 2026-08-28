@@ -59,7 +59,7 @@ const CASES: {
     q: "Did you run evals on AutoSignal?",
     expectAny: ["formal", "eval", "ground"],
     forbidAny: ["UAE handover", "blurry"],
-    label: "autosignal eval (not PropScan)",
+    label: "autosignal eval (not Structra)",
   },
   {
     q: "Did you run any evals on it?",
@@ -76,7 +76,7 @@ const CASES: {
     ],
     expectAny: ["haven't", "not yet", "no formal", "chunk"],
     forbidAny: ["UAE handover", "blurry", "handover photos"],
-    label: "volve eval follow-up (not PropScan)",
+    label: "volve eval follow-up (not Structra)",
   },
   {
     q: "what do you mean by personal corpus here?",

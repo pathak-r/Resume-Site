@@ -29,7 +29,8 @@ const CARD_LINKS: Record<string, { label: string; anchor: string }> = {
   autosignal: { label: "AutoSignal", anchor: "#card-autosignal" },
   "nl-query": { label: "AI Agents & NL Querying", anchor: "#card-nl-query" },
   volve: { label: "Volve Field RAG Explorer", anchor: "#card-volve" },
-  propscan: { label: "PropScan", anchor: "#card-propscan" },
+  structra: { label: "Structra", anchor: "#card-structra" },
+  propscan: { label: "Structra", anchor: "#card-structra" },
 };
 
 const STARTER_CHIPS = [
@@ -41,7 +42,7 @@ const STARTER_CHIPS = [
 const CHIP_POOLS: string[][] = [
   ["are you open to relocation?", "when can you start?", "what roles are you targeting?"],
   ["what went wrong on the copilot?", "how did you build the Volve demo?", "what's AutoSignal?"],
-  ["how hands-on are you technically?", "did you run evals on AutoSignal?", "what's PropScan?"],
+  ["how hands-on are you technically?", "did you run evals on AutoSignal?", "what's Structra?"],
   ["biggest product failure?", "how do you work with engineers?", "what's your product philosophy?"],
 ];
 

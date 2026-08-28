@@ -525,9 +525,9 @@ export function AutoSignalFigure() {
   );
 }
 
-/* ── PropScan — lavender. Vision-LLM defect detection ── */
+/* ── Structra — lavender. Vision-LLM defect detection ── */
 
-export function PropScanFigure() {
+export function StructraFigure() {
   const KEY = "#6B5A78";
   return (
     <svg
@@ -589,7 +589,7 @@ export function PropScanFigure() {
       {/* caption bar */}
       <rect x="30" y="258" width="340" height="1" fill={INK} opacity="0.18" />
       <text x="30" y="276" fontSize="9.5" fill={KEY} fontFamily={MONO}>
-        defect register: 14 items · site verdict: attention needed
+        14 findings · boxed on source photos
       </text>
     </svg>
   );

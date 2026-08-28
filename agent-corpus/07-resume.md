@@ -31,11 +31,12 @@ RAG over NHTSA technical service bulletins, recalls, complaints, and investigati
 Source-grounded answers for vehicle safety and reliability questions. Formal eval set for
 groundedness and citation quality. Stack: FastAPI, React, Postgres, RAG, Railway.
 
-Vision-LLM for Construction Defect Detection (internal TestFlight): mobile app detecting
-construction defects from photos via Gemini 2.5 Flash. Structured JSON output: defect
-type, severity, bounding boxes. Confidence gating (≥80%) suppresses false positives.
-Generates annotated photos and a defect register. Stack: Gemini 2.5 Flash, structured
-JSON prompting, React Native (Expo), Node.js, Supabase, PDFKit.
+Structra — Vision-LLM Defect Detection (apps.apple.com/us/app/structra-inspect/id6795109088):
+mobile inspection app detecting defects from site photos via Gemini 2.5 Flash. Structured
+JSON output: defect type, severity, bounding boxes. Confidence gating (≥80%) suppresses
+false positives. Generates annotated photos and a severity-graded report. Stack: Gemini
+2.5 Flash, structured JSON prompting, React Native (Expo), Node.js, Supabase, PDFKit.
+Formerly PropScan (TestFlight).
 
 ## Experience — Hexagon AB (Enterprise Digital Platforms & SaaS), Hyderabad, India
 

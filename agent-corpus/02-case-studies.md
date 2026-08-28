@@ -67,7 +67,7 @@ answers come from, not the LLM phrasing.
 ## AutoSignal (NHTSA-backed vehicle research, live demo)
 
 Clarification for answers: AutoSignal is a separate product from this interview agent
-and from Volve/PropScan. Its corpus is public NHTSA safety data (technical service
+and from Volve/Structra. Its corpus is public NHTSA safety data (technical service
 bulletins, recalls, complaints, investigations) — not my CV. Live demo at
 https://www.rohitpathak.com/autosignal/ (deep-link card: autosignal).
 
@@ -94,7 +94,7 @@ claim back to the underlying record — not a vibes-based car summary.
 
 - Evals / how I know it works:
 
-Yes — AutoSignal has a formal evaluation set, unlike Volve and PropScan. I built labeled
+Yes — AutoSignal has a formal evaluation set, unlike Volve and Structra. I built labeled
 questions over real NHTSA-backed scenarios and score groundedness and citation quality
 so retrieval misses and overconfident answers get caught before they ship. Happy to go
 deeper on method and results directly if someone wants the numbers.
@@ -108,25 +108,33 @@ grows the working corpus over time.
 
 ---
 
-## PropScan (personal, TestFlight)
+## Structra (personal, App Store)
+
+Formerly PropScan while it was in TestFlight. Live on the App Store as Structra Inspect:
+https://apps.apple.com/us/app/structra-inspect/id6795109088
 
 - Why this problem:
 
-its a real issue. people look at houses / apartments and there is no good way to report and log issues before signing papers. professional snagging is fine but there needs to be something the average person can use and get nearly 60-70% of the way there.
+its a real issue. people take photos of defects on site and still end up with a messy
+album instead of a structured report. there needs to be something that finds, classifies,
+and localises issues from photos and gets you most of the way to a severity-graded
+register you can hand off.
 
 - Status & trajectory (commercial ambitions? users? or deliberate learning project?):
 
-its currently in early testing where it can generate snagging reports of apartments , townhouses , villas etc. it needs to be tested thoroughly. 
+its on the app store now — same product as the old propscan testflight. it can generate
+inspection reports from site photos. still early, still needs thorough testing with
+real users.
 
 - Hardest technical problem (vision-LLM accuracy? structured output? localization?):
 
-definitely Vision-LLM accuracy . This product lives or dies on whether Gemini can tell a real handover defect from shadows, glare, texture, and normal new-build finish in phone photos. The ~300-line prompt in api/prompt.js is basically a false-positive doctrine (“miss one minor issue rather than report five fakes”), which is the signature of a trust-critical accuracy problem, not a plumbing one. 
+definitely Vision-LLM accuracy . This product lives or dies on whether Gemini can tell a real defect from shadows, glare, texture, and normal finish in phone photos. The ~300-line prompt in api/prompt.js is basically a false-positive doctrine (“miss one minor issue rather than report five fakes”), which is the signature of a trust-critical accuracy problem, not a plumbing one. 
 
-Ive tried to solve it largely and squeezed most of the juice via prompt engineering. but it needs a labeled eval set from real UAE handover photos and by Gating input quality before the model runs. Reject/retake blurry, dark, or poorly framed shots. these two are big things that are yet to be done. 
+Ive tried to solve it largely and squeezed most of the juice via prompt engineering. quality gating before the model runs (reject/retake dark or undersized shots) is in the shipped app. what still needs doing is a labeled eval set from real inspection photos.
 
 - What went wrong / current limitations:
 
-the current limitation is that the vision LLM output depends on the prompt engineering that i have done. it needs a labeled eval set from real UAE handover photos and by Gating input quality before the model runs. Reject/retake blurry, dark, or poorly framed shots. these two are big things that are yet to be done. 
+the current limitation is that the vision LLM output still depends heavily on the prompt engineering that i have done. it needs a labeled eval set from real inspection photos. quality gating on the capture side is in; the eval set is not. 
 
 ---
 

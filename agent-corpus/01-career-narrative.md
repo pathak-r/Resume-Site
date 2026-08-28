@@ -16,8 +16,9 @@ I started my career as a technical support engineer for Smart3D at Hexagon AB �
 I left Hexagon in December 2025: my wife (Microsoft) received an excellent internal
 offer in Abu Dhabi and we relocated. I hold a UAE golden visa, so I'm settled here with
 no sponsorship needs. Since then I've been building hands-on AI products end to end —
-the Volve Field RAG Explorer, AutoSignal (NHTSA-backed vehicle research), and PropScan
-(in TestFlight) — all live or in testing on this site — while looking for my next role.
+the Volve Field RAG Explorer, AutoSignal (NHTSA-backed vehicle research), and Structra
+(vision inspection app, on the App Store; formerly PropScan) — the projects on this
+site — while looking for my next role.
 Available immediately.
 
 ### Senior PM, Hexagon (2023 — Dec 2025)
@@ -42,7 +43,7 @@ integrated gen ai into the product via a) natural language based data querying (
 
 - Why you're open to moving now:
 
-wife got an excellent offer internally within microsoft so we relocated to abu dhabi (left Hexagon dec 2025) and i am looking for opportunities now. have a golden visa too. the months since have gone into building Volve, AutoSignal, and PropScan — the projects on this site.
+wife got an excellent offer internally within microsoft so we relocated to abu dhabi (left Hexagon dec 2025) and i am looking for opportunities now. have a golden visa too. the months since have gone into building Volve, AutoSignal, and Structra — the projects on this site.
 
 ### PM, Hexagon (2018 — 2022)
 

@@ -22,11 +22,11 @@ Rohit Pathak is a Technical Product Manager focused on complex industrial and ca
 
 ## Selected work
 
-- Enterprise AI Copilot System — LLM-based agents for complex 3D engineering workflows
+- Structra — vision-based defect detection from inspection photos
+- Volve Field RAG Explorer — multi-source RAG on the Volve field dataset
 - AutoSignal — NHTSA-backed vehicle research (TSBs, recalls, complaints in plain language)
 - AI Agents & NL Querying — natural-language agents over operational / subsurface data
-- Volve Field RAG Explorer — multi-source RAG on the Volve field dataset
-- PropScan — vision-based construction snagging
+- Enterprise AI Copilot System — LLM-based agents for complex 3D engineering workflows
 
 ## How to interview him online
 

@@ -5,7 +5,7 @@ import {
   CopilotFigure,
   Smart3DFigure,
   VolveFigure,
-  PropScanFigure,
+  StructraFigure,
   AutoSignalFigure,
 } from "@/components/figures/figures";
 
@@ -24,15 +24,34 @@ type Project = {
 
 const projects: Project[] = [
   {
-    id: "card-copilot",
-    key: "sage",
-    label: "Generative AI",
-    title: "Enterprise AI Copilot System",
-    tagline: "LLM-based agents for complex 3D engineering workflows.",
+    id: "card-structra",
+    key: "lavender",
+    label: "Vision AI",
+    badge: "App Store",
+    title: "Structra",
+    tagline: "Vision-based defect detection from inspection photos.",
     description:
-      "Led the strategy and development of an LLM-based agentic system automating complex 3D engineering workflows — saving global engineering teams dozens of hours monthly, with a clear path to hundreds as coverage grows.",
-    tags: ["LLM agents", "Product strategy", "3D engineering", "Automation"],
-    figure: <CopilotFigure />,
+      "Mobile inspection app that uses a vision LLM to find, classify, and localise defects in photos taken on site. Each finding is boxed on the source image and rolled into a severity-graded report.",
+    tags: ["Gemini 2.5 Flash", "Structured JSON", "React Native", "Supabase"],
+    figure: <StructraFigure />,
+    cta: {
+      label: "View on the App Store",
+      href: "https://apps.apple.com/us/app/structra-inspect/id6795109088",
+      external: true,
+    },
+  },
+  {
+    id: "card-volve",
+    key: "apricot",
+    label: "Geo-Agentic AI",
+    badge: "Live demo",
+    title: "Volve Field RAG Explorer",
+    tagline: "Agentic RAG for Equinor's open Volve oil field dataset.",
+    description:
+      "Daily drilling reports, production data, and well completion reports — structured and unstructured — ingested into an agentic RAG system. Visualises production trends and answers operator questions about well performance in natural language.",
+    tags: ["FAISS", "OpenAI", "FastAPI", "React", "Python"],
+    figure: <VolveFigure />,
+    cta: { label: "Explore live demo", href: "/geo-agentic-int" },
   },
   {
     id: "card-autosignal",
@@ -52,19 +71,6 @@ const projects: Project[] = [
     },
   },
   {
-    id: "card-volve",
-    key: "apricot",
-    label: "Geo-Agentic AI",
-    badge: "Live demo",
-    title: "Volve Field RAG Explorer",
-    tagline: "Agentic RAG for Equinor's open Volve oil field dataset.",
-    description:
-      "Daily drilling reports, production data, and well completion reports — structured and unstructured — ingested into an agentic RAG system. Visualises production trends and answers operator questions about well performance in natural language.",
-    tags: ["FAISS", "OpenAI", "FastAPI", "React", "Python"],
-    figure: <VolveFigure />,
-    cta: { label: "Explore live demo", href: "/geo-agentic-int" },
-  },
-  {
     id: "card-nl-query",
     key: "sky",
     label: "Data Intelligence",
@@ -76,16 +82,15 @@ const projects: Project[] = [
     figure: <Smart3DFigure variant="compact" />,
   },
   {
-    id: "card-propscan",
-    key: "lavender",
-    label: "Vision AI",
-    badge: "TestFlight",
-    title: "PropScan",
-    tagline: "Vision-LLM defect detection for property inspections.",
+    id: "card-copilot",
+    key: "sage",
+    label: "Generative AI",
+    title: "Enterprise AI Copilot System",
+    tagline: "LLM-based agents for complex 3D engineering workflows.",
     description:
-      "Mobile inspection app using Gemini 2.5 Flash as a vision LLM to detect, classify, and localise construction defects from user-captured photos. Outputs annotated photos and an aggregated defect register with an overall site verdict.",
-    tags: ["Gemini 2.5 Flash", "Structured JSON", "React Native", "Supabase"],
-    figure: <PropScanFigure />,
+      "Led the strategy and development of an LLM-based agentic system automating complex 3D engineering workflows — saving global engineering teams dozens of hours monthly, with a clear path to hundreds as coverage grows.",
+    tags: ["LLM agents", "Product strategy", "3D engineering", "Automation"],
+    figure: <CopilotFigure />,
   },
 ];
 
@@ -110,8 +115,14 @@ function ProjectCta({ project }: { project: Project }) {
   };
 
   if (project.cta.external) {
+    const isHttp = project.cta.href.startsWith("http");
     return (
-      <a href={project.cta.href} data-testid={`link-explore-${project.key}`} style={style}>
+      <a
+        href={project.cta.href}
+        data-testid={`link-explore-${project.key}`}
+        style={style}
+        {...(isHttp ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      >
         {project.cta.label}
         <ArrowRight size={14} strokeWidth={2} />
       </a>

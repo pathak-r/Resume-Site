@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
-import { VolveFigure, PropScanFigure } from "@/components/figures/figures";
+import { VolveFigure, StructraFigure } from "@/components/figures/figures";
 
 /**
  * Local design preview — not linked from the homepage.
@@ -44,11 +44,11 @@ const projects = [
   {
     key: "lavender" as const,
     keyColor: "var(--key-lavender)",
-    label: "Vision AI · TestFlight",
-    title: "PropScan",
-    line: "Vision-LLM defect detection for property inspections — annotated photos, defect register, site verdict.",
-    figure: <PropScanFigure />,
-    cta: null as { label: string; href: string } | null,
+    label: "Vision AI · App Store",
+    title: "Structra",
+    line: "Vision-based defect detection from inspection photos — boxed findings, severity-graded report.",
+    figure: <StructraFigure />,
+    cta: { label: "View on the App Store", href: "https://apps.apple.com/us/app/structra-inspect/id6795109088" },
   },
 ];
 
@@ -177,11 +177,27 @@ function CompactProjectCard({
   );
 
   if (project.cta) {
+    const isHttp = project.cta.href.startsWith("http");
+    const wrapStyle = {
+      textDecoration: "none" as const,
+      color: "inherit",
+      display: "block",
+      height: "100%",
+    };
+    if (isHttp) {
+      return (
+        <a
+          href={project.cta.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={wrapStyle}
+        >
+          {body}
+        </a>
+      );
+    }
     return (
-      <Link
-        href={project.cta.href}
-        style={{ textDecoration: "none", color: "inherit", display: "block", height: "100%" }}
-      >
+      <Link href={project.cta.href} style={wrapStyle}>
         {body}
       </Link>
     );
@@ -601,7 +617,7 @@ export default function SectionBlendPreview() {
           borderTop: "1px solid var(--cat-rule)",
         }}
       >
-        Preview only · Volve & PropScan figures reused from the live site · homepage unchanged
+        Preview only · Volve & Structra figures reused from the live site · homepage unchanged
       </footer>
 
       <style>{`

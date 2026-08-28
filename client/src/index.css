@@ -106,8 +106,8 @@
   /* ---------------------------------------------------------------- */
   /* FastGage studio — greige ground, ink, muted ochre                 */
   /* ---------------------------------------------------------------- */
-  --cat-bg: #c9c5bc;
-  --cat-panel: #c9c5bc;
+  --cat-bg: #d1cdc4;
+  --cat-panel: #d1cdc4;
   --cat-bg-card: #f4f1ea;
   --cat-text: #141414;
   --cat-text-secondary: #2e2d2a;
@@ -178,7 +178,7 @@
     font-family: var(--cat-font-body);
     background-color: var(--cat-bg);
     background-image:
-      linear-gradient(165deg, #d2cec5 0%, #c9c5bc 42%, #b8b3a8 100%),
+      linear-gradient(165deg, #d9d5cc 0%, #d1cdc4 42%, #c5c0b6 100%),
       repeating-linear-gradient(90deg, transparent 0, transparent 47px, #00000006 47px, #00000006 48px);
     background-attachment: fixed;
     color: var(--cat-text);
