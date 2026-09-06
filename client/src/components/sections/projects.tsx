@@ -27,12 +27,12 @@ const projects: Project[] = [
   {
     id: "card-u100",
     key: "ochre",
-    label: "Factory maintenance planning",
+    label: "Industrial AI",
     badge: "Live demo",
-    title: "Unit 100",
-    tagline: "A planner’s job, in one screen: what to fix, why, and what the last job actually took.",
+    title: "Factory maintenance planning",
+    tagline: "Helps a factory planner turn scattered records into a clear maintenance job pack.",
     description:
-      "Factories plan big maintenance windows years ahead — every exchanger, pump, and vessel needs a job pack before anyone opens it. Planners still build those packs by hand, hunting inspections, old work orders, sensor history, drawings, and permits. Unit 100 pulls those sources together, drafts the pack, and shows where every number came from. The model writes the explanation; hours, parts, and safety steps come from the records. Missing or conflicting evidence shows up as a flag, not a guess. The planner edits, locks, and exports.",
+      "Factories plan big maintenance windows years ahead. Every exchanger, pump, and vessel needs a job pack before anyone opens it. Planners still build those packs by hand, hunting inspections, old work orders, sensor history, drawings, and permits. This demo pulls those sources together, drafts the pack, and shows where every number came from. The model writes the explanation; hours, parts, and safety steps come from the records. Missing or conflicting evidence shows up as a flag, not a guess. The planner edits, locks, and exports.",
     tags: ["Azure OpenAI", "FastAPI", "React", "Plant data"],
     figure: <Unit100Figure />,
     cta: {
