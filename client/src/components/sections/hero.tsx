@@ -16,10 +16,10 @@ export default function Hero() {
           className="hero-pm-title"
           style={{
             margin: "0 0 0.75rem",
-            fontSize: "clamp(1.5rem, 3.2vw, 2.1rem)",
-            fontWeight: 700,
-            letterSpacing: "-0.04em",
-            lineHeight: 1.15,
+            fontSize: "34px",
+            fontWeight: 500,
+            letterSpacing: "-1.4px",
+            lineHeight: 1.25,
             color: "var(--cat-text)",
             fontFamily: "var(--cat-font)",
             maxWidth: "28ch",

@@ -33,7 +33,7 @@ type Meta = {
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
 const WELL_COLORS = [
-  "#B4562E", "#33608C", "#2E6E4E", "#5B4E8C", "#C08A2E", "#7A6248", "#4A7D8C",
+  "#b86d51", "#5e7e9f", "#387c6d", "#8668ab", "#c98135", "#74828a", "#3d6b78",
 ];
 
 function fmt(n: number | null | undefined, decimals = 0): string {
@@ -43,9 +43,9 @@ function fmt(n: number | null | undefined, decimals = 0): string {
 
 // ─── Well Detail Charts (separate component to avoid IIFE sizing bugs) ───────
 
-const CHART_AXIS = { tick: { fontSize: 10, fill: "#8A8474" }, tickLine: false as const, axisLine: false as const };
-const CHART_GRID = { strokeDasharray: "3 3", stroke: "#ECE7DA" };
-const CHART_TOOLTIP = { contentStyle: { background: "#FDFCF8", border: "1px solid #E5E0D3", borderRadius: "10px", boxShadow: "0 8px 32px rgba(34,32,28,0.12)", fontSize: "0.78rem", color: "#22201C" } };
+const CHART_AXIS = { tick: { fontSize: 10, fill: "#728087" }, tickLine: false as const, axisLine: false as const };
+const CHART_GRID = { strokeDasharray: "3 3", stroke: "#dfe5e5" };
+const CHART_TOOLTIP = { contentStyle: { background: "#ffffff", border: "1px solid #dfe5e5", borderRadius: "10px", boxShadow: "0 8px 32px rgba(36,52,59,0.10)", fontSize: "0.78rem", color: "#24343b" } };
 
 function ChartCard({ title, color, height = 220, children }: { title: string; color: string; height?: number; children: React.ReactElement }) {
   return (
@@ -69,35 +69,35 @@ function WellDetailCharts({ rows }: { rows: any[] }) {
 
   return (
     <div className="flex flex-col gap-5">
-      <ChartCard title="Oil & Water Production (Sm³)" color="#B4562E">
+      <ChartCard title="Oil & Water Production (Sm³)" color="#b86d51">
         <LineChart data={data} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
           <CartesianGrid {...CHART_GRID} />
           <XAxis dataKey="date" interval="preserveStartEnd" {...CHART_AXIS} />
           <YAxis {...CHART_AXIS} />
           <Tooltip {...CHART_TOOLTIP} />
           <Legend wrapperStyle={{ fontSize: "0.75rem" }} />
-          <Line type="monotone" dataKey="oil" stroke="#B4562E" strokeWidth={1.5} dot={false} name="Oil (Sm³)" />
-          <Line type="monotone" dataKey="water" stroke="#005f99" strokeWidth={1.5} dot={false} name="Water (Sm³)" />
+          <Line type="monotone" dataKey="oil" stroke="#b86d51" strokeWidth={1.5} dot={false} name="Oil (Sm³)" />
+          <Line type="monotone" dataKey="water" stroke="#5e7e9f" strokeWidth={1.5} dot={false} name="Water (Sm³)" />
         </LineChart>
       </ChartCard>
 
-      <ChartCard title="Water Cut %" color="#33608C">
+      <ChartCard title="Water Cut %" color="#5e7e9f">
         <LineChart data={data} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
           <CartesianGrid {...CHART_GRID} />
           <XAxis dataKey="date" interval="preserveStartEnd" {...CHART_AXIS} />
           <YAxis {...CHART_AXIS} />
           <Tooltip {...CHART_TOOLTIP} />
-          <Line type="monotone" dataKey="wc" stroke="#33608C" strokeWidth={1.5} dot={false} name="WC %" />
+          <Line type="monotone" dataKey="wc" stroke="#5e7e9f" strokeWidth={1.5} dot={false} name="WC %" />
         </LineChart>
       </ChartCard>
 
-      <ChartCard title="Wellhead Pressure (bar)" color="#C08A2E">
+      <ChartCard title="Wellhead Pressure (bar)" color="#c98135">
         <LineChart data={data} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
           <CartesianGrid {...CHART_GRID} />
           <XAxis dataKey="date" interval="preserveStartEnd" {...CHART_AXIS} />
           <YAxis {...CHART_AXIS} />
           <Tooltip {...CHART_TOOLTIP} />
-          <Line type="monotone" dataKey="whp" stroke="#C08A2E" strokeWidth={1.5} dot={false} name="WHP (bar)" connectNulls />
+          <Line type="monotone" dataKey="whp" stroke="#c98135" strokeWidth={1.5} dot={false} name="WHP (bar)" connectNulls />
         </LineChart>
       </ChartCard>
     </div>
@@ -166,14 +166,14 @@ function Dashboard({ well, start, end }: { well: string; start: string; end: str
     return arr.filter((_, i) => i % step === 0);
   };
 
-  if (err) return <div style={{ color: "#B4562E", padding: "1rem", fontSize: "0.9rem" }}>{err}</div>;
+  if (err) return <div style={{ color: "#b86d51", padding: "1rem", fontSize: "0.9rem" }}>{err}</div>;
 
   return (
     <div className="space-y-8">
       {/* Well title for single-well view */}
       {well !== "All Wells" && (
         <div>
-          <h2 className="text-2xl font-bold" style={{ color: "var(--cat-text)", letterSpacing: "-0.02em", fontFamily: "var(--cat-font)" }}>
+          <h2 className="text-2xl" style={{ color: "var(--cat-text)", fontWeight: 500, letterSpacing: "-1.2px", fontFamily: "var(--cat-font)" }}>
             Well: {well}
           </h2>
         </div>
@@ -193,8 +193,8 @@ function Dashboard({ well, start, end }: { well: string; start: string; end: str
               className="surface-lowest shadow-ambient rounded-2xl p-5"
               data-testid={`kpi-${k.label.replace(/\W+/g, "-").toLowerCase()}`}
             >
-              <div className="label-meta mb-1" style={{ color: "#8A8474" }}>{k.label}</div>
-              <div className="font-bold text-xl" style={{ color: "#22201C", letterSpacing: "-0.02em" }}>
+              <div className="label-meta mb-1" style={{ color: "#728087" }}>{k.label}</div>
+              <div className="text-xl" style={{ color: "#24343b", fontFamily: "var(--cat-font)", fontWeight: 500, letterSpacing: "-1.2px" }}>
                 {k.value}
               </div>
             </div>
@@ -208,10 +208,10 @@ function Dashboard({ well, start, end }: { well: string; start: string; end: str
           <div className="label-meta mb-4">Daily Oil Production by Well (Sm³)</div>
           <ResponsiveContainer width="100%" height={320}>
             <AreaChart data={thin(pivoted)} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#ECE7DA" />
-              <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#8A8474" }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
-              <YAxis tick={{ fontSize: 11, fill: "#8A8474" }} tickLine={false} axisLine={false} />
-              <Tooltip contentStyle={{ background: "#FDFCF8", border: "1px solid #E5E0D3", borderRadius: "10px", boxShadow: "0 8px 32px rgba(34,32,28,0.12)", fontSize: "0.8rem", color: "#22201C" }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#dfe5e5" />
+              <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#728087" }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
+              <YAxis tick={{ fontSize: 11, fill: "#728087" }} tickLine={false} axisLine={false} />
+              <Tooltip contentStyle={{ background: "#ffffff", border: "1px solid #dfe5e5", borderRadius: "10px", boxShadow: "0 8px 32px rgba(34,32,28,0.12)", fontSize: "0.8rem", color: "#24343b" }} />
               <Legend wrapperStyle={{ fontSize: "0.78rem", paddingTop: "1rem" }} />
               {wells.map((w, i) => (
                 <Area key={w} type="monotone" dataKey={w} stackId="1"
@@ -233,7 +233,7 @@ function Dashboard({ well, start, end }: { well: string; start: string; end: str
       )}
 
       {loading && (
-        <div className="flex items-center gap-2 py-8 justify-center" style={{ color: "#8A8474" }}>
+        <div className="flex items-center gap-2 py-8 justify-center" style={{ color: "#728087" }}>
           <RefreshCw className="w-4 h-4 animate-spin" /> Loading data…
         </div>
       )}
@@ -282,12 +282,12 @@ function Chat() {
     <div className="flex flex-col" style={{ height: "60vh", minHeight: "400px" }}>
       <div
         className="flex-1 overflow-y-auto rounded-2xl p-6 mb-4 space-y-4"
-        style={{ background: "#EFEBE0" }}
+        style={{ background: "#edf1f0" }}
       >
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full gap-3 text-center">
-            <MessageSquare className="w-10 h-10" style={{ color: "#8A8474" }} />
-            <p className="label-meta" style={{ color: "#8A8474" }}>Ask about production trends, anomalies, or well documents</p>
+            <MessageSquare className="w-10 h-10" style={{ color: "#728087" }} />
+            <p className="label-meta" style={{ color: "#728087" }}>Ask about production trends, anomalies, or well documents</p>
             <div className="flex flex-wrap gap-2 justify-center mt-2">
               {[
                 "What anomalies were detected across all wells?",
@@ -298,7 +298,7 @@ function Chat() {
                   key={q}
                   onClick={() => { setInput(q); }}
                   className="px-4 py-2 rounded-full surface-lowest shadow-ambient text-sm font-medium transition-all"
-                  style={{ color: "#22201C", border: "1px solid #D6D0C0" }}
+                  style={{ color: "#24343b", border: "1px solid #dfe5e5" }}
                   data-testid={`chat-suggestion-${q.slice(0, 10).replace(/\W/g, "")}`}
                 >
                   {q}
@@ -313,9 +313,9 @@ function Chat() {
             <div
               className="max-w-[80%] rounded-2xl px-5 py-3.5"
               style={{
-                background: m.role === "user" ? "#22201C" : "#FDFCF8",
-                color: m.role === "user" ? "#F5F2EA" : "#22201C",
-                border: m.role === "assistant" ? "1px solid #E5E0D3" : "none",
+                background: m.role === "user" ? "#24343b" : "#ffffff",
+                color: m.role === "user" ? "#f7f9f8" : "#24343b",
+                border: m.role === "assistant" ? "1px solid #dfe5e5" : "none",
                 fontSize: "0.9rem",
                 lineHeight: 1.6,
                 boxShadow: m.role === "assistant" ? "0 2px 16px rgba(34,32,28,0.08)" : "none",
@@ -330,12 +330,12 @@ function Chat() {
 
         {busy && (
           <div className="flex justify-start">
-            <div className="rounded-2xl px-5 py-3.5 surface-lowest shadow-ambient flex items-center gap-2" style={{ fontSize: "0.85rem", color: "#8A8474" }}>
+            <div className="rounded-2xl px-5 py-3.5 surface-lowest shadow-ambient flex items-center gap-2" style={{ fontSize: "0.85rem", color: "#728087" }}>
               <RefreshCw className="w-3.5 h-3.5 animate-spin" /> Thinking…
             </div>
           </div>
         )}
-        {err && <p className="text-sm" style={{ color: "#B4562E" }}>{err}</p>}
+        {err && <p className="text-sm" style={{ color: "#b86d51" }}>{err}</p>}
         <div ref={bottomRef} />
       </div>
 
@@ -355,12 +355,12 @@ function Chat() {
           data-testid="input-chat"
           className="flex-1 resize-none rounded-full px-5 py-3 text-sm font-medium outline-none transition-all"
           style={{
-            background: "#FDFCF8",
-            color: "#22201C",
-            border: "1px solid #E5E0D3",
+            background: "#ffffff",
+            color: "#24343b",
+            border: "1px solid #dfe5e5",
           }}
           onFocus={e => e.currentTarget.style.background = "#FFFFFF"}
-          onBlur={e => e.currentTarget.style.background = "#FDFCF8"}
+          onBlur={e => e.currentTarget.style.background = "#ffffff"}
         />
         <button
           onClick={send}
@@ -397,7 +397,7 @@ function Anomalies({ well }: { well: string }) {
   }, [well]);
 
   const severityColor: Record<string, string> = {
-    Critical: "#B4562E", High: "#C0622E", Medium: "#C08A2E",
+    Critical: "#b86d51", High: "#c98135", Medium: "#a57b3b",
   };
 
   // Compute bar chart data: count by anomaly type
@@ -438,10 +438,10 @@ function Anomalies({ well }: { well: string }) {
           >
             <div className="flex items-start justify-between mb-3">
               <AlertTriangle className="w-7 h-7" style={{ color: severityColor[sev] }} />
-              {loading && <RefreshCw className="w-3.5 h-3.5 animate-spin" style={{ color: "#8A8474" }} />}
+              {loading && <RefreshCw className="w-3.5 h-3.5 animate-spin" style={{ color: "#728087" }} />}
             </div>
-            <div className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "#8A8474" }}>{sev}</div>
-            <div className="text-5xl font-bold" style={{ color: "#22201C", letterSpacing: "-0.03em", lineHeight: 1 }}>
+            <div className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "#728087" }}>{sev}</div>
+            <div className="text-5xl font-bold" style={{ color: "#24343b", letterSpacing: "-0.03em", lineHeight: 1 }}>
               {counts[sev] ?? 0}
             </div>
           </div>
@@ -450,20 +450,20 @@ function Anomalies({ well }: { well: string }) {
 
       {/* Bar chart: by anomaly type */}
       {typeBars.length > 0 && (
-        <ChartCard title="Anomalies by Type" color="#33608C" height={260}>
+        <ChartCard title="Anomalies by Type" color="#5e7e9f" height={260}>
           <BarChart data={typeBars} layout="vertical" margin={{ top: 4, right: 16, bottom: 4, left: 130 }}>
             <CartesianGrid {...CHART_GRID} horizontal={false} />
             <XAxis type="number" {...CHART_AXIS} />
-            <YAxis type="category" dataKey="name" width={120} tick={{ fontSize: 11, fill: "#6b7071" }} tickLine={false} axisLine={false} />
+            <YAxis type="category" dataKey="name" width={120} tick={{ fontSize: 11, fill: "#728087" }} tickLine={false} axisLine={false} />
             <Tooltip {...CHART_TOOLTIP} />
-            <Bar dataKey="value" fill="#33608C" radius={[0, 6, 6, 0]} name="Count" />
+            <Bar dataKey="value" fill="#5e7e9f" radius={[0, 6, 6, 0]} name="Count" />
           </BarChart>
         </ChartCard>
       )}
 
       {/* Scatter: timeline using numeric timestamps on x-axis */}
       {scatterData.length > 0 && (
-        <ChartCard title="Anomaly Timeline" color="#B4562E" height={320}>
+        <ChartCard title="Anomaly Timeline" color="#b86d51" height={320}>
           <ScatterChart margin={{ top: 4, right: 16, bottom: 48, left: 8 }}>
             <CartesianGrid {...CHART_GRID} />
             <XAxis
@@ -484,15 +484,15 @@ function Anomalies({ well }: { well: string }) {
               cursor={{ strokeDasharray: "3 3" }}
               content={({ active, payload }) =>
                 active && payload?.[0] ? (
-                  <div style={{ background: "#FDFCF8", border: "1px solid #E5E0D3", borderRadius: "10px", boxShadow: "0 8px 32px rgba(34,32,28,0.12)", fontSize: "0.78rem", padding: "0.5rem 0.75rem" }}>
-                    <div style={{ fontWeight: 600, color: "#22201C", marginBottom: 2 }}>{payload[0].payload.well}</div>
-                    <div style={{ color: "#6E6A5E", fontSize: "0.75rem" }}>{payload[0].payload.z}</div>
-                    <div style={{ color: "#22201C", fontSize: "0.8rem" }}>{payload[0].payload.x} · {Number(payload[0].payload.y).toFixed(1)}</div>
+                  <div style={{ background: "#ffffff", border: "1px solid #dfe5e5", borderRadius: "10px", boxShadow: "0 8px 32px rgba(34,32,28,0.12)", fontSize: "0.78rem", padding: "0.5rem 0.75rem" }}>
+                    <div style={{ fontWeight: 600, color: "#24343b", marginBottom: 2 }}>{payload[0].payload.well}</div>
+                    <div style={{ color: "#3f565e", fontSize: "0.75rem" }}>{payload[0].payload.z}</div>
+                    <div style={{ color: "#24343b", fontSize: "0.8rem" }}>{payload[0].payload.x} · {Number(payload[0].payload.y).toFixed(1)}</div>
                   </div>
                 ) : null
               }
             />
-            <Scatter data={scatterData} fill="#B4562E" fillOpacity={0.65} />
+            <Scatter data={scatterData} fill="#b86d51" fillOpacity={0.65} />
           </ScatterChart>
         </ChartCard>
       )}
@@ -505,10 +505,10 @@ function Anomalies({ well }: { well: string }) {
           </div>
           <div className="overflow-x-auto overflow-y-auto" style={{ maxHeight: "380px" }}>
             <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
-              <thead style={{ position: "sticky", top: 0, background: "#FDFCF8", zIndex: 1 }}>
+              <thead style={{ position: "sticky", top: 0, background: "#ffffff", zIndex: 1 }}>
                 <tr>
                   {cols.map(k => (
-                    <th key={k} className="text-left py-2 pr-6 label-meta" style={{ color: "#8A8474", whiteSpace: "nowrap" }}>
+                    <th key={k} className="text-left py-2 pr-6 label-meta" style={{ color: "#728087", whiteSpace: "nowrap" }}>
                       {k.replace(/_/g, " ")}
                     </th>
                   ))}
@@ -516,10 +516,10 @@ function Anomalies({ well }: { well: string }) {
               </thead>
               <tbody>
                 {rows.map((row, i) => (
-                  <tr key={i} style={{ borderTop: "1px solid #ECE7DA" }} data-testid={`anomaly-row-${i}`}>
+                  <tr key={i} style={{ borderTop: "1px solid #dfe5e5" }} data-testid={`anomaly-row-${i}`}>
                     {cols.map((k, j) => (
                       <td key={j} className="py-2 pr-6" style={{
-                        color: k === "SEVERITY" ? (severityColor[row[k]] || "#22201C") : "#22201C",
+                        color: k === "SEVERITY" ? (severityColor[row[k]] || "#24343b") : "#24343b",
                         fontWeight: k === "SEVERITY" ? 700 : 400,
                         whiteSpace: "nowrap",
                       }}>
@@ -535,9 +535,9 @@ function Anomalies({ well }: { well: string }) {
       )}
 
       {rows.length === 0 && !loading && (
-        <p className="text-sm" style={{ color: "#8A8474" }}>No anomalies detected for the selected filter.</p>
+        <p className="text-sm" style={{ color: "#728087" }}>No anomalies detected for the selected filter.</p>
       )}
-      {err && <p className="text-sm" style={{ color: "#B4562E" }}>{err}</p>}
+      {err && <p className="text-sm" style={{ color: "#b86d51" }}>{err}</p>}
     </div>
   );
 }
@@ -550,8 +550,8 @@ type ComparisonData = {
   divergence: { day_start: number; day_end: number; d_oil: number; d_wc: number; metrics: string[] }[];
 };
 
-const COL_A = "#B4562E";
-const COL_B = "#33608C";
+const COL_A = "#b86d51";
+const COL_B = "#5e7e9f";
 
 function WellComparison({ producerWells }: { producerWells: string[] }) {
   const [wellA, setWellA] = useState(producerWells[0] ?? "");
@@ -676,7 +676,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
             data-testid="button-swap-wells"
             title="Swap wells"
             className="w-9 h-9 flex items-center justify-center rounded-full transition-all"
-            style={{ background: "#FDFCF8", color: "#8A8474" }}
+            style={{ background: "#ffffff", color: "#728087" }}
           >
             <ArrowLeftRight className="w-4 h-4" />
           </button>
@@ -695,16 +695,16 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
             </select>
           </div>
 
-          {loading && <RefreshCw className="w-4 h-4 animate-spin ml-2" style={{ color: "#8A8474" }} />}
+          {loading && <RefreshCw className="w-4 h-4 animate-spin ml-2" style={{ color: "#728087" }} />}
 
           {data && data.divergence.length > 0 && (
             <span className="chip-teal ml-2">{data.divergence.length} divergence period{data.divergence.length > 1 ? "s" : ""} flagged</span>
           )}
         </div>
         {wellA === wellB && (
-          <p className="text-xs mt-3" style={{ color: "#8A8474" }}>Select two different wells to compare.</p>
+          <p className="text-xs mt-3" style={{ color: "#728087" }}>Select two different wells to compare.</p>
         )}
-        {err && <p className="text-xs mt-3" style={{ color: "#B4562E" }}>{err}</p>}
+        {err && <p className="text-xs mt-3" style={{ color: "#b86d51" }}>{err}</p>}
       </div>
 
       {/* Ask AI panel — always visible once wells are selected */}
@@ -713,7 +713,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
           <div className="flex items-start justify-between gap-4">
             <div>
               <div className="label-meta mb-1">AI Explanation</div>
-              <p className="text-sm" style={{ color: "#6E6A5E" }}>
+              <p className="text-sm" style={{ color: "#3f565e" }}>
                 Ask the AI to explain why these wells perform differently, drawing from their drilling and completion reports.
               </p>
             </div>
@@ -731,7 +731,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
           {aiInsight && (
             <div
               className="mt-5 rounded-2xl px-5 py-4 text-sm"
-              style={{ background: "#FDFCF8", color: "#22201C", lineHeight: 1.7, whiteSpace: "pre-wrap" }}
+              style={{ background: "#ffffff", color: "#24343b", lineHeight: 1.7, whiteSpace: "pre-wrap" }}
               data-testid="comparison-ai-insight"
             >
               {aiInsight}
@@ -748,7 +748,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
             <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
               <thead>
                 <tr>
-                  <th className="text-left py-2 pr-8 label-meta" style={{ color: "#8A8474" }}>Metric</th>
+                  <th className="text-left py-2 pr-8 label-meta" style={{ color: "#728087" }}>Metric</th>
                   <th className="text-right py-2 pr-8 font-semibold" style={{ color: COL_A }}>{wellA}</th>
                   <th className="text-right py-2 font-semibold" style={{ color: COL_B }}>{wellB}</th>
                 </tr>
@@ -758,10 +758,10 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
                   const aWins = row.numeric && row.aVal != null && row.bVal != null && (row.lowerIsBetter ? row.aVal < row.bVal : row.aVal > row.bVal);
                   const bWins = row.numeric && row.aVal != null && row.bVal != null && (row.lowerIsBetter ? row.bVal < row.aVal : row.bVal > row.aVal);
                   return (
-                    <tr key={row.label} style={{ borderTop: "1px solid #ECE7DA" }}>
-                      <td className="py-2.5 pr-8 label-meta" style={{ color: "#8A8474" }}>{row.label}</td>
-                      <td className="py-2.5 pr-8 text-right font-semibold" style={{ color: aWins ? COL_A : "#22201C" }}>{row.a}</td>
-                      <td className="py-2.5 text-right font-semibold" style={{ color: bWins ? COL_B : "#22201C" }}>{row.b}</td>
+                    <tr key={row.label} style={{ borderTop: "1px solid #dfe5e5" }}>
+                      <td className="py-2.5 pr-8 label-meta" style={{ color: "#728087" }}>{row.label}</td>
+                      <td className="py-2.5 pr-8 text-right font-semibold" style={{ color: aWins ? COL_A : "#24343b" }}>{row.a}</td>
+                      <td className="py-2.5 text-right font-semibold" style={{ color: bWins ? COL_B : "#24343b" }}>{row.b}</td>
                     </tr>
                   );
                 })}
@@ -774,12 +774,12 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
             <ChartCard title="Oil Production vs Days on Production (Sm³/day)" color={COL_A} height={280}>
               <LineChart data={mergedOil} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
                 <CartesianGrid {...CHART_GRID} />
-                <XAxis dataKey="day" {...CHART_AXIS} label={{ value: "Days since first production", position: "insideBottom", offset: -2, fontSize: 10, fill: "#8A8474" }} />
+                <XAxis dataKey="day" {...CHART_AXIS} label={{ value: "Days since first production", position: "insideBottom", offset: -2, fontSize: 10, fill: "#728087" }} />
                 <YAxis {...CHART_AXIS} />
                 <Tooltip {...CHART_TOOLTIP} labelFormatter={(v) => `Day ${v}`} />
                 <Legend wrapperStyle={{ fontSize: "0.75rem" }} />
                 {oilDivergence.map((d, i) => (
-                  <ReferenceArea key={i} x1={d.day_start} x2={d.day_end} fill="#C08A2E22" stroke="#C08A2E" strokeOpacity={0.3} />
+                  <ReferenceArea key={i} x1={d.day_start} x2={d.day_end} fill="#c9813522" stroke="#c98135" strokeOpacity={0.3} />
                 ))}
                 <Line type="monotone" dataKey="oil_a" stroke={COL_A} strokeWidth={1.5} dot={false} name={`${wellA} Oil`} connectNulls />
                 <Line type="monotone" dataKey="oil_b" stroke={COL_B} strokeWidth={1.5} dot={false} name={`${wellB} Oil`} connectNulls />
@@ -791,15 +791,15 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
 
           {/* Water cut chart */}
           {mergedWC.length > 0 && (
-            <ChartCard title="Water Cut % Trajectory" color="#6b7071" height={240}>
+            <ChartCard title="Water Cut % Trajectory" color="#728087" height={240}>
               <LineChart data={mergedWC} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
                 <CartesianGrid {...CHART_GRID} />
-                <XAxis dataKey="day" {...CHART_AXIS} label={{ value: "Days since first production", position: "insideBottom", offset: -2, fontSize: 10, fill: "#8A8474" }} />
+                <XAxis dataKey="day" {...CHART_AXIS} label={{ value: "Days since first production", position: "insideBottom", offset: -2, fontSize: 10, fill: "#728087" }} />
                 <YAxis {...CHART_AXIS} domain={[0, 100]} />
                 <Tooltip {...CHART_TOOLTIP} labelFormatter={(v) => `Day ${v}`} />
                 <Legend wrapperStyle={{ fontSize: "0.75rem" }} />
                 {wcDivergence.map((d, i) => (
-                  <ReferenceArea key={i} x1={d.day_start} x2={d.day_end} fill="#B4562E22" stroke="#B4562E" strokeOpacity={0.3} />
+                  <ReferenceArea key={i} x1={d.day_start} x2={d.day_end} fill="#b86d5122" stroke="#b86d51" strokeOpacity={0.3} />
                 ))}
                 <Line type="monotone" dataKey="wc_a" stroke={COL_A} strokeWidth={1.5} dot={false} name={`${wellA} WC%`} connectNulls />
                 <Line type="monotone" dataKey="wc_b" stroke={COL_B} strokeWidth={1.5} dot={false} name={`${wellB} WC%`} connectNulls />
@@ -809,10 +809,10 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
 
           {/* WHP chart */}
           {mergedWHP.length > 0 && (
-            <ChartCard title="Wellhead Pressure (bar)" color="#C08A2E" height={220}>
+            <ChartCard title="Wellhead Pressure (bar)" color="#c98135" height={220}>
               <LineChart data={mergedWHP} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
                 <CartesianGrid {...CHART_GRID} />
-                <XAxis dataKey="day" {...CHART_AXIS} label={{ value: "Days since first production", position: "insideBottom", offset: -2, fontSize: 10, fill: "#8A8474" }} />
+                <XAxis dataKey="day" {...CHART_AXIS} label={{ value: "Days since first production", position: "insideBottom", offset: -2, fontSize: 10, fill: "#728087" }} />
                 <YAxis {...CHART_AXIS} />
                 <Tooltip {...CHART_TOOLTIP} labelFormatter={(v) => `Day ${v}`} />
                 <Legend wrapperStyle={{ fontSize: "0.75rem" }} />
@@ -831,13 +831,13 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
               </div>
               <div className="grid grid-cols-1 gap-2">
                 {data.divergence.map((d, i) => (
-                  <div key={i} className="flex items-center gap-4 py-2" style={{ borderTop: i > 0 ? "1px solid #ECE7DA" : "none" }}>
-                    <span className="text-xs font-semibold rounded-full px-3 py-1" style={{ background: "#C08A2E18", color: "#C08A2E" }}>
+                  <div key={i} className="flex items-center gap-4 py-2" style={{ borderTop: i > 0 ? "1px solid #dfe5e5" : "none" }}>
+                    <span className="text-xs font-semibold rounded-full px-3 py-1" style={{ background: "#c9813518", color: "#c98135" }}>
                       Day {d.day_start}–{d.day_end}
                     </span>
-                    <span className="text-sm" style={{ color: "#6E6A5E" }}>
-                      {d.metrics.includes("oil") && <span className="mr-3">Oil Δ: <strong style={{ color: "#22201C" }}>{d.d_oil > 0 ? "+" : ""}{d.d_oil.toFixed(0)} Sm³/d</strong></span>}
-                      {d.metrics.includes("wc") && <span>WC Δ: <strong style={{ color: "#22201C" }}>{d.d_wc > 0 ? "+" : ""}{d.d_wc.toFixed(1)}%</strong></span>}
+                    <span className="text-sm" style={{ color: "#3f565e" }}>
+                      {d.metrics.includes("oil") && <span className="mr-3">Oil Δ: <strong style={{ color: "#24343b" }}>{d.d_oil > 0 ? "+" : ""}{d.d_oil.toFixed(0)} Sm³/d</strong></span>}
+                      {d.metrics.includes("wc") && <span>WC Δ: <strong style={{ color: "#24343b" }}>{d.d_wc > 0 ? "+" : ""}{d.d_wc.toFixed(1)}%</strong></span>}
                     </span>
                   </div>
                 ))}
@@ -908,7 +908,7 @@ export default function GeoAgenticInt() {
   ];
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--cat-bg)", fontFamily: "var(--cat-font)" }}>
+    <div className="min-h-screen" style={{ background: "var(--cat-bg)", fontFamily: "var(--cat-font-body)" }}>
       <Navbar />
 
       {/* Page header — apricot-keyed project panel */}
@@ -925,12 +925,12 @@ export default function GeoAgenticInt() {
                 {/* Content column */}
                 <div>
                   <p style={{
-                    fontSize: "11px",
-                    letterSpacing: "0.1em",
+                    fontSize: "10px",
+                    letterSpacing: "0.13em",
                     textTransform: "uppercase",
                     color: "var(--key-apricot)",
-                    fontWeight: 600,
-                    fontFamily: "var(--cat-font)",
+                    fontWeight: 500,
+                    fontFamily: "var(--cat-font-mono)",
                     margin: "0 0 10px",
                   }}>
                     Geo-Agentic AI · Live demo
@@ -939,9 +939,9 @@ export default function GeoAgenticInt() {
                   <h1
                     style={{
                       fontSize: "34px",
-                      fontWeight: 600,
-                      lineHeight: 1.15,
-                      letterSpacing: "-0.015em",
+                      fontWeight: 500,
+                      lineHeight: 1.25,
+                      letterSpacing: "-1.4px",
                       color: "var(--cat-text)",
                       fontFamily: "var(--cat-font)",
                       margin: "0 0 1rem",
@@ -995,7 +995,7 @@ export default function GeoAgenticInt() {
 
         {/* Status states */}
         {status === "loading" && (
-          <div className="flex items-center justify-center py-24 gap-3" style={{ color: "#8A8474" }}>
+          <div className="flex items-center justify-center py-24 gap-3" style={{ color: "#728087" }}>
             <RefreshCw className="w-5 h-5 animate-spin" />
             <span>Connecting to backend API…</span>
           </div>
@@ -1003,8 +1003,8 @@ export default function GeoAgenticInt() {
 
         {status === "error" && (
           <div className="surface-lowest shadow-ambient rounded-2xl p-8 max-w-xl">
-            <div className="label-meta mb-2" style={{ color: "#B4562E" }}>Backend unavailable</div>
-            <p className="text-sm mb-4" style={{ color: "#6b7071" }}>{statusMsg}</p>
+            <div className="label-meta mb-2" style={{ color: "#b86d51" }}>Backend unavailable</div>
+            <p className="text-sm mb-4" style={{ color: "#728087" }}>{statusMsg}</p>
             <button
               onClick={load}
               data-testid="button-retry"
@@ -1044,7 +1044,7 @@ export default function GeoAgenticInt() {
                     background: "var(--cat-bg-card)",
                     color: "var(--cat-ink)",
                     fontWeight: 500,
-                    fontFamily: "var(--cat-font)",
+                    fontFamily: "var(--cat-font-body)",
                     outline: "none",
                     boxSizing: "border-box",
                     lineHeight: 1,

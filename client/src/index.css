@@ -41,7 +41,7 @@
   --color-ring: var(--ring);
 
   --font-sans: 'Space Grotesk', 'Avenir Next', 'Segoe UI', sans-serif;
-  --font-heading: 'Space Grotesk', 'Avenir Next', 'Segoe UI', sans-serif;
+  --font-heading: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 }
 
 /* Lucid Flow Design System */
@@ -104,47 +104,44 @@
   --radius: 1.5rem;
 
   /* ---------------------------------------------------------------- */
-  /* FastGage studio — greige ground, ink, muted ochre                 */
+  /* Unit 100 — mint ground, slate ink, amber accent                   */
   /* ---------------------------------------------------------------- */
-  --cat-bg: #e2ddd4;
-  --cat-panel: #e8e4db;
-  --cat-bg-card: #faf7f0;
-  --cat-text: #141414;
-  --cat-text-secondary: #2e2d2a;
-  --cat-text-tertiary: #5a5750;
-  --cat-rule: #8f8b81;
-  --cat-rule-strong: rgba(20, 20, 20, 0.28);
-  --cat-accent: #b08a2e;
-  --cat-accent-soft: rgba(176, 138, 46, 0.28);
+  --cat-bg: #f7f9f8;
+  --cat-panel: #edf1f0;
+  --cat-bg-card: #ffffff;
+  --cat-text: #24343b;
+  --cat-text-secondary: #3f565e;
+  --cat-text-tertiary: #728087;
+  --cat-rule: #dfe5e5;
+  --cat-rule-strong: rgba(36, 52, 59, 0.22);
+  --cat-accent: #c98135;
+  --cat-accent-soft: #f7f1e6;
 
-  /* Ink on plates (cards / figures) — same family as page ink */
-  --cat-ink: #141414;
-  --cat-ink-secondary: #2e2d2a;
-  --cat-ink-tertiary: #5a5750;
-  --cat-ink-rule: #8f8b81;
-  --cat-ink-rule-strong: rgba(20, 20, 20, 0.28);
-  /* Text on accent fills */
-  --cat-on-accent: #141414;
+  --cat-ink: #24343b;
+  --cat-ink-secondary: #34464f;
+  --cat-ink-tertiary: #728087;
+  --cat-ink-rule: #dfe5e5;
+  --cat-ink-rule-strong: rgba(36, 52, 59, 0.22);
+  --cat-on-accent: #24343b;
 
-  /* Project key colors — muted companions on cream plates */
-  --key-sage: #4A6B4E;
-  --key-sage-tint: #EEF1EA;
-  --key-sage-line: #D8DED4;
-  --key-sky: #3D6B78;
-  --key-sky-tint: #EAEFF1;
-  --key-sky-line: #D2DBE0;
-  --key-apricot: #A85A3A;
-  --key-apricot-tint: #F3EBE5;
-  --key-apricot-line: #E4D4C8;
-  --key-lavender: #6B5A78;
-  --key-lavender-tint: #F0ECF2;
-  --key-lavender-line: #DED6E2;
-  --key-steel: #4A5F6E;
-  --key-steel-tint: #EAEFF1;
-  --key-steel-line: #D2DBE0;
-  --key-ochre: #B08A2E;
-  --key-ochre-tint: #F3EAD4;
-  --key-ochre-line: #E4D4A8;
+  --key-sage: #387c6d;
+  --key-sage-tint: #eaf3ef;
+  --key-sage-line: #d4e4dc;
+  --key-sky: #5e7e9f;
+  --key-sky-tint: #edf2f7;
+  --key-sky-line: #d5dee8;
+  --key-apricot: #b86d51;
+  --key-apricot-tint: #f7ede8;
+  --key-apricot-line: #ead8d0;
+  --key-lavender: #8668ab;
+  --key-lavender-tint: #f0ebf5;
+  --key-lavender-line: #ddd4e8;
+  --key-steel: #74828a;
+  --key-steel-tint: #edf0f1;
+  --key-steel-line: #d8dee0;
+  --key-ochre: #a57b3b;
+  --key-ochre-tint: #f7f1e6;
+  --key-ochre-line: #e8dcc6;
 
   --cat-rule-width: 1px;
   --cat-radius: 8px;
@@ -154,8 +151,8 @@
   --cat-grid-gap: 2rem;
   --cat-panel-max: 1100px;
 
-  /* Font stacks — Space Grotesk + IBM Plex Mono */
-  --cat-font: "Space Grotesk", "Avenir Next", "Segoe UI", sans-serif;
+  /* Font stacks — u100 redesign: Plex Mono display, Space Grotesk UI */
+  --cat-font: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --cat-font-body: "Space Grotesk", "Avenir Next", "Segoe UI", sans-serif;
   --cat-font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
@@ -179,10 +176,13 @@
   }
   body {
     font-family: var(--cat-font-body);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
     background-color: var(--cat-bg);
     background-image:
-      linear-gradient(165deg, #ebe7de 0%, #e2ddd4 42%, #d6d1c7 100%),
-      repeating-linear-gradient(90deg, transparent 0, transparent 47px, #00000006 47px, #00000006 48px);
+      linear-gradient(165deg, #fbfcfc 0%, #f7f9f8 42%, #edf1f0 100%),
+      repeating-linear-gradient(90deg, transparent 0, transparent 47px, #24343b08 47px, #24343b08 48px);
     background-attachment: fixed;
     color: var(--cat-text);
     -webkit-font-smoothing: antialiased;
@@ -191,12 +191,12 @@
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--cat-font);
-    font-weight: 600;
-    letter-spacing: -0.015em;
+    font-weight: 500;
+    letter-spacing: -1.4px;
     color: var(--cat-text);
   }
   button, input, select, textarea {
-    font-family: var(--cat-font);
+    font-family: var(--cat-font-body);
   }
 }
 
@@ -215,9 +215,8 @@
     box-shadow: 4px 4px 0 var(--cat-ink);
   }
 
-  /* Glass nav — studio greige */
   .glass-nav {
-    background: rgba(250, 247, 240, 0.88);
+    background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
@@ -300,22 +299,25 @@
   }
 
   .catalog-h1 {
-    font-size: var(--cat-fs-h1);
+    font-family: var(--cat-font);
+    font-size: 34px;
     font-weight: 500;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+    line-height: 1.25;
+    letter-spacing: -1.4px;
     color: var(--cat-text);
     margin: 0 0 16px;
   }
 
   @media (max-width: 600px) {
-    .catalog-h1 { font-size: 28px; }
+    .catalog-h1 { font-size: 26px; }
   }
 
   .catalog-h2 {
-    font-size: var(--cat-fs-h2);
-    font-weight: 600;
-    line-height: 1.15;
+    font-family: var(--cat-font);
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -1.4px;
     color: var(--cat-text);
   }
 
@@ -353,7 +355,7 @@
     box-shadow: 2px 2px 0 var(--cat-ink);
   }
   .catalog-btn--primary:hover {
-    background: #9a7828;
+    background: #b06e28;
     color: var(--cat-on-accent);
     transform: translate(-1px, -1px);
     box-shadow: 3px 3px 0 var(--cat-ink);
@@ -419,18 +421,18 @@
   .project-list-title {
     margin: 0 0 0.5rem;
     font-family: var(--cat-font);
-    font-size: clamp(1.35rem, 2.8vw, 1.75rem);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1.15;
+    font-size: 34px;
+    font-weight: 500;
+    letter-spacing: -1.4px;
+    line-height: 1.25;
     color: var(--cat-text);
     max-width: 20ch;
   }
 
   .project-list-hint {
     margin: 0 0 1.35rem;
-    font-family: var(--cat-font);
-    font-size: 0.92rem;
+    font-family: var(--cat-font-body);
+    font-size: 13px;
     line-height: 1.55;
     color: var(--cat-text-secondary);
     max-width: 36ch;
@@ -502,9 +504,10 @@
   }
 
   .project-title {
+    font-family: var(--cat-font);
     font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
+    font-weight: 500;
+    letter-spacing: -1.2px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -692,8 +695,9 @@
   }
 
   @media (max-width: 767px) {
-    .hero-pm-title {
-      font-size: 36px !important;
+    .hero-pm-title,
+    .project-list-title {
+      font-size: 26px !important;
     }
   }
 

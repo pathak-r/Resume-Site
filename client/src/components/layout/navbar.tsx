@@ -32,9 +32,9 @@ export default function Navbar() {
           href="/"
           style={{
             color: "var(--cat-text)",
-            fontSize: "1.15rem",
-            fontWeight: 700,
-            letterSpacing: "-0.03em",
+            fontSize: "1.05rem",
+            fontWeight: 500,
+            letterSpacing: "-1.2px",
             textDecoration: "none",
             fontFamily: "var(--cat-font)",
           }}

@@ -7,9 +7,9 @@
  * Hex colors only — CSS vars are unreliable inside SVG here.
  */
 
-const INK = "#2C2A24";
-const INK_SOFT = "#5C584C";
-const MONO = "ui-monospace, 'SF Mono', Menlo, Consolas, monospace";
+const INK = "#24343b";
+const INK_SOFT = "#728087";
+const MONO = "'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace";
 
 /* ── Hero — signature infrastructure scene (ink + four key-color nodes) ── */
 

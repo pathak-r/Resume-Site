@@ -20,12 +20,12 @@ export default function Closing() {
       <div className="catalog-panel">
         <h2
           style={{
-            fontSize: "clamp(1.6rem, 3.5vw, 2.2rem)",
-            fontWeight: 600,
+            fontSize: "34px",
+            fontWeight: 500,
             margin: "0 0 1.5rem",
-            lineHeight: 1.15,
+            lineHeight: 1.25,
             color: "var(--cat-text)",
-            letterSpacing: "-0.03em",
+            letterSpacing: "-1.4px",
             fontFamily: "var(--cat-font)",
             maxWidth: "18ch",
           }}
