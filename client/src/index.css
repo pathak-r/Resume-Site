@@ -106,16 +106,16 @@
   /* ---------------------------------------------------------------- */
   /* FastGage studio — greige ground, ink, muted ochre                 */
   /* ---------------------------------------------------------------- */
-  --cat-bg: #d1cdc4;
-  --cat-panel: #d1cdc4;
-  --cat-bg-card: #f4f1ea;
+  --cat-bg: #e2ddd4;
+  --cat-panel: #e8e4db;
+  --cat-bg-card: #faf7f0;
   --cat-text: #141414;
   --cat-text-secondary: #2e2d2a;
   --cat-text-tertiary: #5a5750;
   --cat-rule: #8f8b81;
   --cat-rule-strong: rgba(20, 20, 20, 0.28);
   --cat-accent: #b08a2e;
-  --cat-accent-soft: rgba(176, 138, 46, 0.22);
+  --cat-accent-soft: rgba(176, 138, 46, 0.28);
 
   /* Ink on plates (cards / figures) — same family as page ink */
   --cat-ink: #141414;
@@ -181,7 +181,7 @@
     font-family: var(--cat-font-body);
     background-color: var(--cat-bg);
     background-image:
-      linear-gradient(165deg, #d9d5cc 0%, #d1cdc4 42%, #c5c0b6 100%),
+      linear-gradient(165deg, #ebe7de 0%, #e2ddd4 42%, #d6d1c7 100%),
       repeating-linear-gradient(90deg, transparent 0, transparent 47px, #00000006 47px, #00000006 48px);
     background-attachment: fixed;
     color: var(--cat-text);
@@ -217,7 +217,7 @@
 
   /* Glass nav — studio greige */
   .glass-nav {
-    background: rgba(201, 197, 188, 0.92);
+    background: rgba(250, 247, 240, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
@@ -437,7 +437,8 @@
   }
 
   .project-list {
-    border-top: 1px solid var(--cat-rule);
+    border: 1px solid var(--cat-rule);
+    background: var(--cat-bg-card);
   }
 
   .project-item {
@@ -447,7 +448,7 @@
 
   .project-row {
     display: grid;
-    grid-template-columns: 96px 7.5rem minmax(0, 1fr) 1.5rem;
+    grid-template-columns: 96px 9.5rem minmax(0, 1fr) 1.5rem;
     gap: 1rem 1.15rem;
     align-items: center;
     padding: 1.1rem 0.35rem;

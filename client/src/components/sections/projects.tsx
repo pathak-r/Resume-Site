@@ -25,6 +25,23 @@ type Project = {
 
 const projects: Project[] = [
   {
+    id: "card-u100",
+    key: "ochre",
+    label: "Factory maintenance planning",
+    badge: "Live demo",
+    title: "Unit 100",
+    tagline: "A planner’s job, in one screen: what to fix, why, and what the last job actually took.",
+    description:
+      "Factories plan big maintenance windows years ahead — every exchanger, pump, and vessel needs a job pack before anyone opens it. Planners still build those packs by hand, hunting inspections, old work orders, sensor history, drawings, and permits. Unit 100 pulls those sources together, drafts the pack, and shows where every number came from. The model writes the explanation; hours, parts, and safety steps come from the records. Missing or conflicting evidence shows up as a flag, not a guess. The planner edits, locks, and exports.",
+    tags: ["Azure OpenAI", "FastAPI", "React", "Plant data"],
+    figure: <Unit100Figure />,
+    cta: {
+      label: "Try the live demo",
+      href: "/u100/",
+      external: true,
+    },
+  },
+  {
     id: "card-structra",
     key: "lavender",
     label: "Vision AI",
@@ -68,23 +85,6 @@ const projects: Project[] = [
     cta: {
       label: "Explore live demo",
       href: "/autosignal/",
-      external: true,
-    },
-  },
-  {
-    id: "card-u100",
-    key: "ochre",
-    label: "Industrial AI",
-    badge: "Live demo",
-    title: "Unit 100",
-    tagline: "Turnaround work-package drafter for a refinery planner.",
-    description:
-      "Take an item off the TA-2027 scope list and get a reviewed, lockable package. Structured queries fill parts, hours, permits, and isolation. The model writes basis, scope, and steps only — every field carries a citation chip, and conflicts show up as flags rather than guesses.",
-    tags: ["Azure OpenAI", "Cosmos DB", "FastAPI", "React", "Tag reconciliation"],
-    figure: <Unit100Figure />,
-    cta: {
-      label: "Explore live demo",
-      href: "/u100/",
       external: true,
     },
   },
