@@ -74,6 +74,10 @@ class ApproveBody(BaseModel):
     reviewer: str = PLANNER
 
 
+class ResetBody(BaseModel):
+    confirm: bool = False
+
+
 def _now() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -168,6 +172,13 @@ def approve_draft(canonical: str, body: ApproveBody) -> dict[str, Any]:
 @app.get("/api/metrics")
 def get_metrics() -> dict[str, Any]:
     return metrics()
+
+
+@app.post("/api/demo/reset")
+def demo_reset(body: ResetBody) -> dict[str, Any]:
+    if not body.confirm:
+        raise HTTPException(400, "confirm required")
+    return store.reset_demo()
 
 
 @app.get("/api/scope")

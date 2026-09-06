@@ -142,3 +142,98 @@ def list_packages(ta_id: str = "TA-2027") -> list[dict[str, Any]]:
         )
     )
 
+
+def delete_packages(ta_id: str = "TA-2027") -> int:
+    container = packages_container()
+    removed = 0
+    for doc in list_packages(ta_id):
+        try:
+            container.delete_item(item=doc["id"], partition_key=ta_id)
+            removed += 1
+        except Exception:
+            continue
+    return removed
+
+
+def delete_tag_map() -> int:
+    container = cosmos_container()
+    removed = 0
+    for doc in query_docs("SELECT c.id, c.tagCanonical FROM c"):
+        pk = doc.get("tagCanonical")
+        if not pk:
+            continue
+        try:
+            container.delete_item(item=doc["id"], partition_key=pk)
+            removed += 1
+        except Exception:
+            continue
+    return removed
+
+
+def reset_mapping_doc(doc: dict[str, Any]) -> dict[str, Any]:
+    variants = [doc.get("sap") or {}, doc.get("pi") or {}, doc.get("dwg") or {}]
+    doc["aliases"] = []
+    doc["reviewedBy"] = None
+    doc["reviewedAt"] = None
+    doc["reviewNote"] = None
+    doc["overallStatus"] = "mapped" if all(v.get("status") == "mapped" for v in variants) else "review"
+    confs = [float(v.get("confidence") or 0) for v in variants]
+    doc["overallConfidence"] = round(min(confs) if confs else 0.0, 2)
+    doc["flags"] = [v["rule"] for v in variants if v.get("rule") and v["rule"] != "exact_formula"]
+    return doc
+
+
+def reset_unmatched_doc(doc: dict[str, Any]) -> dict[str, Any]:
+    doc["status"] = "open"
+    doc["reviewedBy"] = None
+    doc["reviewedAt"] = None
+    doc["reviewNote"] = None
+    doc.pop("llmSuggestion", None)
+    return doc
+
+
+def reset_tag_map_in_place() -> int:
+    reset = 0
+    for doc in query_docs("SELECT * FROM c"):
+        kind = doc.get("docType")
+        if kind == "mapping":
+            reset_mapping_doc(doc)
+        elif kind == "unmatched":
+            reset_unmatched_doc(doc)
+        else:
+            continue
+        replace_doc(doc)
+        reset += 1
+    return reset
+
+
+def _can_rebuild_recon() -> bool:
+    from apps.api.recon import DATA
+
+    return (DATA / "sensor_daily.parquet").exists() or (DATA / "sensor_daily.csv").exists()
+
+
+def reset_demo(ta_id: str = "TA-2027") -> dict[str, Any]:
+    from apps.api.recon import build_recon_docs, summary
+
+    packages_removed = delete_packages(ta_id)
+    if _can_rebuild_recon():
+        docs = build_recon_docs()
+        mappings_removed = delete_tag_map()
+        restored = upsert_docs(docs)
+        stats = summary(docs)
+        mode = "rebuild"
+    else:
+        mappings_removed = 0
+        restored = reset_tag_map_in_place()
+        stats = summary(query_docs("SELECT * FROM c"))
+        mode = "inplace"
+    return {
+        "ok": True,
+        "mode": mode,
+        "packagesRemoved": packages_removed,
+        "mappingsRemoved": mappings_removed,
+        "mappingsRestored": restored,
+        **stats,
+    }
+
