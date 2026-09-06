@@ -11,12 +11,13 @@
 
 **Helper scripts:** `./scripts/railway-setup.sh` (dashboard checklist), `./scripts/smoke-test.sh` (post-deploy curls).
 
-This repo runs as **two Railway services** from one GitHub repository.
+This repo runs as **three Railway services** from one GitHub repository.
 
 | Service | Root directory | Build | Start |
 |---------|----------------|-------|-------|
 | **resume-site** | `/` (repo root) | `npm run build` | `npm run start` |
 | **geo-rag** | `geo_rag/` | Nixpacks (see `geo_rag/railway.toml`) | `uvicorn backend.main:app --host 0.0.0.0 --port $PORT` |
+| **u100-api** | `u100_api/` | Nixpacks (see `u100_api/railway.toml`) | `uvicorn apps.api.main:app --host 0.0.0.0 --port $PORT` |
 
 The Node app proxies Geo RAG at `/api/geo/*` using `GEO_RAG_API_URL`. Browsers only hit the resume-site URL.
 
@@ -30,6 +31,34 @@ Static app built from the separate **AutoSignal** repo (`web/` → `client/publi
 | API health | `https://api-production-5d604.up.railway.app/health` |
 
 To refresh the static build: rebuild AutoSignal `web/` with production `VITE_API_URL`, copy `web/dist/*` into `client/public/autosignal/`, commit, push.
+
+## Unit 100 (`/u100`)
+
+Static app built from the **Industrial Intelligence** repo. Publish with `scripts/publish-u100.sh` there (copies UI → `client/public/u100/`, API → `u100_api/`). Express serves the UI and proxies `/u100/api` to `U100_API_URL`.
+
+| Check | URL |
+|-------|-----|
+| App | `https://rohitpathak.com/u100/` |
+| Proxied health | `https://rohitpathak.com/u100/api/health` |
+
+### u100-api variables
+
+| Variable | Required |
+|----------|----------|
+| `AZURE_OPENAI_ENDPOINT` | Yes |
+| `AZURE_OPENAI_KEY` | Yes |
+| `AZURE_OPENAI_DEPLOYMENT` | Yes (`gpt-4.1-mini`) |
+| `COSMOS_ENDPOINT` | Yes |
+| `COSMOS_KEY` | Yes |
+| `CORS_ORIGINS` | `https://www.rohitpathak.com,https://rohitpathak.com,https://<resume-site>.up.railway.app` |
+
+Optional: `KEY_VAULT_URL`, `SEARCH_ENDPOINT`, `AZURE_OPENAI_API_VERSION`.
+
+### resume-site extra variable
+
+| Variable | Required |
+|----------|----------|
+| `U100_API_URL` | `https://<u100-api>.up.railway.app` (no trailing slash) |
 
 ## Railway setup
 

@@ -31,6 +31,7 @@ const CARD_LINKS: Record<string, { label: string; anchor: string }> = {
   volve: { label: "Volve Field RAG Explorer", anchor: "#card-volve" },
   structra: { label: "Structra", anchor: "#card-structra" },
   propscan: { label: "Structra", anchor: "#card-structra" },
+  u100: { label: "Unit 100", anchor: "#card-u100" },
 };
 
 const STARTER_CHIPS = [

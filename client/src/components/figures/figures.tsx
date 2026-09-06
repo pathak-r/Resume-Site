@@ -594,3 +594,58 @@ export function StructraFigure() {
     </svg>
   );
 }
+
+/* ── Unit 100 — ochre. Turnaround work-package drafter ── */
+
+export function Unit100Figure() {
+  const KEY = "#B08A2E";
+  return (
+    <svg
+      viewBox="0 0 400 280"
+      width="100%"
+      role="img"
+      aria-label="Exchanger and a work-package sheet with citation chips from inspection, SAP, and procedure"
+    >
+      <title>Turnaround package drafted from plant sources</title>
+
+      {/* exchanger shell */}
+      <g stroke={INK} strokeWidth="1.2" fill="none">
+        <rect x="36" y="88" width="150" height="72" rx="36" />
+        <path d="M 36 124 L 22 124 M 186 124 L 200 124" />
+        <path d="M 68 88 L 68 72 M 154 88 L 154 72" opacity="0.5" />
+        <path d="M 68 160 L 68 176 M 154 160 L 154 176" opacity="0.5" />
+      </g>
+      <g stroke={INK} strokeWidth="0.8" fill="none" opacity="0.4">
+        <path d="M 58 108 C 80 98, 110 150, 164 124" />
+        <path d="M 58 140 C 90 160, 120 100, 164 136" />
+      </g>
+      <circle cx="186" cy="124" r="3.2" fill={KEY} />
+
+      {/* package plate */}
+      <g stroke={INK} strokeWidth="1.1" fill="none">
+        <rect x="228" y="48" width="148" height="168" />
+        <path d="M 240 68 h 124 M 240 80 h 88" opacity="0.45" />
+        <path d="M 240 104 h 124 M 240 116 h 110 M 240 128 h 96" opacity="0.35" />
+      </g>
+      <g fill="none" stroke={KEY} strokeWidth="1">
+        <rect x="240" y="148" width="44" height="16" />
+        <rect x="290" y="148" width="52" height="16" />
+        <rect x="240" y="172" width="70" height="16" />
+      </g>
+      <g fontSize="8" fill={KEY} fontFamily={MONO}>
+        <text x="244" y="159">INS-0499</text>
+        <text x="294" y="159">40000304</text>
+        <text x="244" y="183">100-PRC-001</text>
+      </g>
+      <path d="M 186 124 L 228 124" stroke={KEY} strokeWidth="1" fill="none" strokeDasharray="3 3" />
+
+      <rect x="30" y="240" width="340" height="1" fill={INK} opacity="0.18" />
+      <text x="30" y="260" fontSize="10.5" fill={INK_SOFT} fontFamily={MONO}>
+        ▸ draft TA-2027 package for E-101
+      </text>
+      <text x="30" y="276" fontSize="9" fill={KEY} fontFamily={MONO}>
+        facts from queries · prose from the model
+      </text>
+    </svg>
+  );
+}

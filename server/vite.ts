@@ -5,7 +5,7 @@ import viteConfig from "../vite.config";
 import fs from "fs";
 import path from "path";
 import { nanoid } from "nanoid";
-import { mountAutosignal } from "./static";
+import { mountAutosignal, mountU100 } from "./static";
 
 const viteLogger = createLogger();
 
@@ -35,12 +35,16 @@ export async function setupVite(server: Server, app: Express) {
     app,
     path.resolve(import.meta.dirname, "..", "client", "public", "autosignal"),
   );
+  mountU100(
+    app,
+    path.resolve(import.meta.dirname, "..", "client", "public", "u100"),
+  );
 
   app.use(vite.middlewares);
 
   app.use("*", async (req, res, next) => {
     const url = req.originalUrl;
-    if (url.split("?")[0].startsWith("/autosignal")) {
+    if (url.split("?")[0].startsWith("/autosignal") || url.split("?")[0].startsWith("/u100")) {
       return next();
     }
 

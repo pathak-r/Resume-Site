@@ -1,0 +1,10 @@
+fastapi>=0.115
+uvicorn[standard]>=0.32
+azure-cosmos>=4.9
+azure-identity>=1.19
+azure-keyvault-secrets>=4.9
+python-dotenv>=1.0
+pydantic>=2.9
+pandas>=2.2
+pyarrow>=17
+openai>=1.40

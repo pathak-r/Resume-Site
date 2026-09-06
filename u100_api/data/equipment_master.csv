@@ -1,0 +1,46 @@
+tag_canonical,tag_sap,tag_pi,tag_dwg,description,equipment_type,service,criticality,manufacturer,model,install_year,design_pressure_barg,design_temp_c,nominal_wall_mm,min_wall_mm,spared,story
+E-101,100-E-101,U100E101,101-E-001,Crude/atmospheric residue preheat exchanger #1,exchanger,crude preheat (hot end),A,Alfa Laval,Compabloc-CDU,2005,26.2,333,6.35,4.0,N,fast_fouling
+E-102,100-E-102,U100E102,101-E-002,Crude/atmospheric residue preheat exchanger #2,exchanger,crude preheat,A,Kelvion,BEM-24-240,2010,26.9,280,6.35,4.0,N,fast_fouling
+E-103,100-E-103,U100E103,101-E-003,Crude/kerosene pumparound preheat exchanger #3,exchanger,crude preheat / kerosene PA,B,SPX Flow,TEMA-AES-20,2015,12.8,228,6.35,4.0,N,slow_fouling
+E-104,100-E-104,U100E104,101-E-004,Crude/diesel pumparound preheat exchanger #4,exchanger,crude preheat / diesel PA,B,Wiegand,STX-Crude-8,2012,18.1,246,6.35,4.0,N,slow_fouling
+E-105,100-E-105,U100E105,101-E-015,Crude/AGO product preheat exchanger #5,exchanger,crude preheat / AGO,B,Alfa Laval,Compabloc-CDU,2006,13.0,258,6.35,4.0,N,slow_fouling
+E-106,100-E-106,U100E106,101-E-006,Crude/atmospheric residue preheat exchanger #6,exchanger,crude preheat (cold end),A,Kelvion,BEM-24-240,2014,15.0,196,6.35,4.0,N,fast_fouling
+E-107,100-E-107,U100E107_OLD,101-E-007,Overhead naphtha condenser,exchanger,column overhead condensing,A,SPX Flow,TEMA-AES-20,2012,17.2,217,6.35,4.0,N,slow_fouling
+E-108,100-E-108,U100E108,101-E-008A,Overhead trim condenser (two-bundle),exchanger,column overhead trim,B,Wiegand,STX-Crude-8,2002,15.5,221,6.35,4.0,N,healthy
+E-109,100-E-109,U100E109,101-E-009,Naphtha/crude interchanger,exchanger,naphtha product / crude,B,Alfa Laval,Compabloc-CDU,1999,16.4,262,6.35,4.0,N,slow_fouling
+E-110,100-E-110,U100E110,101-E-010,Kerosene stripper reboiler,exchanger,kerosene reboil,A,Kelvion,BEM-24-240,2009,26.6,298,6.35,4.0,N,wall_loss
+E-111,100-E-111,U100E111,101-E-011,Diesel product / BFW exchanger,exchanger,diesel product cooling,C,SPX Flow,TEMA-AES-20,2004,18.1,245,6.35,4.0,N,healthy
+E-112,100-E-112,U100E112,101-E-012,Residue rundown cooler,exchanger,atmospheric residue rundown,B,Wiegand,STX-Crude-8,2014,27.8,313,6.35,4.0,N,healthy
+P-101A,100-P-101A,U100P101A,101-P-001A,Crude charge pump A,pump,crude charge to heater,A,Flowserve,HPX-8x10-13,2001,26.2,304,,,Y,vibration_trend
+P-101B,100-P-101B,U100P101B,101-P-001B,Crude charge pump B,pump,crude charge to heater,A,Sulzer,OH2-AA-6x8,1998,23.7,265,,,Y,healthy
+P-102A,100-P-102A,U100P102A,101-P-002A,Desalter water pump A,pump,desalter wash water,B,Goulds,3700-6x8-13,2010,13.2,152,,,Y,seal_leak_history
+P-102B,100-P-102B,U100P102B,101-P-002B,Desalter water pump B,pump,desalter wash water,B,KSB,RPH-200-400,2015,18.0,95,,,Y,healthy
+P-103A,100-P-103A,U100P103A,101-P-003A,Overhead reflux pump A,pump,column overhead reflux,A,Flowserve,HPX-8x10-13,2004,14.6,176,,,Y,vibration_trend
+P-103B,100-P-103B,U100P103B,101-P-003B,Overhead reflux pump B,pump,column overhead reflux,A,Sulzer,OH2-AA-6x8,2001,15.8,160,,,Y,healthy
+P-104A,100-P-104A,U100P104A_OLD,101-P-004A,Atmospheric residue bottoms pump A,pump,column bottoms,A,Goulds,3700-6x8-13,2006,21.0,293,,,Y,healthy
+P-104B,100-P-104B,U100P104B,101-P-004B,Atmospheric residue bottoms pump B,pump,column bottoms,A,KSB,RPH-200-400,2010,21.8,275,,,Y,healthy
+P-105A,100-P-105A,U100P105A,101-P-005A,Naphtha product pump A,pump,naphtha rundown,B,Flowserve,HPX-8x10-13,2012,15.5,64,,,Y,seal_leak_history
+P-105B,100-P-105B,U100P105B,101-P-005B,Naphtha product pump B,pump,naphtha rundown,B,Sulzer,OH2-AA-6x8,2003,17.6,54,,,Y,healthy
+P-106A,100-P-106A,U100P106A,101-P-006A,Diesel product pump A,pump,diesel rundown,B,Goulds,3700-6x8-13,2012,18.7,105,,,Y,healthy
+P-106B,100-P-106B,U100P106B,101-P-006B,Diesel product pump B,pump,diesel rundown,B,KSB,RPH-200-400,2003,15.1,175,,,Y,healthy
+H-101,100-H-101,U100H101_OLD,101-H-001,Crude fired heater (atmospheric),heater,crude charge heating,A,Born,Cabin-CDU-32,2000,21.4,387,,,N,healthy
+C-101,100-C-101,U100C101_OLD,101-C-001,Atmospheric distillation column,column,crude fractionation,A,Sulzer Chemtech,Mellapak-CDU,1998,2.7,346,14.0,10.0,N,healthy
+V-101,100-V-101,U100V101,101-V-001,Electrostatic desalter,vessel,crude desalting,A,McDermott,V-Desalt-12ft,2009,11.1,125,12.0,8.0,N,wall_loss
+D-101,100-D-101,U100D101,101-D-001,Overhead reflux drum,vessel,overhead accumulator,A,CB&I,D-Accum-8x20,2012,10.8,102,12.0,8.0,N,healthy
+D-102,100-D-102,U100D102,103-D-012,Kerosene stripper,vessel,kerosene stripping,B,McDermott,V-Desalt-12ft,2008,9.8,113,12.0,8.0,N,healthy
+D-103,100-D-103,U100D103,101-D-003,Diesel stripper,vessel,diesel stripping,B,CB&I,D-Accum-8x20,2000,8.6,101,12.0,8.0,N,healthy
+D-104,100-D-104,U100D104,101-D-004,Residue flash drum,vessel,residue flash,B,McDermott,V-Desalt-12ft,2006,10.7,120,12.0,8.0,N,healthy
+FV-101,100-FV-101,U100FV101,101-FV-001,Crude charge flow control valve,control_valve,crude charge,A,Masoneilan,21000-3in,2011,16.5,53,,,N,valve_passing
+FV-102,100-FV-102,U100FV102,101-FV-002,Stripping steam flow control valve,control_valve,column stripping steam,B,Flowserve Valtek,Mark-One-4,2007,17.1,133,,,N,healthy
+LV-101,100-LV-101,U100LV101,101-LV-001,Reflux drum level control valve,control_valve,overhead accumulator level,A,Fisher,ET-4in-300,2003,16.5,171,,,N,healthy
+LV-102,100-LV-102,U100LV102,101-LV-002,Column bottoms level control valve,control_valve,column bottoms level,A,Masoneilan,21000-3in,2005,12.2,97,,,N,healthy
+PV-101,100-PV-101,U100PV101,101-PV-001,Column overhead pressure control valve,control_valve,column overhead pressure,A,Flowserve Valtek,Mark-One-4,2005,13.7,85,,,N,healthy
+PV-102,100-PV-102,U100PV102,101-PV-002,Fuel gas pressure control valve,control_valve,heater fuel gas,B,Fisher,ET-4in-300,2002,18.8,45,,,N,healthy
+TV-101,100-TV-101,U100TV101,101-TV-001,Desalter temperature control valve,control_valve,desalter temperature,C,Masoneilan,21000-3in,2003,12.5,182,,,N,healthy
+FV-103,100-FV-103,U100FV103,101-FV-003,Naphtha pumparound flow control valve,control_valve,naphtha pumparound,B,Flowserve Valtek,Mark-One-4,2009,14.3,112,,,N,healthy
+PSV-101,100-PSV-101,U100PSV101,101-PSV-101,Column overhead PSV,psv,column overhead protection,A,Crosby,JOS-E-3K8,2012,8.3,156,,,N,healthy
+PSV-102,100-PSV-102,U100PSV102,101-PSV-102,Fired heater tube PSV,psv,heater pass protection,A,Farris,2600-4M6,2005,18.8,291,,,N,healthy
+PSV-103,100-PSV-103,U100PSV103,101-PSV-103,Desalter PSV,psv,desalter protection,B,Anderson Greenwood,200-series,2001,10.7,128,,,N,healthy
+PSV-104,100-PSV-104,U100PSV104,101-PSV-104,Reflux drum PSV,psv,reflux drum protection,B,Crosby,JOS-E-3K8,1999,3.2,96,,,N,healthy
+PSV-105,100-PSV-105,U100PSV105,101-PSV-105,Kerosene stripper PSV,psv,kerosene stripper protection,C,Farris,2600-4M6,2006,9.9,185,,,N,healthy
+PSV-106,100-PSV-106,U100PSV106,101-PSV-106,Residue flash drum PSV,psv,residue flash protection,C,Anderson Greenwood,200-series,2007,4.5,215,,,N,healthy

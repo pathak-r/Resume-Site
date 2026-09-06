@@ -1,0 +1,74 @@
+{
+  "pi_old_suffix": [
+    {
+      "tag_canonical": "E-107",
+      "tag_pi": "U100E107_OLD",
+      "note": "PI still carries the legacy _OLD suffix. Sensor generator: TI_OUT on _OLD stops logging in 2024; U100E107 starts then."
+    },
+    {
+      "tag_canonical": "P-104A",
+      "tag_pi": "U100P104A_OLD",
+      "note": "Bottoms pump A was retagged in PI after a 2021 motor swap; historian alias was never cleaned up."
+    },
+    {
+      "tag_canonical": "H-101",
+      "tag_pi": "U100H101_OLD",
+      "note": "Fired-heater PI tag kept the pre-2018 DCS name."
+    },
+    {
+      "tag_canonical": "C-101",
+      "tag_pi": "U100C101_OLD",
+      "note": "Column PI tag uses a leftover _OLD alias from a 2019 tag-rationalisation that did not finish."
+    }
+  ],
+  "dwg_sequence_mismatch": [
+    {
+      "tag_canonical": "E-105",
+      "expected_dwg": "101-E-005",
+      "tag_dwg": "101-E-015",
+      "note": "Drawing sequence skipped; isometric still numbered as E-015 from a cancelled spare slot."
+    },
+    {
+      "tag_canonical": "D-102",
+      "expected_dwg": "101-D-002",
+      "tag_dwg": "103-D-012",
+      "note": "Kerosene stripper was originally Unit 103 equipment; drawings were never renumbered after the 2008 revamp."
+    }
+  ],
+  "split_drawing_identity": [
+    {
+      "tag_canonical": "E-108",
+      "tag_sap": "100-E-108",
+      "tag_pi": "U100E108",
+      "tag_dwg": "101-E-008A",
+      "extra_dwg": "101-E-008B",
+      "note": "One exchanger in SAP and PI; two bundles on drawings (A/B). Inspections and documents may cite either 101-E-008A or 101-E-008B."
+    }
+  ],
+  "pid_rev_mismatch": [
+    {
+      "tag_canonical": "E-105",
+      "doc_id": "100-PID-001",
+      "cited_rev": "B",
+      "current_rev": "C",
+      "note": "Preheat P&ID is rev C (Nov 2023); E-105 document index still points at rev B."
+    },
+    {
+      "tag_canonical": "D-102",
+      "doc_id": "100-PID-005",
+      "cited_rev": "B",
+      "current_rev": "C",
+      "note": "Bottoms P&ID is rev C (Sep 2023); D-102 (also a drawing-sequence trap) still cites rev B."
+    }
+  ],
+  "missed_scope": [
+    {
+      "tag_canonical": "E-105",
+      "note": "Inspection recommended clean at next TA; omitted from TA-2027 scope."
+    },
+    {
+      "tag_canonical": "E-109",
+      "note": "Inspection recommended clean at next TA; omitted from TA-2027 scope."
+    }
+  ]
+}

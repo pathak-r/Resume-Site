@@ -2,26 +2,31 @@ import express, { type Express, type Request, type Response } from "express";
 import fs from "fs";
 import path from "path";
 
-/** Serve the built AutoSignal app under /autosignal (dev public/ or prod dist/). */
-export function mountAutosignal(app: Express, autosignalPath: string) {
-  if (!fs.existsSync(autosignalPath)) return;
+/** Serve a built SPA under /prefix (dev public/ or prod dist/). */
+export function mountSubApp(app: Express, prefix: string, dir: string) {
+  if (!fs.existsSync(dir)) return;
 
-  // Use originalUrl so we don't loop: Express's default non-strict routing
-  // treats /autosignal and /autosignal/ as the same path for app.get().
+  const base = `/${prefix.replace(/^\/|\/$/g, "")}`;
   app.use((req, res, next) => {
     const pathOnly = req.originalUrl.split("?")[0];
-    if (pathOnly === "/autosignal") {
-      return res.redirect(301, "/autosignal/");
+    if (pathOnly === base) {
+      return res.redirect(301, `${base}/`);
     }
     next();
   });
-  app.use(
-    "/autosignal",
-    express.static(autosignalPath, { index: "index.html", redirect: false }),
-  );
-  app.use("/autosignal", (_req: Request, res: Response) => {
-    res.sendFile(path.join(autosignalPath, "index.html"));
+  app.use(base, express.static(dir, { index: "index.html", redirect: false }));
+  app.use(base, (_req: Request, res: Response) => {
+    res.sendFile(path.join(dir, "index.html"));
   });
+}
+
+/** Serve the built AutoSignal app under /autosignal (dev public/ or prod dist/). */
+export function mountAutosignal(app: Express, autosignalPath: string) {
+  mountSubApp(app, "autosignal", autosignalPath);
+}
+
+export function mountU100(app: Express, u100Path: string) {
+  mountSubApp(app, "u100", u100Path);
 }
 
 export function serveStatic(app: Express) {
@@ -33,6 +38,7 @@ export function serveStatic(app: Express) {
   }
 
   mountAutosignal(app, path.join(distPath, "autosignal"));
+  mountU100(app, path.join(distPath, "u100"));
 
   app.use(express.static(distPath));
 

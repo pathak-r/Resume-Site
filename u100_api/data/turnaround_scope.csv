@@ -1,0 +1,19 @@
+ta_id,tag_canonical,scope_item,basis,basis_ref,planner,status
+TA-2027,C-101,"Internal tray inspect, repair as required",INTERVAL,INS-2025-0497,James Okonkwo,DRAFT
+TA-2027,E-101,"Open, clean, inspect, regasket",INSPECTION,INS-2025-0499,Fatima Al-Harthy,DRAFT
+TA-2027,E-102,"Open, clean, inspect, regasket",INSPECTION,INS-2025-0504,Fatima Al-Harthy,DRAFT
+TA-2027,E-103,"Open, clean, inspect, regasket",INSPECTION,INS-2025-0507,Priya Nair,DRAFT
+TA-2027,E-104,"Open, clean, inspect, regasket",INSPECTION,INS-2025-0509,Priya Nair,DRAFT
+TA-2027,E-106,"Open, clean, inspect, regasket",INSPECTION,INS-2025-0512,Fatima Al-Harthy,DRAFT
+TA-2027,E-107,"Open, clean, inspect, regasket",INSPECTION,INS-2025-0513,Priya Nair,DRAFT
+TA-2027,E-108,"Open both bundles, inspect, regasket",OPERATIONS_REQUEST,,Noura Al-Saadi,DRAFT
+TA-2027,E-110,"Open, inspect, replace bundle",INSPECTION,INS-2026-0540,Priya Nair,DRAFT
+TA-2027,E-112,Inspect residue cooler — operations request,OPERATIONS_REQUEST,,James Okonkwo,DRAFT
+TA-2027,H-101,"Tube inspect, header box entry",INTERVAL,INS-2025-0510,James Okonkwo,DRAFT
+TA-2027,PSV-101,"Remove, pop test, recertify",REGULATORY,INS-2025-0484,Noura Al-Saadi,DRAFT
+TA-2027,PSV-102,"Remove, pop test, recertify",REGULATORY,INS-2025-0479,Noura Al-Saadi,DRAFT
+TA-2027,PSV-103,"Remove, pop test, recertify",REGULATORY,INS-2025-0480,Noura Al-Saadi,DRAFT
+TA-2027,PSV-104,"Remove, pop test, recertify",REGULATORY,INS-2025-0481,Noura Al-Saadi,DRAFT
+TA-2027,PSV-105,"Remove, pop test, recertify",REGULATORY,INS-2025-0482,Noura Al-Saadi,DRAFT
+TA-2027,PSV-106,"Remove, pop test, recertify",REGULATORY,INS-2025-0483,Noura Al-Saadi,DRAFT
+TA-2027,V-101,"Internal inspect, weld overlay / repair",INSPECTION,INS-2026-0541,Priya Nair,DRAFT

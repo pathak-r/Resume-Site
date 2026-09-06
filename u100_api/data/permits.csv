@@ -1,0 +1,465 @@
+permit_id,wo_id,permit_type,scaffold,crane,gas_test_required,isolation_certificate,issued_date,closed_date,notes
+PTW-2019-0001,40000001,COLD_WORK,N,N,N,Y,2019-01-09,2019-02-01,
+PTW-2019-0002,40000002,COLD_WORK,N,N,N,Y,2019-01-10,2019-02-01,
+PTW-2019-0003,40000003,COLD_WORK,N,N,N,Y,2019-01-12,2019-02-02,
+PTW-2019-0004,40000004,COLD_WORK,N,N,N,Y,2019-01-12,2019-02-04,
+PTW-2019-0005,40000005,COLD_WORK,N,N,N,Y,2019-01-13,2019-02-05,
+PTW-2019-0006,40000006,COLD_WORK,N,N,N,Y,2019-01-14,2019-02-07,
+PTW-2019-0007,40000007,COLD_WORK,N,N,N,Y,2019-01-18,2019-02-02,
+PTW-2019-0008,40000008,COLD_WORK,N,N,N,Y,2019-01-19,2019-02-06,
+PTW-2019-0009,40000009,COLD_WORK,N,N,N,Y,2019-01-23,2019-02-04,
+PTW-2019-0010,40000010,COLD_WORK,N,N,N,Y,2019-01-24,2019-02-07,
+PTW-2019-0011,40000011,COLD_WORK,N,N,N,Y,2019-01-26,2019-02-06,
+PTW-2019-0012,40000012,COLD_WORK,N,N,N,Y,2019-01-27,2019-02-07,
+PTW-2019-0013,40000013,COLD_WORK,N,N,N,N,2019-02-14,2019-03-09,
+PTW-2019-0014,40000014,COLD_WORK,N,N,N,N,2019-02-18,2019-03-15,
+PTW-2019-0015,40000015,COLD_WORK,N,N,N,N,2019-02-20,2019-03-09,
+PTW-2019-0016,40000016,COLD_WORK,N,N,N,N,2019-02-27,2019-03-15,
+PTW-2019-0017,40000017,COLD_WORK,N,N,N,N,2019-02-28,2019-03-11,
+PTW-2019-0018,40000018,COLD_WORK,N,N,N,N,2019-03-25,2019-04-18,
+PTW-2019-0019,40000019,COLD_WORK,N,N,N,N,2019-03-28,2019-04-19,Permit issued for external inspection of the lube condition on Diesel product / BFW exchanger 100-E-111; ensure all electrical sources are isolated and verified before commencing cold work.
+PTW-2019-0020,40000020,COLD_WORK,N,N,N,N,2019-03-29,2019-04-21,
+PTW-2019-0021,40000021,COLD_WORK,N,N,N,N,2019-03-31,2019-04-20,
+PTW-2019-0022,40000022,COLD_WORK,N,N,N,N,2019-04-01,2019-04-12,
+PTW-2019-0023,40000023,COLD_WORK,N,N,N,N,2019-04-02,2019-04-21,
+PTW-2019-0024,40000024,COLD_WORK,N,N,N,N,2019-04-04,2019-04-22,
+PTW-2019-0025,40000025,COLD_WORK,N,N,N,N,2019-04-05,2019-04-22,
+PTW-2019-0026,40000026,COLD_WORK,N,N,N,N,2019-04-05,2019-04-22,
+PTW-2019-0027,40000027,COLD_WORK,N,N,N,N,2019-04-07,2019-04-17,Proceed with the external inspection of the lube condition on Atmospheric Distillation Column 100-C-101 under Cold Work permit WO 40000027; ensure continuous monitoring for any unexpected gas presence despite no initial gas test required.
+PTW-2019-0028,40000028,COLD_WORK,N,N,N,N,2019-04-07,2019-04-20,
+PTW-2019-0029,40000029,COLD_WORK,N,N,N,N,2019-04-07,2019-04-25,Permit granted for external inspection of lube condition on Crude/atmospheric residue preheat exchanger #6 (100-E-106); ensure all personnel wear appropriate PPE and verify isolation before commencing cold work.
+PTW-2019-0030,40000030,COLD_WORK,N,N,N,N,2019-04-07,2019-04-26,
+PTW-2019-0031,40000031,COLD_WORK,N,N,N,N,2019-04-07,2019-04-23,
+PTW-2019-0032,40000032,COLD_WORK,N,N,N,N,2019-04-08,2019-04-18,
+PTW-2019-0033,40000033,COLD_WORK,N,N,N,N,2019-04-09,2019-04-21,Permit issued for external inspection of lube condition on Crude/atmospheric residue preheat exchanger #2 (100-E-102); ensure all cold work precautions are followed and confirm area is free of ignition sources before starting.
+PTW-2019-0034,40000034,COLD_WORK,N,N,N,N,2019-04-09,2019-04-25,Permit issued for external inspection of lube condition on Crude/AGO product preheat exchanger #5 (100-E-105); ensure all personnel wear appropriate cold work PPE and verify isolation before starting.
+PTW-2019-0035,40000035,COLD_WORK,N,N,N,N,2019-04-09,2019-04-23,
+PTW-2019-0036,40000036,COLD_WORK,N,N,N,N,2019-04-10,2019-04-22,Approve cold work permit WO 40000036 for external inspection of lube condition on Residue flash drum 100-D-104; ensure all personnel wear appropriate PPE and maintain communication throughout the task.
+PTW-2019-0037,40000037,COLD_WORK,N,N,N,N,2019-04-10,2019-04-20,
+PTW-2019-0038,40000038,COLD_WORK,N,N,N,N,2019-04-12,2019-04-25,Permit issued for cold work on overhead naphtha condenser 100-E-107 to perform external inspection of lube condition; ensure all personnel wear appropriate protective equipment and verify isolation before starting the job.
+PTW-2019-0039,40000039,COLD_WORK,N,N,N,N,2019-04-15,2019-04-28,
+PTW-2019-0040,40000040,COLD_WORK,N,N,N,Y,2019-07-08,2019-07-30,
+PTW-2019-0041,40000041,COLD_WORK,N,N,N,Y,2019-07-11,2019-08-02,
+PTW-2019-0042,40000042,COLD_WORK,N,N,N,Y,2019-07-20,2019-08-02,
+PTW-2019-0043,40000043,COLD_WORK,N,N,N,Y,2019-07-23,2019-08-07,
+PTW-2019-0044,40000044,COLD_WORK,N,N,N,Y,2019-09-02,2019-09-20,
+PTW-2019-0045,40000044,LIFTING,N,Y,N,Y,2019-09-02,2019-09-20,Permit issued for the replacement of the bearing and coupling on Crude Charge Pump A (100-P-101A) under lifting operations; ensure all lifting equipment is inspected and secured before commencing work.
+PTW-2019-0046,40000045,COLD_WORK,N,N,N,Y,2019-10-13,2019-11-07,
+PTW-2019-0047,40000046,COLD_WORK,N,N,N,Y,2019-10-14,2019-11-05,
+PTW-2019-0048,40000047,COLD_WORK,N,N,N,Y,2019-10-15,2019-11-02,
+PTW-2019-0049,40000048,COLD_WORK,N,N,N,Y,2019-10-15,2019-11-04,
+PTW-2019-0050,40000049,COLD_WORK,N,N,N,Y,2019-10-16,2019-11-03,Permit granted for vibration check and lube seal inspection on Atmospheric residue bottoms pump A (100-P-104A); ensure all electrical sources remain de-energized throughout the cold work.
+PTW-2019-0051,40000050,COLD_WORK,N,N,N,Y,2019-10-20,2019-11-06,
+PTW-2019-0052,40000051,COLD_WORK,N,N,N,Y,2019-10-21,2019-11-06,
+PTW-2019-0053,40000052,COLD_WORK,N,N,N,Y,2019-10-24,2019-11-07,
+PTW-2019-0054,40000053,COLD_WORK,N,N,N,Y,2019-10-25,2019-11-07,
+PTW-2019-0055,40000054,COLD_WORK,N,N,N,Y,2019-12-31,2020-01-17,
+PTW-2019-0056,40000054,LIFTING,N,Y,N,Y,2019-12-31,2020-01-17,
+PTW-2020-0057,40000055,COLD_WORK,N,N,N,Y,2020-01-15,2020-01-30,
+PTW-2020-0058,40000056,COLD_WORK,N,N,N,Y,2020-01-15,2020-02-03,Permit granted for vibration check and lubrication seal inspection on Desalter water pump A (100-P-102A); ensure all electrical sources are isolated and verify zero energy before starting work.
+PTW-2020-0059,40000057,COLD_WORK,N,N,N,Y,2020-01-17,2020-02-03,
+PTW-2020-0060,40000058,COLD_WORK,N,N,N,Y,2020-01-19,2020-02-05,
+PTW-2020-0061,40000059,COLD_WORK,N,N,N,N,2020-02-19,2020-03-08,
+PTW-2020-0062,40000060,COLD_WORK,N,N,N,N,2020-02-25,2020-03-12,
+PTW-2020-0063,40000061,COLD_WORK,N,N,N,N,2020-02-27,2020-03-09,
+PTW-2020-0064,40000062,COLD_WORK,N,N,N,N,2020-02-29,2020-03-17,
+PTW-2020-0065,40000063,COLD_WORK,N,N,N,N,2020-03-03,2020-03-14,
+PTW-2020-0066,40000064,COLD_WORK,N,N,N,Y,2020-03-30,2020-04-17,
+PTW-2020-0067,40000065,COLD_WORK,N,N,N,N,2020-03-31,2020-04-23,Authorize calibration of stripping steam flow control valve 100-FV-102 under cold work permit; ensure isolation and verify zero energy state before starting.
+PTW-2020-0068,40000066,COLD_WORK,N,N,N,N,2020-03-31,2020-04-24,
+PTW-2020-0069,40000067,COLD_WORK,N,N,N,N,2020-04-10,2020-04-21,Permit granted for WO 40000067 to calibrate control valve 100-FV-101 under cold work conditions; ensure all tools are grounded to prevent static discharge during the operation.
+PTW-2020-0070,40000068,COLD_WORK,N,N,N,Y,2020-07-09,2020-08-03,
+PTW-2020-0071,40000069,COLD_WORK,N,N,N,Y,2020-07-11,2020-07-29,
+PTW-2020-0072,40000070,COLD_WORK,N,N,N,Y,2020-07-13,2020-08-04,
+PTW-2020-0073,40000071,COLD_WORK,N,N,N,Y,2020-07-14,2020-08-07,Permit issued for vibration check and lubrication seal inspection on Naphtha product pump B (100-P-105B); ensure all equipment is de-energized and verified safe before commencing work.
+PTW-2020-0074,40000072,COLD_WORK,N,N,N,Y,2020-07-15,2020-08-08,Permit issued for vibration check and lubrication seal inspection on Diesel product pump B (100-P-106B); ensure all electrical sources are isolated and verified before starting work.
+PTW-2020-0075,40000073,COLD_WORK,N,N,N,Y,2020-07-16,2020-08-01,
+PTW-2020-0076,40000074,COLD_WORK,N,N,N,Y,2020-07-16,2020-08-05,
+PTW-2020-0077,40000075,COLD_WORK,N,N,N,Y,2020-07-17,2020-08-03,Permit issued for vibration check and lubrication seal inspection on Atmospheric residue bottoms pump A (100-P-104A); ensure all electrical sources are isolated and verify zero energy before starting work.
+PTW-2020-0078,40000076,COLD_WORK,N,N,N,Y,2020-07-21,2020-08-05,
+PTW-2020-0079,40000077,COLD_WORK,N,N,N,Y,2020-07-22,2020-08-06,
+PTW-2020-0080,40000078,COLD_WORK,N,N,N,Y,2020-07-24,2020-08-05,
+PTW-2020-0081,40000079,COLD_WORK,N,N,N,Y,2020-07-26,2020-08-07,
+PTW-2020-0082,40000080,COLD_WORK,N,N,N,N,2020-09-04,2020-10-09,
+PTW-2020-0083,40000081,COLD_WORK,Y,N,N,Y,2020-09-06,2020-10-19,
+PTW-2020-0084,40000081,LIFTING,Y,Y,N,Y,2020-09-06,2020-10-19,Permit granted for TA open clean and inspect RGKT on overhead trim condenser (100-E-108) using lifting equipment with scaffold and crane; ensure all lifting operations follow safety protocols to prevent load shifts.
+PTW-2020-0085,40000082,COLD_WORK,Y,N,N,Y,2020-09-06,2020-10-14,
+PTW-2020-0086,40000082,LIFTING,Y,Y,N,Y,2020-09-06,2020-10-14,Approve lifting permit for TA internal inspection and cleaning on Electrostatic Desalter 100-V-101; ensure all crane operations follow safety protocols and verify scaffold stability before work begins.
+PTW-2020-0087,40000083,COLD_WORK,N,N,N,N,2020-09-09,2020-10-11,
+PTW-2020-0088,40000084,COLD_WORK,Y,N,N,Y,2020-09-12,2020-10-13,
+PTW-2020-0089,40000084,LIFTING,Y,Y,N,Y,2020-09-12,2020-10-13,
+PTW-2020-0090,40000085,COLD_WORK,Y,N,N,Y,2020-09-12,2020-10-18,
+PTW-2020-0091,40000085,LIFTING,Y,Y,N,Y,2020-09-12,2020-10-18,
+PTW-2020-0092,40000086,COLD_WORK,Y,N,N,Y,2020-09-12,2020-10-20,
+PTW-2020-0093,40000086,LIFTING,Y,Y,N,Y,2020-09-12,2020-10-20,"Permit to work approved for task opening, cleaning, and inspecting the Diesel product / BFW exchanger (100-E-111); ensure all lifting operations with crane and scaffold are conducted safely and personnel remain clear of suspended loads at all times."
+PTW-2020-0094,40000087,COLD_WORK,Y,N,N,Y,2020-09-15,2020-10-20,
+PTW-2020-0095,40000087,LIFTING,Y,Y,N,Y,2020-09-15,2020-10-20,
+PTW-2020-0096,40000088,COLD_WORK,Y,N,N,Y,2020-09-15,2020-10-17,
+PTW-2020-0097,40000088,LIFTING,Y,Y,N,Y,2020-09-15,2020-10-17,
+PTW-2020-0098,40000089,COLD_WORK,Y,N,N,Y,2020-09-15,2020-10-23,
+PTW-2020-0099,40000089,LIFTING,Y,Y,N,Y,2020-09-15,2020-10-23,
+PTW-2020-0100,40000090,COLD_WORK,Y,N,Y,Y,2020-09-17,2020-10-19,
+PTW-2020-0101,40000090,CONFINED_SPACE,Y,N,Y,Y,2020-09-17,2020-10-19,
+PTW-2020-0102,40000091,COLD_WORK,Y,N,N,Y,2020-09-17,2020-10-21,Permit issued for TA internal inspection and cleaning on Kerosene Stripper (100-D-102) under cold work conditions; ensure all personnel use appropriate fall protection while working on scaffolds.
+PTW-2020-0103,40000091,LIFTING,Y,Y,N,Y,2020-09-17,2020-10-21,
+PTW-2020-0104,40000092,COLD_WORK,Y,N,N,Y,2020-09-17,2020-10-11,
+PTW-2020-0105,40000092,LIFTING,Y,Y,N,Y,2020-09-17,2020-10-11,
+PTW-2020-0106,40000093,COLD_WORK,N,N,N,N,2020-09-20,2020-10-21,
+PTW-2020-0107,40000094,COLD_WORK,Y,N,N,Y,2020-09-22,2020-10-18,
+PTW-2020-0108,40000094,LIFTING,Y,Y,N,Y,2020-09-22,2020-10-18,
+PTW-2020-0109,40000095,COLD_WORK,Y,N,N,Y,2020-09-22,2020-10-22,
+PTW-2020-0110,40000095,LIFTING,Y,Y,N,Y,2020-09-22,2020-10-22,
+PTW-2020-0111,40000096,COLD_WORK,N,N,N,N,2020-09-22,2020-10-22,
+PTW-2020-0112,40000097,COLD_WORK,Y,N,N,Y,2020-09-23,2020-10-22,
+PTW-2020-0113,40000097,LIFTING,Y,Y,N,Y,2020-09-23,2020-10-22,
+PTW-2020-0114,40000098,COLD_WORK,Y,N,N,Y,2020-09-24,2020-10-21,
+PTW-2020-0115,40000098,LIFTING,Y,Y,N,Y,2020-09-24,2020-10-21,"Permit issued for TA open clean and inspect of crude/atmospheric residue preheat exchanger #1 (100-E-101); ensure all lifting operations follow safety protocols with scaffold and crane in place, and confirm gas test is not required before starting work."
+PTW-2020-0116,40000099,COLD_WORK,Y,N,N,Y,2020-09-24,2020-10-22,
+PTW-2020-0117,40000099,LIFTING,Y,Y,N,Y,2020-09-24,2020-10-22,
+PTW-2020-0118,40000100,COLD_WORK,N,N,N,N,2020-09-24,2020-10-18,
+PTW-2020-0119,40000101,COLD_WORK,Y,N,N,Y,2020-09-26,2020-10-22,
+PTW-2020-0120,40000101,LIFTING,Y,Y,N,Y,2020-09-26,2020-10-22,
+PTW-2020-0121,40000102,CONFINED_SPACE,Y,N,Y,Y,2020-09-26,2020-10-27,
+PTW-2020-0122,40000102,HOT_WORK,Y,Y,Y,Y,2020-09-26,2020-10-27,
+PTW-2020-0123,40000103,COLD_WORK,Y,N,N,Y,2020-09-27,2020-10-24,
+PTW-2020-0124,40000103,LIFTING,Y,Y,N,Y,2020-09-27,2020-10-24,
+PTW-2020-0125,40000104,COLD_WORK,N,N,N,N,2020-09-27,2020-10-25,
+PTW-2021-0126,40000105,COLD_WORK,N,N,N,Y,2021-01-16,2021-02-02,
+PTW-2021-0127,40000106,COLD_WORK,N,N,N,Y,2021-01-19,2021-01-29,
+PTW-2021-0128,40000107,COLD_WORK,N,N,N,Y,2021-01-19,2021-02-07,
+PTW-2021-0129,40000108,COLD_WORK,N,N,N,Y,2021-01-24,2021-02-05,
+PTW-2021-0130,40000109,COLD_WORK,N,N,N,N,2021-02-12,2021-03-09,
+PTW-2021-0131,40000110,COLD_WORK,N,N,N,N,2021-02-20,2021-03-09,
+PTW-2021-0132,40000111,COLD_WORK,N,N,N,N,2021-02-26,2021-03-12,
+PTW-2021-0133,40000112,COLD_WORK,N,N,N,N,2021-02-28,2021-03-17,
+PTW-2021-0134,40000113,COLD_WORK,N,N,N,N,2021-03-01,2021-03-12,
+PTW-2021-0135,40000114,COLD_WORK,N,N,N,N,2021-03-19,2021-04-12,
+PTW-2021-0136,40000115,COLD_WORK,N,N,N,N,2021-03-25,2021-04-18,
+PTW-2021-0137,40000116,COLD_WORK,N,N,N,N,2021-03-30,2021-04-22,
+PTW-2021-0138,40000117,COLD_WORK,N,N,N,N,2021-03-30,2021-04-20,
+PTW-2021-0139,40000118,COLD_WORK,N,N,N,N,2021-04-01,2021-04-21,
+PTW-2021-0140,40000119,COLD_WORK,N,N,N,N,2021-04-01,2021-04-22,
+PTW-2021-0141,40000120,COLD_WORK,N,N,N,N,2021-04-01,2021-04-21,
+PTW-2021-0142,40000121,COLD_WORK,N,N,N,N,2021-04-02,2021-04-21,
+PTW-2021-0143,40000122,COLD_WORK,N,N,N,N,2021-04-02,2021-04-21,Permit WO 40000122 is authorized for external inspection of the lube condition on Residue rundown cooler 100-E-112; ensure all cold work precautions are followed and verify no hot work or gas testing is conducted during the operation.
+PTW-2021-0144,40000123,COLD_WORK,N,N,N,N,2021-04-02,2021-04-25,Authorize calibration of control valve 100-FV-103 under cold work conditions; ensure isolation and verify zero energy state before starting.
+PTW-2021-0145,40000124,COLD_WORK,N,N,N,N,2021-04-03,2021-04-23,
+PTW-2021-0146,40000125,COLD_WORK,N,N,N,N,2021-04-03,2021-04-23,
+PTW-2021-0147,40000126,COLD_WORK,N,N,N,N,2021-04-04,2021-04-19,Permit granted for external inspection of lube condition on Crude/atmospheric residue preheat exchanger #2 (100-E-102); ensure all cold work precautions are followed and confirm area remains free of ignition sources.
+PTW-2021-0148,40000127,COLD_WORK,N,N,N,N,2021-04-04,2021-04-27,Permit granted for cold work on Naphtha/crude interchanger (100-E-109) for external inspection of lube condition; ensure all tools are grounded to prevent static discharge during the task.
+PTW-2021-0149,40000128,COLD_WORK,N,N,N,N,2021-04-04,2021-04-21,Permit issued for WO 40000128 to calibrate stripping steam flow control valve 100-FV-102; ensure isolation and verify zero energy state before starting work.
+PTW-2021-0150,40000129,COLD_WORK,N,N,N,N,2021-04-05,2021-04-26,
+PTW-2021-0151,40000130,COLD_WORK,N,N,N,N,2021-04-05,2021-04-21,
+PTW-2021-0152,40000131,COLD_WORK,N,N,N,N,2021-04-06,2021-04-17,
+PTW-2021-0153,40000132,COLD_WORK,N,N,N,N,2021-04-07,2021-04-21,
+PTW-2021-0154,40000133,COLD_WORK,N,N,N,N,2021-04-08,2021-04-22,
+PTW-2021-0155,40000134,COLD_WORK,N,N,N,N,2021-04-10,2021-04-25,Permit issued for cold work on overhead naphtha condenser 100-E-107 to perform external inspection of the lube condition; ensure all personnel wear appropriate PPE and verify isolation before starting the job.
+PTW-2021-0156,40000135,COLD_WORK,N,N,N,N,2021-04-14,2021-04-23,
+PTW-2021-0157,40000136,COLD_WORK,N,N,N,Y,2021-04-14,2021-05-02,
+PTW-2021-0158,40000137,COLD_WORK,N,N,N,Y,2021-04-14,2021-05-05,
+PTW-2021-0159,40000138,COLD_WORK,N,N,N,Y,2021-04-18,2021-05-08,
+PTW-2021-0160,40000139,COLD_WORK,N,N,N,Y,2021-04-19,2021-05-03,Permit granted for cold work on Atmospheric residue bottoms pump A (100-P-104A) to perform vibration check and lube seal inspection; ensure all electrical sources are isolated before starting the job.
+PTW-2021-0161,40000140,COLD_WORK,N,N,N,Y,2021-04-20,2021-05-14,Permit issued for replacement of bearing on Crude Charge Pump A (100-P-101A) under cold work conditions; ensure all equipment is de-energized and locked out before commencing work.
+PTW-2021-0162,40000140,LIFTING,N,Y,N,Y,2021-04-20,2021-05-14,
+PTW-2021-0163,40000141,COLD_WORK,N,N,N,Y,2021-04-23,2021-05-05,
+PTW-2021-0164,40000142,COLD_WORK,N,N,N,Y,2021-04-23,2021-05-05,Permit issued for vibration check and lubrication seal inspection on Overhead reflux pump B (100-P-103B); ensure all electrical sources are isolated before starting work.
+PTW-2021-0165,40000143,COLD_WORK,N,N,N,Y,2021-04-24,2021-05-08,
+PTW-2021-0166,40000144,COLD_WORK,N,N,N,Y,2021-04-25,2021-05-07,Permit issued for vibration check and lubrication seal inspection on Atmospheric residue bottoms pump B (100-P-104B); ensure all electrical sources are isolated before commencing cold work.
+PTW-2021-0167,40000145,COLD_WORK,N,N,N,Y,2021-06-04,2021-06-24,
+PTW-2021-0168,40000146,COLD_WORK,N,N,N,Y,2021-07-10,2021-08-02,
+PTW-2021-0169,40000147,COLD_WORK,N,N,N,Y,2021-07-17,2021-07-31,
+PTW-2021-0170,40000148,COLD_WORK,N,N,N,Y,2021-07-20,2021-08-06,
+PTW-2021-0171,40000149,COLD_WORK,N,N,N,Y,2021-07-21,2021-08-03,
+PTW-2021-0172,40000150,COLD_WORK,Y,N,N,Y,2021-08-10,2021-08-23,
+PTW-2021-0173,40000150,LIFTING,Y,Y,N,Y,2021-08-10,2021-08-23,
+PTW-2021-0174,40000151,COLD_WORK,N,N,N,Y,2021-09-15,2021-10-09,
+PTW-2021-0175,40000151,LIFTING,N,Y,N,Y,2021-09-15,2021-10-09,
+PTW-2021-0176,40000152,COLD_WORK,Y,N,N,Y,2021-10-19,2021-11-09,Permit granted for cold work on the crude/atmospheric residue preheat exchanger #1 (100-E-101) to clean the bundle and replace the gasket; ensure scaffold is secure and all personnel follow safety protocols during the operation.
+PTW-2021-0177,40000152,LIFTING,Y,Y,N,Y,2021-10-19,2021-11-09,
+PTW-2021-0178,40000153,COLD_WORK,N,N,N,Y,2021-11-23,2021-12-13,
+PTW-2022-0179,40000154,COLD_WORK,N,N,N,Y,2022-01-11,2022-01-30,Permit granted for cold work on Crude Charge Pump A (100-P-101A) to perform vibration check and lube seal inspection; ensure all electrical sources are isolated and verified before starting.
+PTW-2022-0180,40000155,COLD_WORK,N,N,N,Y,2022-01-11,2022-02-04,Permit issued for vibration check and lubrication seal inspection on Overhead reflux pump A (100-P-103A); ensure all electrical sources are isolated and verified before commencing cold work.
+PTW-2022-0181,40000156,COLD_WORK,N,N,N,Y,2022-01-12,2022-02-05,
+PTW-2022-0182,40000157,COLD_WORK,N,N,N,Y,2022-01-14,2022-02-02,Authorize vibration check and lube seal inspection on Crude charge pump B (100-P-101B) under Cold Work permit; ensure all rotating equipment is properly locked out before starting the job.
+PTW-2022-0183,40000158,COLD_WORK,N,N,N,Y,2022-01-14,2022-02-04,
+PTW-2022-0184,40000159,COLD_WORK,N,N,N,Y,2022-01-14,2022-02-04,
+PTW-2022-0185,40000160,COLD_WORK,N,N,N,Y,2022-01-16,2022-02-03,
+PTW-2022-0186,40000161,COLD_WORK,N,N,N,Y,2022-01-20,2022-02-04,
+PTW-2022-0187,40000162,COLD_WORK,N,N,N,Y,2022-01-22,2022-02-06,Permit issued for vibration check and lubrication seal inspection on Atmospheric residue bottoms pump B (100-P-104B); ensure all electrical sources are locked out and verified before commencing work.
+PTW-2022-0188,40000163,COLD_WORK,N,N,N,Y,2022-01-22,2022-02-08,
+PTW-2022-0189,40000164,COLD_WORK,N,N,N,Y,2022-01-25,2022-02-08,
+PTW-2022-0190,40000165,COLD_WORK,N,N,N,Y,2022-01-26,2022-02-08,
+PTW-2022-0191,40000166,COLD_WORK,Y,N,N,Y,2022-01-31,2022-02-17,
+PTW-2022-0192,40000166,LIFTING,Y,Y,N,Y,2022-01-31,2022-02-17,
+PTW-2022-0193,40000167,COLD_WORK,N,N,N,N,2022-02-17,2022-03-12,
+PTW-2022-0194,40000168,COLD_WORK,N,N,N,N,2022-02-20,2022-03-09,
+PTW-2022-0195,40000169,COLD_WORK,N,N,N,N,2022-02-23,2022-03-08,
+PTW-2022-0196,40000170,COLD_WORK,N,N,N,N,2022-02-23,2022-03-17,
+PTW-2022-0197,40000171,COLD_WORK,N,N,N,N,2022-02-28,2022-03-13,"Ensure the calibration of the overhead pressure control valve (100-PV-101) is performed under the Cold Work permit with continuous monitoring for potential leaks, and confirm all isolation points are secured before commencing."
+PTW-2022-0198,40000172,COLD_WORK,N,N,N,N,2022-03-27,2022-04-12,
+PTW-2022-0199,40000173,COLD_WORK,N,N,N,N,2022-03-28,2022-04-20,Permit granted for external inspection of lube condition on pumparound preheat exchanger #3 (100-E-103); ensure all electrical sources are isolated and verified before commencing cold work.
+PTW-2022-0200,40000174,COLD_WORK,N,N,N,N,2022-03-29,2022-04-22,Authorize calibration of control valve 100-FV-101 under cold work permit; ensure isolation and verify zero energy state before starting.
+PTW-2022-0201,40000175,COLD_WORK,N,N,N,N,2022-03-30,2022-04-17,
+PTW-2022-0202,40000176,COLD_WORK,N,N,N,N,2022-03-30,2022-04-23,Permit granted for external inspection of lube condition on Crude/AGO product preheat exchanger #5 (100-E-105); ensure continuous monitoring for any hazardous vapors despite cold work conditions.
+PTW-2022-0203,40000177,COLD_WORK,N,N,N,N,2022-03-31,2022-04-22,
+PTW-2022-0204,40000178,COLD_WORK,N,N,N,N,2022-03-31,2022-04-21,
+PTW-2022-0205,40000179,COLD_WORK,N,N,N,N,2022-04-01,2022-04-19,
+PTW-2022-0206,40000180,COLD_WORK,N,N,N,N,2022-04-01,2022-04-24,
+PTW-2022-0207,40000181,COLD_WORK,N,N,N,N,2022-04-02,2022-04-21,Approve cold work permit for external inspection of lube condition on Diesel Stripper 100-D-103; ensure all personnel wear appropriate PPE and maintain communication throughout the task.
+PTW-2022-0208,40000182,COLD_WORK,N,N,N,N,2022-04-04,2022-04-21,Permit issued for external inspection of lube condition on Crude/atmospheric residue preheat exchanger #2 (100-E-102); ensure all cold work procedures are strictly followed and verify absence of ignition sources before commencing.
+PTW-2022-0209,40000183,COLD_WORK,N,N,N,N,2022-04-04,2022-04-26,
+PTW-2022-0210,40000184,COLD_WORK,N,N,N,N,2022-04-05,2022-04-20,
+PTW-2022-0211,40000185,COLD_WORK,N,N,N,N,2022-04-05,2022-04-21,
+PTW-2022-0212,40000186,COLD_WORK,N,N,N,N,2022-04-05,2022-04-23,
+PTW-2022-0213,40000187,COLD_WORK,N,N,N,N,2022-04-05,2022-04-22,Permit issued for cold work to calibrate stripping steam flow control valve 100-FV-102; ensure isolation and verify zero energy before starting calibration.
+PTW-2022-0214,40000188,COLD_WORK,N,N,N,N,2022-04-06,2022-04-26,Permit issued for cold work on overhead trim condenser (100-E-108) for external inspection of lube condition; ensure all personnel wear appropriate PPE and verify isolation before starting.
+PTW-2022-0215,40000189,COLD_WORK,N,N,N,N,2022-04-06,2022-04-26,
+PTW-2022-0216,40000190,COLD_WORK,N,N,N,N,2022-04-06,2022-04-21,
+PTW-2022-0217,40000191,COLD_WORK,N,N,N,N,2022-04-08,2022-04-20,
+PTW-2022-0218,40000192,COLD_WORK,N,N,N,N,2022-04-08,2022-04-24,
+PTW-2022-0219,40000193,COLD_WORK,N,N,N,N,2022-04-09,2022-04-22,Permit issued for cold work to calibrate the Naphtha pumparound flow control valve (100-FV-103); ensure isolation and verify zero energy state before starting calibration.
+PTW-2022-0220,40000194,COLD_WORK,N,N,N,N,2022-05-05,2022-05-20,
+PTW-2022-0221,40000195,COLD_WORK,N,N,N,Y,2022-07-10,2022-07-31,
+PTW-2022-0222,40000196,COLD_WORK,N,N,N,Y,2022-07-11,2022-08-01,
+PTW-2022-0223,40000197,COLD_WORK,N,N,N,Y,2022-07-21,2022-08-02,
+PTW-2022-0224,40000198,COLD_WORK,N,N,N,Y,2022-07-23,2022-08-05,
+PTW-2022-0225,40000199,COLD_WORK,N,N,N,Y,2022-10-13,2022-11-06,
+PTW-2022-0226,40000200,COLD_WORK,N,N,N,Y,2022-10-15,2022-11-04,Permit issued for vibration check and lubrication seal inspection on Overhead reflux pump B (100-P-103B); ensure all electrical sources are isolated and verified before starting work.
+PTW-2022-0227,40000201,COLD_WORK,N,N,N,Y,2022-10-15,2022-11-06,
+PTW-2022-0228,40000202,COLD_WORK,N,N,N,Y,2022-10-19,2022-11-03,
+PTW-2022-0229,40000203,COLD_WORK,N,N,N,Y,2022-10-19,2022-11-09,
+PTW-2022-0230,40000204,COLD_WORK,N,N,N,Y,2022-10-20,2022-11-08,
+PTW-2022-0231,40000205,COLD_WORK,N,N,N,Y,2022-10-23,2022-11-03,
+PTW-2022-0232,40000206,COLD_WORK,N,N,N,Y,2022-10-25,2022-11-05,
+PTW-2023-0233,40000207,COLD_WORK,N,N,N,Y,2023-01-06,2023-01-19,
+PTW-2023-0234,40000207,LIFTING,N,Y,N,Y,2023-01-06,2023-01-19,
+PTW-2023-0235,40000208,COLD_WORK,N,N,N,Y,2023-01-10,2023-01-31,Permit issued for vibration check and lube seal inspection on Crude Charge Pump A (100-P-101A); ensure all electrical sources are locked out and verified before starting work.
+PTW-2023-0236,40000209,COLD_WORK,N,N,N,Y,2023-01-13,2023-02-05,
+PTW-2023-0237,40000210,COLD_WORK,N,N,N,Y,2023-01-20,2023-02-01,
+PTW-2023-0238,40000211,COLD_WORK,N,N,N,Y,2023-01-20,2023-02-04,
+PTW-2023-0239,40000212,COLD_WORK,N,N,N,Y,2023-01-26,2023-02-12,
+PTW-2023-0240,40000213,CONFINED_SPACE,Y,N,Y,Y,2023-02-04,2023-03-17,
+PTW-2023-0241,40000213,HOT_WORK,Y,Y,Y,Y,2023-02-04,2023-03-17,
+PTW-2023-0242,40000214,COLD_WORK,N,N,N,N,2023-02-04,2023-03-18,
+PTW-2023-0243,40000215,COLD_WORK,Y,N,N,Y,2023-02-05,2023-03-13,
+PTW-2023-0244,40000215,LIFTING,Y,Y,N,Y,2023-02-05,2023-03-13,
+PTW-2023-0245,40000216,COLD_WORK,Y,N,N,Y,2023-02-06,2023-03-14,Permit issued for TA open clean and inspect of crude/atmospheric residue preheat exchanger #2 (100-E-102); ensure scaffold is securely installed and all personnel wear appropriate fall protection during the work.
+PTW-2023-0246,40000216,LIFTING,Y,Y,N,Y,2023-02-06,2023-03-14,
+PTW-2023-0247,40000217,COLD_WORK,Y,N,N,Y,2023-02-07,2023-03-15,
+PTW-2023-0248,40000217,LIFTING,Y,Y,N,Y,2023-02-07,2023-03-15,
+PTW-2023-0249,40000218,COLD_WORK,Y,N,N,Y,2023-02-07,2023-03-16,
+PTW-2023-0250,40000218,LIFTING,Y,Y,N,Y,2023-02-07,2023-03-16,
+PTW-2023-0251,40000219,COLD_WORK,Y,N,N,Y,2023-02-08,2023-03-17,
+PTW-2023-0252,40000219,LIFTING,Y,Y,N,Y,2023-02-08,2023-03-17,
+PTW-2023-0253,40000220,COLD_WORK,N,N,N,N,2023-02-08,2023-03-15,
+PTW-2023-0254,40000221,COLD_WORK,Y,N,N,Y,2023-02-13,2023-03-16,Authorize WO 40000221 for TA internal inspection and cleaning on Diesel Stripper 100-D-103 under Cold Work permit; ensure scaffold is secure and maintain communication throughout the task.
+PTW-2023-0255,40000221,LIFTING,Y,Y,N,Y,2023-02-13,2023-03-16,
+PTW-2023-0256,40000222,COLD_WORK,Y,N,N,Y,2023-02-13,2023-03-27,Permit granted for TA open clean inspect on Crude/atmospheric residue preheat exchanger #1 (100-E-101) under Cold Work conditions; ensure scaffold is securely installed and verify absence of gas hazards before commencing work.
+PTW-2023-0257,40000222,LIFTING,Y,Y,N,Y,2023-02-13,2023-03-27,
+PTW-2023-0258,40000223,COLD_WORK,Y,N,N,Y,2023-02-13,2023-03-18,
+PTW-2023-0259,40000223,LIFTING,Y,Y,N,Y,2023-02-13,2023-03-18,
+PTW-2023-0260,40000224,COLD_WORK,N,N,N,N,2023-02-13,2023-03-10,
+PTW-2023-0261,40000225,COLD_WORK,N,N,N,N,2023-02-13,2023-03-17,Permit issued for PSV POP TEST CERT on Kerosene stripper PSV (100-PSV-105); ensure all isolation valves are secured and verify zero gas presence before commencing cold work.
+PTW-2023-0262,40000226,COLD_WORK,Y,N,N,Y,2023-02-14,2023-03-15,
+PTW-2023-0263,40000226,LIFTING,Y,Y,N,Y,2023-02-14,2023-03-15,
+PTW-2023-0264,40000227,COLD_WORK,Y,N,N,Y,2023-02-14,2023-03-18,"Permit WO 40000227 authorized for cold work involving tank open, clean, and inspection on Naphtha/crude interchanger 100-E-109; ensure all personnel use proper fall protection while working on scaffolding."
+PTW-2023-0265,40000227,LIFTING,Y,Y,N,Y,2023-02-14,2023-03-18,
+PTW-2023-0266,40000228,COLD_WORK,Y,N,N,Y,2023-02-15,2023-03-12,
+PTW-2023-0267,40000228,LIFTING,Y,Y,N,Y,2023-02-15,2023-03-12,
+PTW-2023-0268,40000229,COLD_WORK,N,N,N,N,2023-02-15,2023-03-28,
+PTW-2023-0269,40000230,COLD_WORK,Y,N,N,Y,2023-02-16,2023-03-21,
+PTW-2023-0270,40000230,LIFTING,Y,Y,N,Y,2023-02-16,2023-03-21,
+PTW-2023-0271,40000231,COLD_WORK,Y,N,N,Y,2023-02-16,2023-03-11,
+PTW-2023-0272,40000231,LIFTING,Y,Y,N,Y,2023-02-16,2023-03-11,
+PTW-2023-0273,40000232,COLD_WORK,Y,N,N,Y,2023-02-17,2023-03-18,
+PTW-2023-0274,40000232,LIFTING,Y,Y,N,Y,2023-02-17,2023-03-18,
+PTW-2023-0275,40000233,COLD_WORK,Y,N,N,Y,2023-02-18,2023-03-15,
+PTW-2023-0276,40000233,LIFTING,Y,Y,N,Y,2023-02-18,2023-03-15,
+PTW-2023-0277,40000234,COLD_WORK,N,N,N,N,2023-02-19,2023-03-20,
+PTW-2023-0278,40000235,COLD_WORK,Y,N,Y,Y,2023-02-20,2023-03-25,
+PTW-2023-0279,40000235,CONFINED_SPACE,Y,N,Y,Y,2023-02-20,2023-03-25,Permit issued for TA internal tray inspection on Atmospheric Distillation Column 100-C-101; ensure continuous gas testing and confined space precautions are strictly followed during the operation.
+PTW-2023-0280,40000236,COLD_WORK,Y,N,N,Y,2023-02-21,2023-03-22,
+PTW-2023-0281,40000236,LIFTING,Y,Y,N,Y,2023-02-21,2023-03-22,
+PTW-2023-0282,40000237,COLD_WORK,Y,N,N,Y,2023-02-27,2023-03-23,
+PTW-2023-0283,40000237,LIFTING,Y,Y,N,Y,2023-02-27,2023-03-23,
+PTW-2023-0284,40000238,COLD_WORK,N,N,N,N,2023-03-15,2023-04-08,Permit granted for cold work to calibrate control valve 100-LV-102 on the column bottoms level; ensure isolation and verify zero energy before starting.
+PTW-2023-0285,40000239,COLD_WORK,N,N,N,N,2023-03-18,2023-04-09,
+PTW-2023-0286,40000240,COLD_WORK,N,N,N,N,2023-03-19,2023-04-08,Permit issued for cold work to calibrate the overhead pressure control valve 100-PV-101; ensure isolation and verify zero energy before starting calibration.
+PTW-2023-0287,40000241,COLD_WORK,N,N,N,N,2023-03-21,2023-04-08,
+PTW-2023-0288,40000242,COLD_WORK,N,N,N,N,2023-03-23,2023-04-08,Permit granted for cold work to calibrate the Desalter temperature control valve (100-TV-101); ensure all electrical sources are isolated before starting the calibration.
+PTW-2023-0289,40000243,COLD_WORK,N,N,N,N,2023-04-05,2023-04-21,
+PTW-2023-0290,40000244,COLD_WORK,N,N,N,N,2023-04-05,2023-04-21,Authorize calibration of stripping steam flow control valve 100-FV-102 under cold work permit; ensure isolation and confirm zero pressure before starting to prevent steam release.
+PTW-2023-0291,40000245,COLD_WORK,N,N,N,N,2023-04-09,2023-04-24,Permit granted for cold work to calibrate the control valve 100-FV-103 on the Naphtha pumparound; ensure isolation and verify zero energy before starting.
+PTW-2023-0292,40000246,COLD_WORK,N,N,N,Y,2023-07-09,2023-07-20,
+PTW-2023-0293,40000246,LIFTING,N,Y,N,Y,2023-07-09,2023-07-20,
+PTW-2023-0294,40000247,COLD_WORK,N,N,N,Y,2023-07-11,2023-07-30,Proceed with vibration check and lube seal inspection on Crude Charge Pump A (100-P-101A) under Cold Work permit; ensure all personnel wear appropriate PPE and verify area remains free of ignition sources throughout the task.
+PTW-2023-0295,40000248,COLD_WORK,N,N,N,Y,2023-07-11,2023-08-04,
+PTW-2023-0296,40000249,COLD_WORK,N,N,N,Y,2023-07-12,2023-08-05,Permit issued for vibration check and lubrication seal inspection on Overhead Reflux Pump B (100-P-103B); ensure all rotating equipment is properly locked out before starting work.
+PTW-2023-0297,40000250,COLD_WORK,N,N,N,Y,2023-07-16,2023-08-04,
+PTW-2023-0298,40000251,COLD_WORK,N,N,N,Y,2023-07-17,2023-08-07,
+PTW-2023-0299,40000252,COLD_WORK,N,N,N,Y,2023-07-18,2023-08-09,
+PTW-2023-0300,40000253,COLD_WORK,N,N,N,Y,2023-07-19,2023-08-03,
+PTW-2023-0301,40000254,COLD_WORK,N,N,N,Y,2023-07-20,2023-08-07,
+PTW-2023-0302,40000255,COLD_WORK,N,N,N,Y,2023-07-22,2023-08-06,
+PTW-2023-0303,40000256,COLD_WORK,N,N,N,Y,2023-07-22,2023-08-05,Permit issued for vibration check and lubrication seal inspection on Naphtha product pump B (100-P-105B); ensure all equipment is de-energized and verified safe before commencing work.
+PTW-2023-0304,40000257,COLD_WORK,N,N,N,Y,2023-07-23,2023-08-04,
+PTW-2023-0305,40000258,COLD_WORK,N,N,N,Y,2023-07-23,2023-08-03,Permit granted for vibration check and lubrication seal inspection on Atmospheric residue bottoms pump A (100-P-104A); ensure all electrical sources remain isolated as this is a cold work permit.
+PTW-2023-0306,40000259,COLD_WORK,N,N,N,Y,2023-08-16,2023-09-01,
+PTW-2024-0307,40000260,COLD_WORK,N,N,N,Y,2024-01-05,2024-01-29,Permit issued for vibration check and lube seal inspection on Crude Charge Pump A (100-P-101A); ensure all equipment is de-energized and locked out before starting work.
+PTW-2024-0308,40000261,COLD_WORK,N,N,N,Y,2024-01-12,2024-02-05,
+PTW-2024-0309,40000262,COLD_WORK,N,N,N,Y,2024-01-14,2024-02-02,
+PTW-2024-0310,40000263,COLD_WORK,N,N,N,Y,2024-01-19,2024-02-03,
+PTW-2024-0311,40000264,COLD_WORK,N,N,N,N,2024-02-18,2024-03-14,Permit issued for cold work to calibrate the fuel gas pressure control valve 100-PV-102; ensure continuous monitoring for gas leaks throughout the operation.
+PTW-2024-0312,40000265,COLD_WORK,N,N,N,N,2024-02-25,2024-03-10,
+PTW-2024-0313,40000266,COLD_WORK,N,N,N,N,2024-02-26,2024-03-09,
+PTW-2024-0314,40000267,COLD_WORK,N,N,N,N,2024-02-28,2024-03-12,Permit granted for cold work to calibrate the overhead pressure control valve (100-PV-101); ensure all isolation points are verified before starting the job.
+PTW-2024-0315,40000268,COLD_WORK,N,N,N,N,2024-02-28,2024-03-16,
+PTW-2024-0316,40000269,COLD_WORK,N,N,N,N,2024-03-21,2024-04-12,
+PTW-2024-0317,40000270,COLD_WORK,N,N,N,N,2024-03-26,2024-04-21,
+PTW-2024-0318,40000271,COLD_WORK,N,N,N,N,2024-03-27,2024-04-20,
+PTW-2024-0319,40000272,COLD_WORK,N,N,N,N,2024-03-28,2024-04-21,
+PTW-2024-0320,40000273,COLD_WORK,N,N,N,N,2024-03-29,2024-04-19,
+PTW-2024-0321,40000274,COLD_WORK,N,N,N,N,2024-03-30,2024-04-20,Permit issued for external inspection of lube condition on Kerosene Stripper (100-D-102) under cold work conditions; ensure continuous monitoring for any unexpected hydrocarbon presence despite no gas test required.
+PTW-2024-0322,40000275,COLD_WORK,N,N,N,N,2024-03-30,2024-04-21,Permit granted for external inspection of lube condition on Crude/Diesel Pumparound Preheat Exchanger #4 (100-E-104); ensure all personnel wear appropriate cold work PPE and verify isolation before starting.
+PTW-2024-0323,40000276,COLD_WORK,N,N,N,N,2024-03-30,2024-04-21,
+PTW-2024-0324,40000277,COLD_WORK,N,N,N,N,2024-03-31,2024-04-24,Permit granted for cold work on Crude/AGO product preheat exchanger #5 (100-E-105) to perform external inspection of lube condition; ensure all personnel verify absence of hazardous gases before commencing work.
+PTW-2024-0325,40000278,COLD_WORK,N,N,N,N,2024-04-01,2024-04-21,Approve cold work permit WO 40000278 for external inspection of lube condition on Residue flash drum 100-D-104; ensure continuous monitoring for any unexpected gas presence despite no initial gas test required.
+PTW-2024-0326,40000279,COLD_WORK,N,N,N,N,2024-04-01,2024-04-21,
+PTW-2024-0327,40000280,COLD_WORK,N,N,N,N,2024-04-01,2024-04-23,
+PTW-2024-0328,40000281,COLD_WORK,N,N,N,N,2024-04-01,2024-04-22,
+PTW-2024-0329,40000282,COLD_WORK,N,N,N,N,2024-04-02,2024-04-19,Permit granted for cold work on overhead reflux drum 100-D-101 to perform external inspection of lube condition; ensure continuous monitoring for potential hydrocarbon vapors despite no gas test required.
+PTW-2024-0330,40000283,COLD_WORK,N,N,N,N,2024-04-03,2024-04-26,Permit issued for cold work on overhead naphtha condenser 100-E-107 to perform external inspection of lube condition; ensure all personnel verify absence of hazardous gases before commencing work.
+PTW-2024-0331,40000284,COLD_WORK,N,N,N,N,2024-04-04,2024-04-20,
+PTW-2024-0332,40000285,COLD_WORK,N,N,N,N,2024-04-07,2024-04-17,
+PTW-2024-0333,40000286,COLD_WORK,N,N,N,N,2024-04-09,2024-04-21,
+PTW-2024-0334,40000287,COLD_WORK,N,N,N,N,2024-04-09,2024-04-22,
+PTW-2024-0335,40000288,COLD_WORK,N,N,N,N,2024-04-11,2024-04-28,
+PTW-2024-0336,40000289,COLD_WORK,N,N,N,Y,2024-04-12,2024-05-08,
+PTW-2024-0337,40000290,COLD_WORK,N,N,N,N,2024-04-14,2024-04-23,
+PTW-2024-0338,40000291,COLD_WORK,N,N,N,Y,2024-04-14,2024-05-03,
+PTW-2024-0339,40000292,COLD_WORK,N,N,N,Y,2024-04-15,2024-05-02,
+PTW-2024-0340,40000293,COLD_WORK,N,N,N,Y,2024-04-15,2024-05-04,Permit granted for vibration check and lubrication seal inspection on Overhead Reflux Pump B (100-P-103B); ensure all electrical sources are isolated and verified before starting work.
+PTW-2024-0341,40000294,COLD_WORK,N,N,N,N,2024-04-16,2024-04-27,
+PTW-2024-0342,40000295,COLD_WORK,N,N,N,Y,2024-04-16,2024-05-07,
+PTW-2024-0343,40000296,COLD_WORK,N,N,N,Y,2024-04-20,2024-05-07,
+PTW-2024-0344,40000297,COLD_WORK,N,N,N,Y,2024-04-23,2024-05-03,
+PTW-2024-0345,40000298,COLD_WORK,N,N,N,Y,2024-04-24,2024-05-04,
+PTW-2024-0346,40000299,COLD_WORK,N,N,N,Y,2024-07-11,2024-08-04,
+PTW-2024-0347,40000300,COLD_WORK,N,N,N,Y,2024-07-12,2024-07-30,
+PTW-2024-0348,40000301,COLD_WORK,N,N,N,Y,2024-07-13,2024-08-05,
+PTW-2024-0349,40000302,COLD_WORK,N,N,N,Y,2024-07-21,2024-08-04,
+PTW-2024-0350,40000303,COLD_WORK,N,N,N,Y,2024-08-03,2024-08-26,
+PTW-2024-0351,40000303,LIFTING,N,Y,N,Y,2024-08-03,2024-08-26,
+PTW-2024-0352,40000304,COLD_WORK,Y,N,N,Y,2024-09-05,2024-09-16,Authorize cold work for cleaning and replacing the bundle gasket on Crude/atmospheric residue preheat exchanger #1 (100-E-101); ensure scaffold is securely installed before commencing work.
+PTW-2024-0353,40000304,LIFTING,Y,Y,N,Y,2024-09-05,2024-09-16,Permit granted for cleaning bundle and replacing gasket on Crude/atmospheric residue preheat exchanger #1 (100-E-101); ensure all lifting operations follow safety protocols and crane use is coordinated with the lifting supervisor.
+PTW-2024-0354,40000305,COLD_WORK,N,N,N,Y,2024-09-13,2024-10-05,Permit issued for replacement of the mechanical seal on Desalter water pump A (100-P-102A); ensure isolation of the pump and verify zero pressure before commencing work.
+PTW-2024-0355,40000306,COLD_WORK,Y,N,N,Y,2024-10-26,2024-11-06,
+PTW-2024-0356,40000306,LIFTING,Y,Y,N,Y,2024-10-26,2024-11-06,
+PTW-2024-0357,40000307,COLD_WORK,Y,N,N,Y,2024-12-31,2025-01-23,
+PTW-2024-0358,40000307,LIFTING,Y,Y,N,Y,2024-12-31,2025-01-23,
+PTW-2025-0359,40000308,COLD_WORK,N,N,N,Y,2025-01-10,2025-01-30,
+PTW-2025-0360,40000309,COLD_WORK,N,N,N,Y,2025-01-12,2025-02-06,
+PTW-2025-0361,40000310,COLD_WORK,N,N,N,Y,2025-01-14,2025-02-05,
+PTW-2025-0362,40000311,COLD_WORK,N,N,N,Y,2025-01-15,2025-02-04,Permit issued for vibration check and lubrication seal inspection on Overhead reflux pump A (100-P-103A); ensure all electrical sources are isolated before commencing work.
+PTW-2025-0363,40000312,COLD_WORK,N,N,N,Y,2025-01-15,2025-02-05,
+PTW-2025-0364,40000313,COLD_WORK,N,N,N,Y,2025-01-16,2025-02-01,
+PTW-2025-0365,40000314,COLD_WORK,N,N,N,Y,2025-01-17,2025-02-08,
+PTW-2025-0366,40000315,COLD_WORK,N,N,N,Y,2025-01-19,2025-02-05,
+PTW-2025-0367,40000316,COLD_WORK,N,N,N,Y,2025-01-20,2025-02-03,Permit issued for vibration check and lubrication seal inspection on Desalter water pump B (100-P-102B); ensure all electrical sources are isolated and confirm zero energy before starting work.
+PTW-2025-0368,40000317,COLD_WORK,N,N,N,Y,2025-01-21,2025-02-01,
+PTW-2025-0369,40000318,COLD_WORK,N,N,N,Y,2025-01-21,2025-02-07,
+PTW-2025-0370,40000319,COLD_WORK,N,N,N,Y,2025-01-24,2025-02-08,
+PTW-2025-0371,40000320,COLD_WORK,N,N,N,N,2025-02-18,2025-03-08,
+PTW-2025-0372,40000321,COLD_WORK,N,N,N,Y,2025-02-19,2025-03-13,
+PTW-2025-0373,40000321,LIFTING,N,Y,N,Y,2025-02-19,2025-03-13,
+PTW-2025-0374,40000322,COLD_WORK,N,N,N,N,2025-02-20,2025-03-09,Permit granted for cold work to calibrate control valve 100-LV-102 on the column bottoms level; ensure isolation and confirm zero energy state before starting the job.
+PTW-2025-0375,40000323,COLD_WORK,N,N,N,N,2025-02-25,2025-03-12,Permit granted for cold work to calibrate fuel gas pressure control valve 100-PV-102; ensure continuous monitoring for gas leaks during the operation.
+PTW-2025-0376,40000324,COLD_WORK,N,N,N,N,2025-02-27,2025-03-13,Permit issued for WO 40000324 to calibrate the overhead pressure control valve 100-PV-101; ensure all isolation points are verified before starting work to maintain a safe cold work environment.
+PTW-2025-0377,40000325,COLD_WORK,N,N,N,N,2025-03-03,2025-03-17,
+PTW-2025-0378,40000326,COLD_WORK,N,N,N,N,2025-03-24,2025-04-13,
+PTW-2025-0379,40000327,COLD_WORK,N,N,N,N,2025-03-27,2025-04-20,
+PTW-2025-0380,40000328,COLD_WORK,N,N,N,N,2025-03-28,2025-04-19,Permit granted for cold work on overhead reflux drum 100-D-101 to perform external inspection of lube condition; ensure all personnel wear appropriate PPE and verify area is free of ignition sources before starting.
+PTW-2025-0381,40000329,COLD_WORK,N,N,N,N,2025-03-29,2025-04-16,
+PTW-2025-0382,40000330,COLD_WORK,N,N,N,N,2025-03-30,2025-04-24,
+PTW-2025-0383,40000331,COLD_WORK,N,N,N,N,2025-03-30,2025-04-23,
+PTW-2025-0384,40000332,COLD_WORK,N,N,N,N,2025-03-31,2025-04-21,
+PTW-2025-0385,40000333,COLD_WORK,N,N,N,N,2025-04-02,2025-04-25,Permit granted for cold work on Crude/AGO product preheat exchanger #5 (100-E-105) to perform external inspection of lube condition; ensure continuous monitoring for any hydrocarbon leaks during the job.
+PTW-2025-0386,40000334,COLD_WORK,N,N,N,N,2025-04-02,2025-04-25,
+PTW-2025-0387,40000335,COLD_WORK,N,N,N,N,2025-04-02,2025-04-21,
+PTW-2025-0388,40000336,COLD_WORK,N,N,N,N,2025-04-04,2025-04-22,
+PTW-2025-0389,40000337,COLD_WORK,N,N,N,N,2025-04-05,2025-04-21,
+PTW-2025-0390,40000338,COLD_WORK,N,N,N,N,2025-04-05,2025-04-27,
+PTW-2025-0391,40000339,COLD_WORK,N,N,N,N,2025-04-06,2025-04-18,
+PTW-2025-0392,40000340,COLD_WORK,N,N,N,N,2025-04-07,2025-04-20,
+PTW-2025-0393,40000341,COLD_WORK,N,N,N,N,2025-04-07,2025-04-22,
+PTW-2025-0394,40000342,COLD_WORK,N,N,N,N,2025-04-07,2025-04-23,
+PTW-2025-0395,40000343,COLD_WORK,N,N,N,N,2025-04-08,2025-04-18,
+PTW-2025-0396,40000344,COLD_WORK,N,N,N,N,2025-04-09,2025-04-22,
+PTW-2025-0397,40000345,COLD_WORK,N,N,N,N,2025-04-09,2025-04-21,
+PTW-2025-0398,40000346,COLD_WORK,N,N,N,N,2025-04-12,2025-04-27,Permit issued for cold work on overhead trim condenser (100-E-108) for external inspection of lube condition; ensure all personnel follow lockout/tagout procedures before starting.
+PTW-2025-0399,40000347,COLD_WORK,N,N,N,N,2025-04-13,2025-04-26,
+PTW-2025-0400,40000348,COLD_WORK,N,N,N,Y,2025-05-17,2025-06-08,Authorize REPL MECH SEAL on Naphtha product pump A (100-P-105A) under COLD_WORK permit; ensure all personnel are aware that no gas testing or crane use is permitted during this operation.
+PTW-2025-0401,40000349,COLD_WORK,N,N,N,Y,2025-07-16,2025-08-01,
+PTW-2025-0402,40000350,COLD_WORK,N,N,N,Y,2025-07-19,2025-07-29,
+PTW-2025-0403,40000351,COLD_WORK,N,N,N,Y,2025-07-22,2025-08-04,
+PTW-2025-0404,40000352,COLD_WORK,N,N,N,Y,2025-07-23,2025-08-05,
+PTW-2025-0405,40000353,COLD_WORK,N,N,N,N,2025-08-14,2025-09-07,
+PTW-2025-0406,40000354,COLD_WORK,N,N,N,Y,2025-10-12,2025-11-04,Permit granted for vibration check and lubrication seal inspection on Atmospheric residue bottoms pump B (100-P-104B); ensure all electrical sources remain de-energized and verify isolation before starting work.
+PTW-2025-0407,40000355,COLD_WORK,N,N,N,Y,2025-10-15,2025-11-04,
+PTW-2025-0408,40000356,COLD_WORK,N,N,N,Y,2025-10-19,2025-11-06,
+PTW-2025-0409,40000357,COLD_WORK,N,N,N,Y,2025-10-19,2025-11-07,
+PTW-2025-0410,40000358,COLD_WORK,N,N,N,Y,2025-10-19,2025-11-07,
+PTW-2025-0411,40000359,COLD_WORK,N,N,N,Y,2025-10-22,2025-11-05,
+PTW-2025-0412,40000360,COLD_WORK,N,N,N,Y,2025-10-23,2025-11-03,
+PTW-2025-0413,40000361,COLD_WORK,N,N,N,Y,2025-10-23,2025-11-04,
+PTW-2026-0414,40000362,COLD_WORK,N,N,N,Y,2026-01-10,2026-01-30,
+PTW-2026-0415,40000363,COLD_WORK,N,N,N,Y,2026-01-15,2026-02-03,
+PTW-2026-0416,40000364,COLD_WORK,N,N,N,Y,2026-01-18,2026-02-02,
+PTW-2026-0417,40000365,COLD_WORK,N,N,N,Y,2026-01-20,2026-02-06,
+PTW-2026-0418,40000366,COLD_WORK,N,N,N,N,2026-02-23,2026-03-08,
+PTW-2026-0419,40000367,COLD_WORK,N,N,N,N,2026-02-26,2026-03-10,
+PTW-2026-0420,40000368,COLD_WORK,N,N,N,N,2026-02-27,2026-03-13,
+PTW-2026-0421,40000369,COLD_WORK,N,N,N,N,2026-03-01,2026-03-14,
+PTW-2026-0422,40000370,COLD_WORK,N,N,N,N,2026-03-02,2026-03-17,Permit issued for cold work to calibrate the Desalter temperature control valve (100-TV-101); ensure all electrical sources are isolated before starting the calibration.
+PTW-2026-0423,40000371,COLD_WORK,N,N,N,N,2026-03-20,2026-04-11,
+PTW-2026-0424,40000372,COLD_WORK,N,N,N,N,2026-03-24,2026-04-18,
+PTW-2026-0425,40000373,COLD_WORK,N,N,N,N,2026-03-26,2026-04-19,
+PTW-2026-0426,40000374,COLD_WORK,N,N,N,N,2026-03-27,2026-04-18,Permit granted for cold work on overhead reflux drum 100-D-101 to perform external inspection of lube condition; ensure continuous monitoring for any unexpected gas presence despite no initial gas test required.
+PTW-2026-0427,40000375,COLD_WORK,N,N,N,N,2026-03-29,2026-04-21,
+PTW-2026-0428,40000376,COLD_WORK,N,N,N,N,2026-03-29,2026-04-19,
+PTW-2026-0429,40000377,COLD_WORK,N,N,N,Y,2026-03-30,2026-04-09,
+PTW-2026-0430,40000377,LIFTING,N,Y,N,Y,2026-03-30,2026-04-09,
+PTW-2026-0431,40000378,COLD_WORK,N,N,N,N,2026-03-31,2026-04-23,
+PTW-2026-0432,40000379,COLD_WORK,N,N,N,N,2026-03-31,2026-04-23,
+PTW-2026-0433,40000380,COLD_WORK,N,N,N,N,2026-04-03,2026-04-21,
+PTW-2026-0434,40000381,COLD_WORK,N,N,N,N,2026-04-05,2026-04-19,
+PTW-2026-0435,40000382,COLD_WORK,N,N,N,N,2026-04-05,2026-04-21,
+PTW-2026-0436,40000383,COLD_WORK,N,N,N,N,2026-04-05,2026-04-22,Permit granted for external inspection of lube condition on Crude/kerosene pumparound preheat exchanger #3 (100-E-103); ensure all cold work precautions are strictly followed and area remains free of ignition sources.
+PTW-2026-0437,40000384,COLD_WORK,N,N,N,N,2026-04-06,2026-04-20,
+PTW-2026-0438,40000385,COLD_WORK,N,N,N,N,2026-04-06,2026-04-23,
+PTW-2026-0439,40000386,COLD_WORK,N,N,N,N,2026-04-06,2026-04-27,
+PTW-2026-0440,40000387,COLD_WORK,N,N,N,N,2026-04-06,2026-04-28,Permit granted for cold work on overhead trim condenser (100-E-108) for external inspection of lube condition; ensure all personnel wear appropriate PPE and verify isolation before starting.
+PTW-2026-0441,40000388,COLD_WORK,N,N,N,N,2026-04-08,2026-04-21,Approve cold work permit WO 40000388 for external inspection of the lube condition on Residue rundown cooler 100-E-112; ensure all personnel wear appropriate PPE and monitor for any unexpected hazards during the task.
+PTW-2026-0442,40000389,COLD_WORK,N,N,N,N,2026-04-09,2026-04-21,
+PTW-2026-0443,40000390,COLD_WORK,N,N,N,N,2026-04-11,2026-04-22,
+PTW-2026-0444,40000391,COLD_WORK,N,N,N,N,2026-04-11,2026-04-23,
+PTW-2026-0445,40000392,COLD_WORK,N,N,N,N,2026-04-14,2026-04-24,
+PTW-2026-0446,40000393,COLD_WORK,N,N,N,N,2026-04-17,2026-04-29,
+PTW-2026-0447,40000394,COLD_WORK,N,N,N,Y,2026-05-09,2026-05-23,
+PTW-2026-0448,40000395,COLD_WORK,N,N,N,Y,2026-06-21,,
+PTW-2026-0449,40000396,COLD_WORK,N,N,N,N,2026-07-02,,
+PTW-2026-0450,40000397,COLD_WORK,N,N,N,Y,2026-07-06,,
+PTW-2026-0451,40000398,COLD_WORK,N,N,N,Y,2026-07-15,2026-08-04,
+PTW-2026-0452,40000399,COLD_WORK,N,N,N,Y,2026-07-16,2026-07-30,
+PTW-2026-0453,40000400,COLD_WORK,N,N,N,Y,2026-07-18,2026-08-03,
+PTW-2026-0454,40000401,COLD_WORK,N,N,N,N,2026-07-19,,Permit issued for external inspection of the lube condition on Diesel product / BFW exchanger 100-E-111; ensure all tools are grounded to prevent static discharge during cold work.
+PTW-2026-0455,40000402,COLD_WORK,N,N,N,Y,2026-07-19,2026-08-02,
+PTW-2026-0456,40000403,COLD_WORK,N,N,N,Y,2026-07-19,2026-08-05,
+PTW-2026-0457,40000404,COLD_WORK,N,N,N,Y,2026-07-22,2026-08-08,
+PTW-2026-0458,40000405,COLD_WORK,N,N,N,Y,2026-07-23,2026-08-03,Permit granted for vibration check and lubrication seal inspection on Crude Charge Pump B (100-P-101B); ensure all electrical sources are isolated and verified safe before commencing work.
+PTW-2026-0459,40000406,COLD_WORK,N,N,N,Y,2026-07-23,2026-08-02,
+PTW-2026-0460,40000407,COLD_WORK,N,N,N,Y,2026-07-23,2026-08-06,
+PTW-2026-0461,40000408,COLD_WORK,N,N,N,Y,2026-07-25,2026-08-05,
+PTW-2026-0462,40000409,COLD_WORK,N,N,N,Y,2026-07-25,2026-08-08,
+PTW-2026-0463,40000410,COLD_WORK,N,N,N,N,2026-07-28,,Permit issued for cold work to calibrate the reflux drum level control valve (100-LV-101); ensure isolation and verify zero energy state before commencing.
+PTW-2026-0464,40000411,COLD_WORK,N,N,N,Y,2026-07-28,2026-08-08,

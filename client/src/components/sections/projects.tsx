@@ -7,11 +7,12 @@ import {
   VolveFigure,
   StructraFigure,
   AutoSignalFigure,
+  Unit100Figure,
 } from "@/components/figures/figures";
 
 type Project = {
   id: string;
-  key: "sage" | "sky" | "apricot" | "lavender" | "steel";
+  key: "sage" | "sky" | "apricot" | "lavender" | "steel" | "ochre";
   label: string;
   badge?: string;
   title: string;
@@ -67,6 +68,23 @@ const projects: Project[] = [
     cta: {
       label: "Explore live demo",
       href: "/autosignal/",
+      external: true,
+    },
+  },
+  {
+    id: "card-u100",
+    key: "ochre",
+    label: "Industrial AI",
+    badge: "Live demo",
+    title: "Unit 100",
+    tagline: "Turnaround work-package drafter for a refinery planner.",
+    description:
+      "Take an item off the TA-2027 scope list and get a reviewed, lockable package. Structured queries fill parts, hours, permits, and isolation. The model writes basis, scope, and steps only — every field carries a citation chip, and conflicts show up as flags rather than guesses.",
+    tags: ["Azure OpenAI", "Cosmos DB", "FastAPI", "React", "Tag reconciliation"],
+    figure: <Unit100Figure />,
+    cta: {
+      label: "Explore live demo",
+      href: "/u100/",
       external: true,
     },
   },
