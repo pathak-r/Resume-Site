@@ -163,6 +163,11 @@ def metrics(ta_id: str = "TA-2027") -> dict[str, Any]:
                 "edits": len([e for e in p.get("edits") or [] if e.get("kind") == "edit"]),
                 "generatedAt": p.get("generatedAt"),
                 "approvedAt": p.get("approvedAt"),
+                "openFlags": [
+                    {"code": f.get("code"), "detail": f.get("detail")}
+                    for f in p.get("fields", {}).get("flags", [])
+                    if (f.get("status") or "open") == "open"
+                ],
             }
             for p in sorted(pkgs, key=lambda x: x.get("tagCanonical") or "")
         ],
