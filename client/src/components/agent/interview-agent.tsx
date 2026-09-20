@@ -121,7 +121,7 @@ export default function InterviewAgent({ onPin }: InterviewAgentProps) {
 
       if (!res.ok) {
         const errBody = await res.json().catch(() => ({}));
-        throw new Error(String(res.status) + (errBody?.error ? `: ${errBody.error}` : ""));
+        throw new Error(String(res.status) + (errBody?.message ? `: ${errBody.message}` : ""));
       }
 
       const reader = res.body?.getReader();
@@ -140,14 +140,22 @@ export default function InterviewAgent({ onPin }: InterviewAgentProps) {
         for (const part of parts) {
           const line = part.split("\n").find((l) => l.startsWith("data: "));
           if (!line) continue;
-          let evt: { type?: string; content?: string; sources?: string[]; done?: boolean };
+          let evt: {
+            type?: string;
+            content?: string;
+            text?: string;
+            message?: string;
+            sources?: string[];
+          };
           try {
             evt = JSON.parse(line.slice(6));
           } catch {
             continue;
           }
+          if (evt.type === "error") throw new Error(evt.message || "The agent hit a snag.");
           if (evt.type === "meta" && evt.sources) sources = evt.sources;
-          if (evt.type === "token" && evt.content) content += evt.content;
+          const piece = evt.type === "delta" ? evt.text : evt.type === "token" ? evt.content : "";
+          if (piece) content += piece;
           if (evt.type === "done") {
             content = evt.content ?? content;
             sources = evt.sources ?? sources;
@@ -167,6 +175,9 @@ export default function InterviewAgent({ onPin }: InterviewAgentProps) {
             return next;
           });
         }
+      }
+      if (!content.trim()) {
+        throw new Error("empty reply");
       }
       nextChips();
     } catch (e: any) {
