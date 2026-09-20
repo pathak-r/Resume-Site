@@ -37,7 +37,7 @@ export default function CvPreviewButton({
           style={{
             background: "var(--cat-bg-card)",
             borderColor: "var(--cat-ink)",
-            boxShadow: "6px 6px 0 var(--cat-ink)",
+            boxShadow: "none",
             height: "min(88vh, 980px)",
           }}
         >
@@ -49,11 +49,10 @@ export default function CvPreviewButton({
               <DialogPrimitive.Title
                 style={{
                   margin: 0,
-                  fontFamily: "var(--cat-font-mono)",
-                  fontSize: "0.72rem",
+                  fontFamily: "var(--cat-font)",
+                  fontSize: "1.15rem",
                   fontWeight: 500,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
+                  letterSpacing: "-0.02em",
                   color: "var(--cat-text)",
                 }}
               >
@@ -69,16 +68,13 @@ export default function CvPreviewButton({
                 href={CV_PATH}
                 download={CV_FILENAME}
                 data-testid="button-cv-download"
-                className="catalog-btn catalog-btn--primary"
+                className="quiet-link"
                 style={{
                   height: "auto",
-                  padding: "0.55rem 0.85rem",
-                  fontSize: "0.68rem",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  fontFamily: "var(--cat-font-mono)",
                   gap: "0.45rem",
                   textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
                 }}
               >
                 <Download size={14} aria-hidden="true" strokeWidth={2} />
@@ -89,12 +85,10 @@ export default function CvPreviewButton({
                   type="button"
                   data-testid="button-cv-close"
                   aria-label="Close CV preview"
-                  className="catalog-btn"
+                  className="quiet-link"
                   style={{
-                    height: "auto",
-                    padding: "0.55rem 0.65rem",
-                    borderColor: "var(--cat-ink)",
-                    borderRadius: 0,
+                    display: "inline-flex",
+                    alignItems: "center",
                     color: "var(--cat-text)",
                   }}
                 >
@@ -123,10 +117,8 @@ export default function CvPreviewButton({
               rel="noopener noreferrer"
               data-testid="link-cv-open-tab"
               style={{
-                fontFamily: "var(--cat-font-mono)",
-                fontSize: "0.68rem",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
+                fontFamily: "var(--cat-font-body)",
+                fontSize: "0.85rem",
                 color: "var(--cat-text-tertiary)",
                 textDecoration: "none",
               }}

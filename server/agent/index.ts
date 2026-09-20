@@ -154,13 +154,13 @@ export async function handleAgentChat(req: Request, res: Response) {
   const apiKey = process.env.OPENAI_API_KEY;
   const corpus = loadCorpus();
   if (!apiKey || !corpus) {
-    res.status(503).json({ message: "The agent isn't configured yet — email pathak.a.rohit@gmail.com instead." });
+    res.status(503).json({ message: "The agent isn't configured yet — email write@rohitpathak.com instead." });
     return;
   }
 
   const ip = (req.headers["x-forwarded-for"] as string)?.split(",")[0]?.trim() || req.socket.remoteAddress || "unknown";
   if (rateLimited(ip)) {
-    res.status(429).json({ message: "Rate limit reached (429). Email me instead: pathak.a.rohit@gmail.com" });
+    res.status(429).json({ message: "Rate limit reached (429). Email me instead: write@rohitpathak.com" });
     return;
   }
 
@@ -266,7 +266,7 @@ export async function handleAgentChat(req: Request, res: Response) {
       sse(res, { type: "error", message: "The agent hit a snag — try again." });
       res.end();
     } else {
-      res.status(500).json({ message: "The agent hit a snag — try again, or email pathak.a.rohit@gmail.com." });
+      res.status(500).json({ message: "The agent hit a snag — try again, or email write@rohitpathak.com." });
     }
   }
 }

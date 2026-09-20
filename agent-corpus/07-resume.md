@@ -31,6 +31,10 @@ RAG over NHTSA technical service bulletins, recalls, complaints, and investigati
 Source-grounded answers for vehicle safety and reliability questions. Formal eval set for
 groundedness and citation quality. Stack: FastAPI, React, Postgres, RAG, Railway.
 
+How Good is JEV (rohitpathak.com/how-good-is-jev): side-by-side comparison of TypeSafe Jev
+and GPT-4.1 on CLINC150. Each model reads one utterance and picks one of 150 intents.
+Shows the pick, latency, traces, and cost. Live demo.
+
 Structra — Vision-LLM Defect Detection (apps.apple.com/us/app/structra-inspect/id6795109088):
 mobile inspection app detecting defects from site photos via Gemini 2.5 Flash. Structured
 JSON output: defect type, severity, bounding boxes. Confidence gating (≥80%) suppresses

@@ -7,9 +7,9 @@
  * Hex colors only — CSS vars are unreliable inside SVG here.
  */
 
-const INK = "#24343b";
-const INK_SOFT = "#728087";
-const MONO = "'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace";
+const INK = "#1c1c1c";
+const INK_SOFT = "#8a8a8a";
+const MONO = "ui-monospace, 'SF Mono', Menlo, Consolas, monospace";
 
 /* ── Hero — signature infrastructure scene (ink + four key-color nodes) ── */
 
@@ -645,6 +645,65 @@ export function Unit100Figure() {
       </text>
       <text x="30" y="276" fontSize="9" fill={KEY} fontFamily={MONO}>
         facts from queries · prose from the model
+      </text>
+    </svg>
+  );
+}
+
+/* ── How Good is JEV — two models, one intent ── */
+
+export function JevFigure() {
+  const KEY = "#1c1c1c";
+  return (
+    <svg
+      viewBox="0 0 400 280"
+      width="100%"
+      role="img"
+      aria-label="Two columns comparing Jev and GPT-4.1 on the same intent question"
+    >
+      <title>Jev and GPT-4.1 judged on the same sentence</title>
+
+      <text x="36" y="36" fontSize="11" fill={INK_SOFT} fontFamily={MONO}>
+        “book a table for two”
+      </text>
+      <path d="M 36 48 L 364 48" stroke={INK} strokeWidth="0.7" opacity="0.2" />
+
+      <g fill="none" stroke={INK} strokeWidth="1.1">
+        <rect x="36" y="72" width="150" height="132" />
+        <rect x="214" y="72" width="150" height="132" />
+      </g>
+
+      <text x="48" y="96" fontSize="10" fill={KEY} fontFamily={MONO}>
+        Jev
+      </text>
+      <text x="48" y="116" fontSize="9" fill={INK_SOFT} fontFamily={MONO}>
+        restaurant_booking
+      </text>
+      <rect x="48" y="136" width="72" height="6" fill={KEY} />
+      <text x="48" y="164" fontSize="9" fill={INK_SOFT} fontFamily={MONO}>
+        180 ms
+      </text>
+      <text x="48" y="182" fontSize="9" fill={INK_SOFT} fontFamily={MONO}>
+        $0.0003
+      </text>
+
+      <text x="226" y="96" fontSize="10" fill={INK} fontFamily={MONO}>
+        GPT-4.1
+      </text>
+      <text x="226" y="116" fontSize="9" fill={INK_SOFT} fontFamily={MONO}>
+        restaurant_booking
+      </text>
+      <rect x="226" y="136" width="118" height="6" fill={INK} opacity="0.35" />
+      <text x="226" y="164" fontSize="9" fill={INK_SOFT} fontFamily={MONO}>
+        1.4 s
+      </text>
+      <text x="226" y="182" fontSize="9" fill={INK_SOFT} fontFamily={MONO}>
+        $0.012
+      </text>
+
+      <rect x="30" y="240" width="340" height="1" fill={INK} opacity="0.18" />
+      <text x="30" y="260" fontSize="10.5" fill={INK_SOFT} fontFamily={MONO}>
+        same sentence · 150 intents · pick, time, cost
       </text>
     </svg>
   );

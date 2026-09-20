@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { Link } from "wouter";
-import { ArrowRight } from "lucide-react";
+import InterviewAgent from "@/components/agent/interview-agent";
 import {
   CopilotFigure,
   Smart3DFigure,
@@ -8,52 +8,54 @@ import {
   StructraFigure,
   AutoSignalFigure,
   Unit100Figure,
+  JevFigure,
 } from "@/components/figures/figures";
 
 type Project = {
   id: string;
-  key: "sage" | "sky" | "apricot" | "lavender" | "steel" | "ochre";
-  label: string;
-  badge?: string;
+  key: string;
   title: string;
   tagline: string;
   description: string;
   tags: string[];
-  figure: React.ReactNode;
+  figure: ReactNode;
   cta?: { label: string; href: string; external?: boolean };
 };
 
 const projects: Project[] = [
   {
+    id: "card-jev",
+    key: "jev",
+    title: "How Good is JEV",
+    tagline: "Jev vs GPT-4.1 on the same intent questions.",
+    description:
+      "Jev is a fast model that picks an answer. It does not chat. This page puts it next to GPT-4.1. Both read the same sentence and choose one of 150 intents. You see the pick, the time, and the cost.",
+    tags: ["TypeSafe Jev", "GPT-4.1", "CLINC150", "React"],
+    figure: <JevFigure />,
+    cta: { label: "Try", href: "/how-good-is-jev", external: true },
+  },
+  {
     id: "card-u100",
     key: "ochre",
-    label: "Industrial AI",
-    badge: "Live demo",
     title: "Factory maintenance planning",
-    tagline: "Helps a factory planner turn scattered records into a clear maintenance job pack.",
+    tagline: "Turns scattered plant records into a job pack.",
     description:
       "Factories plan big maintenance windows years ahead. Every exchanger, pump, and vessel needs a job pack before anyone opens it. Planners still build those packs by hand, hunting inspections, old work orders, sensor history, drawings, and permits. This demo pulls those sources together, drafts the pack, and shows where every number came from. The model writes the explanation; hours, parts, and safety steps come from the records. Missing or conflicting evidence shows up as a flag, not a guess. The planner edits, locks, and exports.",
     tags: ["Azure OpenAI", "FastAPI", "React", "Plant data"],
     figure: <Unit100Figure />,
-    cta: {
-      label: "Try the live demo",
-      href: "/u100/",
-      external: true,
-    },
+    cta: { label: "Try", href: "/u100/", external: true },
   },
   {
     id: "card-structra",
     key: "lavender",
-    label: "Vision AI",
-    badge: "App Store",
     title: "Structra",
-    tagline: "Vision-based defect detection from inspection photos.",
+    tagline: "Finds defects in inspection photos.",
     description:
-      "Mobile inspection app that uses a vision LLM to find, classify, and localise defects in photos taken on site. Each finding is boxed on the source image and rolled into a severity-graded report.",
+      "Take a photo on site. The app finds defects, boxes them on the image, and builds a severity report you can hand off.",
     tags: ["Gemini 2.5 Flash", "Structured JSON", "React Native", "Supabase"],
     figure: <StructraFigure />,
     cta: {
-      label: "View on the App Store",
+      label: "App Store",
       href: "https://apps.apple.com/us/app/structra-inspect/id6795109088",
       external: true,
     },
@@ -61,76 +63,50 @@ const projects: Project[] = [
   {
     id: "card-volve",
     key: "apricot",
-    label: "Geo-Agentic AI",
-    badge: "Live demo",
     title: "Volve Field RAG Explorer",
-    tagline: "Agentic RAG for Equinor's open Volve oil field dataset.",
+    tagline: "Ask questions about an open oil field dataset.",
     description:
-      "Daily drilling reports, production data, and well completion reports — structured and unstructured — ingested into an agentic RAG system. Visualises production trends and answers operator questions about well performance in natural language.",
+      "Equinor published the Volve field data. This demo reads the reports and production numbers, then answers questions in plain English.",
     tags: ["FAISS", "OpenAI", "FastAPI", "React", "Python"],
     figure: <VolveFigure />,
-    cta: { label: "Explore live demo", href: "/geo-agentic-int" },
+    cta: { label: "Try", href: "/geo-agentic-int" },
   },
   {
     id: "card-autosignal",
     key: "steel",
-    label: "Vehicle Research AI",
-    badge: "Live demo",
     title: "AutoSignal",
-    tagline: "NHTSA-backed research — TSBs, recalls, and complaints in plain language.",
+    tagline: "Vehicle safety answers from NHTSA records.",
     description:
-      "Ask natural-language questions about vehicle safety and reliability. AutoSignal grounds answers in NHTSA technical service bulletins, recalls, complaints, and investigations — a live research surface for buyers and operators.",
+      "Ask about a car in plain language. Answers come from technical service bulletins, recalls, complaints, and investigations — with sources.",
     tags: ["NHTSA", "RAG", "FastAPI", "React", "Postgres"],
     figure: <AutoSignalFigure />,
-    cta: {
-      label: "Explore live demo",
-      href: "/autosignal/",
-      external: true,
-    },
+    cta: { label: "Try", href: "/autosignal/", external: true },
   },
   {
     id: "card-nl-query",
     key: "sky",
-    label: "Data Intelligence",
     title: "AI Agents & Natural Language Querying",
-    tagline: "Plain-language questions, answered by the plant design model.",
+    tagline: "Ask the plant design model in plain English.",
     description:
-      "Delivered enterprise-grade AI agents enabling natural-language queries against plant design data — engineers ask about lines, equipment, and connectivity in plain English and get precise, model-grounded answers, accelerating access to mission-critical design data.",
+      "The plant model lives in thousands of tables. Engineers used to write SQL. Now they ask for lines, equipment, and connections in ordinary sentences.",
     tags: ["NL2SQL", "Enterprise search", "Decision support"],
     figure: <Smart3DFigure variant="compact" />,
   },
   {
     id: "card-copilot",
     key: "sage",
-    label: "Generative AI",
-    title: "Enterprise AI Copilot System",
-    tagline: "LLM-based agents for complex 3D engineering workflows.",
+    title: "Enterprise AI Copilot",
+    tagline: "LLM agents for 3D engineering work.",
     description:
-      "Led the strategy and development of an LLM-based agentic system automating complex 3D engineering workflows — saving global engineering teams dozens of hours monthly, with a clear path to hundreds as coverage grows.",
+      "I led the plan and build for agents that do 3D engineering work from natural language. Teams save hours each month. Coverage is still growing.",
     tags: ["LLM agents", "Product strategy", "3D engineering", "Automation"],
     figure: <CopilotFigure />,
   },
 ];
 
-function ProjectCta({ project }: { project: Project }) {
+function RowCta({ project }: { project: Project }) {
   if (!project.cta) return null;
-  const style = {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "8px",
-    fontSize: "0.72rem",
-    fontWeight: 500,
-    letterSpacing: "0.1em",
-    textTransform: "uppercase" as const,
-    color: "var(--cat-on-accent)",
-    background: "var(--cat-accent)",
-    border: "1px solid var(--cat-ink)",
-    boxShadow: "2px 2px 0 var(--cat-ink)",
-    borderRadius: 0,
-    padding: "0.65rem 0.9rem",
-    textDecoration: "none",
-    fontFamily: "var(--cat-font-mono)",
-  };
+  const className = "row-cta";
 
   if (project.cta.external) {
     const isHttp = project.cta.href.startsWith("http");
@@ -138,20 +114,57 @@ function ProjectCta({ project }: { project: Project }) {
       <a
         href={project.cta.href}
         data-testid={`link-explore-${project.key}`}
-        style={style}
+        className={className}
         {...(isHttp ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       >
-        {project.cta.label}
-        <ArrowRight size={14} strokeWidth={2} />
+        {project.cta.label} →
       </a>
     );
   }
 
   return (
-    <Link href={project.cta.href} data-testid={`link-explore-${project.key}`} style={style}>
-      {project.cta.label}
-      <ArrowRight size={14} strokeWidth={2} />
+    <Link href={project.cta.href} data-testid={`link-explore-${project.key}`} className={className}>
+      {project.cta.label} →
     </Link>
+  );
+}
+
+function AgentItem() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div
+      id="interview"
+      className={`project-item agent-item${open ? " is-open" : ""}`}
+      data-testid="card-project-agent"
+    >
+      <div
+        className="project-row"
+        role="button"
+        tabIndex={0}
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setOpen((v) => !v);
+          }
+        }}
+      >
+        <span className="project-copy">
+          <span className="agent-title" data-testid="text-project-title-agent">
+            rohit.agent
+          </span>
+          <span className="project-desc">A screening call, without the call.</span>
+        </span>
+        <span className="project-live">live</span>
+      </div>
+      <div className="project-expand">
+        <div className="project-expand-inner is-agent" onClick={(e) => e.stopPropagation()}>
+          <InterviewAgent onPin={() => setOpen(true)} />
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -159,36 +172,26 @@ function ProjectItem({ project }: { project: Project }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div
-      id={project.id}
-      className={`project-item${open ? " is-open" : ""}`}
-      role="button"
-      tabIndex={0}
-      aria-expanded={open}
-      data-testid={`card-project-${project.key}`}
-      onClick={() => setOpen((v) => !v)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          setOpen((v) => !v);
-        }
-      }}
-    >
-      <div className="project-row">
-        <div className="project-thumb" aria-hidden="true">
-          {project.figure}
-        </div>
-        <span className="project-label">{project.label}</span>
-        <span className="project-copy">
-          <span className="project-title" data-testid={`text-project-title-${project.key}`}>
-            {project.title}
-            {project.badge && <span className="project-badge">{project.badge}</span>}
-          </span>
-          <span className="project-desc">{project.tagline}</span>
+    <div id={project.id} className={`project-item${open ? " is-open" : ""}`} data-testid={`card-project-${project.key}`}>
+      <div
+        className="project-row"
+        role="button"
+        tabIndex={0}
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setOpen((v) => !v);
+          }
+        }}
+      >
+        <span className="project-title" data-testid={`text-project-title-${project.key}`}>
+          {project.title}
         </span>
-        {project.badge === "Live demo" && (
-          <span className="project-go" aria-hidden="true">
-            →
+        {project.cta && (
+          <span onClick={(e) => e.stopPropagation()}>
+            <RowCta project={project} />
           </span>
         )}
       </div>
@@ -202,8 +205,7 @@ function ProjectItem({ project }: { project: Project }) {
             <p style={{ margin: 0 }} data-testid={`text-project-desc-${project.key}`}>
               {project.description}
             </p>
-            <div className="project-expand-tags" onClick={(e) => e.stopPropagation()}>
-              <ProjectCta project={project} />
+            <div className="project-expand-tags">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
@@ -223,30 +225,30 @@ function ProjectItem({ project }: { project: Project }) {
 
 export default function Projects() {
   return (
-    <section
-      id="work"
-      className="catalog-section"
-      style={{ background: "transparent" }}
-      data-testid="section-work"
-    >
-      <div className="catalog-panel">
-        <div className="project-list-intro">
-          <p className="project-list-label" data-testid="text-work-label">
-            Selected work
-          </p>
-          <h2 className="project-list-title" data-testid="text-work-title">
-            Built for one hard job each.
-          </h2>
-          <p className="project-list-hint" data-testid="text-work-hint">
-            Hover or tap any row for the full story.
-          </p>
+    <>
+      <section
+        className="catalog-section"
+        style={{ background: "transparent" }}
+        data-testid="section-agent"
+      >
+        <div className="catalog-panel">
+          <p className="work-label">Ask me</p>
+          <div className="agent-list">
+            <AgentItem />
+          </div>
         </div>
-        <div className="project-list">
-          {projects.map((project) => (
-            <ProjectItem key={project.key} project={project} />
-          ))}
+      </section>
+
+      <section id="work" className="catalog-section" style={{ background: "transparent" }} data-testid="section-work">
+        <div className="catalog-panel">
+          <p className="work-label">Work</p>
+          <div className="project-list">
+            {projects.map((project) => (
+              <ProjectItem key={project.key} project={project} />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

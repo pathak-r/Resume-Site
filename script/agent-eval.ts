@@ -56,6 +56,11 @@ const CASES: {
     label: "autosignal intro",
   },
   {
+    q: "What's How Good is JEV?",
+    expectAny: ["Jev", "GPT-4.1", "intent", "CLINC"],
+    label: "jev intro",
+  },
+  {
     q: "Did you run evals on AutoSignal?",
     expectAny: ["formal", "eval", "ground"],
     forbidAny: ["UAE handover", "blurry"],

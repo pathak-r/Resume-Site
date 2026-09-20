@@ -5,9 +5,8 @@ import {
   XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   ResponsiveContainer, ReferenceArea,
 } from "recharts";
-import { Send, AlertTriangle, BarChart2, MessageSquare, RefreshCw, GitCompare, ArrowLeftRight } from "lucide-react";
+import { Send, AlertTriangle, MessageSquare, RefreshCw, ArrowLeftRight } from "lucide-react";
 import Navbar from "@/components/layout/navbar";
-import { VolveFigure } from "@/components/figures/figures";
 
 const GEO_API = "/api/geo";
 
@@ -49,7 +48,7 @@ const CHART_TOOLTIP = { contentStyle: { background: "#ffffff", border: "1px soli
 
 function ChartCard({ title, color, height = 220, children }: { title: string; color: string; height?: number; children: React.ReactElement }) {
   return (
-    <div className="surface-lowest shadow-ambient rounded-2xl p-6">
+    <div className="surface-lowest p-6">
       <div className="label-meta mb-4">{title}</div>
       <ResponsiveContainer width="100%" height={height}>
         {children}
@@ -173,7 +172,7 @@ function Dashboard({ well, start, end }: { well: string; start: string; end: str
       {/* Well title for single-well view */}
       {well !== "All Wells" && (
         <div>
-          <h2 className="text-2xl" style={{ color: "var(--cat-text)", fontWeight: 500, letterSpacing: "-1.2px", fontFamily: "var(--cat-font)" }}>
+          <h2 className="text-2xl" style={{ color: "var(--cat-text)", fontWeight: 500, letterSpacing: "-0.02em", fontFamily: "var(--cat-font)" }}>
             Well: {well}
           </h2>
         </div>
@@ -190,11 +189,11 @@ function Dashboard({ well, start, end }: { well: string; start: string; end: str
           ].map((k) => (
             <div
               key={k.label}
-              className="surface-lowest shadow-ambient rounded-2xl p-5"
+              className="surface-lowest p-5"
               data-testid={`kpi-${k.label.replace(/\W+/g, "-").toLowerCase()}`}
             >
               <div className="label-meta mb-1" style={{ color: "#728087" }}>{k.label}</div>
-              <div className="text-xl" style={{ color: "#24343b", fontFamily: "var(--cat-font)", fontWeight: 500, letterSpacing: "-1.2px" }}>
+              <div className="text-xl" style={{ color: "var(--cat-text)", fontFamily: "var(--cat-font)", fontWeight: 500, letterSpacing: "-0.02em" }}>
                 {k.value}
               </div>
             </div>
@@ -204,7 +203,7 @@ function Dashboard({ well, start, end }: { well: string; start: string; end: str
 
       {/* Field oil by well area chart */}
       {well === "All Wells" && pivoted.length > 0 && (
-        <div className="surface-lowest shadow-ambient rounded-2xl p-6">
+        <div className="surface-lowest p-6">
           <div className="label-meta mb-4">Daily Oil Production by Well (Sm³)</div>
           <ResponsiveContainer width="100%" height={320}>
             <AreaChart data={thin(pivoted)} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
@@ -432,7 +431,7 @@ function Anomalies({ well }: { well: string }) {
         {["Critical", "High", "Medium"].map((sev) => (
           <div
             key={sev}
-            className="surface-lowest shadow-ambient rounded-2xl p-6"
+            className="surface-lowest p-6"
             style={{ borderTop: `3px solid ${severityColor[sev]}` }}
             data-testid={`anomaly-count-${sev.toLowerCase()}`}
           >
@@ -499,7 +498,7 @@ function Anomalies({ well }: { well: string }) {
 
       {/* Table in scrollable frame */}
       {rows.length > 0 && (
-        <div className="surface-lowest shadow-ambient rounded-2xl p-6">
+        <div className="surface-lowest p-6">
           <div className="label-meta mb-4">Anomaly Records
             <span className="ml-2 font-normal" style={{ color: "var(--cat-text-tertiary)", textTransform: "none", letterSpacing: 0 }}>({rows.length} total)</span>
           </div>
@@ -653,7 +652,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
   return (
     <div className="space-y-6">
       {/* Well pickers */}
-      <div className="surface-lowest shadow-ambient rounded-2xl p-6">
+      <div className="surface-lowest p-6">
         <div className="label-meta mb-4">Select Wells to Compare</div>
         <div className="flex flex-wrap items-center gap-3">
           {/* Well A */}
@@ -709,7 +708,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
 
       {/* Ask AI panel — always visible once wells are selected */}
       {wellA !== wellB && (
-        <div className="surface-lowest shadow-ambient rounded-2xl p-6">
+        <div className="surface-lowest p-6">
           <div className="flex items-start justify-between gap-4">
             <div>
               <div className="label-meta mb-1">AI Explanation</div>
@@ -743,7 +742,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
       {data && (
         <>
           {/* KPI comparison table */}
-          <div className="surface-lowest shadow-ambient rounded-2xl p-6 overflow-x-auto">
+          <div className="surface-lowest p-6 overflow-x-auto">
             <div className="label-meta mb-4">Key Metrics Comparison</div>
             <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
               <thead>
@@ -824,7 +823,7 @@ function WellComparison({ producerWells }: { producerWells: string[] }) {
 
           {/* Divergence summary */}
           {data.divergence.length > 0 && (
-            <div className="surface-lowest shadow-ambient rounded-2xl p-6">
+            <div className="surface-lowest p-6">
               <div className="label-meta mb-3">
                 Flagged Divergence Periods
                 <span className="ml-2 font-normal" style={{ color: "var(--cat-text-tertiary)", textTransform: "none", letterSpacing: 0 }}>(shaded bands on charts above)</span>
@@ -900,93 +899,55 @@ export default function GeoAgenticInt() {
 
   useEffect(() => { load(0); }, [load]);
 
-  const tabs: { id: Tab; label: string; icon: any }[] = [
-    { id: "dashboard", label: "Production Dashboard", icon: BarChart2 },
-    { id: "comparison", label: "Well Comparison", icon: GitCompare },
-    { id: "chat", label: "AI Assistant", icon: MessageSquare },
-    { id: "anomalies", label: "Anomaly Detection", icon: AlertTriangle },
+  const tabs: { id: Tab; label: string }[] = [
+    { id: "dashboard", label: "Production Dashboard" },
+    { id: "comparison", label: "Well Comparison" },
+    { id: "chat", label: "AI Assistant" },
+    { id: "anomalies", label: "Anomaly Detection" },
   ];
 
   return (
     <div className="min-h-screen" style={{ background: "var(--cat-bg)", fontFamily: "var(--cat-font-body)" }}>
       <Navbar />
 
-      {/* Page header — apricot-keyed project panel */}
       <section className="catalog-section" style={{ paddingTop: "5.5rem", borderTop: "none" }} data-testid="section-geo-header">
-        <div className="px-4">
-          <div className="catalog-panel" style={{ maxWidth: "1120px" }}>
-            <div className="key-card key-card--apricot">
-              <div className="work-card-grid">
-                {/* Figure column */}
-                <div>
-                  <VolveFigure />
-                </div>
-
-                {/* Content column */}
-                <div>
-                  <p style={{
-                    fontSize: "10px",
-                    letterSpacing: "0.13em",
-                    textTransform: "uppercase",
-                    color: "var(--key-apricot)",
-                    fontWeight: 500,
-                    fontFamily: "var(--cat-font-mono)",
-                    margin: "0 0 10px",
-                  }}>
-                    Geo-Agentic AI · Live demo
-                  </p>
-
-                  <h1
-                    style={{
-                      fontSize: "34px",
-                      fontWeight: 500,
-                      lineHeight: 1.25,
-                      letterSpacing: "-1.4px",
-                      color: "var(--cat-text)",
-                      fontFamily: "var(--cat-font)",
-                      margin: "0 0 1rem",
-                    }}
-                    data-testid="heading-geo-page"
-                  >
-                    Volve Field RAG Explorer
-                  </h1>
-
-                  <p style={{
-                    fontSize: "16px",
-                    lineHeight: 1.65,
-                    color: "var(--cat-text)",
-                    fontFamily: "var(--cat-font-body)",
-                    margin: "0 0 1rem",
-                  }}>
-                    Daily drilling reports, production data, and well completion reports, both structured and unstructured, collected from Equinor's Volve field, the most comprehensive open subsurface dataset ever released from the Norwegian Continental Shelf, ingested into an agentic RAG system.
-                  </p>
-
-                  <p style={{
-                    fontSize: "16px",
-                    lineHeight: 1.65,
-                    color: "var(--cat-text-secondary)",
-                    fontFamily: "var(--cat-font-body)",
-                    margin: "0 0 0.5rem",
-                  }}>
-                    Visualizes production trends and anomalies, and answers questions like:
-                  </p>
-                  <ul style={{ listStyle: "none", padding: 0, margin: "0 0 0.5rem", display: "flex", flexDirection: "column", gap: "0.35rem" }}>
-                    {[
-                      "Why is this well's water cut rising?",
-                      "What's the decline rate for well F-1 C over the last 12 months?",
-                      "What drilling problems in F-12 could explain current production behavior?",
-                    ].map((q) => (
-                      <li key={q} style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem", fontSize: "14px", color: "var(--cat-text-secondary)", lineHeight: 1.6, fontFamily: "var(--cat-font-body)", fontStyle: "italic" }}>
-                        <span style={{ color: "var(--key-apricot)", marginTop: "0.1rem", flexShrink: 0 }}>—</span>
-                        <span>{q}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="catalog-panel">
+          <h1
+            style={{
+              fontSize: "2.4rem",
+              fontWeight: 500,
+              lineHeight: 1.15,
+              letterSpacing: "-0.02em",
+              color: "var(--cat-text)",
+              fontFamily: "var(--cat-font)",
+              margin: "0 0 0.85rem",
+            }}
+            data-testid="heading-geo-page"
+          >
+            Volve Field RAG Explorer
+          </h1>
+          <p
+            style={{
+              fontSize: "1.05rem",
+              lineHeight: 1.6,
+              color: "var(--cat-text-secondary)",
+              maxWidth: "42rem",
+              margin: "0 0 0.75rem",
+            }}
+          >
+            Equinor published the Volve field data. This demo reads the reports and production numbers, then answers questions in plain English.
+          </p>
+          <p
+            style={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "var(--cat-text-tertiary)",
+              maxWidth: "42rem",
+              margin: 0,
+            }}
+          >
+            Try: why is this well&apos;s water cut rising? What is the decline rate for F-1 C? What drilling problems in F-12 could explain production today?
+          </p>
         </div>
       </section>
 
@@ -1002,7 +963,7 @@ export default function GeoAgenticInt() {
         )}
 
         {status === "error" && (
-          <div className="surface-lowest shadow-ambient rounded-2xl p-8 max-w-xl">
+          <div className="surface-lowest p-8 max-w-xl">
             <div className="label-meta mb-2" style={{ color: "#b86d51" }}>Backend unavailable</div>
             <p className="text-sm mb-4" style={{ color: "#728087" }}>{statusMsg}</p>
             <button
@@ -1090,27 +1051,21 @@ export default function GeoAgenticInt() {
               </div>
             )}
 
-            {/* Tab nav — catalog style */}
-            <div className="flex flex-wrap gap-2 mb-8" style={{ borderBottom: "var(--cat-rule-width) solid var(--cat-rule)", paddingBottom: "1rem", justifyContent: "center" }}>
-              {tabs.map(({ id, label, icon: Icon }) => {
+            {/* Tab nav */}
+            <div className="flex flex-wrap gap-5 mb-8" style={{ borderBottom: "1px solid var(--cat-rule)", paddingBottom: "0.85rem" }}>
+              {tabs.map(({ id, label }) => {
                 const active = tab === id;
                 return (
                   <button
                     key={id}
                     onClick={() => setTab(id)}
                     data-testid={`tab-${id}`}
-                    className="catalog-btn"
+                    className="quiet-link"
                     style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      borderColor: active ? "var(--cat-text)" : "var(--cat-rule)",
+                      borderBottomColor: active ? "var(--cat-ink)" : "transparent",
                       color: active ? "var(--cat-text)" : "var(--cat-text-secondary)",
-                      background: "transparent",
-                      fontWeight: active ? 600 : 500,
                     }}
                   >
-                    <Icon className="w-3.5 h-3.5" />
                     {label}
                   </button>
                 );
@@ -1128,8 +1083,8 @@ export default function GeoAgenticInt() {
         )}
       </div>
 
-      <footer className="py-8 text-center" style={{ color: "var(--cat-text-tertiary)", fontSize: "var(--cat-fs-eyebrow)", letterSpacing: "var(--cat-ls-eyebrow)", textTransform: "uppercase" }}>
-        Volve dataset · Equinor open data · Geo-Agentic RAG
+      <footer className="py-8" style={{ color: "var(--cat-text-tertiary)", fontSize: "0.82rem", maxWidth: "var(--cat-panel-max)", margin: "0 auto", padding: "2rem 1.5rem" }}>
+        Volve dataset · Equinor open data
       </footer>
 
     </div>

@@ -30,7 +30,7 @@ prompt. Defaults below are proposals — edit, confirm, or strike.
 
 - When a visitor signals real interest (asks about availability, team fit, next steps),
   offer: Calendly (https://calendly.com/pathak-a-rohit/30min), email
-  (pathak.a.rohit@gmail.com), phone/WhatsApp (+971 56 787 4381 — calls and messages
+  (write@rohitpathak.com), phone/WhatsApp (+971 56 787 4381 — calls and messages
   both fine), and CV download.
 - Never pushy. Offer once, not every message.
 
@@ -53,5 +53,5 @@ phone number for calling / whatsapp is +971 56 787 4381. They are free to whatsa
 
 ## Escalation contact
 
-- Email the agent gives out: pathak.a.rohit@gmail.com (confirm)
+- Email the agent gives out: write@rohitpathak.com (confirm)
 - Booking link (optional): https://calendly.com/pathak-a-rohit/30min

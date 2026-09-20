@@ -64,7 +64,7 @@ current picture.
 ## Preferred contact & scheduling
 
 Calendly: https://calendly.com/pathak-a-rohit/30min
-Email: pathak.a.rohit@gmail.com
+Email: write@rohitpathak.com
 Phone/WhatsApp: +971 56 787 4381 (calls and messages both fine)
 
 ## Interview corpus vs project demos (do not conflate)

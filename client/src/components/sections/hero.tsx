@@ -8,82 +8,87 @@ export default function Hero() {
         background: "transparent",
         color: "var(--cat-text)",
         WebkitFontSmoothing: "antialiased",
-        padding: "calc(56px + 2.75rem) 1.5rem 1.75rem",
+        padding: "calc(56px + 3.5rem) 1.5rem 2rem",
       }}
     >
       <div className="hero-pm-strip">
-        <h1
-          className="hero-pm-title"
-          style={{
-            margin: "0 0 0.75rem",
-            fontSize: "34px",
-            fontWeight: 500,
-            letterSpacing: "-1.4px",
-            lineHeight: 1.25,
-            color: "var(--cat-text)",
-            fontFamily: "var(--cat-font)",
-            maxWidth: "28ch",
-          }}
-          data-testid="text-hero-headline"
-        >
-          Technical PM. Capital projects. Gen AI.
-        </h1>
-
-        <p
-          style={{
-            fontSize: "0.78rem",
-            color: "var(--cat-text-tertiary)",
-            fontFamily: "var(--cat-font-mono)",
-            margin: "0 0 1.5rem",
-            letterSpacing: "0.06em",
-            lineHeight: 1.4,
-          }}
-          data-testid="text-hero-eyebrow"
-        >
-          10+ years · Abu Dhabi · Hexagon AB · Nestlé
-        </p>
-
-        <div className="hero-cta-row">
-          <CvPreviewButton
-            data-testid="button-download-cv"
-            className="catalog-btn catalog-btn--primary"
+        <div className="hero-pm-copy">
+          <h1
+            className="hero-pm-title"
             style={{
-              height: "auto",
-              padding: "0.9rem 1.15rem",
-              fontSize: "0.72rem",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              fontFamily: "var(--cat-font-mono)",
-              gap: "0.65rem",
-            }}
-          >
-            <span
-              aria-hidden="true"
-              style={{ width: 8, height: 8, background: "var(--cat-ink)", display: "inline-block" }}
-            />
-            View CV
-          </CvPreviewButton>
-          <a
-            href="https://www.linkedin.com/in/pathakrohit/"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-testid="button-linkedin"
-            className="catalog-btn"
-            style={{
-              height: "auto",
-              padding: "0.9rem 1.15rem",
-              fontSize: "0.72rem",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              fontFamily: "var(--cat-font-mono)",
-              borderColor: "var(--cat-ink)",
-              borderRadius: 0,
+              margin: "0 0 0.85rem",
+              fontSize: "3.15rem",
+              fontWeight: 500,
+              letterSpacing: 0,
+              lineHeight: 1.1,
               color: "var(--cat-text)",
+              fontFamily: "var(--cat-font)",
+            }}
+            data-testid="text-hero-headline"
+          >
+            Rohit Pathak
+          </h1>
+
+          <p
+            style={{
+              margin: "0 0 0.2rem",
+              fontSize: "1.15rem",
+              lineHeight: 1.45,
+              color: "var(--cat-navy)",
+              fontFamily: "var(--cat-font-body)",
+              fontWeight: 500,
             }}
           >
-            LinkedIn
-          </a>
+            Technical PM
+          </p>
+          <p
+            style={{
+              margin: "0 0 0.2rem",
+              fontSize: "1.05rem",
+              lineHeight: 1.5,
+              color: "var(--cat-text-secondary)",
+              fontFamily: "var(--cat-font-body)",
+            }}
+            data-testid="text-hero-eyebrow"
+          >
+            10+ Years. Hexagon AB. Nestlé.
+          </p>
+          <p
+            style={{
+              margin: "0 0 1.75rem",
+              fontSize: "1.05rem",
+              lineHeight: 1.5,
+              color: "var(--cat-text-secondary)",
+              fontFamily: "var(--cat-font-body)",
+            }}
+          >
+            Gen AI for Capital Projects
+          </p>
+
+          <div className="hero-cta-row">
+            <CvPreviewButton data-testid="button-download-cv" className="quiet-link">
+              CV
+            </CvPreviewButton>
+            <a
+              href="https://www.linkedin.com/in/pathakrohit/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="button-linkedin"
+              className="quiet-link"
+            >
+              LinkedIn
+            </a>
+          </div>
         </div>
+
+        <img
+          className="hero-portrait"
+          src="/rohit-portrait-v5.jpg"
+          alt="Rohit Pathak"
+          width={148}
+          height={169}
+          data-testid="img-hero-portrait"
+        />
       </div>
     </section>
   );

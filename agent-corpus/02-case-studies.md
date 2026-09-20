@@ -108,6 +108,35 @@ grows the working corpus over time.
 
 ---
 
+## How Good is JEV (live demo on this site)
+
+Clarification: How Good is JEV is a separate live app from this interview agent.
+Live at https://www.rohitpathak.com/how-good-is-jev (deep-link card: jev).
+
+- Why I built it:
+
+TypeSafe shipped Jev, a fast decision model. It picks an answer. It does not chat.
+I wanted a simple way to see that next to a normal LLM, on the same task, with the
+pick, the time, and the cost in one place.
+
+- What it does:
+
+Each model reads one sentence and must pick one of 150 labeled intents from CLINC150.
+The demo compares TypeSafe Jev with GPT-4.1. Dataset examples hide the right answer
+until both calls finish. Traces, latency, and a cost comparison are shown.
+
+- What I personally built:
+
+I built the comparison app end to end. It is proxied on this site at /how-good-is-jev.
+It is not this interview chat, and it is not querying my CV.
+
+- What it is not:
+
+It is not a claim that Jev always wins. The page lets a visitor see both models on
+the same question and judge for themselves.
+
+---
+
 ## Structra (personal, App Store)
 
 Formerly PropScan while it was in TestFlight. Live on the App Store as Structra Inspect:
