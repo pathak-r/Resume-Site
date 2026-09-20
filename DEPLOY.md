@@ -80,6 +80,7 @@ Optional: `KEY_VAULT_URL`, `SEARCH_ENDPOINT`, `AZURE_OPENAI_API_VERSION`.
 |----------|----------|
 | `NODE_ENV` | `production` |
 | `GEO_RAG_API_URL` | `https://<geo-rag-service>.up.railway.app` (no trailing slash) |
+| `JEV_APP_URL` | `https://<how-good-is-jev>.up.railway.app` (no trailing slash). Proxies `/how-good-is-jev`. |
 | `PUBLIC_URL` | Optional; your public site URL for Open Graph images at build time |
 
 `PORT` is set automatically by Railway.

@@ -8,6 +8,8 @@ import { handleAgentChat } from "./agent";
 //   https://geo-rag-api-production.up.railway.app
 const GEO_RAG_UPSTREAM = (process.env.GEO_RAG_API_URL || "http://localhost:8000").replace(/\/$/, "");
 const U100_UPSTREAM = (process.env.U100_API_URL || "http://127.0.0.1:8000").replace(/\/$/, "");
+const JEV_UPSTREAM = (process.env.JEV_APP_URL || "").replace(/\/$/, "");
+const JEV_PREFIX = "/how-good-is-jev";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -15,6 +17,18 @@ export async function registerRoutes(
 ): Promise<Server> {
   // POST /api/agent/chat — the interview agent (SSE streaming).
   app.post("/api/agent/chat", handleAgentChat);
+
+  if (JEV_UPSTREAM) {
+    app.use(
+      createProxyMiddleware({
+        pathFilter: (pathname) => pathname === JEV_PREFIX || pathname.startsWith(`${JEV_PREFIX}/`),
+        target: JEV_UPSTREAM,
+        changeOrigin: true,
+        proxyTimeout: 600_000,
+        timeout: 600_000,
+      }),
+    );
+  }
 
   // POST /api/geo/chat — handled directly because express.json() has already
   // consumed the request body before the proxy middleware can forward it.
