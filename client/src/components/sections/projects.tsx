@@ -26,18 +26,18 @@ const projects: Project[] = [
   {
     id: "card-jev",
     key: "jev",
-    title: "How Good is JEV",
+    title: "Benchmarking TypeSafe JEV as an intent router",
     tagline: "Jev vs GPT-4.1 on the same intent questions.",
     description:
-      "Jev is a fast model that picks an answer. It does not chat. This page puts it next to GPT-4.1. Both read the same sentence and choose one of 150 intents. You see the pick, the time, and the cost.",
-    tags: ["TypeSafe Jev", "GPT-4.1", "CLINC150", "React"],
+      "Since JEV returns typed probabilistic decisions instead of generating text, it avoids output-token generation costs and is naturally well suited to routing and other decision-heavy tasks. I put that to the test against strong LLM baselines commonly used for routing, including GPT-4.1 and GPT-5.6 Sol, across three intent-classification benchmarks: CLINC150, BANKING77, and HWU64.",
+    tags: ["TypeSafe Jev", "GPT-4.1", "GPT-5.6 Sol", "CLINC150"],
     figure: <JevFigure />,
     cta: { label: "Try", href: "/how-good-is-jev", external: true },
   },
   {
     id: "card-u100",
     key: "ochre",
-    title: "Factory maintenance planning",
+    title: "Agentic factory maintenance planning",
     tagline: "Turns scattered plant records into a job pack.",
     description:
       "Factories plan big maintenance windows years ahead. Every exchanger, pump, and vessel needs a job pack before anyone opens it. Planners still build those packs by hand, hunting inspections, old work orders, sensor history, drawings, and permits. This demo pulls those sources together, drafts the pack, and shows where every number came from. The model writes the explanation; hours, parts, and safety steps come from the records. Missing or conflicting evidence shows up as a flag, not a guess. The planner edits, locks, and exports.",
@@ -48,7 +48,7 @@ const projects: Project[] = [
   {
     id: "card-structra",
     key: "lavender",
-    title: "Structra",
+    title: "Vision-LLM construction defect detection and reports",
     tagline: "Finds defects in inspection photos.",
     description:
       "Take a photo on site. The app finds defects, boxes them on the image, and builds a severity report you can hand off.",
@@ -63,7 +63,7 @@ const projects: Project[] = [
   {
     id: "card-volve",
     key: "apricot",
-    title: "Volve Field RAG Explorer",
+    title: "Agentic RAG on the Volve oil field dataset",
     tagline: "Ask questions about an open oil field dataset.",
     description:
       "Equinor published the Volve field data. This demo reads the reports and production numbers, then answers questions in plain English.",
@@ -74,7 +74,7 @@ const projects: Project[] = [
   {
     id: "card-autosignal",
     key: "steel",
-    title: "AutoSignal",
+    title: "RAG over NHTSA vehicle safety records",
     tagline: "Vehicle safety answers from NHTSA records.",
     description:
       "Ask about a car in plain language. Answers come from technical service bulletins, recalls, complaints, and investigations — with sources.",

@@ -118,6 +118,7 @@
   --cat-accent: #1c1c1c;
   --cat-accent-soft: #f1efe9;
   --cat-navy: #215c9a;
+  --cat-title: #8c4034;
 
   --cat-ink: #1c1c1c;
   --cat-ink-secondary: #3d3d3d;
@@ -464,7 +465,7 @@
     font-size: 1.05rem;
     font-weight: 500;
     letter-spacing: -0.01em;
-    color: var(--cat-text);
+    color: var(--cat-title);
     margin: 0;
     line-height: 1.35;
   }
