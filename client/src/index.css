@@ -728,3 +728,616 @@
     }
   }
 }
+
+/* Homepage — revised minimal portfolio. Scoped so demo pages keep their own look. */
+.rp-home,
+.rp-nav-global {
+  --rp-paper: #f7f6f3;
+  --rp-ink: #252522;
+  --rp-secondary: #666660;
+  --rp-rule: #deddd6;
+  --rp-accent: #8c4034;
+}
+
+.rp-home {
+  color-scheme: light;
+  min-height: 100vh;
+  background: var(--rp-paper);
+  color: var(--rp-ink);
+  font-family: Inter, Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.65;
+  padding: 0 59px;
+}
+
+.rp-home *,
+.rp-home *::before,
+.rp-home *::after {
+  box-sizing: border-box;
+}
+
+.rp-shell {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.rp-home a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.rp-home a:hover {
+  color: var(--rp-accent);
+}
+
+.rp-nav,
+.rp-nav-global-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 86px;
+  gap: 25px;
+}
+
+.rp-nav {
+  border-bottom: 1px solid var(--rp-rule);
+  background: var(--rp-paper);
+}
+
+.rp-nav-global {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: var(--rp-paper);
+  color: var(--rp-ink);
+  font-family: Inter, Arial, sans-serif;
+  border-bottom: 1px solid var(--rp-rule);
+}
+
+.rp-nav-global-inner {
+  max-width: var(--cat-panel-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.rp-brand {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.34px;
+  color: var(--rp-ink);
+  text-decoration: none;
+}
+
+.rp-navlinks {
+  display: flex;
+  gap: 29px;
+  font-size: 14px;
+  color: var(--rp-secondary);
+}
+
+.rp-navlinks a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.rp-navlinks a:hover {
+  color: var(--rp-accent);
+}
+
+.rp-hero {
+  padding: 73px 0 45px;
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  align-items: center;
+  gap: 43px;
+}
+
+.rp-hero-name {
+  font-size: 54px;
+  line-height: 1.06;
+  font-weight: 500;
+  letter-spacing: -2.5px;
+  margin: 0 0 22px;
+  color: var(--rp-ink);
+}
+
+.rp-role {
+  font-size: 19px;
+  line-height: 1.5;
+  letter-spacing: -0.45px;
+  max-width: none;
+  margin: 0 0 10px;
+  white-space: nowrap;
+}
+
+.rp-proof {
+  color: var(--rp-secondary);
+  font-size: 13px;
+  margin: 0;
+}
+
+.rp-links {
+  display: flex;
+  gap: 26px;
+  margin-top: 27px;
+  font-size: 14px;
+  align-items: center;
+}
+
+.rp-home .rp-links a,
+.rp-home .rp-cv-trigger {
+  border-bottom: 1px solid #bcbab1;
+  padding-bottom: 2px;
+}
+
+.rp-portrait {
+  width: 150px;
+  height: 183px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 2px;
+  display: block;
+}
+
+.rp-cv-trigger {
+  appearance: none;
+  border: 0;
+  border-bottom: 1px solid #bcbab1;
+  padding: 0 0 2px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.rp-cv-trigger:hover {
+  color: var(--rp-accent);
+}
+
+.rp-agent-block {
+  border-top: 1px solid var(--rp-rule);
+  border-bottom: 1px solid var(--rp-rule);
+}
+
+.rp-agent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 23px;
+  font-size: 14px;
+}
+
+.rp-agent-trigger {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  appearance: none;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  padding: 19px 0;
+  cursor: pointer;
+}
+
+.rp-agent-copy {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.rp-agent-name {
+  font-weight: 500;
+  color: var(--rp-ink);
+}
+
+.rp-agent-desc {
+  color: var(--rp-secondary);
+}
+
+.rp-agent-ask {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  font-size: 14px;
+  white-space: nowrap;
+  color: var(--rp-accent);
+  cursor: pointer;
+  border-radius: 0;
+  flex: none;
+}
+
+.rp-agent-panel {
+  padding: 9px 0 25px;
+}
+
+.rp-work {
+  padding-top: 48px;
+}
+
+.rp-section-label {
+  color: var(--rp-secondary);
+  font-size: 12px;
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin: 0;
+}
+
+.rp-feature {
+  padding: 31px 0 34px;
+  border-bottom: 1px solid var(--rp-rule);
+}
+
+.rp-feature-content {
+  display: grid;
+  grid-template-columns: 1fr 279px;
+  gap: 40px;
+  align-items: start;
+}
+
+.rp-feature h2 {
+  color: var(--rp-ink);
+  font-size: 26px;
+  line-height: 1.35;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+  margin: 0 0 15px;
+}
+
+.rp-feature p {
+  font-size: 15px;
+  color: var(--rp-secondary);
+  max-width: none;
+  margin: 0 0 17px;
+  line-height: 1.8;
+}
+
+.rp-feature .rp-tech {
+  font-size: 12px;
+  margin: 0 0 19px;
+  line-height: 1.8;
+  color: var(--rp-secondary);
+}
+
+.rp-feature .rp-try {
+  display: inline-block;
+  font-weight: 500;
+}
+
+.rp-art {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+}
+
+.rp-feature .rp-art svg,
+.rp-expanded-figure svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.rp-project {
+  border-bottom: 1px solid var(--rp-rule);
+}
+
+.rp-project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 23px;
+}
+
+.rp-project-trigger {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  appearance: none;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--rp-ink);
+  text-align: left;
+  font: inherit;
+  padding: 24px 0;
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rp-project:hover .rp-row-title,
+  .rp-agent-block:hover .rp-agent-name {
+    color: var(--rp-accent);
+  }
+}
+
+.rp-row-title {
+  display: block;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.28px;
+}
+
+.rp-row-sub {
+  display: block;
+  font-size: 14px;
+  color: var(--rp-secondary);
+  padding-top: 3px;
+}
+
+.rp-try {
+  flex: none;
+  color: var(--rp-accent);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.rp-home .rp-try:hover {
+  color: var(--rp-accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.rp-disclosure {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.24s ease, visibility 0.24s;
+}
+
+.rp-disclosure-clip {
+  min-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.rp-project.is-expanded .rp-disclosure,
+.rp-agent-block.is-expanded .rp-disclosure {
+  grid-template-rows: 1fr;
+  visibility: visible;
+}
+
+.rp-project.is-expanded .rp-disclosure-clip,
+.rp-agent-block.is-expanded .rp-disclosure-clip {
+  opacity: 1;
+}
+
+.rp-expanded-grid {
+  display: grid;
+  grid-template-columns: 227px minmax(0, 1fr);
+  gap: 32px;
+  padding: 0 0 27px;
+  align-items: start;
+}
+
+.rp-expanded-copy {
+  font-size: 15px;
+  color: var(--rp-secondary);
+  line-height: 1.8;
+}
+
+.rp-expanded-copy p {
+  margin: 0 0 14px;
+}
+
+.rp-expanded-copy .rp-tech {
+  font-size: 12px;
+  margin: 0;
+  line-height: 1.8;
+}
+
+.rp-education {
+  padding: 34px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-bottom: 1px solid var(--rp-rule);
+}
+
+.rp-education p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--rp-secondary);
+}
+
+.rp-education strong {
+  font-weight: 500;
+  color: var(--rp-ink);
+}
+
+.rp-contact {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 32px 0 41px;
+}
+
+.rp-contact-links {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 15px;
+}
+
+.rp-home .rp-contact-links a {
+  border-bottom: 1px solid #bcbab1;
+  padding-bottom: 2px;
+  white-space: nowrap;
+}
+
+.rp-contact-separator {
+  color: var(--rp-secondary);
+}
+
+.rp-location {
+  font-size: 12px;
+  color: var(--rp-secondary);
+  margin: 0;
+  text-align: right;
+}
+
+.rp-home :focus-visible {
+  outline: 1px solid var(--rp-accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 650px) {
+  .rp-home {
+    padding: 0 29px;
+  }
+  .rp-nav,
+  .rp-nav-global-inner {
+    min-height: 70px;
+  }
+  .rp-navlinks {
+    gap: 19px;
+  }
+  .rp-hero {
+    padding: 50px 0 34px;
+    grid-template-columns: 1fr 97px;
+    gap: 25px;
+    align-items: start;
+  }
+  .rp-hero-name {
+    font-size: 39px;
+    letter-spacing: -1.8px;
+    margin-bottom: 17px;
+  }
+  .rp-role {
+    font-size: 16px;
+    white-space: normal;
+  }
+  .rp-proof {
+    font-size: 12px;
+  }
+  .rp-portrait {
+    width: 97px;
+    height: 120px;
+    margin-top: 3px;
+  }
+  .rp-agent-copy {
+    gap: 2px;
+    flex-direction: column;
+  }
+  .rp-agent {
+    gap: 14px;
+    font-size: 12px;
+  }
+  .rp-agent-ask {
+    font-size: 12px;
+  }
+  .rp-feature-content {
+    grid-template-columns: 1fr 204px;
+    gap: 23px;
+  }
+  .rp-feature h2 {
+    font-size: 24px;
+  }
+  .rp-expanded-grid {
+    grid-template-columns: 181px minmax(0, 1fr);
+    gap: 23px;
+  }
+  .rp-contact-links {
+    font-size: 14px;
+    gap: 11px;
+  }
+}
+
+@media (max-width: 430px) {
+  .rp-home {
+    padding: 0 24px;
+  }
+  .rp-brand {
+    font-size: 14px;
+  }
+  .rp-navlinks {
+    gap: 16px;
+    font-size: 12px;
+  }
+  .rp-hero {
+    grid-template-columns: 1fr 74px;
+    gap: 16px;
+  }
+  .rp-hero-name {
+    font-size: 34px;
+    letter-spacing: -1.5px;
+  }
+  .rp-portrait {
+    width: 74px;
+    height: 95px;
+  }
+  .rp-agent {
+    align-items: flex-start;
+  }
+  .rp-agent-ask {
+    padding-top: 2px;
+  }
+  .rp-agent-desc {
+    max-width: 181px;
+  }
+  .rp-feature-content {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .rp-art {
+    max-width: 278px;
+    margin: auto;
+  }
+  .rp-expanded-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .rp-expanded-figure {
+    max-width: 278px;
+  }
+  .rp-contact {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .rp-contact-links {
+    font-size: 12px;
+    gap: 9px;
+  }
+  .rp-location {
+    text-align: left;
+  }
+}
+
+@media (pointer: coarse) {
+  .rp-navlinks a,
+  .rp-home .rp-links a,
+  .rp-cv-trigger,
+  .rp-feature .rp-try,
+  .rp-try,
+  .rp-agent-ask,
+  .rp-home .rp-contact-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rp-disclosure,
+  .rp-disclosure-clip {
+    transition: none;
+  }
+}

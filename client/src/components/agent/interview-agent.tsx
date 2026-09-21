@@ -19,13 +19,13 @@ type Msg = {
 
 const CARD_LINKS: Record<string, { label: string; anchor: string }> = {
   copilot: { label: "Enterprise AI Copilot", anchor: "#card-copilot" },
-  autosignal: { label: "RAG over NHTSA vehicle safety records", anchor: "#card-autosignal" },
-  "nl-query": { label: "AI Agents & NL Querying", anchor: "#card-nl-query" },
-  volve: { label: "Agentic RAG on the Volve oil field dataset", anchor: "#card-volve" },
-  structra: { label: "Vision-LLM construction defect detection and reports", anchor: "#card-structra" },
-  propscan: { label: "Vision-LLM construction defect detection and reports", anchor: "#card-structra" },
-  u100: { label: "Agentic factory maintenance planning", anchor: "#card-u100" },
-  jev: { label: "Benchmarking TypeSafe JEV as an intent router", anchor: "#card-jev" },
+  autosignal: { label: "AutoSignal", anchor: "#card-autosignal" },
+  "nl-query": { label: "Natural-language plant queries", anchor: "#card-nl-query" },
+  volve: { label: "Volve field assistant", anchor: "#card-volve" },
+  structra: { label: "Structra", anchor: "#card-structra" },
+  propscan: { label: "Structra", anchor: "#card-structra" },
+  u100: { label: "Factory maintenance planner", anchor: "#card-u100" },
+  jev: { label: "JEV intent-routing benchmark", anchor: "#card-jev" },
 };
 
 const STARTER_CHIPS = [

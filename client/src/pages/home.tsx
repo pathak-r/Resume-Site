@@ -22,17 +22,16 @@ export default function Home() {
   }, [location]);
 
   return (
-    <div
-      className="min-h-screen overflow-x-hidden"
-      style={{ background: "transparent", color: "var(--cat-text)" }}
-    >
-      <Navbar />
-      <main className="catalog-page-stack">
-        <Hero />
-        <Projects />
-        <Education />
-        <Closing />
-      </main>
+    <div className="rp-home">
+      <div className="rp-shell">
+        <Navbar />
+        <main>
+          <Hero />
+          <Projects />
+          <Education />
+          <Closing />
+        </main>
+      </div>
     </div>
   );
 }

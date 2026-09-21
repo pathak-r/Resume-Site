@@ -1,29 +1,14 @@
 export default function Education() {
   return (
-    <section
-      id="education"
-      className="catalog-section"
-      style={{ background: "transparent" }}
-      data-testid="section-education"
-    >
-      <div className="catalog-panel">
-        <p className="work-label" data-testid="text-education-label">
-          Education
-        </p>
-        <p
-          style={{
-            fontSize: "1.05rem",
-            lineHeight: 1.5,
-            color: "var(--cat-text)",
-            fontFamily: "var(--cat-font-body)",
-            fontWeight: 500,
-            margin: 0,
-          }}
-          data-testid="text-education-line"
-        >
-          Master of Science, North Carolina State University, Raleigh
-        </p>
-      </div>
+    <section id="education" className="rp-education" data-testid="section-education">
+      <p className="rp-section-label" data-testid="text-education-label">
+        Education
+      </p>
+      <p data-testid="text-education-line">
+        <strong>Master of Science</strong>
+        {" · "}
+        <span>North Carolina State University</span>
+      </p>
     </section>
   );
 }
