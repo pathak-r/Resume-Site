@@ -31,8 +31,8 @@ export default function Hero() {
         className="rp-portrait"
         src="/rohit-portrait-v5.jpg"
         alt="Rohit Pathak"
-        width={150}
-        height={183}
+        width={168}
+        height={205}
         data-testid="img-hero-portrait"
       />
     </section>

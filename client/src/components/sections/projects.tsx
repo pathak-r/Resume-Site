@@ -196,7 +196,7 @@ function AgentStrip() {
           </span>
         </button>
         <button type="button" className="rp-agent-ask" onClick={ask}>
-          Ask a question
+          Type a question
         </button>
       </div>
       <div className="rp-disclosure" id={panelId} {...(!expanded ? { inert: true } : {})}>

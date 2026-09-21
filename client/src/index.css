@@ -745,10 +745,10 @@
   background: var(--rp-paper);
   color: var(--rp-ink);
   font-family: Inter, Arial, sans-serif;
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 400;
   line-height: 1.65;
-  padding: 0 59px;
+  padding: 0 66px;
 }
 
 .rp-home *,
@@ -758,7 +758,7 @@
 }
 
 .rp-shell {
-  max-width: 960px;
+  max-width: 1080px;
   margin: 0 auto;
 }
 
@@ -776,8 +776,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 86px;
-  gap: 25px;
+  min-height: 96px;
+  gap: 28px;
 }
 
 .rp-nav {
@@ -804,17 +804,17 @@
 }
 
 .rp-brand {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
-  letter-spacing: -0.34px;
+  letter-spacing: -0.38px;
   color: var(--rp-ink);
   text-decoration: none;
 }
 
 .rp-navlinks {
   display: flex;
-  gap: 29px;
-  font-size: 14px;
+  gap: 32px;
+  font-size: 16px;
   color: var(--rp-secondary);
 }
 
@@ -828,42 +828,42 @@
 }
 
 .rp-hero {
-  padding: 73px 0 45px;
+  padding: 82px 0 50px;
   display: grid;
-  grid-template-columns: 1fr 150px;
+  grid-template-columns: 1fr 168px;
   align-items: center;
-  gap: 43px;
+  gap: 48px;
 }
 
 .rp-hero-name {
-  font-size: 54px;
+  font-size: 50px;
   line-height: 1.06;
   font-weight: 500;
-  letter-spacing: -2.5px;
+  letter-spacing: -2.2px;
   margin: 0 0 22px;
   color: var(--rp-ink);
 }
 
 .rp-role {
-  font-size: 19px;
+  font-size: 20px;
   line-height: 1.5;
   letter-spacing: -0.45px;
   max-width: none;
-  margin: 0 0 10px;
+  margin: 0 0 11px;
   white-space: nowrap;
 }
 
 .rp-proof {
   color: var(--rp-secondary);
-  font-size: 13px;
+  font-size: 15px;
   margin: 0;
 }
 
 .rp-links {
   display: flex;
-  gap: 26px;
-  margin-top: 27px;
-  font-size: 14px;
+  gap: 29px;
+  margin-top: 30px;
+  font-size: 16px;
   align-items: center;
 }
 
@@ -874,8 +874,8 @@
 }
 
 .rp-portrait {
-  width: 150px;
-  height: 183px;
+  width: 168px;
+  height: 205px;
   object-fit: cover;
   object-position: center;
   border-radius: 2px;
@@ -890,7 +890,7 @@
   background: transparent;
   color: inherit;
   font: inherit;
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 0;
   cursor: pointer;
 }
@@ -908,8 +908,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 23px;
-  font-size: 14px;
+  gap: 26px;
+  font-size: 16px;
 }
 
 .rp-agent-trigger {
@@ -923,14 +923,14 @@
   color: inherit;
   text-align: left;
   font: inherit;
-  padding: 19px 0;
+  padding: 21px 0;
   cursor: pointer;
 }
 
 .rp-agent-copy {
   display: flex;
   align-items: baseline;
-  gap: 15px;
+  gap: 17px;
   flex-wrap: wrap;
 }
 
@@ -949,7 +949,7 @@
   background: transparent;
   padding: 0;
   font: inherit;
-  font-size: 14px;
+  font-size: 16px;
   white-space: nowrap;
   color: var(--rp-accent);
   cursor: pointer;
@@ -958,54 +958,54 @@
 }
 
 .rp-agent-panel {
-  padding: 9px 0 25px;
+  padding: 10px 0 28px;
 }
 
 .rp-work {
-  padding-top: 48px;
+  padding-top: 54px;
 }
 
 .rp-section-label {
   color: var(--rp-secondary);
-  font-size: 12px;
-  letter-spacing: 1.7px;
+  font-size: 13px;
+  letter-spacing: 1.9px;
   text-transform: uppercase;
   font-weight: 400;
   margin: 0;
 }
 
 .rp-feature {
-  padding: 31px 0 34px;
+  padding: 35px 0 38px;
   border-bottom: 1px solid var(--rp-rule);
 }
 
 .rp-feature-content {
   display: grid;
-  grid-template-columns: 1fr 279px;
-  gap: 40px;
+  grid-template-columns: 1fr 312px;
+  gap: 45px;
   align-items: start;
 }
 
 .rp-feature h2 {
   color: var(--rp-ink);
-  font-size: 26px;
+  font-size: 29px;
   line-height: 1.35;
   font-weight: 500;
-  letter-spacing: -0.8px;
-  margin: 0 0 15px;
+  letter-spacing: -0.9px;
+  margin: 0 0 17px;
 }
 
 .rp-feature p {
-  font-size: 15px;
+  font-size: 17px;
   color: var(--rp-secondary);
   max-width: none;
-  margin: 0 0 17px;
+  margin: 0 0 19px;
   line-height: 1.8;
 }
 
 .rp-feature .rp-tech {
-  font-size: 12px;
-  margin: 0 0 19px;
+  font-size: 13px;
+  margin: 0 0 21px;
   line-height: 1.8;
   color: var(--rp-secondary);
 }
@@ -1037,7 +1037,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 23px;
+  gap: 26px;
 }
 
 .rp-project-trigger {
@@ -1051,7 +1051,7 @@
   color: var(--rp-ink);
   text-align: left;
   font: inherit;
-  padding: 24px 0;
+  padding: 27px 0;
   cursor: pointer;
 }
 
@@ -1064,15 +1064,15 @@
 
 .rp-row-title {
   display: block;
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 500;
   line-height: 1.5;
-  letter-spacing: -0.28px;
+  letter-spacing: -0.31px;
 }
 
 .rp-row-sub {
   display: block;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--rp-secondary);
   padding-top: 3px;
 }
@@ -1080,7 +1080,7 @@
 .rp-try {
   flex: none;
   color: var(--rp-accent);
-  font-size: 14px;
+  font-size: 16px;
   white-space: nowrap;
 }
 
@@ -1117,41 +1117,41 @@
 
 .rp-expanded-grid {
   display: grid;
-  grid-template-columns: 227px minmax(0, 1fr);
-  gap: 32px;
-  padding: 0 0 27px;
+  grid-template-columns: 254px minmax(0, 1fr);
+  gap: 36px;
+  padding: 0 0 30px;
   align-items: start;
 }
 
 .rp-expanded-copy {
-  font-size: 15px;
+  font-size: 17px;
   color: var(--rp-secondary);
   line-height: 1.8;
 }
 
 .rp-expanded-copy p {
-  margin: 0 0 14px;
+  margin: 0 0 16px;
 }
 
 .rp-expanded-copy .rp-tech {
-  font-size: 12px;
+  font-size: 13px;
   margin: 0;
   line-height: 1.8;
 }
 
 .rp-education {
-  padding: 34px 0;
+  padding: 38px 0;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 18px;
   border-bottom: 1px solid var(--rp-rule);
 }
 
 .rp-education p {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--rp-secondary);
 }
 
@@ -1164,17 +1164,17 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: 18px;
+  gap: 20px;
   flex-wrap: wrap;
-  padding: 32px 0 41px;
+  padding: 36px 0 46px;
 }
 
 .rp-contact-links {
   display: flex;
   align-items: baseline;
-  gap: 14px;
+  gap: 16px;
   flex-wrap: wrap;
-  font-size: 15px;
+  font-size: 17px;
 }
 
 .rp-home .rp-contact-links a {
@@ -1188,7 +1188,7 @@
 }
 
 .rp-location {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--rp-secondary);
   margin: 0;
   text-align: right;
@@ -1201,36 +1201,36 @@
 
 @media (max-width: 650px) {
   .rp-home {
-    padding: 0 29px;
+    padding: 0 32px;
   }
   .rp-nav,
   .rp-nav-global-inner {
-    min-height: 70px;
+    min-height: 78px;
   }
   .rp-navlinks {
-    gap: 19px;
+    gap: 21px;
   }
   .rp-hero {
-    padding: 50px 0 34px;
-    grid-template-columns: 1fr 97px;
-    gap: 25px;
+    padding: 56px 0 38px;
+    grid-template-columns: 1fr 108px;
+    gap: 28px;
     align-items: start;
   }
   .rp-hero-name {
-    font-size: 39px;
-    letter-spacing: -1.8px;
+    font-size: 36px;
+    letter-spacing: -1.6px;
     margin-bottom: 17px;
   }
   .rp-role {
-    font-size: 16px;
+    font-size: 17px;
     white-space: normal;
   }
   .rp-proof {
-    font-size: 12px;
+    font-size: 13px;
   }
   .rp-portrait {
-    width: 97px;
-    height: 120px;
+    width: 108px;
+    height: 134px;
     margin-top: 3px;
   }
   .rp-agent-copy {
@@ -1238,51 +1238,51 @@
     flex-direction: column;
   }
   .rp-agent {
-    gap: 14px;
-    font-size: 12px;
+    gap: 16px;
+    font-size: 13px;
   }
   .rp-agent-ask {
-    font-size: 12px;
+    font-size: 13px;
   }
   .rp-feature-content {
-    grid-template-columns: 1fr 204px;
-    gap: 23px;
+    grid-template-columns: 1fr 228px;
+    gap: 26px;
   }
   .rp-feature h2 {
-    font-size: 24px;
+    font-size: 27px;
   }
   .rp-expanded-grid {
-    grid-template-columns: 181px minmax(0, 1fr);
-    gap: 23px;
+    grid-template-columns: 202px minmax(0, 1fr);
+    gap: 26px;
   }
   .rp-contact-links {
-    font-size: 14px;
-    gap: 11px;
+    font-size: 16px;
+    gap: 12px;
   }
 }
 
 @media (max-width: 430px) {
   .rp-home {
-    padding: 0 24px;
+    padding: 0 27px;
   }
   .rp-brand {
-    font-size: 14px;
+    font-size: 16px;
   }
   .rp-navlinks {
-    gap: 16px;
-    font-size: 12px;
+    gap: 18px;
+    font-size: 13px;
   }
   .rp-hero {
-    grid-template-columns: 1fr 74px;
-    gap: 16px;
+    grid-template-columns: 1fr 83px;
+    gap: 18px;
   }
   .rp-hero-name {
-    font-size: 34px;
-    letter-spacing: -1.5px;
+    font-size: 32px;
+    letter-spacing: -1.4px;
   }
   .rp-portrait {
-    width: 74px;
-    height: 95px;
+    width: 83px;
+    height: 106px;
   }
   .rp-agent {
     align-items: flex-start;
@@ -1291,30 +1291,30 @@
     padding-top: 2px;
   }
   .rp-agent-desc {
-    max-width: 181px;
+    max-width: 202px;
   }
   .rp-feature-content {
     grid-template-columns: 1fr;
-    gap: 25px;
+    gap: 28px;
   }
   .rp-art {
-    max-width: 278px;
+    max-width: 311px;
     margin: auto;
   }
   .rp-expanded-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 22px;
   }
   .rp-expanded-figure {
-    max-width: 278px;
+    max-width: 311px;
   }
   .rp-contact {
     align-items: flex-start;
     flex-direction: column;
   }
   .rp-contact-links {
-    font-size: 12px;
-    gap: 9px;
+    font-size: 13px;
+    gap: 10px;
   }
   .rp-location {
     text-align: left;
