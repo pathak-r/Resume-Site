@@ -828,7 +828,7 @@
 }
 
 .rp-hero {
-  padding: 82px 0 50px;
+  padding: 48px 0 50px;
   display: grid;
   grid-template-columns: 1fr 168px;
   align-items: center;
@@ -1211,7 +1211,7 @@
     gap: 21px;
   }
   .rp-hero {
-    padding: 56px 0 38px;
+    padding: 36px 0 38px;
     grid-template-columns: 1fr 108px;
     gap: 28px;
     align-items: start;

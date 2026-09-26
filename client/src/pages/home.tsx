@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
-import Navbar from "@/components/layout/navbar";
 import Hero from "@/components/sections/hero";
 import Projects from "@/components/sections/projects";
 import Education from "@/components/sections/education";
@@ -24,7 +23,6 @@ export default function Home() {
   return (
     <div className="rp-home">
       <div className="rp-shell">
-        <Navbar />
         <main>
           <Hero />
           <Projects />
