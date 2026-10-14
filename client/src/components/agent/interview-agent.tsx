@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 
 /**
  * rohit.agent — interview chat revealed inside the work list.
@@ -18,15 +18,21 @@ type Msg = {
 };
 
 const CARD_LINKS: Record<string, { label: string; anchor: string }> = {
-  copilot: { label: "Enterprise AI Copilot", anchor: "#career-hexagon" },
-  autosignal: { label: "AutoSignal", anchor: "#build-autosignal" },
-  "nl-query": { label: "Natural-language plant queries", anchor: "#career-hexagon" },
-  volve: { label: "Volve field assistant", anchor: "#build-volve" },
-  structra: { label: "Structra", anchor: "#build-structra" },
-  propscan: { label: "Structra", anchor: "#build-structra" },
-  u100: { label: "Factory maintenance planner", anchor: "#build-planner" },
-  jev: { label: "JEV intent-routing benchmark", anchor: "#build-jev" },
+  copilot: { label: "AI integration", anchor: "#career-ai" },
+  autosignal: { label: "AutoSignal", anchor: "/autosignal/" },
+  "nl-query": { label: "Natural-language plant queries", anchor: "#career-ai" },
+  volve: { label: "Operational Data Agent", anchor: "#build-volve" },
+  structra: { label: "Construction Defect Inspector", anchor: "#build-structra" },
+  propscan: { label: "Construction Defect Inspector", anchor: "#build-structra" },
+  u100: { label: "Factory Maintenance Planner", anchor: "#build-planner" },
+  jev: { label: "How good is Jev?", anchor: "#build-jev" },
 };
+
+function openCardLink(event: MouseEvent<HTMLAnchorElement>, anchor: string) {
+  if (!anchor.startsWith("#")) return;
+  event.preventDefault();
+  document.querySelector(anchor)?.scrollIntoView({ behavior: "smooth" });
+}
 
 const STARTER_CHIPS = [
   "what's your notice period?",
@@ -35,9 +41,9 @@ const STARTER_CHIPS = [
 ];
 
 const CARD_STARTERS: [string, string][] = [
-  ["Notice period?", "what's your notice period?"],
-  ["3D Copilot role", "walk me through the copilot"],
-  ["Why industrial AI?", "why enterprise AI?"],
+  ["What's your notice period?", "What's your notice period?"],
+  ["How do you work with engineers?", "How do you work with engineers?"],
+  ["Walk me through the copilot", "Walk me through the copilot"],
 ];
 
 const CHIP_POOLS: string[][] = [
@@ -206,51 +212,40 @@ export default function InterviewAgent({ onPin, variant }: InterviewAgentProps) 
   }
 
   if (variant === "card") {
+    const answer = [...messages].reverse().find((m) => m.role === "assistant");
+    const answerIndex = answer ? messages.lastIndexOf(answer) : -1;
+    const card = answer?.card ? CARD_LINKS[answer.card] : undefined;
+
     return (
       <div className="walk-agent-body" data-testid="section-interview">
-        {messages.length === 0 && (
+        {answer?.content ? (
+          <p key={answerIndex} className="walk-agent-output walk-agent-swap" data-testid="agent-conversation">
+            {stripCardTokens(answer.content)}
+            {card && (
+              <>
+                {" "}
+                <a className="walk-card-link" href={card.anchor} onClick={(e) => openCardLink(e, card.anchor)}>
+                  See {card.label}
+                </a>
+              </>
+            )}
+          </p>
+        ) : streaming ? (
+          <p className="walk-agent-output" aria-live="polite">
+            <span className="walk-dots" aria-hidden="true">
+              <i /><i /><i />
+            </span>
+          </p>
+        ) : (
           <p className="walk-agent-output" data-testid="text-agent-rag">
-            Live answers from my CV and case studies. Click a question below or type your own.
+            Ask me about my work. Answers come from my CV and case studies.
           </p>
         )}
-
-        {messages.length > 0 && (
-          <div ref={scrollRef} className="walk-thread" data-testid="agent-conversation">
-            {messages.map((m, i) =>
-              m.role === "user" ? (
-                <p key={i} className="walk-user">
-                  {m.content}
-                </p>
-              ) : (
-                <div key={i} className="walk-reply">
-                  {m.content ? (
-                    <p>
-                      {stripCardTokens(m.content)}
-                      {m.card && CARD_LINKS[m.card] && (
-                        <>
-                          {" "}
-                          <a
-                            href={CARD_LINKS[m.card].anchor}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              document.querySelector(CARD_LINKS[m.card!].anchor)?.scrollIntoView({ behavior: "smooth" });
-                            }}
-                          >
-                            See {CARD_LINKS[m.card].label}
-                          </a>
-                        </>
-                      )}
-                    </p>
-                  ) : (
-                    <span className="walk-dots" aria-hidden="true">
-                      <i /><i /><i />
-                    </span>
-                  )}
-                </div>
-              )
-            )}
-          </div>
-        )}
+        <div className="walk-src">
+          {answer?.content && answer.sources && answer.sources.length > 0
+            ? `source · ${answer.sources.join(" · ")}`
+            : ""}
+        </div>
 
         {error && (
           <p className="walk-agent-output" data-testid="text-agent-error">
@@ -290,7 +285,7 @@ export default function InterviewAgent({ onPin, variant }: InterviewAgentProps) 
             maxLength={500}
             data-testid="input-agent"
           />
-          <button className="walk-action" type="submit" disabled={streaming} data-testid="button-agent-send">
+          <button className="walk-send" type="submit" disabled={streaming} data-testid="button-agent-send">
             Send
           </button>
         </form>
@@ -360,10 +355,7 @@ export default function InterviewAgent({ onPin, variant }: InterviewAgentProps) 
                         {" "}
                         <a
                           href={CARD_LINKS[m.card].anchor}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            document.querySelector(CARD_LINKS[m.card!].anchor)?.scrollIntoView({ behavior: "smooth" });
-                          }}
+                          onClick={(e) => openCardLink(e, CARD_LINKS[m.card!].anchor)}
                           style={{
                             color: INK,
                             textDecoration: "none",

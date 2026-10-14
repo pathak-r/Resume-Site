@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { useLocation } from "wouter";
 import CvPreviewButton from "@/components/cv-preview";
 import InterviewAgent from "@/components/agent/interview-agent";
 import "./home-walk.css";
 
-type CareerKey = "nestle" | "enterprise" | "hexagon";
-type BuildKey = "jev" | "structra" | "planner" | "volve" | "autosignal";
+type CareerKey = "nestle" | "hexagon" | "ai";
+type BuildKey = "jev" | "planner" | "volve" | "structra";
 
 const career = {
   nestle: {
-    num: "01",
-    name: "Nestlé",
-    meta: "Process Engineer · 2 yrs",
+    years: "2009–11",
+    employer: "Nestlé",
+    name: "Plant operations",
+    meta: "Ran the plant floor",
     role: "Process Engineer · Nestlé (2 Years)",
     tags: "Plant operations · Process engineering · Root cause analysis",
     summary:
@@ -21,27 +22,28 @@ const career = {
       "Built the physical engineering intuition that grounds my software product decisions today.",
     ],
   },
-  enterprise: {
-    num: "02",
-    name: "Enterprise",
-    meta: "Product & systems · 5 yrs",
-    role: "Technical Product Support · Enterprise Systems (5 Years)",
+  hexagon: {
+    years: "2013–25",
+    employer: "Hexagon AB",
+    name: "Industrial software",
+    meta: "Built the software plants are designed in",
+    role: "Support Analyst → Senior PM · Hexagon AB (12 Years)",
     tags: "3D CAD schemas · Relational plant data · Enterprise architecture",
-    summary:
-      "Bridged complex 3D CAD schemas, relational databases, and global EPC engineering workflows.",
+    summary: "Bridged complex 3D CAD schemas, relational databases, and global EPC engineering workflows.",
     highlights: [
       "Solved deep schema, 3D model, and data integration bottlenecks for mega capital projects.",
       "Translated mission-critical customer engineering requirements directly into product architecture.",
+      "Led the Smart 3D modernization to 64-bit .NET, making workflows up to 35% faster.",
     ],
   },
-  hexagon: {
-    num: "03",
-    name: "Hexagon",
-    meta: "Senior AI PM · Now",
-    role: "Senior AI Product Manager · Hexagon AB (Current)",
+  ai: {
+    years: "2023–25",
+    employer: "Hexagon AB",
+    name: "AI integration",
+    meta: "Shipped agents into it: days → hours",
+    role: "Senior Product Manager · Hexagon AB (2023–25)",
     tags: "0-to-1 AI strategy · LLM agents · Enterprise NL2SQL · 3D CAD",
-    summary:
-      "Leading 0-to-1 commercial AI products for capital project engineering and plant design.",
+    summary: "Led 0-to-1 commercial AI products for capital project engineering and plant design.",
     highlights: [
       "3D Engineering AI Copilot: agents executing equipment isolation and turnaround plans from plain English.",
       "Natural-language plant queries across thousands of tables for lines, valves, and nozzles.",
@@ -52,69 +54,68 @@ const career = {
 const builds: {
   key: BuildKey;
   name: string;
+  tag: string;
   line: string;
-  title: string;
+  kicker: string;
   summary: string;
-  metric: string;
+  flow: string[];
+  stack: string;
   cta: string;
   href: string;
   external?: boolean;
 }[] = [
   {
     key: "jev",
-    name: "JEV Routing Benchmark",
-    line: "180 ms · $0.0003",
-    title: "JEV Intent-Routing Benchmark",
+    name: "How good is Jev?",
+    tag: "Benchmark · 3 datasets",
+    line: "Jev routes requests 7.7× faster and 40× cheaper than GPT-4.1.",
+    kicker: "Intent routing benchmark",
     summary:
-      "Typed probabilistic routing tested against GPT-4.1 and GPT-5.6 Sol across CLINC150, BANKING77, and HWU64, without paying to generate output tokens.",
-    metric: "180 ms · $0.0003 vs 1.4 s",
-    cta: "Try live",
+      "An interactive benchmark that puts Jev’s typed routing up against GPT models on three public intent datasets, request by request.",
+    flow: ["User request", "Jev vs GPT", "Latency and cost"],
+    stack: "CLINC150 · BANKING77 · HWU64",
+    cta: "Run benchmark",
     href: "/how-good-is-jev",
   },
   {
-    key: "structra",
-    name: "Structra",
-    line: "Site defect vision",
-    title: "Structra",
-    summary:
-      "Take a photo on site. The app finds construction defects, boxes them on the source photo, and builds a severity report ready to hand off.",
-    metric: "14 findings · 0.91 conf",
-    cta: "App Store",
-    href: "https://apps.apple.com/us/app/structra-inspect/id6795109088",
-    external: true,
-  },
-  {
     key: "planner",
-    name: "Maintenance Planner",
-    line: "Turnaround job packs",
-    title: "Factory Maintenance Planner",
+    name: "Factory Maintenance Planner",
+    tag: "Turnaround planning",
+    line: "Turns work orders, sensor history and drawings into a shutdown work package.",
+    kicker: "Turnaround planning",
     summary:
-      "Pulls inspections, work orders, sensor history, drawings, and permits into a sourced job pack. Missing or conflicting evidence is flagged.",
-    metric: "Facts from queries · prose from the model",
-    cta: "Launch",
-    href: "/u100/",
+      "Reconciles maintenance records, historian data and drawings, flags gaps in the scope, and drafts a work package where every line links back to its source.",
+    flow: ["SAP PM, PI, drawings", "Reconcile and flag gaps", "Work package"],
+    stack: "Azure OpenAI · FastAPI · React",
+    cta: "Try it live",
+    href: "/u100/#/scope",
   },
   {
     key: "volve",
-    name: "Volve Assistant",
-    line: "Equinor Q&A",
-    title: "Volve Field Assistant",
+    name: "Operational Data Agent",
+    tag: "Equinor Volve",
+    line: "Answers questions on 9 years of oil field data, with sources.",
+    kicker: "Multi-source RAG",
     summary:
-      "Reads Equinor’s published Volve drilling reports and production data to answer reservoir and well questions in plain English, with citations.",
-    metric: "7 chunks · 3 sources",
-    cta: "Launch",
+      "Searches time-series, reports and logs across 7 assets of Equinor’s public Volve field, spots anomalies, and cites the exact passages it used.",
+    flow: ["Field data, 9 years", "Search and detect", "Cited answer"],
+    stack: "FAISS · BM25 · OpenAI · FastAPI",
+    cta: "Try it live",
     href: "/geo-agentic-int",
   },
   {
-    key: "autosignal",
-    name: "AutoSignal",
-    line: "NHTSA · grounded Q&A",
-    title: "AutoSignal",
+    key: "structra",
+    name: "Construction Defect Inspector",
+    tag: "Structra · iOS",
+    line: "Photo in, marked-up defects and a report out. On the App Store.",
+    kicker: "Vision model on mobile",
     summary:
-      "Ask about a car in plain language. Answers draw on NHTSA bulletins, recalls, complaints, and investigations, with the source records.",
-    metric: "3 sources · NHTSA",
-    cta: "Launch",
-    href: "/autosignal/",
+      "Take a photo on site. The app boxes each defect, skips low-confidence calls, and builds a defect register ready to hand off.",
+    flow: ["Site photo", "Vision model", "Defect register"],
+    stack: "Gemini 2.5 Flash · React Native · Supabase",
+    cta: "App Store",
+    href: "https://apps.apple.com/us/app/structra-inspect/id6795109088",
+    external: true,
   },
 ];
 
@@ -129,12 +130,27 @@ function leftTheBand(event: { relatedTarget: EventTarget | null; currentTarget: 
   return !(event.currentTarget as Node).contains(next);
 }
 
+function launchProps(external?: boolean) {
+  return external ? { target: "_blank", rel: "noopener noreferrer" } : {};
+}
+
 export default function Home() {
   const [location] = useLocation();
   const [careerKey, setCareerKey] = useState<CareerKey | null>(null);
   const [careerPinned, setCareerPinned] = useState(false);
   const [buildKey, setBuildKey] = useState<BuildKey | null>(null);
   const [buildPinned, setBuildPinned] = useState(false);
+  const [singleColumn, setSingleColumn] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 720px)").matches,
+  );
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 720px)");
+    const apply = () => setSingleColumn(query.matches);
+    apply();
+    query.addEventListener("change", apply);
+    return () => query.removeEventListener("change", apply);
+  }, []);
 
   useEffect(() => {
     if (location === "/hello" || window.location.hash === "#interview") {
@@ -144,14 +160,14 @@ export default function Home() {
   }, [location]);
 
   useEffect(() => {
-    const onKey = (event: KeyboardEvent) => {
+    const onKey = (event: globalThis.KeyboardEvent) => {
       if (event.key !== "Escape") return;
       setCareerPinned(false);
       setCareerKey(null);
       setBuildPinned(false);
       setBuildKey(null);
     };
-    const onClick = (event: MouseEvent) => {
+    const onClick = (event: globalThis.MouseEvent) => {
       const target = event.target;
       if (!(target instanceof Element)) return;
       if (careerPinned && !target.closest("#career-band")) {
@@ -173,6 +189,33 @@ export default function Home() {
 
   const careerStage = careerKey ? career[careerKey] : null;
   const build = builds.find((item) => item.key === buildKey) ?? null;
+  const activeBuildIndex = builds.findIndex((item) => item.key === buildKey);
+  const detailAfter =
+    activeBuildIndex < 0
+      ? -1
+      : singleColumn
+        ? activeBuildIndex
+        : Math.min(activeBuildIndex + (activeBuildIndex % 2 === 0 ? 1 : 0), builds.length - 1);
+
+  function toggleCareer(key: CareerKey) {
+    if (careerPinned && careerKey === key) {
+      setCareerPinned(false);
+      setCareerKey(null);
+    } else {
+      setCareerPinned(true);
+      setCareerKey(key);
+    }
+  }
+
+  function toggleBuild(key: BuildKey) {
+    if (buildPinned && buildKey === key) {
+      setBuildPinned(false);
+      setBuildKey(null);
+    } else {
+      setBuildPinned(true);
+      setBuildKey(key);
+    }
+  }
 
   return (
     <div className="walk">
@@ -183,20 +226,21 @@ export default function Home() {
               className="walk-portrait"
               src="/rohit-portrait-v5.jpg"
               alt="Rohit Pathak"
-              width={128}
-              height={156}
+              width={200}
             />
-            <h1>Rohit Pathak</h1>
-            <p className="walk-meta">Abu Dhabi, UAE · 10+ years exp</p>
-            <p className="walk-positioning">
-              Technical PM leading enterprise AI for capital projects and building working systems{" "}
-              <span style={{ whiteSpace: "nowrap" }}>hands-on</span>.
-            </p>
-            <div className="walk-links">
-              <CvPreviewButton data-testid="button-download-cv">CV / Contact</CvPreviewButton>
-              <a href="https://www.linkedin.com/in/pathakrohit/" target="_blank" rel="noopener noreferrer">
-                LinkedIn
-              </a>
+            <div className="walk-copy">
+              <h1>Rohit Pathak</h1>
+              <p className="walk-meta">Forward-deployed PM · Abu Dhabi · 12+ years</p>
+              <p className="walk-positioning">
+                Technical PM leading enterprise AI for capital projects and building working systems{" "}
+                <span style={{ whiteSpace: "nowrap" }}>hands-on</span>.
+              </p>
+              <div className="walk-links">
+                <CvPreviewButton data-testid="button-download-cv">View CV</CvPreviewButton>
+                <a href="https://www.linkedin.com/in/pathakrohit/" target="_blank" rel="noopener noreferrer">
+                  LinkedIn
+                </a>
+              </div>
             </div>
           </div>
 
@@ -205,7 +249,6 @@ export default function Home() {
               <div className="walk-agent-name">
                 <span className="walk-dot" /> rohit.agent
               </div>
-              <span className="walk-agent-note">A screening call, without the call</span>
             </div>
             <InterviewAgent variant="card" />
           </section>
@@ -224,7 +267,9 @@ export default function Home() {
             setCareerKey(null);
           }}
         >
-          <h2 className="walk-label">Career</h2>
+          <h2 className="walk-label">
+            Career<span className="walk-aside">Hover for detail</span>
+          </h2>
           <div className="walk-ribbon">
             {(Object.keys(career) as CareerKey[]).map((key) => {
               const stage = career[key];
@@ -235,18 +280,13 @@ export default function Home() {
                   type="button"
                   className={`walk-chev${careerKey === key ? " is-on" : ""}`}
                   data-career={key}
-                  onClick={() => {
-                    if (careerPinned && careerKey === key) {
-                      setCareerPinned(false);
-                      setCareerKey(null);
-                    } else {
-                      setCareerPinned(true);
-                      setCareerKey(key);
-                    }
-                  }}
+                  onClick={() => toggleCareer(key)}
                 >
                   <span className="walk-chev-in">
-                    <span className="walk-num">{stage.num}</span>
+                    <span className="walk-num">
+                      {stage.years}
+                      <span className="walk-employer"> · {stage.employer}</span>
+                    </span>
                     <span className="walk-chev-name">{stage.name}</span>
                     <span className="walk-chev-meta">{stage.meta}</span>
                   </span>
@@ -255,7 +295,7 @@ export default function Home() {
             })}
           </div>
           {careerStage && (
-            <div className="walk-note">
+            <div className="walk-note" key={careerKey}>
               <div className="walk-note-head">
                 <h3>{careerStage.role}</h3>
                 <button
@@ -275,7 +315,7 @@ export default function Home() {
               <ul>
                 {careerStage.highlights.map((line) => (
                   <li key={line}>
-                    <span>▸</span>
+                    <span className="walk-bullet" />
                     <span>{line}</span>
                   </li>
                 ))}
@@ -288,67 +328,169 @@ export default function Home() {
           className="walk-band"
           id="builds-band"
           onMouseOver={(event) => {
-            const button = (event.target as Element).closest?.("[data-build]");
-            if (!button || buildPinned) return;
-            setBuildKey(button.getAttribute("data-build") as BuildKey);
+            const card = (event.target as Element).closest?.("[data-build]");
+            if (!card || buildPinned) return;
+            setBuildKey(card.getAttribute("data-build") as BuildKey);
           }}
           onMouseOut={(event) => {
             if (buildPinned || !leftTheBand(event)) return;
             setBuildKey(null);
           }}
         >
-          <h2 className="walk-label">Hands-on systems</h2>
+          <h2 className="walk-label">
+            Selected work<span className="walk-aside">Live demos</span>
+          </h2>
           <div className="walk-systems">
-            {builds.map((item) => (
-              <button
-                key={item.key}
-                id={`build-${item.key}`}
-                type="button"
-                className={`walk-build${buildKey === item.key ? " is-on" : ""}`}
-                data-build={item.key}
-                onClick={() => {
-                  if (buildPinned && buildKey === item.key) {
-                    setBuildPinned(false);
-                    setBuildKey(null);
-                  } else {
-                    setBuildPinned(true);
-                    setBuildKey(item.key);
-                  }
-                }}
-              >
-                <span className="walk-build-name">{item.name}</span>
-                <span className="walk-build-line">{item.line}</span>
-              </button>
-            ))}
-          </div>
-          {build && (
-            <div className="walk-note" id="build-note">
-              <div className="walk-note-head">
-                <h3>{build.title}</h3>
-                <button
-                  type="button"
-                  className="walk-note-close"
-                  aria-label="Close"
-                  onClick={() => {
-                    setBuildPinned(false);
-                    setBuildKey(null);
+            {builds.map((item, index) => (
+              <Fragment key={item.key}>
+                <div
+                  id={`build-${item.key}`}
+                  role="button"
+                  tabIndex={0}
+                  className={`walk-build${buildKey === item.key ? " is-on" : ""}`}
+                  data-build={item.key}
+                  aria-label={`${item.name}: show details`}
+                  onClick={(event) => {
+                    if ((event.target as Element).closest("[data-launch]")) return;
+                    toggleBuild(item.key);
+                  }}
+                  onKeyDown={(event: ReactKeyboardEvent<HTMLDivElement>) => {
+                    if ((event.target as Element).closest("[data-launch]")) return;
+                    if (event.key !== "Enter" && event.key !== " ") return;
+                    event.preventDefault();
+                    toggleBuild(item.key);
                   }}
                 >
-                  ×
-                </button>
-              </div>
-              <p>{build.summary}</p>
-              <p className="walk-note-metric">{build.metric}</p>
-              <a
-                className="walk-action"
-                href={build.href}
-                {...(build.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              >
-                {build.cta}
-              </a>
-            </div>
-          )}
+                  <span className="walk-build-name">{item.name}</span>
+                  <a className="walk-try" data-launch href={item.href} {...launchProps(item.external)}>
+                    {item.cta} ↗
+                  </a>
+                  <span className="walk-build-line">{item.line}</span>
+                  <span className="walk-build-tag">{item.tag}</span>
+                </div>
+                {build && index === detailAfter && (
+                  <div className="walk-note walk-build-note" id="build-note" key={build.key}>
+                    <div className="walk-detail">
+                      <div>
+                        <div className="walk-kicker">{build.kicker}</div>
+                        <h3>{build.name}</h3>
+                        <p>{build.summary}</p>
+                        <div className="walk-flow">
+                          {build.flow.map((step, stepIndex) => (
+                            <span key={step} style={{ display: "contents" }}>
+                              {stepIndex > 0 && <span className="walk-arr">→</span>}
+                              <span className="walk-step">{step}</span>
+                            </span>
+                          ))}
+                        </div>
+                        <div className="walk-stack">{build.stack}</div>
+                        <a className="walk-action" data-launch href={build.href} {...launchProps(build.external)}>
+                          {build.cta} ↗
+                        </a>
+                      </div>
+                      <div>
+                        <div className="walk-detail-close">
+                          <button
+                            type="button"
+                            className="walk-note-close"
+                            aria-label="Close"
+                            onClick={() => {
+                              setBuildPinned(false);
+                              setBuildKey(null);
+                            }}
+                          >
+                            ×
+                          </button>
+                        </div>
+                        <BuildVisual id={build.key} />
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </Fragment>
+            ))}
+          </div>
         </section>
+
+        <p className="walk-contact">
+          <span className="walk-contact-label">Contact</span>
+          <a className="walk-contact-link" href="mailto:write@rohitpathak.com">
+            write@rohitpathak.com
+          </a>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function BuildVisual({ id }: { id: BuildKey }) {
+  if (id === "jev") {
+    return (
+      <div className="walk-visual">
+        <div className="walk-visual-cap">Result · 150 intents</div>
+        <div className="walk-bar-label">
+          <span>Jev</span>
+          <span className="walk-good">180 ms · $0.0003</span>
+        </div>
+        <div className="walk-track">
+          <div className="walk-fill" style={{ width: "13%" }} />
+        </div>
+        <div className="walk-bar-label walk-quiet" style={{ marginTop: 12 }}>
+          <span>GPT-4.1</span>
+          <span>1.4 s · $0.0120</span>
+        </div>
+        <div className="walk-track">
+          <div className="walk-fill walk-fill-dim" style={{ width: "100%" }} />
+        </div>
+      </div>
+    );
+  }
+
+  if (id === "planner") {
+    return (
+      <div className="walk-visual walk-mono">
+        <div className="walk-visual-cap">Sample run</div>
+        <div className="walk-prompt">draft TA-2027 package for E-101</div>
+        <div>
+          <span className="walk-pill">INS-0499</span>
+          <span className="walk-pill">WO 40000304</span>
+          <span className="walk-pill">100-PRC-001</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (id === "volve") {
+    return (
+      <div className="walk-visual walk-mono">
+        <div className="walk-visual-cap">Sample run</div>
+        <div className="walk-prompt">why is water cut rising in F-12?</div>
+        <div className="walk-cite walk-visual-row">
+          <span className="walk-quiet">15/9-F-12 DDR · 2007-06-19</span>
+          <span className="walk-good">7 passages · 3 sources</span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="walk-visual">
+      <div className="walk-visual-cap">Sample run</div>
+      <div className="walk-defect">
+        <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+          <div className="walk-mark">CRACK</div>
+          <div>
+            <div className="walk-mono">Crack · wall</div>
+            <div className="walk-quiet" style={{ marginTop: 2 }}>
+              14 findings boxed on the photos
+            </div>
+          </div>
+        </div>
+        <div className="walk-mono" style={{ textAlign: "right" }}>
+          conf 0.91
+          <br />
+          <span className="walk-quiet">moderate</span>
+        </div>
       </div>
     </div>
   );
