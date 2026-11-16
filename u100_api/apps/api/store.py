@@ -1,122 +1,163 @@
-"""Cosmos + Key Vault access. Never logs secret values."""
+"""SQLite document store for tag mappings and work packages. Never logs secrets."""
 
 from __future__ import annotations
 
+import json
 import os
-from functools import lru_cache
-from typing import Any
+import re
+import sqlite3
+import threading
+from contextlib import contextmanager
+from pathlib import Path
+from typing import Any, Iterator
 
-from azure.cosmos import CosmosClient
-from azure.identity import AzureCliCredential, DefaultAzureCredential
-from azure.keyvault.secrets import SecretClient
 from dotenv import load_dotenv
 
-from scripts.common import ENV_PATH
+from scripts.common import DATA_DIR, ENV_PATH
 
-DATABASE = "unit100"
 CONTAINER = "tag_map"
 PACKAGES = "packages"
+
+_LOCK = threading.Lock()
+_READY_FOR: str | None = None
+_WHERE = re.compile(r"\s+WHERE\s+", re.IGNORECASE)
+_AND = re.compile(r"\s+AND\s+", re.IGNORECASE)
+_CLAUSE = re.compile(r"c\.(\w+)\s*=\s*(@\w+|'[^']*')\s*$")
 
 
 def _load_env() -> None:
     load_dotenv(ENV_PATH)
 
 
-def _secret_via_az(name: str) -> str:
-    import subprocess
-
-    vault = os.environ.get("KEY_VAULT_URL", "")
-    vault_name = vault.split("//", 1)[-1].split(".", 1)[0] if vault else "kv-u100-rp0328"
-    out = subprocess.check_output(
-        [
-            "az",
-            "keyvault",
-            "secret",
-            "show",
-            "--vault-name",
-            vault_name,
-            "--name",
-            name,
-            "--query",
-            "value",
-            "-o",
-            "tsv",
-        ],
-        text=True,
-        stderr=subprocess.DEVNULL,
-    )
-    return out.strip()
-
-
-def _secret(name: str) -> str:
-    """Resolve a secret from env (COSMOS_KEY) or Key Vault (COSMOS-KEY)."""
-    env_name = name.replace("-", "_")
-    val = os.environ.get(env_name)
-    if val:
-        return val
-    try:
-        return _secret_via_az(name)
-    except Exception:
-        pass
-    vault = os.environ.get("KEY_VAULT_URL")
-    if not vault:
-        raise RuntimeError(f"{env_name} is empty and KEY_VAULT_URL is not set")
-    try:
-        cred = AzureCliCredential()
-        client = SecretClient(vault_url=vault, credential=cred)
-        return client.get_secret(name).value
-    except Exception:
-        cred = DefaultAzureCredential(exclude_interactive_browser_credential=True)
-        client = SecretClient(vault_url=vault, credential=cred)
-        return client.get_secret(name).value
-
-
-@lru_cache(maxsize=1)
-def _cosmos_db():
+def db_path() -> Path:
+    """Persisted file. SQLITE_PATH wins; otherwise a Railway volume mount, then data/unit100.db."""
     _load_env()
-    endpoint = os.environ["COSMOS_ENDPOINT"]
-    key = _secret("COSMOS-KEY")
-    client = CosmosClient(endpoint, credential=key)
-    return client.get_database_client(DATABASE)
+    raw = os.environ.get("SQLITE_PATH", "").strip()
+    if raw:
+        return Path(raw)
+    mount = os.environ.get("RAILWAY_VOLUME_MOUNT_PATH", "").strip()
+    if mount:
+        return Path(mount) / "unit100.db"
+    return DATA_DIR / "unit100.db"
 
 
-def cosmos_container():
-    return _cosmos_db().get_container_client(CONTAINER)
+def _connect() -> sqlite3.Connection:
+    path = db_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    conn = sqlite3.connect(path, timeout=30)
+    conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA journal_mode=WAL")
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS docs (
+            container TEXT NOT NULL,
+            id TEXT NOT NULL,
+            body TEXT NOT NULL,
+            PRIMARY KEY (container, id)
+        )
+        """
+    )
+    conn.commit()
+    return conn
 
 
-def packages_container():
-    return _cosmos_db().get_container_client(PACKAGES)
+@contextmanager
+def _session() -> Iterator[sqlite3.Connection]:
+    conn = _connect()
+    try:
+        yield conn
+        conn.commit()
+    finally:
+        conn.close()
 
 
-def upsert_docs(docs: list[dict[str, Any]]) -> int:
-    container = cosmos_container()
-    for doc in docs:
-        container.upsert_item(doc)
+def _read_container(container: str) -> list[dict[str, Any]]:
+    with _session() as conn:
+        rows = conn.execute("SELECT body FROM docs WHERE container = ?", (container,)).fetchall()
+    return [json.loads(row["body"]) for row in rows]
+
+
+def _count(container: str) -> int:
+    with _session() as conn:
+        row = conn.execute("SELECT COUNT(*) AS n FROM docs WHERE container = ?", (container,)).fetchone()
+    return int(row["n"])
+
+
+def _write_docs(container: str, docs: list[dict[str, Any]]) -> int:
+    with _session() as conn:
+        conn.executemany(
+            """
+            INSERT INTO docs (container, id, body) VALUES (?, ?, ?)
+            ON CONFLICT(container, id) DO UPDATE SET body = excluded.body
+            """,
+            [(container, str(doc["id"]), json.dumps(doc, default=str)) for doc in docs],
+        )
     return len(docs)
 
 
+def _delete_ids(container: str, ids: list[str]) -> int:
+    if not ids:
+        return 0
+    with _session() as conn:
+        conn.executemany("DELETE FROM docs WHERE container = ? AND id = ?", [(container, item_id) for item_id in ids])
+    return len(ids)
+
+
+def ensure_ready() -> None:
+    """Create the database and seed tag mappings from the shipped CSVs when empty."""
+    global _READY_FOR
+    path = str(db_path())
+    with _LOCK:
+        with _session():
+            pass
+        if _READY_FOR == path:
+            return
+        autoseed = os.environ.get("UNIT100_AUTOSEED", "1") != "0"
+        if autoseed and _count(CONTAINER) == 0 and _can_rebuild_recon():
+            from apps.api.recon import build_recon_docs
+
+            _write_docs(CONTAINER, build_recon_docs())
+        _READY_FOR = path
+
+
+def upsert_docs(docs: list[dict[str, Any]]) -> int:
+    ensure_ready()
+    return _write_docs(CONTAINER, docs)
+
+
+def _matches(doc: dict[str, Any], sql: str, params: list[dict] | None) -> bool:
+    parts = _WHERE.split(sql, maxsplit=1)
+    if len(parts) == 1:
+        return True
+    values = {item["name"]: item["value"] for item in (params or [])}
+    for clause in _AND.split(parts[1]):
+        match = _CLAUSE.match(clause.strip())
+        if not match:
+            raise ValueError(f"Unsupported query: {sql}")
+        field, raw = match.group(1), match.group(2)
+        expected = values[raw] if raw.startswith("@") else raw[1:-1]
+        if doc.get(field) != expected:
+            return False
+    return True
+
+
 def query_docs(sql: str, params: list[dict] | None = None) -> list[dict[str, Any]]:
-    container = cosmos_container()
-    return list(
-        container.query_items(
-            query=sql,
-            parameters=params or [],
-            enable_cross_partition_query=True,
-        )
-    )
+    ensure_ready()
+    return [doc for doc in _read_container(CONTAINER) if _matches(doc, sql, params)]
 
 
 def get_doc(item_id: str, pk: str) -> dict[str, Any] | None:
-    try:
-        container = cosmos_container()
-        return container.read_item(item=item_id, partition_key=pk)
-    except Exception:
-        return None
+    ensure_ready()
+    for doc in _read_container(CONTAINER):
+        if doc.get("id") == item_id and doc.get("tagCanonical") == pk:
+            return doc
+    return None
 
 
 def replace_doc(doc: dict[str, Any]) -> dict[str, Any]:
-    container = cosmos_container()
-    return container.replace_item(item=doc["id"], body=doc)
+    ensure_ready()
+    _write_docs(CONTAINER, [doc])
+    return doc
 
 
 def package_id(ta_id: str, canonical: str) -> str:
@@ -124,50 +165,33 @@ def package_id(ta_id: str, canonical: str) -> str:
 
 
 def get_package(canonical: str, ta_id: str = "TA-2027") -> dict[str, Any] | None:
-    try:
-        return packages_container().read_item(item=package_id(ta_id, canonical), partition_key=ta_id)
-    except Exception:
-        return None
+    ensure_ready()
+    wanted = package_id(ta_id, canonical)
+    for doc in _read_container(PACKAGES):
+        if doc.get("id") == wanted:
+            return doc
+    return None
 
 
 def upsert_package(doc: dict[str, Any]) -> dict[str, Any]:
-    return packages_container().upsert_item(doc)
+    ensure_ready()
+    _write_docs(PACKAGES, [doc])
+    return doc
 
 
 def list_packages(ta_id: str = "TA-2027") -> list[dict[str, Any]]:
-    return list(
-        packages_container().query_items(
-            query="SELECT * FROM c WHERE c.taId = @ta",
-            parameters=[{"name": "@ta", "value": ta_id}],
-        )
-    )
+    ensure_ready()
+    return [doc for doc in _read_container(PACKAGES) if doc.get("taId") == ta_id]
 
 
 def delete_packages(ta_id: str = "TA-2027") -> int:
-    container = packages_container()
-    removed = 0
-    for doc in list_packages(ta_id):
-        try:
-            container.delete_item(item=doc["id"], partition_key=ta_id)
-            removed += 1
-        except Exception:
-            continue
-    return removed
+    ids = [doc["id"] for doc in list_packages(ta_id)]
+    return _delete_ids(PACKAGES, ids)
 
 
 def delete_tag_map() -> int:
-    container = cosmos_container()
-    removed = 0
-    for doc in query_docs("SELECT c.id, c.tagCanonical FROM c"):
-        pk = doc.get("tagCanonical")
-        if not pk:
-            continue
-        try:
-            container.delete_item(item=doc["id"], partition_key=pk)
-            removed += 1
-        except Exception:
-            continue
-    return removed
+    ids = [doc["id"] for doc in query_docs("SELECT * FROM c") if doc.get("tagCanonical")]
+    return _delete_ids(CONTAINER, ids)
 
 
 def reset_mapping_doc(doc: dict[str, Any]) -> dict[str, Any]:
@@ -236,4 +260,3 @@ def reset_demo(ta_id: str = "TA-2027") -> dict[str, Any]:
         "mappingsRestored": restored,
         **stats,
     }
-

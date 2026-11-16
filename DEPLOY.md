@@ -45,14 +45,12 @@ Static app built from the **Industrial Intelligence** repo. Publish with `script
 
 | Variable | Required |
 |----------|----------|
-| `AZURE_OPENAI_ENDPOINT` | Yes |
-| `AZURE_OPENAI_KEY` | Yes |
-| `AZURE_OPENAI_DEPLOYMENT` | Yes (`gpt-4.1-mini`) |
-| `COSMOS_ENDPOINT` | Yes |
-| `COSMOS_KEY` | Yes |
+| `OPENAI_API_KEY` | Yes. Same key as geo-rag is fine |
+| `OPENAI_MODEL` | No. Defaults to `gpt-4.1-mini` |
+| `SQLITE_PATH` | No. A volume mounted on the service is used automatically via `RAILWAY_VOLUME_MOUNT_PATH`. Without a volume the file lives in the container and resets on redeploy; mappings are reseeded from the CSVs |
 | `CORS_ORIGINS` | `https://www.rohitpathak.com,https://rohitpathak.com,https://<resume-site>.up.railway.app` |
 
-Optional: `KEY_VAULT_URL`, `SEARCH_ENDPOINT`, `AZURE_OPENAI_API_VERSION`.
+Azure Cosmos and Azure OpenAI variables are unused.
 
 ### resume-site extra variable
 

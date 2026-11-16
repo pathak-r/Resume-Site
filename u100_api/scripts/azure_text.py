@@ -1,4 +1,4 @@
-"""Azure OpenAI chat helper with on-disk cache. Never logs the API key."""
+"""Chat helper with an on-disk cache. Uses OpenAI, or Azure OpenAI if that is all that is configured."""
 
 from __future__ import annotations
 
@@ -10,44 +10,50 @@ import time
 from pathlib import Path
 
 from dotenv import load_dotenv
-from openai import APIStatusError, AzureOpenAI, RateLimitError
+from openai import APIStatusError, AzureOpenAI, OpenAI, RateLimitError
 
 from scripts.common import CACHE_DIR, ENV_PATH, ensure_dirs
 
-_CLIENT: AzureOpenAI | None = None
+_CLIENT: OpenAI | None = None
 _DEPLOYMENT: str | None = None
 _GATE = threading.Lock()
 _NEXT_OK = 0.0
-# Stay under the deployment RPM (currently 65).
-MIN_INTERVAL_SEC = 1.2
+# Stay under a modest RPM so a demo key is not tripped.
+MIN_INTERVAL_SEC = 0.4
 
 
-def _client() -> tuple[AzureOpenAI, str]:
+def _client() -> tuple[OpenAI, str]:
     global _CLIENT, _DEPLOYMENT
     if _CLIENT is None:
         load_dotenv(ENV_PATH)
-        endpoint = os.environ["AZURE_OPENAI_ENDPOINT"].rstrip("/")
-        key = os.environ["AZURE_OPENAI_KEY"]
-        deployment = os.environ["AZURE_OPENAI_DEPLOYMENT"]
-        api_version = os.environ.get("AZURE_OPENAI_API_VERSION", "2024-10-21")
-        if not key:
-            raise RuntimeError("AZURE_OPENAI_KEY is empty in .env")
-        _CLIENT = AzureOpenAI(
-            azure_endpoint=endpoint,
-            api_key=key,
-            api_version=api_version,
-        )
-        _DEPLOYMENT = deployment
+        openai_key = os.environ.get("OPENAI_API_KEY", "").strip()
+        if openai_key:
+            _CLIENT = OpenAI(api_key=openai_key)
+            _DEPLOYMENT = os.environ.get("OPENAI_MODEL", "gpt-4.1-mini")
+        else:
+            endpoint = os.environ.get("AZURE_OPENAI_ENDPOINT", "").strip().rstrip("/")
+            key = os.environ.get("AZURE_OPENAI_KEY", "").strip()
+            deployment = os.environ.get("AZURE_OPENAI_DEPLOYMENT", "").strip()
+            if not (endpoint and key and deployment):
+                raise RuntimeError(
+                    "Set OPENAI_API_KEY, or AZURE_OPENAI_ENDPOINT, AZURE_OPENAI_KEY, and AZURE_OPENAI_DEPLOYMENT"
+                )
+            api_version = os.environ.get("AZURE_OPENAI_API_VERSION", "2024-10-21")
+            _CLIENT = AzureOpenAI(azure_endpoint=endpoint, api_key=key, api_version=api_version)
+            _DEPLOYMENT = deployment
     assert _DEPLOYMENT is not None
     return _CLIENT, _DEPLOYMENT
 
 
-def _cache_path(namespace: str, payload: dict) -> Path:
-    ensure_dirs()
-    folder = CACHE_DIR / namespace
-    folder.mkdir(parents=True, exist_ok=True)
-    digest = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
-    return folder / f"{digest}.json"
+def _cache_path(namespace: str, payload: dict) -> Path | None:
+    try:
+        ensure_dirs()
+        folder = CACHE_DIR / namespace
+        folder.mkdir(parents=True, exist_ok=True)
+        digest = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
+        return folder / f"{digest}.json"
+    except OSError:
+        return None
 
 
 def _wait_for_slot() -> None:
@@ -83,7 +89,7 @@ def cached_chat(
 ) -> str:
     payload = {"system": system, "user": user, "temperature": temperature, "max_tokens": max_tokens}
     path = _cache_path(namespace, payload)
-    if path.exists():
+    if path is not None and path.exists():
         return json.loads(path.read_text(encoding="utf-8"))["text"]
 
     client, deployment = _client()
@@ -102,7 +108,11 @@ def cached_chat(
                 ],
             )
             text = (resp.choices[0].message.content or "").strip()
-            path.write_text(json.dumps({"text": text}, ensure_ascii=False), encoding="utf-8")
+            if path is not None:
+                try:
+                    path.write_text(json.dumps({"text": text}, ensure_ascii=False), encoding="utf-8")
+                except OSError:
+                    pass
             return text
         except (RateLimitError, APIStatusError) as exc:
             last_err = exc
@@ -111,4 +121,4 @@ def cached_chat(
                 raise
             time.sleep(_retry_after(exc, delay))
             delay = min(delay * 1.6, 45.0)
-    raise RuntimeError(f"Azure OpenAI failed after retries: {last_err}") from last_err
+    raise RuntimeError(f"Chat completion failed after retries: {last_err}") from last_err

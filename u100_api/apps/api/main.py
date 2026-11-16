@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 import os
 import sys
+import threading
+from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -24,7 +26,14 @@ from scripts.common import ENV_PATH
 
 load_dotenv(ENV_PATH)
 
-app = FastAPI(title="Unit 100 work-package drafter", version="0.1.0")
+
+@asynccontextmanager
+async def _lifespan(_app: FastAPI):
+    threading.Thread(target=store.ensure_ready, name="unit100-seed", daemon=True).start()
+    yield
+
+
+app = FastAPI(title="Unit 100 work-package drafter", version="0.1.0", lifespan=_lifespan)
 
 _cors = [
     origin.strip()
